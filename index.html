@@ -486,7 +486,53 @@
       .hero-subtitle { font-size: 0.875rem; }
       p, li { font-size: 0.875rem; line-height: 1.6; }
     }
+    /* ─────────────────────────────────────────────────────────────────────
+       SCROLL HINT — indicador animado parte inferior del hero
+    ───────────────────────────────────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      animation: scrollHintFade 2.5s ease-in-out infinite;
+    }
+    .scroll-hint-text {
+      color: rgba(255,255,255,0.65);
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .scroll-hint-arrow {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: rgba(255,255,255,0.65);
+      animation: arrowBounce 1.4s ease-in-out infinite;
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateY(0);   opacity: 0.65; }
+      50%       { transform: translateY(6px); opacity: 1;    }
+    }
+    @keyframes scrollHintFade {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.5; }
+    }
+    /* Desaparece al hacer scroll (JS lo añade) */
+    .scroll-hint.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
   </style>
+
 
 </head>
 
@@ -550,7 +596,20 @@
       <p class="hero-trust">Acceso Inmediato · Oferta Limitada</p>
 
     </div>
+
+    <!-- ── Scroll hint animado ── -->
+    <div class="scroll-hint">
+      <span class="scroll-hint-text">SCROLL</span>
+      <svg class="scroll-hint-arrow" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+
   </section>
+
 
 
   <!-- ═══════════════════════════════════════════════════════════════
@@ -1224,6 +1283,33 @@
 
 
 
+  <!-- Scroll hint: desaparece al bajar, baja al hacer clic -->
+  <script>
+    (function () {
+      var hint = document.querySelector('.scroll-hint');
+      if (!hint) return;
+
+      /* Al hacer scroll → se oculta */
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 80) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+        }
+      }, { passive: true });
+
+      /* Al hacer clic → scroll suave a la siguiente sección */
+      hint.addEventListener('click', function () {
+        var hero = document.querySelector('.hero-video-section');
+        if (hero) {
+          var next = hero.nextElementSibling;
+          if (next) next.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    })();
+  </script>
+
 </body>
+
 </html>
 
