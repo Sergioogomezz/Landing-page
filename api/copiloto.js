@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  // Permisos CORS para que activonorte.com pueda conectarse sin bloqueos
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -9,31 +8,25 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
-
-  // Comprobación rápida desde el navegador
-  if (req.method === "GET") {
-    return res.status(200).json({
-      estado: "Copiloto Activonorte conectado correctamente",
-      claveDetectada: Boolean(apiKey)
-    });
-  }
-
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
-
   if (!apiKey) {
     return res.status(500).json({ error: "Missing GEMINI_API_KEY" });
   }
 
-  let body = req.body;
-  if (typeof body === "string") {
-    try { body = JSON.parse(body); } catch (e) { body = {}; }
+  let message = "";
+  if (req.method === "GET") {
+    message = req.query?.message || "El ex-socio dice: me da pereza volver porque entreno solo y me queda lejos";
+  } else if (req.method === "POST") {
+    let body = req.body;
+    if (typeof body === "string") {
+      try { body = JSON.parse(body); } catch (e) { body = {}; }
+    }
+    message = body?.message || "";
+  } else {
+    return res.status(405).json({ error: "Method not allowed" });
   }
-  const message = body?.message || "";
 
-  const systemPrompt = `Eres el Copiloto Táctico 48H de Activonorte para dueños de gimnasios.
-Analiza el mensaje o la excusa concreta que ha puesto el ex-socio y redacta una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
+  const fullPrompt = `Eres el Copiloto Táctico 48H de Activonorte para dueños de gimnasios.
+Analiza el siguiente mensaje o excusa de un ex-socio y redacta una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
 
 REGLAS DE ACTIVONORTE:
 - Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento por chat.
@@ -46,10 +39,20 @@ REGLAS DE ACTIVONORTE:
 
 FORMATO OBLIGATORIO DE RESPUESTA:
 Escribe ÚNICAMENTE dos bloques separados por tres barras verticales (|||), sin comillas ni código markdown:
-Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta ||| Mensaje exacto de WhatsApp cercano, natural y de máximo 4 líneas para copiar y enviar al ex-socio`;
+Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta ||| Mensaje exacto de WhatsApp cercano, natural y de máximo 4 líneas para copiar y enviar al ex-socio
 
-  const models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
+MENSAJE DEL EX-SOCIO A RESPONDER:
+"${message}"`;
+
+  const models = [
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+    "gemini-flash-latest"
+  ];
+
   let rawText = "";
+  let lastError = null;
 
   for (const model of models) {
     try {
@@ -59,8 +62,7 @@ Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta |||
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            system_instruction: { parts: [{ text: systemPrompt }] },
-            contents: [{ role: "user", parts: [{ text: message }] }],
+            contents: [{ parts: [{ text: fullPrompt }] }],
             generationConfig: { temperature: 0.65 }
           }),
         }
@@ -69,14 +71,20 @@ Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta |||
       if (response.ok && data?.candidates?.[0]?.content?.parts?.[0]?.text) {
         rawText = data.candidates[0].content.parts[0].text;
         break;
+      } else {
+        lastError = data?.error || data;
       }
     } catch (e) {
-      // Intenta con el siguiente modelo si falla
+      lastError = e.message;
     }
   }
 
   if (!rawText) {
-    return res.status(500).json({ error: "No response from Gemini" });
+    return res.status(500).json({
+      iaFuncionando: false,
+      error: "Google Gemini rechazó la petición",
+      detalleError: lastError
+    });
   }
 
   const parts = rawText.split("|||");
@@ -89,6 +97,13 @@ Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta |||
     .replace(/\n/g, " ");
 
   const htmlReply = `<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de contestar.<br><strong>🥋 Aikido IA:</strong> ${estrategia}<div class="an-copy-box">${whatsappMsg}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${waClean}')">Copiar para WhatsApp</button></div>`;
+
+  if (req.method === "GET" && !req.query?.message) {
+    return res.status(200).json({
+      iaFuncionando: true,
+      respuestaGenerada: whatsappMsg
+    });
+  }
 
   return res.status(200).json({ reply: htmlReply });
 }
