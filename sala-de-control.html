@@ -653,7 +653,7 @@ async function handleUserPrompt(promptText) {
 appendMessage(promptText, "user");
 const loadingMsg = appendMessage("Analizando objeción con el protocolo 48H...", "bot");
 try {
-const res = await fetch("/api/copiloto", {
+const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/copiloto", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({ message: promptText }),
