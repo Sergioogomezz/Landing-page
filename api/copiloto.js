@@ -3,30 +3,37 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { message } = req.body;
   const apiKey = process.env.GEMINI_API_KEY;
-
   if (!apiKey) {
     return res.status(500).json({ error: "Missing GEMINI_API_KEY" });
   }
 
-  const systemPrompt = `Eres el Copiloto Táctico 48H de Activonorte, integrado en la Sala de Control para dueños de gimnasios y centros deportivos.
-Tu única misión es ayudar al gerente del gimnasio a aplicar el Protocolo de Reactivación de 48 horas con precisión quirúrgica.
+  let body = req.body;
+  if (typeof body === "string") {
+    try { body = JSON.parse(body); } catch (e) { body = {}; }
+  }
+  const message = body?.message || "";
 
-REGLAS ESTRICTAS DEL SISTEMA ACTIVONORTE:
-1. Fase 1 (Calibración): Filtro Oro = ex-socios dados de baja hace 3-9 meses con mínimo 4 asistencias/mes (en Trainingym, Resawod, etc.). Lista Negra = morosos, mudanzas, lesiones graves o conflictivos.
-2. Fase 2 (Primer Impacto): Mensajes individuales (prohibido listas de difusión). Ventanas: martes, miércoles o jueves en El Almuerzo (13:30-14:30) o El Sofá (20:30-21:30, notas de voz cortas). Prohibido incluir precios, enlaces o venta directa en el primer mensaje.
+  const systemPrompt = `Eres el Copiloto Táctico 48H de Activonorte, integrado en la Sala de Control para dueños de gimnasios.
+Tu misión es analizar el mensaje real de un ex-socio (o la duda del gerente) y redactar una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
+
+REGLAS ESTRICTAS DE ACTIVONORTE:
+1. Fase 1 (Calibración): Filtro Oro = bajas de hace 3 a 9 meses con mínimo 4 asistencias/mes (Trainingym, Resawod). Lista Negra = morosos, mudanzas, lesiones graves o conflictivos.
+2. Fase 2 (Primer Impacto): Envío individual (nunca difusión) martes, miércoles o jueves en El Almuerzo (13:30-14:30) o El Sofá (20:30-21:30). Cero precios ni enlaces en el primer mensaje.
 3. Fase 3 (Neutralización y Cierre - Día 2):
-   - Recuerda SIEMPRE aplicar la Regla del Tempomat: esperar entre 5 y 15 minutos antes de responder y NO dar consejos de entrenamiento por chat.
-   - Aplica Mentalidad Aikido (nunca discutas con la objeción; valida la postura, aísla el problema y ofrece una acción pequeña):
+   - Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento ni nutrición por chat.
+   - Mentalidad Aikido (valida su postura concreta, menciona los detalles específicos que haya dicho el ex-socio y ofrece una acción pequeña):
      * Falta de tiempo -> Plan Exprés de 30 minutos.
-     * Es muy caro / dinero -> Sesión económica / Downsell.
-     * Ya va a la competencia -> Revisión Técnica gratuita.
-   - Cierre de baja fricción: El objetivo NUNCA es vender la cuota por WhatsApp, sino lograr una micro-visita o llamada con una pregunta como: "¿Te cuadra si nos vemos 5 minutos?".
+     * Precio / dinero -> Sesión económica / Downsell adaptado.
+     * Competencia -> Revisión Técnica gratuita de 15 min.
+     * Desmotivación / pereza / estancamiento -> Readaptación ligera guiada.
+   - Cierre de baja fricción: Cierra SIEMPRE buscando solo vernos 5 minutos en persona o una llamada rápida (ej. "¿Te cuadra si nos vemos 5 minutos esta semana?").
 
-FORMATO DE RESPUESTA (en HTML limpio y breve):
-- 1 línea indicando el diagnóstico y recordando esperar 5-15 min (Tempomat).
-- El mensaje exacto para enviar por WhatsApp entre comillas, natural, cercano y de máximo 4 líneas.`;
+Devuelve ÚNICAMENTE un JSON válido con estas dos claves exactas (sin bloques markdown):
+{
+  "estrategia": "Explicación breve en 1-2 frases del Aikido aplicado a este caso concreto",
+  "whatsapp": "Texto exacto, humano, cercano y personalizado para enviar por WhatsApp al ex-socio (máximo 4 líneas, sin comillas dobles dentro)"
+}`;
 
   try {
     const response = await fetch(
@@ -37,19 +44,29 @@ FORMATO DE RESPUESTA (en HTML limpio y breve):
         body: JSON.stringify({
           system_instruction: { parts: [{ text: systemPrompt }] },
           contents: [{ role: "user", parts: [{ text: message }] }],
-          generationConfig: { temperature: 0.4, maxOutputTokens: 350 }
+          generationConfig: {
+            temperature: 0.65,
+            responseMimeType: "application/json"
+          }
         }),
       }
     );
 
-    const data = await response.json();
-    const rawText =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "Aplica la Regla del Tempomat (5-15 min) y propón vernos 5 minutos en el centro.";
+    if (!response.ok) {
+      throw new Error("API error");
+    }
 
-    const formattedHtml = rawText.replace(/\n/g, "<br>");
-    return res.status(200).json({ reply: formattedHtml });
+    const data = await response.json();
+    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    const parsed = JSON.parse(rawText);
+
+    const estrategia = parsed.estrategia || "Validamos la objeción del ex-socio y reducimos fricción.";
+    const waClean = (parsed.whatsapp || "¿Te cuadra si nos vemos 5 minutos por el centro y lo vemos?").replace(/'/g, "\\'").replace(/"/g, "&quot;");
+
+    const htmlReply = `<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de contestar.<br><strong>🥋 Aikido IA:</strong> ${estrategia}<div class="an-copy-box">${parsed.whatsapp}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${waClean}')">Copiar para WhatsApp</button></div>`;
+
+    return res.status(200).json({ reply: htmlReply });
   } catch (error) {
-    return res.status(500).json({ error: "Error conectando con el modelo" });
+    return res.status(500).json({ error: "Error en llamada IA" });
   }
 }
