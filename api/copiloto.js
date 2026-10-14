@@ -1,9 +1,27 @@
 export default async function handler(req, res) {
+  // Permisos CORS para que activonorte.com pueda conectarse sin bloqueos
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  const apiKey = process.env.GEMINI_API_KEY;
+
+  // Comprobación rápida desde el navegador
+  if (req.method === "GET") {
+    return res.status(200).json({
+      estado: "Copiloto Activonorte conectado correctamente",
+      claveDetectada: Boolean(apiKey)
+    });
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return res.status(500).json({ error: "Missing GEMINI_API_KEY" });
   }
@@ -14,59 +32,63 @@ export default async function handler(req, res) {
   }
   const message = body?.message || "";
 
-  const systemPrompt = `Eres el Copiloto Táctico 48H de Activonorte, integrado en la Sala de Control para dueños de gimnasios.
-Tu misión es analizar el mensaje real de un ex-socio (o la duda del gerente) y redactar una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
+  const systemPrompt = `Eres el Copiloto Táctico 48H de Activonorte para dueños de gimnasios.
+Analiza el mensaje o la excusa concreta que ha puesto el ex-socio y redacta una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
 
-REGLAS ESTRICTAS DE ACTIVONORTE:
-1. Fase 1 (Calibración): Filtro Oro = bajas de hace 3 a 9 meses con mínimo 4 asistencias/mes (Trainingym, Resawod). Lista Negra = morosos, mudanzas, lesiones graves o conflictivos.
-2. Fase 2 (Primer Impacto): Envío individual (nunca difusión) martes, miércoles o jueves en El Almuerzo (13:30-14:30) o El Sofá (20:30-21:30). Cero precios ni enlaces en el primer mensaje.
-3. Fase 3 (Neutralización y Cierre - Día 2):
-   - Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento ni nutrición por chat.
-   - Mentalidad Aikido (valida su postura concreta, menciona los detalles específicos que haya dicho el ex-socio y ofrece una acción pequeña):
-     * Falta de tiempo -> Plan Exprés de 30 minutos.
-     * Precio / dinero -> Sesión económica / Downsell adaptado.
-     * Competencia -> Revisión Técnica gratuita de 15 min.
-     * Desmotivación / pereza / estancamiento -> Readaptación ligera guiada.
-   - Cierre de baja fricción: Cierra SIEMPRE buscando solo vernos 5 minutos en persona o una llamada rápida (ej. "¿Te cuadra si nos vemos 5 minutos esta semana?").
+REGLAS DE ACTIVONORTE:
+- Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento por chat.
+- Mentalidad Aikido: Valida su postura mencionando los detalles exactos que ha dicho el ex-socio (ej. pereza, entrenar solo, distancia, dinero, horarios) y ofrécele un micro-paso adaptado:
+  * Falta de tiempo -> Plan Exprés de 30 minutos.
+  * Precio / no tiene dinero -> Opción reducida / Sesión económica adaptada.
+  * Competencia -> Revisión Técnica gratuita de 15 min.
+  * Pereza / entrenar solo / desmotivación -> Acompañamiento inicial o grupo reducido para no entrenar solo.
+- Cierre de baja fricción: Cierra SIEMPRE proponiendo únicamente vernos 5 minutos en el centro o una llamada rápida sin compromiso.
 
-Devuelve ÚNICAMENTE un JSON válido con estas dos claves exactas (sin bloques markdown):
-{
-  "estrategia": "Explicación breve en 1-2 frases del Aikido aplicado a este caso concreto",
-  "whatsapp": "Texto exacto, humano, cercano y personalizado para enviar por WhatsApp al ex-socio (máximo 4 líneas, sin comillas dobles dentro)"
-}`;
+FORMATO OBLIGATORIO DE RESPUESTA:
+Escribe ÚNICAMENTE dos bloques separados por tres barras verticales (|||), sin comillas ni código markdown:
+Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta ||| Mensaje exacto de WhatsApp cercano, natural y de máximo 4 líneas para copiar y enviar al ex-socio`;
 
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: systemPrompt }] },
-          contents: [{ role: "user", parts: [{ text: message }] }],
-          generationConfig: {
-            temperature: 0.65,
-            responseMimeType: "application/json"
-          }
-        }),
+  const models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
+  let rawText = "";
+
+  for (const model of models) {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: systemPrompt }] },
+            contents: [{ role: "user", parts: [{ text: message }] }],
+            generationConfig: { temperature: 0.65 }
+          }),
+        }
+      );
+      const data = await response.json();
+      if (response.ok && data?.candidates?.[0]?.content?.parts?.[0]?.text) {
+        rawText = data.candidates[0].content.parts[0].text;
+        break;
       }
-    );
-
-    if (!response.ok) {
-      throw new Error("API error");
+    } catch (e) {
+      // Intenta con el siguiente modelo si falla
     }
-
-    const data = await response.json();
-    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
-    const parsed = JSON.parse(rawText);
-
-    const estrategia = parsed.estrategia || "Validamos la objeción del ex-socio y reducimos fricción.";
-    const waClean = (parsed.whatsapp || "¿Te cuadra si nos vemos 5 minutos por el centro y lo vemos?").replace(/'/g, "\\'").replace(/"/g, "&quot;");
-
-    const htmlReply = `<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de contestar.<br><strong>🥋 Aikido IA:</strong> ${estrategia}<div class="an-copy-box">${parsed.whatsapp}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${waClean}')">Copiar para WhatsApp</button></div>`;
-
-    return res.status(200).json({ reply: htmlReply });
-  } catch (error) {
-    return res.status(500).json({ error: "Error en llamada IA" });
   }
+
+  if (!rawText) {
+    return res.status(500).json({ error: "No response from Gemini" });
+  }
+
+  const parts = rawText.split("|||");
+  const estrategia = (parts[0] || "Validamos su objeción concreta y proponemos un micro-paso.").replace(/\*\*/g, "").trim();
+  const whatsappMsg = (parts[1] || rawText).replace(/^["«]|["»]$/g, "").trim();
+  const waClean = whatsappMsg
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/"/g, "&quot;")
+    .replace(/\n/g, " ");
+
+  const htmlReply = `<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de contestar.<br><strong>🥋 Aikido IA:</strong> ${estrategia}<div class="an-copy-box">${whatsappMsg}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${waClean}')">Copiar para WhatsApp</button></div>`;
+
+  return res.status(200).json({ reply: htmlReply });
 }
