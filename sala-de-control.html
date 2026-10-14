@@ -539,5 +539,309 @@
             finalGlow.style.top  = (e.clientY - r.top)  + 'px';
         });
     </script>
+    <!-- =========================================
+     COPILOTO IA · SALA DE CONTROL 48H
+========================================= -->
+<style>
+  .an-copilot-trigger {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 9999;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 22px;
+    font-size: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 14px 32px rgba(224, 94, 0, 0.38);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .an-copilot-trigger:hover {
+    transform: translateY(-3px);
+    background: var(--accent-dark);
+  }
+  .an-copilot-dot {
+    width: 9px;
+    height: 9px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+  }
+  .an-copilot-window {
+    position: fixed;
+    bottom: 90px;
+    right: 26px;
+    z-index: 9999;
+    width: min(410px, calc(100vw - 32px));
+    max-height: 620px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .an-copilot-window.open {
+    display: flex;
+  }
+  .an-copilot-header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .an-copilot-header-info h4 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+  .an-copilot-header-info span {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+  .an-copilot-close {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 900;
+  }
+  .an-copilot-chips {
+    padding: 10px 14px;
+    background: var(--primary-light);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .an-chip {
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.15s ease;
+  }
+  .an-chip:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+  .an-copilot-messages {
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f8fafb;
+    max-height: 360px;
+  }
+  .an-msg {
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 92%;
+  }
+  .an-msg.bot {
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text);
+    align-self: flex-start;
+  }
+  .an-msg.user {
+    background: var(--primary);
+    color: var(--white);
+    align-self: flex-end;
+  }
+  .an-copy-box {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--primary-dark);
+  }
+  .an-copy-btn {
+    margin-top: 6px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .an-copilot-input-area {
+    padding: 12px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+  }
+  .an-copilot-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    outline: none;
+  }
+  .an-copilot-input:focus {
+    border-color: var(--primary);
+  }
+  .an-copilot-send {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 0 16px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+  }
+</style>
+
+<button class="an-copilot-trigger" id="anCopilotToggle">
+  <span class="an-copilot-dot"></span>
+  Copiloto Aikido · IA
+</button>
+
+<div class="an-copilot-window" id="anCopilotWindow">
+  <div class="an-copilot-header">
+    <div class="an-copilot-header-info">
+      <h4>Copiloto Táctico · 48H</h4>
+      <span>Asistente Anti-Objeciones Activonorte</span>
+    </div>
+    <button class="an-copilot-close" id="anCopilotClose">✕</button>
+  </div>
+
+  <div class="an-copilot-chips">
+    <button class="an-chip" data-prompt="El ex-socio dice: No tengo tiempo / salgo tarde de trabajar">⏱️ "No tengo tiempo"</button>
+    <button class="an-chip" data-prompt="El ex-socio dice: Ahora mismo se me va de presupuesto / es caro">💸 "Es muy caro"</button>
+    <button class="an-chip" data-prompt="El ex-socio dice: Ya me apunté a otro gimnasio más barato">🏋️ "Voy a otro gym"</button>
+    <button class="an-chip" data-prompt="¿Cómo aplico el Filtro Oro y la Lista Negra?">🎯 Filtro Oro</button>
+  </div>
+
+  <div class="an-copilot-messages" id="anCopilotMessages">
+    <div class="an-msg bot">
+      <strong>Bienvenido al Copiloto 48H.</strong><br>
+      Pega aquí el mensaje de WhatsApp que te haya respondido el ex-socio (o pulsa un botón arriba) y te redactaré la respuesta exacta con <strong>Mentalidad Aikido</strong> lista para copiar.
+    </div>
+  </div>
+
+  <form class="an-copilot-input-area" id="anCopilotForm">
+    <input
+      type="text"
+      class="an-copilot-input"
+      id="anCopilotInput"
+      placeholder="Pega aquí la excusa del ex-socio..."
+      required
+    />
+    <button type="submit" class="an-copilot-send">Generar</button>
+  </form>
+</div>
+
+<script>
+  const anToggle = document.getElementById("anCopilotToggle");
+  const anWindow = document.getElementById("anCopilotWindow");
+  const anClose = document.getElementById("anCopilotClose");
+  const anForm = document.getElementById("anCopilotForm");
+  const anInput = document.getElementById("anCopilotInput");
+  const anMessages = document.getElementById("anCopilotMessages");
+
+  anToggle.addEventListener("click", () => anWindow.classList.toggle("open"));
+  anClose.addEventListener("click", () => anWindow.classList.remove("open"));
+
+  document.querySelectorAll(".an-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      handleUserPrompt(chip.getAttribute("data-prompt"));
+    });
+  });
+
+  anForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = anInput.value.trim();
+    if (!text) return;
+    anInput.value = "";
+    handleUserPrompt(text);
+  });
+
+  function appendMessage(html, type) {
+    const div = document.createElement("div");
+    div.className = `an-msg ${type}`;
+    div.innerHTML = html;
+    anMessages.appendChild(div);
+    anMessages.scrollTop = anMessages.scrollHeight;
+    return div;
+  }
+
+  function copyWhatsApp(btn, text) {
+    navigator.clipboard.writeText(text);
+    btn.textContent = "✓ Copiado al portapapeles";
+    setTimeout(() => (btn.textContent = "Copiar para WhatsApp"), 2000);
+  }
+
+  function localAikidoFallback(input) {
+    const q = input.toLowerCase();
+    if (q.includes("tiempo") || q.includes("horario") || q.includes("trabajo") || q.includes("tarde") || q.includes("liado")) {
+      const wa = "Te entiendo perfectamente, cuando el trabajo aprieta es imposible sacar hora y media. Precisamente por eso hemos montado un formato Exprés de 30 minutos para gente con agenda complicada, ir al grano y salir listo. ¿Te cuadra si nos vemos 5 minutos esta semana en el centro y te enseño cómo encajarlo sin quitarte tiempo?";
+      return `<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de contestar.<br><strong>🥋 Aikido aplicado:</strong> Validamos su falta de tiempo y derivamos a <em>Plan Exprés de 30 min</em>.<div class="an-copy-box">${wa}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${wa}')">Copiar para WhatsApp</button></div>`;
+    }
+    if (q.includes("caro") || q.includes("precio") || q.includes("dinero") || q.includes("presupuesto") || q.includes("cuota")) {
+      const wa = "Totalmente comprensible, hoy en día hay que mirar bien cada gasto fijo. De hecho, no te escribía para meterte en la cuota completa de antes, sino porque tenemos una opción reducida muy económica para no perder el hábito sin que pese en el bolsillo. ¿Te cuadra si nos vemos 5 minutos o te pego un toque rápido y te cuento de qué va?";
+      return `<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de responder.<br><strong>🥋 Aikido aplicado:</strong> Validamos el factor económico y aplicamos <em>Downsell / Sesión económica</em>.<div class="an-copy-box">${wa}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${wa}')">Copiar para WhatsApp</button></div>`;
+    }
+    if (q.includes("otro") || q.includes("competencia") || q.includes("apunté") || q.includes("entreno en") || q.includes("low cost")) {
+      const wa = "¡Qué buena noticia que sigas entrenando! Lo importante es no parar. Como ya te conocemos de tu etapa aquí, estamos haciendo revisiones técnicas gratuitas de 15 minutos para antiguos socios y así ajustar tu planificación actual sin ningún compromiso. ¿Te cuadra si nos vemos 5 minutos esta semana y le echamos un ojo?";
+      return `<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min.<br><strong>🥋 Aikido aplicado:</strong> Nunca discutimos con la competencia; derivamos a <em>Revisión Técnica gratuita</em>.<div class="an-copy-box">${wa}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${wa}')">Copiar para WhatsApp</button></div>`;
+    }
+    if (q.includes("filtro") || q.includes("oro") || q.includes("lista")) {
+      return `<strong>🎯 Fase 1 · Calibración:</strong><br>1. Exporta de Trainingym/Resawod las bajas de hace <strong>3 a 9 meses</strong> con al menos <strong>4 asistencias/mes</strong>.<br>2. Excluye la <strong>Lista Negra</strong>: morosos, mudanzas, lesiones graves o conflictivos.<br>3. Envía el Rompehielos individualmente en <em>El Almuerzo (13:30-14:30)</em> o <em>El Sofá (20:30-21:30)</em> de martes a jueves.`;
+    }
+    const waDefault = "Te entiendo perfectamente, es normal que después de unos meses cueste retomar el ritmo de golpe. No te escribía para que vuelvas con la rutina pesada de antes, sino para ver qué tal estabas y enseñarte una opción súper ligera de readaptación. ¿Te cuadra si nos vemos 5 minutos por el centro sin ningún compromiso?";
+    return `<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min y no des consejos de entreno por chat.<br><strong>🥋 Respuesta de baja fricción:</strong><div class="an-copy-box">${waDefault}<br><button class="an-copy-btn" onclick="copyWhatsApp(this, '${waDefault}')">Copiar para WhatsApp</button></div>`;
+  }
+
+  async function handleUserPrompt(promptText) {
+    appendMessage(promptText, "user");
+    const loadingMsg = appendMessage("Analizando objeción con el protocolo 48H...", "bot");
+
+    try {
+      const res = await fetch("/api/copiloto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: promptText }),
+      });
+      if (!res.ok) throw new Error("Fallback local");
+      const data = await res.json();
+      loadingMsg.innerHTML = data.reply;
+    } catch (err) {
+      loadingMsg.innerHTML = localAikidoFallback(promptText);
+    }
+  }
+</script>
 </body>
 </html>
