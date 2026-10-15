@@ -255,12 +255,15 @@ footer strong { color: white; }
 .an-copilot-trigger{position:fixed!important;bottom:24px!important;right:24px!important;z-index:2147483647!important;background:#e05e00!important;color:#ffffff!important;border:2px solid #ffffff!important;border-radius:999px!important;padding:14px 22px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:800!important;display:flex!important;align-items:center!important;gap:10px!important;cursor:pointer!important;box-shadow:0 12px 30px rgba(0,0,0,0.35)!important;transition:transform 0.2s ease,background 0.2s ease!important;}
 .an-copilot-trigger:hover{transform:translateY(-2px)!important;background:#c94f00!important;}
 .an-copilot-dot{width:10px!important;height:10px!important;background:#22c55e!important;border-radius:50%!important;box-shadow:0 0 0 4px rgba(34,197,94,0.3)!important;flex-shrink:0!important;}
-.an-copilot-window{position:fixed!important;bottom:88px!important;right:24px!important;z-index:2147483647!important;width:min(420px,calc(100vw - 32px))!important;height:540px!important;max-height:calc(100vh - 120px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 60px rgba(0,0,0,0.45)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:Arial,Helvetica,sans-serif!important;}
+.an-copilot-window{position:fixed!important;bottom:88px!important;right:24px!important;z-index:2147483647!important;width:min(420px,calc(100vw - 32px))!important;height:550px!important;max-height:calc(100vh - 120px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 60px rgba(0,0,0,0.45)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:Arial,Helvetica,sans-serif!important;}
 .an-copilot-window.open{display:flex!important;}
-.an-copilot-header{background:#003b46!important;color:#ffffff!important;padding:16px 20px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border-bottom:3px solid #e05e00!important;flex-shrink:0!important;}
-.an-copilot-header-info h4{font-size:16px!important;font-weight:800!important;color:#ffffff!important;margin:0 0 3px 0!important;line-height:1.2!important;}
-.an-copilot-header-info span{font-size:11px!important;color:#ffb07a!important;text-transform:uppercase!important;letter-spacing:0.06em!important;font-weight:700!important;display:block!important;}
-.an-copilot-close{background:rgba(255,255,255,0.18)!important;color:#ffffff!important;border:1px solid rgba(255,255,255,0.35)!important;width:32px!important;height:32px!important;border-radius:8px!important;cursor:pointer!important;font-weight:900!important;font-size:14px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+.an-copilot-header{background:#003b46!important;color:#ffffff!important;padding:14px 16px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border-bottom:3px solid #e05e00!important;flex-shrink:0!important;}
+.an-copilot-header-info h4{font-size:15px!important;font-weight:800!important;color:#ffffff!important;margin:0 0 2px 0!important;line-height:1.2!important;}
+.an-copilot-header-info span{font-size:10.5px!important;color:#ffb07a!important;text-transform:uppercase!important;letter-spacing:0.06em!important;font-weight:700!important;display:block!important;}
+.an-copilot-actions{display:flex!important;align-items:center!important;gap:6px!important;}
+.an-copilot-reset{background:rgba(255,255,255,0.14)!important;color:#ffffff!important;border:1px solid rgba(255,255,255,0.3)!important;padding:6px 10px!important;border-radius:8px!important;cursor:pointer!important;font-weight:700!important;font-size:11px!important;white-space:nowrap!important;}
+.an-copilot-reset:hover{background:#e05e00!important;border-color:#e05e00!important;}
+.an-copilot-close{background:rgba(255,255,255,0.18)!important;color:#ffffff!important;border:1px solid rgba(255,255,255,0.35)!important;width:30px!important;height:30px!important;border-radius:8px!important;cursor:pointer!important;font-weight:900!important;font-size:14px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
 .an-copilot-close:hover{background:#e05e00!important;}
 .an-copilot-chips{padding:10px 14px!important;background:#e9f1f2!important;border-bottom:1px solid #cbd5e1!important;display:flex!important;gap:8px!important;overflow-x:auto!important;flex-shrink:0!important;}
 .an-chip{background:#ffffff!important;color:#003b46!important;border:1px solid #003b46!important;padding:6px 12px!important;border-radius:999px!important;font-size:12px!important;font-weight:700!important;white-space:nowrap!important;cursor:pointer!important;transition:0.15s ease!important;}
@@ -548,27 +551,30 @@ Copiloto Aikido · IA
 <div class="an-copilot-header">
 <div class="an-copilot-header-info">
 <h4>Copiloto Táctico · 48H</h4>
-<span>Asistente Anti-Objeciones Activonorte</span>
+<span>Memoria activa por ex-socio</span>
 </div>
+<div class="an-copilot-actions">
+<button class="an-copilot-reset" id="anCopilotReset" title="Empezar con otro ex-socio">🔄 Nuevo ex-socio</button>
 <button class="an-copilot-close" id="anCopilotClose">✕</button>
+</div>
 </div>
 
 <div class="an-copilot-chips">
 <button class="an-chip" data-prompt="El ex-socio dice: No tengo tiempo / salgo tarde de trabajar">⏱️ "No tengo tiempo"</button>
 <button class="an-chip" data-prompt="El ex-socio dice: Ahora mismo se me va de presupuesto / es caro">💸 "Es muy caro"</button>
 <button class="an-chip" data-prompt="El ex-socio dice: Ya me apunté a otro gimnasio más barato">🏋️ "Voy a otro gym"</button>
-<button class="an-chip" data-prompt="¿Cómo aplico el Filtro Oro y la Lista Negra?">🎯 Filtro Oro</button>
+<button class="an-chip" data-prompt="Haz el mensaje anterior más corto y cercano">✨ Más corto</button>
 </div>
 
 <div class="an-copilot-messages" id="anCopilotMessages">
 <div class="an-msg bot">
 <strong>Bienvenido al Copiloto 48H.</strong><br>
-Pega aquí el mensaje de WhatsApp que te haya respondido el ex-socio (o pulsa un botón arriba) y te redactaré la respuesta exacta con <strong>Mentalidad Aikido</strong> lista para copiar.
+Pega aquí el mensaje del ex-socio y te redactaré la respuesta con <strong>Mentalidad Aikido</strong>. Puedes encadenar varios mensajes sobre el mismo caso o pulsar <em>"🔄 Nuevo ex-socio"</em> arriba cuando pases al siguiente.
 </div>
 </div>
 
 <form class="an-copilot-input-area" id="anCopilotForm">
-<input type="text" class="an-copilot-input" id="anCopilotInput" placeholder="Pega aquí la excusa del ex-socio..." required />
+<input type="text" class="an-copilot-input" id="anCopilotInput" placeholder="Pega la excusa o pide un ajuste..." required />
 <button type="submit" class="an-copilot-send">Generar</button>
 </form>
 </div>
@@ -592,12 +598,20 @@ finalGlow.style.top = (e.clientY - r.top) + 'px';
 const anToggle = document.getElementById("anCopilotToggle");
 const anWindow = document.getElementById("anCopilotWindow");
 const anClose = document.getElementById("anCopilotClose");
+const anReset = document.getElementById("anCopilotReset");
 const anForm = document.getElementById("anCopilotForm");
 const anInput = document.getElementById("anCopilotInput");
 const anMessages = document.getElementById("anCopilotMessages");
 
+let copilotHistory = [];
+
 anToggle.addEventListener("click", () => anWindow.classList.toggle("open"));
 anClose.addEventListener("click", () => anWindow.classList.remove("open"));
+
+anReset.addEventListener("click", () => {
+copilotHistory = [];
+anMessages.innerHTML = '<div class="an-msg bot"><strong>🔄 Memoria reiniciada para un nuevo ex-socio.</strong><br>Pega aquí la primera respuesta o excusa del siguiente contacto de tu lista Oro.</div>';
+});
 
 document.querySelectorAll(".an-chip").forEach((chip) => {
 chip.addEventListener("click", () => {
@@ -642,25 +656,24 @@ if (q.includes("otro") || q.includes("competencia") || q.includes("apunté") || 
 const wa = "¡Qué buena noticia que sigas entrenando! Lo importante es no parar. Como ya te conocemos de tu etapa aquí, estamos haciendo revisiones técnicas gratuitas de 15 minutos para antiguos socios y así ajustar tu planificación actual sin ningún compromiso. ¿Te cuadra si nos vemos 5 minutos esta semana y le echamos un ojo?";
 return '<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min.<br><strong>🥋 Aikido aplicado:</strong> Nunca discutimos con la competencia; derivamos a <em>Revisión Técnica gratuita</em>.<div class="an-copy-box">' + wa + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + wa + '\')">Copiar para WhatsApp</button></div>';
 }
-if (q.includes("filtro") || q.includes("oro") || q.includes("lista")) {
-return '<strong>🎯 Fase 1 · Calibración:</strong><br>1. Exporta de Trainingym/Resawod las bajas de hace <strong>3 a 9 meses</strong> con al menos <strong>4 asistencias/mes</strong>.<br>2. Excluye la <strong>Lista Negra</strong>: morosos, mudanzas, lesiones graves o conflictivos.<br>3. Envía el Rompehielos individualmente en <em>El Almuerzo (13:30-14:30)</em> o <em>El Sofá (20:30-21:30)</em> de martes a jueves.';
-}
 const waDefault = "Te entiendo perfectamente, es normal que después de unos meses cueste retomar el ritmo de golpe. No te escribía para que vuelvas con la rutina pesada de antes, sino para ver qué tal estabas y enseñarte una opción súper ligera de readaptación. ¿Te cuadra si nos vemos 5 minutos por el centro sin ningún compromiso?";
 return '<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min y no des consejos de entreno por chat.<br><strong>🥋 Respuesta de baja fricción:</strong><div class="an-copy-box">' + waDefault + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + waDefault + '\')">Copiar para WhatsApp</button></div>';
 }
 
 async function handleUserPrompt(promptText) {
 appendMessage(promptText, "user");
-const loadingMsg = appendMessage("Analizando objeción con el protocolo 48H...", "bot");
+const loadingMsg = appendMessage("Analizando caso con el protocolo 48H...", "bot");
 try {
 const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/copiloto", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
-body: JSON.stringify({ message: promptText }),
+body: JSON.stringify({ message: promptText, history: copilotHistory }),
 });
 if (!res.ok) throw new Error("Fallback local");
 const data = await res.json();
 loadingMsg.innerHTML = data.reply;
+copilotHistory.push({ role: "user", text: promptText });
+copilotHistory.push({ role: "assistant", text: data.plainReply || data.reply });
 } catch (err) {
 loadingMsg.innerHTML = localAikidoFallback(promptText);
 }
