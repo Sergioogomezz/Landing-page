@@ -13,6 +13,8 @@ export default async function handler(req, res) {
   }
 
   let message = "";
+  let history = [];
+
   if (req.method === "GET") {
     message = req.query?.message || "El ex-socio dice: me da pereza volver porque entreno solo y me queda lejos";
   } else if (req.method === "POST") {
@@ -21,33 +23,40 @@ export default async function handler(req, res) {
       try { body = JSON.parse(body); } catch (e) { body = {}; }
     }
     message = body?.message || "";
+    history = Array.isArray(body?.history) ? body.history : [];
   } else {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  const conversationContext = history.length > 0
+    ? "\nHISTORIAL PREVIO DE ESTE CASO (MANTÉN EL HILO Y CONTEXTO DE ESTE EX-SOCIO):\n" +
+      history.map((m) => `${m.role === "user" ? "Gerente del Gimnasio" : "Copiloto Activonorte"}: ${m.text}`).join("\n") + "\n"
+    : "";
+
   const fullPrompt = `Eres el Copiloto Táctico 48H de Activonorte para dueños de gimnasios.
-Analiza con psicología comercial profunda el siguiente mensaje o excusa de un ex-socio y redacta una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
+Tu misión es ayudar al gerente del gimnasio a reactivar a un ex-socio por WhatsApp aplicando psicología comercial avanzada y el Protocolo de Reactivación de 48 horas.
+Puedes mantener una conversación continua sobre el mismo ex-socio: si el gerente te pide modificar el mensaje anterior (ej. hacerlo más corto, cambiar el tono, añadir un detalle) o te pega la siguiente respuesta que le ha dado el mismo ex-socio, adapta la estrategia manteniendo todo el contexto previo.
 
 REGLAS ESTRICTAS DE ACTIVONORTE:
 - Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento ni nutrición por chat.
-- Mentalidad Aikido: Nunca discutas ni suenes como un vendedor insistente. Valida su postura con empatía real mencionando los detalles exactos que ha dicho el ex-socio (ej. pereza, turnos de trabajo, entrenar solo, distancia, dinero, dolores) y aísla el problema ofreciéndole un micro-paso adaptado:
+- Mentalidad Aikido: Nunca discutas ni suenes como un vendedor insistente. Valida su postura con empatía real mencionando los detalles exactos del caso y aísla el problema ofreciéndole un micro-paso adaptado:
   * Falta de tiempo / horarios -> Plan Exprés de 30 minutos.
   * Precio / presupuesto ajustado -> Opción reducida / Sesión económica adaptada (Downsell).
   * Competencia / otro gimnasio -> Revisión Técnica gratuita de 15 min sin compromiso para optimizar su rutina actual.
   * Pereza / entrenar solo / desmotivación -> Acompañamiento inicial guiado o grupo reducido para que se sienta arropado desde el minuto uno.
-- Cierre de baja fricción: Cierra SIEMPRE proponiendo únicamente vernos 5 minutos en el centro o una llamada rápida sin compromiso (ej. "¿Te cuadra si nos vemos 5 minutos esta semana por el centro y lo vemos sin compromiso?").
+- Cierre de baja fricción: Cierra SIEMPRE proponiendo únicamente vernos 5 minutos en el centro o una llamada rápida sin compromiso.
 
 FORMATO OBLIGATORIO DE RESPUESTA:
 Escribe ÚNICAMENTE dos bloques separados por tres barras verticales (|||), sin comillas ni código markdown:
-Diagnóstico táctico en 1-2 frases explicando al gerente cómo aplicamos Aikido a esta excusa concreta ||| Mensaje exacto de WhatsApp cercano, natural, persuasivo y de máximo 4 líneas para copiar y enviar al ex-socio
-
-MENSAJE DEL EX-SOCIO A RESPONDER:
+Diagnóstico táctico en 1-2 frases explicando al gerente cómo aplicamos Aikido o qué hemos ajustado en este paso ||| Mensaje exacto de WhatsApp cercano, natural, persuasivo y de máximo 4 líneas listo para copiar y enviar al ex-socio
+${conversationContext}
+NUEVO MENSAJE O INSTRUCCIÓN DEL GERENTE:
 "${message}"`;
 
-  // 1 intento Pro para razonamiento complejo, salto inmediato a Flash si hay límite de cuota
   const models = [
     "gemini-2.5-pro",
-    "gemini-3-flash-preview"
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash"
   ];
 
   let rawText = "";
@@ -89,7 +98,7 @@ MENSAJE DEL EX-SOCIO A RESPONDER:
   }
 
   const parts = rawText.split("|||");
-  const estrategia = (parts[0] || "Validamos su objeción concreta y proponemos un micro-paso.").replace(/\*\*/g, "").trim();
+  const estrategia = (parts[0] || "Ajustamos la respuesta aplicando Mentalidad Aikido.").replace(/\*\*/g, "").trim();
   const whatsappMsg = (parts[1] || rawText).replace(/^["«]|["»]$/g, "").trim();
   const waClean = whatsappMsg
     .replace(/\\/g, "\\\\")
@@ -102,10 +111,15 @@ MENSAJE DEL EX-SOCIO A RESPONDER:
   if (req.method === "GET" && !req.query?.message) {
     return res.status(200).json({
       iaFuncionando: true,
+      memoriaConversacional: true,
       modeloActivo: modelUsed,
       respuestaGenerada: whatsappMsg
     });
   }
 
-  return res.status(200).json({ reply: htmlReply, model: modelUsed });
+  return res.status(200).json({
+    reply: htmlReply,
+    plainReply: `${estrategia} | Mensaje WhatsApp propuesto: ${whatsappMsg}`,
+    model: modelUsed
+  });
 }
