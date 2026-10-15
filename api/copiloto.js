@@ -26,32 +26,34 @@ export default async function handler(req, res) {
   }
 
   const fullPrompt = `Eres el Copiloto Táctico 48H de Activonorte para dueños de gimnasios.
-Analiza el siguiente mensaje o excusa de un ex-socio y redacta una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
+Analiza con psicología comercial profunda el siguiente mensaje o excusa de un ex-socio y redacta una respuesta 100% personalizada aplicando el Protocolo de Reactivación de 48 horas.
 
-REGLAS DE ACTIVONORTE:
-- Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento por chat.
-- Mentalidad Aikido: Valida su postura mencionando los detalles exactos que ha dicho el ex-socio (ej. pereza, entrenar solo, distancia, dinero, horarios) y ofrécele un micro-paso adaptado:
-  * Falta de tiempo -> Plan Exprés de 30 minutos.
-  * Precio / no tiene dinero -> Opción reducida / Sesión económica adaptada.
-  * Competencia -> Revisión Técnica gratuita de 15 min.
-  * Pereza / entrenar solo / desmotivación -> Acompañamiento inicial o grupo reducido para no entrenar solo.
-- Cierre de baja fricción: Cierra SIEMPRE proponiendo únicamente vernos 5 minutos en el centro o una llamada rápida sin compromiso.
+REGLAS ESTRICTAS DE ACTIVONORTE:
+- Regla del Tempomat: Esperar 5-15 min antes de contestar y NO dar consejos de entrenamiento ni nutrición por chat.
+- Mentalidad Aikido: Nunca discutas ni suenes como un vendedor insistente. Valida su postura con empatía real mencionando los detalles exactos que ha dicho el ex-socio (ej. pereza, turnos de trabajo, entrenar solo, distancia, dinero, dolores) y aísla el problema ofreciéndole un micro-paso adaptado:
+  * Falta de tiempo / horarios -> Plan Exprés de 30 minutos.
+  * Precio / presupuesto ajustado -> Opción reducida / Sesión económica adaptada (Downsell).
+  * Competencia / otro gimnasio -> Revisión Técnica gratuita de 15 min sin compromiso para optimizar su rutina actual.
+  * Pereza / entrenar solo / desmotivación -> Acompañamiento inicial guiado o grupo reducido para que se sienta arropado desde el minuto uno.
+- Cierre de baja fricción: Cierra SIEMPRE proponiendo únicamente vernos 5 minutos en el centro o una llamada rápida sin compromiso (ej. "¿Te cuadra si nos vemos 5 minutos esta semana por el centro y lo vemos sin compromiso?").
 
 FORMATO OBLIGATORIO DE RESPUESTA:
 Escribe ÚNICAMENTE dos bloques separados por tres barras verticales (|||), sin comillas ni código markdown:
-Explicación breve en 1 frase de cómo aplicamos Aikido a su excusa concreta ||| Mensaje exacto de WhatsApp cercano, natural y de máximo 4 líneas para copiar y enviar al ex-socio
+Diagnóstico táctico en 1-2 frases explicando al gerente cómo aplicamos Aikido a esta excusa concreta ||| Mensaje exacto de WhatsApp cercano, natural, persuasivo y de máximo 4 líneas para copiar y enviar al ex-socio
 
 MENSAJE DEL EX-SOCIO A RESPONDER:
 "${message}"`;
 
+  // Priorizamos los modelos Pro (mayor razonamiento psicológico) y dejamos Flash como respaldo rápido
   const models = [
+    "gemini-2.5-pro",
+    "gemini-1.5-pro",
     "gemini-3-flash-preview",
-    "gemini-2.5-flash",
-    "gemini-2.0-flash",
-    "gemini-flash-latest"
+    "gemini-2.5-flash"
   ];
 
   let rawText = "";
+  let modelUsed = "";
   let lastError = null;
 
   for (const model of models) {
@@ -63,13 +65,14 @@ MENSAJE DEL EX-SOCIO A RESPONDER:
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             contents: [{ parts: [{ text: fullPrompt }] }],
-            generationConfig: { temperature: 0.65 }
+            generationConfig: { temperature: 0.6 }
           }),
         }
       );
       const data = await response.json();
       if (response.ok && data?.candidates?.[0]?.content?.parts?.[0]?.text) {
         rawText = data.candidates[0].content.parts[0].text;
+        modelUsed = model;
         break;
       } else {
         lastError = data?.error || data;
@@ -101,9 +104,10 @@ MENSAJE DEL EX-SOCIO A RESPONDER:
   if (req.method === "GET" && !req.query?.message) {
     return res.status(200).json({
       iaFuncionando: true,
+      modeloActivo: modelUsed,
       respuestaGenerada: whatsappMsg
     });
   }
 
-  return res.status(200).json({ reply: htmlReply });
+  return res.status(200).json({ reply: htmlReply, model: modelUsed });
 }
