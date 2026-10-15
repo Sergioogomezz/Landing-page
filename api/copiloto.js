@@ -44,12 +44,10 @@ Diagnóstico táctico en 1-2 frases explicando al gerente cómo aplicamos Aikido
 MENSAJE DEL EX-SOCIO A RESPONDER:
 "${message}"`;
 
-  // Priorizamos los modelos Pro (mayor razonamiento psicológico) y dejamos Flash como respaldo rápido
+  // 1 intento Pro para razonamiento complejo, salto inmediato a Flash si hay límite de cuota
   const models = [
     "gemini-2.5-pro",
-    "gemini-1.5-pro",
-    "gemini-3-flash-preview",
-    "gemini-2.5-flash"
+    "gemini-3-flash-preview"
   ];
 
   let rawText = "";
