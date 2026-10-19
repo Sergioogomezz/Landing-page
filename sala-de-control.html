@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Portal de Clientes · Sistema 48H | Activonorte</title>
 <meta name="description" content="Área privada y Sistema de Despliegue Táctico de Activonorte para centros deportivos.">
 <link rel="icon" type="image/png" sizes="any" href="favicon-azul.png?v=3">
@@ -76,10 +76,9 @@ margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--borde);
 display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--gris-texto); text-align: center;
 }
 .auth-footer a { color: var(--naranja); font-weight: 800; text-decoration: none; }
-.auth-footer a:hover { text-decoration: underline; }
 
 /* ══════════════════════════════════════════════════════════
-   BARRA SUPERIOR DEL ECOSISTEMA (DISEÑO 2 - RBAC)
+   BARRA SUPERIOR DEL ECOSISTEMA (DISEÑO SAAS)
 ══════════════════════════════════════════════════════════ */
 .portal-topbar {
 position: sticky; top: 0; z-index: 9999;
@@ -88,30 +87,48 @@ border-bottom: 2px solid var(--naranja);
 box-shadow: 0 8px 25px rgba(0,0,0,0.22);
 }
 .portal-topbar-inner {
-width: min(1180px, 95%); margin: 0 auto; min-height: 64px;
-display: flex; align-items: center; justify-content: space-between;
-gap: 14px; padding: 10px 0; flex-wrap: wrap;
+width: min(1180px, 95%); margin: 0 auto;
+display: flex; flex-direction: column; gap: 12px; padding: 12px 0;
+}
+.portal-topbar-row {
+display: flex; align-items: center; justify-content: space-between; width: 100%;
 }
 .portal-brand {
-display: flex; align-items: center; gap: 10px;
-font-weight: 900; font-size: 15px; letter-spacing: 0.5px;
+display: flex; align-items: center; gap: 8px;
+font-weight: 900; font-size: 14px; letter-spacing: 0.5px;
 }
 .portal-brand-badge {
-width: 32px; height: 32px; border-radius: 8px;
+width: 28px; height: 28px; border-radius: 6px;
 background: var(--naranja); color: #fff;
-display: grid; place-items: center; font-weight: 900; font-size: 14px;
+display: grid; place-items: center; font-weight: 900; font-size: 13px;
 }
 .portal-brand span { color: var(--naranja); }
+.portal-user-area { display: flex; align-items: center; gap: 10px; }
+.portal-user-pill {
+font-size: 11px; font-weight: 700; color: #cbd5e1;
+background: rgba(255,255,255,0.08); padding: 5px 10px;
+border-radius: 999px; border: 1px solid rgba(255,255,255,0.12);
+}
+.portal-user-pill strong { color: #4ade80; }
+.portal-logout {
+background: transparent; color: #ffb07a;
+border: 1px solid rgba(255,176,122,0.4); padding: 5px 10px;
+border-radius: 6px; font-size: 11px; font-weight: 800;
+cursor: pointer; transition: 0.2s;
+}
+.portal-logout:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+
 .portal-tabs {
 display: flex; align-items: center; gap: 8px; overflow-x: auto;
-padding: 2px 0;
+padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
 }
+.portal-tabs::-webkit-scrollbar { display: none; }
 .portal-tab {
-display: inline-flex; align-items: center; gap: 7px;
-padding: 8px 14px; border-radius: 10px;
+display: inline-flex; align-items: center; gap: 6px;
+padding: 8px 12px; border-radius: 10px;
 background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82);
 border: 1px solid rgba(255,255,255,0.14);
-font-size: 12.5px; font-weight: 800; cursor: pointer;
+font-size: 12px; font-weight: 800; cursor: pointer;
 white-space: nowrap; transition: 0.2s ease;
 }
 .portal-tab:hover { background: rgba(255,255,255,0.15); color: #fff; }
@@ -123,28 +140,21 @@ border-color: var(--naranja); box-shadow: 0 4px 14px rgba(224,94,0,0.35);
 background: rgba(0,0,0,0.25); color: rgba(255,255,255,0.65);
 border: 1px dashed rgba(255,255,255,0.28);
 }
-.portal-tab.locked-tab:hover {
-border-color: var(--naranja); color: #ffffff; background: rgba(224,94,0,0.18);
+.portal-tab.locked-tab:hover { border-color: var(--naranja); color: #ffffff; background: rgba(224,94,0,0.18); }
+
+@media (min-width: 900px) {
+  .portal-topbar-inner { flex-direction: row; justify-content: space-between; align-items: center; height: 64px; padding: 0; gap: 14px; }
+  .portal-topbar-row { width: auto; }
+  .portal-brand { font-size: 15px; gap: 10px; }
+  .portal-brand-badge { width: 32px; height: 32px; font-size: 14px; border-radius: 8px; }
+  .portal-tabs { padding-bottom: 0; }
+  .portal-tab { font-size: 12.5px; padding: 8px 14px; gap: 7px; }
+  .portal-user-pill { font-size: 11.5px; padding: 6px 12px; }
+  .portal-logout { font-size: 11.5px; padding: 6px 11px; border-radius: 8px; }
 }
-.portal-user-area {
-display: flex; align-items: center; gap: 10px;
-}
-.portal-user-pill {
-font-size: 11.5px; font-weight: 700; color: #cbd5e1;
-background: rgba(255,255,255,0.08); padding: 6px 12px;
-border-radius: 999px; border: 1px solid rgba(255,255,255,0.12);
-}
-.portal-user-pill strong { color: #4ade80; }
-.portal-logout {
-background: transparent; color: #ffb07a;
-border: 1px solid rgba(255,176,122,0.4); padding: 6px 11px;
-border-radius: 8px; font-size: 11.5px; font-weight: 800;
-cursor: pointer; transition: 0.2s;
-}
-.portal-logout:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
 
 /* ══════════════════════════════════════════════════════════
-   MODAL DE UPSELL PARA MÓDULOS BLOQUEADOS (🔒)
+   MODAL DE UPSELL (🔒)
 ══════════════════════════════════════════════════════════ */
 .upsell-overlay {
 position: fixed; inset: 0; z-index: 2147483645;
@@ -160,42 +170,39 @@ animation: modalPop 0.25s ease-out;
 }
 @keyframes modalPop { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .upsell-header {
-background: var(--azul); color: #ffffff; padding: 24px 28px;
+background: var(--azul); color: #ffffff; padding: 20px 24px;
 border-bottom: 3px solid var(--naranja);
 display: flex; align-items: flex-start; justify-content: space-between; gap: 15px;
 }
 .upsell-tag {
-display: inline-block; font-size: 10.5px; font-weight: 900;
+display: inline-block; font-size: 10px; font-weight: 900;
 text-transform: uppercase; letter-spacing: 0.1em;
-color: #ffb07a; margin-bottom: 6px;
+color: #ffb07a; margin-bottom: 4px;
 }
-.upsell-header h3 { font-size: 22px; color: #ffffff; line-height: 1.2; }
+.upsell-header h3 { font-size: 20px; color: #ffffff; line-height: 1.2; }
 .upsell-close {
 background: rgba(255,255,255,0.15); color: #fff; border: none;
 width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
 font-weight: 900; font-size: 14px; flex-shrink: 0;
 }
-.upsell-close:hover { background: var(--naranja); }
-.upsell-body { padding: 28px; color: var(--azul); }
-.upsell-body p { color: var(--gris-texto); font-size: 14.5px; margin-bottom: 18px; }
+.upsell-body { padding: 24px; color: var(--azul); }
+.upsell-body p { color: var(--gris-texto); font-size: 14px; margin-bottom: 18px; }
 .upsell-list { list-style: none; margin-bottom: 24px; display: grid; gap: 10px; }
 .upsell-list li {
 padding: 12px 14px; border-radius: 12px; background: #f8fafc;
-border: 1px solid var(--borde); font-size: 13.5px; color: var(--azul);
+border: 1px solid var(--borde); font-size: 13px; color: var(--azul);
 display: flex; align-items: flex-start; gap: 10px;
 }
 .upsell-list li span.check { color: var(--naranja); font-weight: 900; }
 .upsell-cta {
 display: inline-flex; align-items: center; justify-content: center;
-width: 100%; padding: 15px 20px; border-radius: 12px;
+width: 100%; padding: 15px 20px; border-radius: 12px; text-align: center;
 background: var(--naranja); color: #ffffff; text-decoration: none;
-font-size: 15px; font-weight: 900; transition: 0.2s;
-box-shadow: 0 12px 28px rgba(224,94,0,0.32);
+font-size: 14px; font-weight: 900; transition: 0.2s; box-shadow: 0 10px 20px rgba(224,94,0,0.3);
 }
-.upsell-cta:hover { background: var(--naranja-hover); transform: translateY(-2px); }
 
 /* ══════════════════════════════════════════════════════════
-   ESTILOS ORIGINALES SALA DE CONTROL
+   ESTILOS SALA DE CONTROL Y RESPONSIVE MÓVIL
 ══════════════════════════════════════════════════════════ */
 .hero {
 position: relative;
@@ -207,261 +214,187 @@ content: ''; position: absolute; inset: 0;
 background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
 background-size: 40px 40px; pointer-events: none;
 }
-.hero-cursor-glow {
-position: absolute; width: 500px; height: 500px; border-radius: 50%;
-background: radial-gradient(circle, rgba(224,94,0,0.20) 0%, transparent 70%);
-pointer-events: none; transform: translate(-50%, -50%);
-transition: left 0.06s ease, top 0.06s ease; z-index: 0;
-}
 .hero > .container { position: relative; z-index: 1; }
 .eyebrow {
 display: inline-flex; align-items: center; gap: 8px;
-padding: 12px 20px; border: 1px solid rgba(255,255,255,0.2);
+padding: 10px 18px; border: 1px solid rgba(255,255,255,0.2);
 background: rgba(255,255,255,0.08); border-radius: 999px;
-font-size: 14px; font-weight: 800; letter-spacing: 1px;
-text-transform: uppercase; margin-bottom: 30px; white-space: nowrap;
+font-size: 13px; font-weight: 800; letter-spacing: 1px;
+text-transform: uppercase; margin-bottom: 25px; white-space: nowrap;
 }
 .eyebrow span { color: var(--naranja); }
-.live-dot { position: relative; width: 9px; height: 9px; flex-shrink: 0; }
+.live-dot { position: relative; width: 8px; height: 8px; flex-shrink: 0; }
 .live-dot::before, .live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #4ade80; }
 .live-dot::after { background: transparent; border: 2px solid #4ade80; animation: ping 1.6s ease-out infinite; }
 @keyframes ping { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(2.6); opacity: 0; } }
-.pending-dot { position: relative; width: 9px; height: 9px; flex-shrink: 0; }
-.pending-dot::before, .pending-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #facc15; }
-.pending-dot::after { background: transparent; border: 2px solid #facc15; animation: ping 1.6s ease-out infinite; }
-.hero h1 { max-width: 950px; font-size: clamp(44px, 6vw, 78px); line-height: 0.98; letter-spacing: -3px; margin-bottom: 30px; }
+.hero h1 { max-width: 950px; font-size: clamp(38px, 6vw, 78px); line-height: 1.05; letter-spacing: -2px; margin-bottom: 25px; }
 .hero h1 span { color: var(--naranja); }
-.hero > .container > p { max-width: 820px; color: rgba(255,255,255,0.78); font-size: 20px; line-height: 1.7; text-align: justify; }
-.intro { padding: 80px 0 40px; }
-.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.hero > .container > p { max-width: 820px; color: rgba(255,255,255,0.8); font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
+.intro { padding: 60px 0 30px; }
+.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .intro-card {
-background: white; border-radius: 22px; padding: 35px;
+background: white; border-radius: 20px; padding: 30px;
 border: 1px solid var(--borde); box-shadow: 0 15px 40px rgba(0,0,0,0.04);
-transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.intro-card:hover { box-shadow: 0 25px 55px rgba(0,0,0,0.08); border-color: rgba(0,59,70,0.18); }
-.intro-card h2 { font-size: 28px; margin-bottom: 15px; }
-.intro-card p { color: var(--gris-texto); text-align: justify; }
-.warning { border-left: 5px solid var(--naranja); }
+.intro-card h2 { font-size: 24px; margin-bottom: 12px; }
+.intro-card p { color: var(--gris-texto); font-size: 15px; }
+.warning { border-left: 4px solid var(--naranja); }
 .warning strong { color: var(--azul); }
-.phases { padding: 60px 0 100px; }
+.phases { padding: 40px 0 80px; }
 .phase {
-background: white; border-radius: 28px; margin-bottom: 35px;
+background: white; border-radius: 24px; margin-bottom: 30px;
 border: 1px solid var(--borde); overflow: hidden;
-box-shadow: 0 15px 45px rgba(0,0,0,0.05); transition: box-shadow 0.35s ease;
+box-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }
-.phase:hover { box-shadow: 0 30px 65px rgba(0,0,0,0.09); }
 .phase-header {
-background: var(--azul); color: white; padding: 32px 38px;
-display: flex; align-items: center; gap: 22px;
-position: relative; overflow: hidden;
+background: var(--azul); color: white; padding: 25px 30px;
+display: flex; align-items: center; gap: 18px;
 }
-.phase-header::after {
-content: ''; position: absolute; top: 0; left: -150%; width: 80%; height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
-animation: shimmer 4s ease-in-out infinite;
-}
-@keyframes shimmer { 0% { left: -150%; } 60%, 100% { left: 160%; } }
 .phase-number {
-width: 58px; height: 58px; min-width: 58px;
+width: 50px; height: 50px; min-width: 50px;
 display: flex; align-items: center; justify-content: center;
-border-radius: 16px; background: var(--naranja); color: white; font-size: 23px; font-weight: 900;
+border-radius: 14px; background: var(--naranja); color: white; font-size: 20px; font-weight: 900;
 }
-.phase-header h2 { font-size: 27px; margin-bottom: 4px; }
-.phase-header p { color: rgba(255,255,255,0.7); font-size: 15px; }
-.phase-content { padding: 38px; }
-.step { padding-bottom: 35px; margin-bottom: 35px; border-bottom: 1px solid var(--borde); }
+.phase-header h2 { font-size: 24px; margin-bottom: 4px; }
+.phase-header p { color: rgba(255,255,255,0.7); font-size: 14px; }
+.phase-content { padding: 30px; }
+.step { padding-bottom: 30px; margin-bottom: 30px; border-bottom: 1px solid var(--borde); }
 .step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.step h3 { font-size: 21px; margin-bottom: 17px; position: relative; display: inline-block; }
-.step h3::after {
-content: ''; position: absolute; bottom: -3px; left: 0;
-width: 0%; height: 2px; background: var(--naranja);
-transition: width 0.35s cubic-bezier(.22,1,.36,1);
-}
-.step h3:hover::after { width: 100%; }
+.step h3 { font-size: 19px; margin-bottom: 14px; }
 .step h3 span { color: var(--naranja); }
-.step p { color: var(--gris-texto); margin-bottom: 15px; text-align: justify; }
-.step ul { padding-left: 23px; color: var(--gris-texto); text-align: justify; }
-.step li { margin-bottom: 10px; }
+.step p, .step ul { color: var(--gris-texto); font-size: 15px; margin-bottom: 12px; padding-left: 20px; }
+.step li { margin-bottom: 8px; }
 .step li strong { color: var(--azul); }
-.schedule-table {
-width: 100%; border-collapse: separate; border-spacing: 0;
-margin-top: 20px; border-radius: 16px; overflow: hidden;
-border: 1px solid var(--borde); box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-}
+
+/* TABLAS RESPONSIVAS */
+.table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; border: 1px solid var(--borde); margin-top: 15px; }
+.schedule-table { width: 100%; border-collapse: collapse; min-width: 500px; }
 .schedule-table thead tr { background: var(--azul); color: white; }
-.schedule-table thead th { padding: 14px 20px; text-align: left; font-size: 13px; font-weight: 900; letter-spacing: 0.8px; text-transform: uppercase; }
-.schedule-table tbody tr { background: #f8faf9; transition: background 0.2s ease; }
+.schedule-table th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; }
+.schedule-table tbody tr { background: #f8faf9; }
 .schedule-table tbody tr:nth-child(even) { background: white; }
-.schedule-table tbody tr:hover { background: #fff4ed; }
-.schedule-table td { padding: 14px 20px; font-size: 14px; color: var(--gris-texto); border-top: 1px solid var(--borde); }
+.schedule-table td { padding: 12px 16px; font-size: 13px; color: var(--gris-texto); border-top: 1px solid var(--borde); }
 .schedule-table td:first-child { font-weight: 800; color: var(--azul); }
-.schedule-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+.schedule-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; white-space: nowrap; margin-right: 4px;}
 .tag-day { background: rgba(0,59,70,0.1); color: var(--azul); }
 .tag-time { background: rgba(224,94,0,0.12); color: var(--naranja); }
-.documents { margin-top: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+
+.documents { margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
 .document {
 display: flex; align-items: center; justify-content: space-between;
-gap: 18px; padding: 20px; background: #f8faf9;
+gap: 15px; padding: 16px; background: #f8faf9;
 border: 1px solid var(--borde); border-radius: 16px;
-transition: border-color 0.25s, box-shadow 0.3s;
 }
-.document:hover { border-color: var(--naranja); box-shadow: 0 12px 30px rgba(224,94,0,0.12); }
-.document-info { display: flex; align-items: center; gap: 15px; min-width: 0; }
+.document-info { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .document-icon {
-width: 45px; height: 45px; min-width: 45px; border-radius: 12px;
+width: 40px; height: 40px; min-width: 40px; border-radius: 10px;
 background: var(--azul); color: white; display: flex;
-align-items: center; justify-content: center; font-size: 13px; font-weight: 900;
-transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+align-items: center; justify-content: center; font-size: 11px; font-weight: 900;
 }
-.document:hover .document-icon { transform: scale(1.15) rotate(-5deg); }
 .document-icon.pdf { background: var(--naranja); }
-.document-name { font-size: 14px; font-weight: 700; color: var(--azul); word-break: break-word; }
+.document-name { font-size: 13px; font-weight: 700; color: var(--azul); word-break: break-word; line-height: 1.3;}
 .download-btn {
 display: inline-flex; align-items: center; justify-content: center;
-padding: 11px 16px; border-radius: 10px; background: var(--azul);
-color: white; text-decoration: none; font-size: 13px; font-weight: 800;
-white-space: nowrap; border: none; cursor: pointer; font-family: inherit;
-position: relative; overflow: hidden;
-transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-animation: btn-pulse 3s ease-in-out infinite;
+padding: 10px 14px; border-radius: 8px; background: var(--azul);
+color: white; text-decoration: none; font-size: 12px; font-weight: 800;
+white-space: nowrap; border: none; cursor: pointer;
 }
-@keyframes btn-pulse {
-0%, 100% { box-shadow: 0 0 0 0 rgba(0,59,70,0); }
-50% { box-shadow: 0 0 0 5px rgba(0,59,70,0.12); }
-}
-.download-btn::before {
-content: ''; position: absolute; top: 0; left: -100%;
-width: 60%; height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-transition: left 0.4s ease;
-}
-.download-btn:hover::before { left: 150%; }
-.download-btn:hover { background: var(--naranja); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(224,94,0,0.35); animation: none; }
 .highlight {
-margin: 25px 0; padding: 25px; border-radius: 16px;
+margin: 20px 0; padding: 20px; border-radius: 14px;
 background: #fff7f1; border: 1px solid rgba(224,94,0,0.2);
-transition: box-shadow 0.3s, border-color 0.3s;
-position: relative; overflow: hidden;
+border-left: 4px solid var(--naranja);
 }
-.highlight::before {
-content: ''; position: absolute; top: 0; left: 0;
-width: 4px; height: 100%;
-background: linear-gradient(180deg, var(--naranja), #ff8c42);
-border-radius: 2px 0 0 2px;
-}
-.highlight:hover { border-color: rgba(224,94,0,0.4); box-shadow: 0 8px 25px rgba(224,94,0,0.10); }
-.highlight-title { font-weight: 900; color: var(--naranja); margin-bottom: 7px; }
-.highlight p { margin-bottom: 0; text-align: justify; hyphens: auto; -webkit-hyphens: auto; word-break: break-word; }
-.bonus-section { padding: 90px 0; background: white; }
-.section-label { display: inline-block; color: var(--naranja); font-size: 13px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
-.bonus-section h2 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 15px; }
-.bonus-intro { max-width: 720px; color: var(--gris-texto); font-size: 18px; margin-bottom: 35px; text-align: justify; }
-.bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.highlight-title { font-size: 13px; font-weight: 900; color: var(--naranja); margin-bottom: 6px; }
+
+.bonus-section { padding: 60px 0; background: white; }
+.section-label { display: inline-block; color: var(--naranja); font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.bonus-section h2 { font-size: clamp(28px, 5vw, 42px); line-height: 1.1; margin-bottom: 15px; }
+.bonus-intro { font-size: 16px; color: var(--gris-texto); margin-bottom: 30px; }
+.bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 .bonus-card {
-border: 1px solid var(--borde); border-radius: 22px; padding: 30px;
-background: #fafcfc; position: relative; overflow: hidden;
-transition: border-color 0.3s, box-shadow 0.35s;
+border: 1px solid var(--borde); border-radius: 20px; padding: 24px;
+background: #fafcfc; border-bottom: 3px solid var(--naranja);
 }
-.bonus-card::after {
-content: ''; position: absolute; bottom: 0; left: 0;
-width: 100%; height: 3px;
-background: linear-gradient(90deg, var(--naranja), #ff8c42);
-transform: scaleX(0); transform-origin: left;
-transition: transform 0.4s cubic-bezier(.22,1,.36,1);
-}
-.bonus-card:hover::after { transform: scaleX(1); }
-.bonus-card:hover { border-color: var(--naranja); box-shadow: 0 18px 40px rgba(0,0,0,0.08); }
-.bonus-number { color: var(--naranja); font-size: 13px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
-.bonus-card h3 { font-size: 21px; margin-bottom: 12px; }
-.bonus-card p { color: var(--gris-texto); font-size: 14px; margin-bottom: 22px; text-align: justify; }
+.bonus-number { color: var(--naranja); font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+.bonus-card h3 { font-size: 19px; margin-bottom: 10px; }
+.bonus-card p { font-size: 14px; color: var(--gris-texto); margin-bottom: 20px; }
 .bonus-card .download-btn { width: 100%; }
-.final-section { padding: 70px 0; background: var(--gris); }
+
+.final-section { padding: 60px 0; background: var(--gris); }
 .final-card {
-position: relative; overflow: hidden;
 background: radial-gradient(circle at 80% 15%, rgba(255,255,255,0.08), transparent 35%), linear-gradient(135deg, var(--azul), #203e40);
-color: white; padding: 48px 55px; border-radius: 32px;
+color: white; padding: 40px 30px; border-radius: 24px; text-align: center;
 }
-.final-card::before {
-content: ''; position: absolute; inset: 0;
-background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-background-size: 40px 40px; pointer-events: none;
-}
-.final-card-glow {
-position: absolute; width: 350px; height: 350px; border-radius: 50%;
-background: radial-gradient(circle, rgba(224,94,0,0.18), transparent 70%);
-pointer-events: none; transform: translate(-50%,-50%);
-left: 110%; top: 50%; transition: left 0.06s ease, top 0.06s ease; z-index: 0;
-}
-.final-card > *:not(.final-card-glow) { position: relative; z-index: 1; }
-.final-card .eyebrow { margin-bottom: 30px; }
-.final-card h2 { max-width: 850px; font-size: clamp(40px, 6vw, 72px); line-height: 0.98; letter-spacing: -3px; margin-bottom: 28px; }
-.final-card p { max-width: 850px; color: rgba(255,255,255,0.72); font-size: 18px; line-height: 1.7; margin-bottom: 35px; text-align: justify; }
-.final-card p strong { color: white; }
+.final-card h2 { font-size: clamp(32px, 5vw, 56px); margin-bottom: 20px; line-height: 1.1; }
+.final-card p { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 30px; }
 .cta-button {
 display: inline-flex; align-items: center; justify-content: center;
 background: var(--naranja); color: white; text-decoration: none;
-font-weight: 900; font-size: 17px; padding: 18px 30px;
-border-radius: 15px; box-shadow: 0 15px 35px rgba(224,94,0,0.35);
-transition: background 0.2s, transform 0.25s, box-shadow 0.25s;
-position: relative; overflow: hidden;
+font-weight: 900; font-size: 15px; padding: 16px 24px; border-radius: 12px;
 }
-.cta-button::before {
-content: ''; position: absolute; top: 0; left: -100%;
-width: 60%; height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-transition: left 0.5s ease;
+footer { background: var(--azul-oscuro); color: rgba(255,255,255,0.55); text-align: center; padding: 30px 20px; font-size: 12px; }
+
+@media (max-width: 900px) {
+  .intro-grid { grid-template-columns: 1fr; }
 }
-.cta-button:hover::before { left: 150%; }
-.cta-button:hover { background: var(--naranja-hover); transform: translateY(-3px); box-shadow: 0 22px 45px rgba(224,94,0,0.45); }
-footer { background: var(--azul-oscuro); color: rgba(255,255,255,0.55); text-align: center; padding: 35px 20px; font-size: 13px; }
-footer strong { color: white; }
-@media (max-width: 900px) { .intro-grid, .documents, .bonus-grid { grid-template-columns: 1fr; } .final-card { padding: 45px 30px; } .phase-content { padding: 30px 25px; } }
 @media (max-width: 600px) {
-.hero { padding: 50px 20px 65px; }
-.eyebrow { font-size: 11px; padding: 8px 16px; margin-bottom: 25px; gap: 6px; letter-spacing: 0.5px; }
-.hero h1 { letter-spacing: -2px; }
-.phase-header { padding: 25px 20px; align-items: flex-start; }
-.phase-header h2 { font-size: 21px; }
-.phase-number { width: 48px; height: 48px; min-width: 48px; font-size: 18px; }
-.document { flex-direction: column; align-items: stretch; }
-.download-btn { width: 100%; }
-.final-card h2 { letter-spacing: -2px; }
-.schedule-table { font-size: 13px; }
-.schedule-table td, .schedule-table th { padding: 10px 14px; }
-.portal-user-pill { display: none; }
+  .hero { padding: 40px 20px 50px; border-radius: 0 0 25px 25px; }
+  .eyebrow { font-size: 11px; padding: 8px 14px; margin-bottom: 20px; }
+  .phase-header { padding: 20px; align-items: flex-start; gap: 14px; }
+  .phase-header h2 { font-size: 20px; }
+  .phase-number { width: 44px; height: 44px; min-width: 44px; font-size: 17px; border-radius: 12px; }
+  .phase-content { padding: 20px; }
+  .document { flex-direction: column; align-items: stretch; }
+  .portal-user-pill { display: none; }
 }
-/* ESTILOS COPILOTO IA BLINDADOS */
-.an-copilot-trigger{position:fixed!important;bottom:24px!important;right:24px!important;z-index:2147483640!important;background:#e05e00!important;color:#ffffff!important;border:2px solid #ffffff!important;border-radius:999px!important;padding:14px 22px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:800!important;display:flex!important;align-items:center!important;gap:10px!important;cursor:pointer!important;box-shadow:0 12px 30px rgba(0,0,0,0.35)!important;transition:transform 0.2s ease,background 0.2s ease!important;}
+
+/* ══════════════════════════════════════════════════════════
+   ESTILOS COPILOTO IA (FULL SCREEN EN MÓVIL)
+══════════════════════════════════════════════════════════ */
+.an-copilot-trigger{position:fixed!important;bottom:20px!important;right:20px!important;z-index:2147483640!important;background:#e05e00!important;color:#ffffff!important;border:2px solid #ffffff!important;border-radius:999px!important;padding:12px 18px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:13px!important;font-weight:800!important;display:flex!important;align-items:center!important;gap:8px!important;cursor:pointer!important;box-shadow:0 10px 25px rgba(0,0,0,0.3)!important;transition:transform 0.2s ease,background 0.2s ease!important;}
 .an-copilot-trigger:hover{transform:translateY(-2px)!important;background:#c94f00!important;}
-.an-copilot-dot{width:10px!important;height:10px!important;background:#22c55e!important;border-radius:50%!important;box-shadow:0 0 0 4px rgba(34,197,94,0.3)!important;flex-shrink:0!important;}
-.an-copilot-window{position:fixed!important;bottom:88px!important;right:24px!important;z-index:2147483640!important;width:min(420px,calc(100vw - 32px))!important;height:550px!important;max-height:calc(100vh - 120px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 60px rgba(0,0,0,0.45)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:Arial,Helvetica,sans-serif!important;}
+.an-copilot-dot{width:8px!important;height:8px!important;background:#22c55e!important;border-radius:50%!important;box-shadow:0 0 0 4px rgba(34,197,94,0.3)!important;flex-shrink:0!important;}
+
+.an-copilot-window{position:fixed!important;bottom:80px!important;right:20px!important;z-index:2147483640!important;width:min(400px,calc(100vw - 32px))!important;height:550px!important;max-height:calc(100vh - 100px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 50px rgba(0,0,0,0.35)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:Arial,Helvetica,sans-serif!important;}
 .an-copilot-window.open{display:flex!important;}
+
 .an-copilot-header{background:#003b46!important;color:#ffffff!important;padding:14px 16px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border-bottom:3px solid #e05e00!important;flex-shrink:0!important;}
 .an-copilot-header-info h4{font-size:15px!important;font-weight:800!important;color:#ffffff!important;margin:0 0 2px 0!important;line-height:1.2!important;}
 .an-copilot-header-info span{font-size:10.5px!important;color:#ffb07a!important;text-transform:uppercase!important;letter-spacing:0.06em!important;font-weight:700!important;display:block!important;}
 .an-copilot-actions{display:flex!important;align-items:center!important;gap:6px!important;}
 .an-copilot-reset{background:rgba(255,255,255,0.14)!important;color:#ffffff!important;border:1px solid rgba(255,255,255,0.3)!important;padding:6px 10px!important;border-radius:8px!important;cursor:pointer!important;font-weight:700!important;font-size:11px!important;white-space:nowrap!important;}
-.an-copilot-reset:hover{background:#e05e00!important;border-color:#e05e00!important;}
 .an-copilot-close{background:rgba(255,255,255,0.18)!important;color:#ffffff!important;border:1px solid rgba(255,255,255,0.35)!important;width:30px!important;height:30px!important;border-radius:8px!important;cursor:pointer!important;font-weight:900!important;font-size:14px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
-.an-copilot-close:hover{background:#e05e00!important;}
-.an-copilot-chips{padding:10px 14px!important;background:#e9f1f2!important;border-bottom:1px solid #cbd5e1!important;display:flex!important;gap:8px!important;overflow-x:auto!important;flex-shrink:0!important;}
-.an-chip{background:#ffffff!important;color:#003b46!important;border:1px solid #003b46!important;padding:6px 12px!important;border-radius:999px!important;font-size:12px!important;font-weight:700!important;white-space:nowrap!important;cursor:pointer!important;transition:0.15s ease!important;}
+
+.an-copilot-chips{padding:10px 14px!important;background:#e9f1f2!important;border-bottom:1px solid #cbd5e1!important;display:flex!important;gap:8px!important;overflow-x:auto!important;flex-shrink:0!important;scrollbar-width:none!important;}
+.an-copilot-chips::-webkit-scrollbar{display:none!important;}
+.an-chip{background:#ffffff!important;color:#003b46!important;border:1px solid #003b46!important;padding:6px 12px!important;border-radius:999px!important;font-size:12px!important;font-weight:700!important;white-space:nowrap!important;cursor:pointer!important;}
 .an-chip:hover{background:#e05e00!important;color:#ffffff!important;border-color:#e05e00!important;}
+
 .an-copilot-messages{padding:16px!important;overflow-y:auto!important;flex:1!important;display:flex!important;flex-direction:column!important;gap:12px!important;background:#f1f5f9!important;}
-.an-msg{padding:12px 15px!important;border-radius:14px!important;font-size:13.5px!important;line-height:1.55!important;max-width:92%!important;word-wrap:break-word!important;}
+.an-msg{padding:12px 14px!important;border-radius:14px!important;font-size:13.5px!important;line-height:1.5!important;max-width:92%!important;word-wrap:break-word!important;}
 .an-msg.bot{background:#ffffff!important;border:1px solid #cbd5e1!important;color:#0f172a!important;align-self:flex-start!important;box-shadow:0 2px 6px rgba(0,0,0,0.06)!important;}
 .an-msg.bot strong{color:#003b46!important;font-weight:800!important;}
 .an-msg.user{background:#003b46!important;color:#ffffff!important;align-self:flex-end!important;font-weight:600!important;box-shadow:0 2px 6px rgba(0,59,70,0.25)!important;}
 .an-copy-box{margin-top:10px!important;padding:12px!important;background:#fff4ed!important;border:1px solid #fed7aa!important;border-left:4px solid #e05e00!important;border-radius:8px!important;font-size:13px!important;color:#0f172a!important;}
 .an-copy-btn{margin-top:8px!important;background:#e05e00!important;color:#ffffff!important;border:none!important;padding:7px 12px!important;border-radius:6px!important;font-size:12px!important;font-weight:800!important;cursor:pointer!important;display:inline-block!important;}
-.an-copy-btn:hover{background:#003b46!important;}
+
 .an-copilot-input-area{padding:12px!important;background:#ffffff!important;border-top:1px solid #cbd5e1!important;display:flex!important;gap:8px!important;flex-shrink:0!important;}
-.an-copilot-input{flex:1!important;background:#f8fafc!important;color:#0f172a!important;border:1.5px solid #94a3b8!important;border-radius:10px!important;padding:10px 12px!important;font-size:13.5px!important;outline:none!important;}
-.an-copilot-input::placeholder{color:#64748b!important;}
+.an-copilot-input{flex:1!important;background:#f8fafc!important;color:#0f172a!important;border:1.5px solid #94a3b8!important;border-radius:10px!important;padding:10px 12px!important;font-size:14px!important;outline:none!important;}
 .an-copilot-input:focus{border-color:#003b46!important;background:#ffffff!important;}
-.an-copilot-send{background:#e05e00!important;color:#ffffff!important;border:none!important;border-radius:10px!important;padding:0 18px!important;font-weight:800!important;font-size:13.5px!important;cursor:pointer!important;}
-.an-copilot-send:hover{background:#c94f00!important;}
+.an-copilot-send{background:#e05e00!important;color:#ffffff!important;border:none!important;border-radius:10px!important;padding:0 16px!important;font-weight:800!important;font-size:13.5px!important;cursor:pointer!important;}
+
+@media (max-width: 600px) {
+  .an-copilot-window {
+    width: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    z-index: 2147483647 !important;
+  }
+}
 </style>
 </head>
 <body class="locked">
@@ -494,19 +427,27 @@ footer strong { color: white; }
 
     <div class="auth-footer">
       <span>¿Aún no tienes tu licencia activa? <a href="https://activonorte.com">Adquirir Protocolo 48H (17€) →</a></span>
-      <span>¿Problemas con tu clave? <a href="https://wa.me/34610387276?text=Hola%20Sergio,%20necesito%20ayuda%20con%20mi%20clave%20de%20la%20Sala%20de%20Control" target="_blank" rel="noopener noreferrer">Soporte directo por WhatsApp</a></span>
+      <span>¿Problemas con tu clave? <a href="https://wa.me/34610387276?text=Hola%20Sergio,%20necesito%20ayuda%20con%20mi%20clave%20de%20la%20Sala%20de%20Control" target="_blank" rel="noopener noreferrer">Soporte por WhatsApp</a></span>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
-     BARRA DE NAVEGACIÓN DEL ECOSISTEMA (DISEÑO 2)
+     BARRA DE NAVEGACIÓN DEL ECOSISTEMA (APP SAAS)
 ══════════════════════════════════════════════════════════ -->
 <nav class="portal-topbar">
   <div class="portal-topbar-inner">
-    <div class="portal-brand">
-      <div class="portal-brand-badge">A</div>
-      <div>ACTIVO<span>NORTE</span> · OS</div>
+    <div class="portal-topbar-row">
+      <div class="portal-brand">
+        <div class="portal-brand-badge">A</div>
+        <div>ACTIVO<span>NORTE</span> · OS</div>
+      </div>
+      <div class="portal-user-area">
+        <div class="portal-user-pill" id="portalUserBadge">
+          <strong>●</strong> Conectado
+        </div>
+        <button class="portal-logout" id="portalLogoutBtn">Cerrar sesión</button>
+      </div>
     </div>
 
     <div class="portal-tabs">
@@ -520,24 +461,17 @@ footer strong { color: white; }
         <span id="lockIconGrowth">🔒</span> Growth Partner 360 & Phygital
       </button>
     </div>
-
-    <div class="portal-user-area">
-      <div class="portal-user-pill" id="portalUserBadge">
-        <strong>●</strong> Conectado
-      </div>
-      <button class="portal-logout" id="portalLogoutBtn">Cerrar sesión</button>
-    </div>
   </div>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════
-     MODAL DE UPSELL PARA SERVICIOS CON CANDADO (🔒)
+     MODAL DE UPSELL (🔒)
 ══════════════════════════════════════════════════════════ -->
 <div class="upsell-overlay" id="upsellOverlay">
   <div class="upsell-modal">
     <div class="upsell-header">
       <div>
-        <span class="upsell-tag" id="upsellTag">MÓDULO BLOQUEADO EN TU LICENCIA ACTUAL</span>
+        <span class="upsell-tag" id="upsellTag">MÓDULO BLOQUEADO EN TU LICENCIA</span>
         <h3 id="upsellTitle">Pack Dominio Local</h3>
       </div>
       <button class="upsell-close" id="upsellCloseBtn">✕</button>
@@ -556,7 +490,6 @@ footer strong { color: white; }
      CONTENIDO PRINCIPAL SALA DE CONTROL 48H
 ══════════════════════════════════════════════════════════ -->
 <header class="hero" id="hero-section">
-<div class="hero-cursor-glow" id="hero-glow"></div>
 <div class="container">
 <div class="eyebrow"><span class="live-dot"></span>SISTEMA OPERATIVO · <span>ACTIVONORTE</span></div>
 <h1>Sistema de Reactivación de <span>Ex-Socios.</span></h1>
@@ -597,7 +530,7 @@ footer strong { color: white; }
 <p>Comienza utilizando el material de trabajo del protocolo para identificar correctamente los perfiles que tienen mayor potencial de reactivación.</p>
 <ul>
 <li>Dirígete a la <strong>Página 1 · El Radar</strong>.</li>
-<li>Abre tu software de gestión (Trainingym, Resawod, etc.) y exporta tu lista de ex-socios.</li>
+<li>Abre tu software de gestión y exporta tu lista de ex-socios.</li>
 <li>Aplica el <strong>Filtro "Oro"</strong>: selecciona exclusivamente a los clientes que se dieron de baja hace entre 3 y 9 meses y que tenían un histórico de asistencia de al menos 4 veces al mes.</li>
 <li>Aplica la <strong>Lista Negra</strong>: elimina inmediatamente a morosos, bajas por mudanza, lesiones graves o perfiles conflictivos.</li>
 </ul>
@@ -643,7 +576,7 @@ footer strong { color: white; }
 <h3><span>01.</span> Abre el protocolo de reactivación</h3>
 <p>Dirígete a la <strong>Fase 1 · El Rompehielos</strong> y utiliza exactamente la plantilla proporcionada.</p>
 <ul>
-<li>Copia exactamente la plantilla de texto proporcionada: <strong>"Hola [Nombre] 👋, soy..."</strong></li>
+<li>Copia exactamente la plantilla de texto proporcionada.</li>
 <li>No modifiques el planteamiento inicial.</li>
 <li>No introduzcas argumentos comerciales prematuramente.</li>
 </ul>
@@ -655,7 +588,7 @@ footer strong { color: white; }
 <div class="document">
 <div class="document-info">
 <div class="document-icon pdf">PDF</div>
-<div class="document-name">PROTOCOLO DE REACTIVACIÓN ACTIVONORTE 2.pdf</div>
+<div class="document-name">PROTOCOLO DE REACTIVACIÓN 2.pdf</div>
 </div>
 <a href="https://drive.google.com/uc?export=download&id=1WekMyXDubGP84yPH7rcR_F5mtFYwRv2C" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
 </div>
@@ -664,6 +597,7 @@ footer strong { color: white; }
 <div class="step">
 <h3><span>02.</span> Ejecuta el envío · El cronómetro</h3>
 <p>El momento del envío es parte del sistema. Respeta las ventanas establecidas.</p>
+<div class="table-wrapper">
 <table class="schedule-table">
 <thead>
 <tr><th>Regla</th><th>Detalle</th></tr>
@@ -676,9 +610,9 @@ footer strong { color: white; }
 <tr>
 <td>Días permitidos</td>
 <td>
-<span class="schedule-tag tag-day">Martes</span>
-<span class="schedule-tag tag-day">Miércoles</span>
-<span class="schedule-tag tag-day">Jueves</span>
+<span class="schedule-tag tag-day">Mar</span>
+<span class="schedule-tag tag-day">Mié</span>
+<span class="schedule-tag tag-day">Jue</span>
 </td>
 </tr>
 <tr>
@@ -695,6 +629,7 @@ footer strong { color: white; }
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 </section>
@@ -716,12 +651,12 @@ footer strong { color: white; }
 <li>Espera entre <strong>5 y 15 minutos</strong> antes de contestar.</li>
 <li>Proyecta la imagen de un profesional ocupado, no la de un comercial ansioso.</li>
 <li>No des consejos de entrenamiento todavía.</li>
-<li>Deja que el cliente verbalice primero su problema: tiempo, estancamiento, motivación, etc.</li>
 </ul>
 </div>
 <div class="step">
 <h3><span>02.</span> Gestiona las objeciones</h3>
-<p>Utiliza la mentalidad de <strong>Aikido</strong>: valida la postura del cliente, aísla el problema real y resuelve con una opción pequeña. Nunca discutas.</p>
+<p>Utiliza la mentalidad de <strong>Aikido</strong>: valida la postura del cliente, aísla el problema real y resuelve con una opción pequeña.</p>
+<div class="table-wrapper">
 <table class="schedule-table">
 <thead>
 <tr><th>Objeción</th><th>Respuesta táctica</th></tr>
@@ -737,15 +672,16 @@ footer strong { color: white; }
 </tr>
 <tr>
 <td>🏋️ Competencia</td>
-<td>Ofrece una revisión técnica que permita comparar su situación</td>
+<td>Ofrece una revisión técnica para comparar su situación</td>
 </tr>
 </tbody>
 </table>
+</div>
 <div class="documents" style="margin-top: 20px;">
 <div class="document">
 <div class="document-info">
 <div class="document-icon pdf">PDF</div>
-<div class="document-name">PROTOCOLO DE REACTIVACIÓN ACTIVONORTE 3.pdf</div>
+<div class="document-name">PROTOCOLO DE REACTIVACIÓN 3.pdf</div>
 </div>
 <a href="https://drive.google.com/uc?export=download&id=1y88ciX1I36PAgdR1HpbDFeMgag3zCChe" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
 </div>
@@ -769,39 +705,26 @@ footer strong { color: white; }
 <div class="container">
 <div class="section-label">Material adicional</div>
 <h2>Tus 3 bonus de implementación.</h2>
-<p class="bonus-intro">Además del protocolo principal, tienes acceso a tres recursos adicionales para reforzar la estrategia de captación, retención y posicionamiento local.</p>
+<p class="bonus-intro">Recursos adicionales para reforzar la estrategia de captación, retención y posicionamiento local.</p>
 <div class="bonus-grid">
 <div class="bonus-card">
 <div class="bonus-number">Bonus #1</div>
 <h3>El Antídoto Low-Cost</h3>
-<p>Material adicional para trabajar la percepción de valor y responder ante la presión de los modelos low-cost.</p>
+<p>Aprende a vender valor ante la presión de los modelos low-cost.</p>
 <a href="https://drive.google.com/uc?export=download&id=1p3CEgHKMjHxoLePyL9_lqvP8ye0Zar9_" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
 </div>
 <div class="bonus-card">
 <div class="bonus-number">Bonus #2</div>
 <h3>La Muralla de Retención</h3>
-<p>Recurso estratégico para reforzar los sistemas de retención y evitar que el centro vuelva a perder capital.</p>
+<p>Refuerza tus sistemas de retención para evitar fugas de capital.</p>
 <a href="https://drive.google.com/uc?export=download&id=10NPOcgSVF3jLPnCSvbBtWgQY3LMEzVo4" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
 </div>
 <div class="bonus-card">
 <div class="bonus-number">Bonus #3</div>
 <h3>Dominando el Barrio en Google</h3>
-<p>Recurso adicional para trabajar el posicionamiento local y aumentar la visibilidad del centro deportivo en Google.</p>
+<p>Aumenta la visibilidad de tu centro deportivo en las búsquedas locales.</p>
 <a href="https://drive.google.com/uc?export=download&id=1C9MjQhTW7U4BvrkAohQstiq4igT6BfDm" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
 </div>
-</div>
-</div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="final-section">
-<div class="container">
-<div class="final-card" id="final-card">
-<div class="final-card-glow" id="final-glow"></div>
-<div class="eyebrow"><span class="pending-dot"></span>SIGUIENTE NIVEL · <span>ACTIVONORTE</span></div>
-<h2>Has tapado la fuga. Ahora toca construir el sistema.</h2>
-<p>Una vez finalices este protocolo y empieces a detectar nuevas matrículas en tu software, el siguiente paso es dominar el ecosistema digital de tu ciudad. Contacta con Activonorte para activar el <strong>Pack Dominio Local</strong> o integrar <strong>Growth Partner 360</strong> directamente en tu cuenta de resultados.</p>
-<a class="cta-button" href="https://app.activonorte.com" target="_blank" rel="noopener noreferrer">Activar el siguiente nivel →</a>
 </div>
 </div>
 </section>
@@ -823,7 +746,7 @@ Copiloto Aikido · IA
 <span>Memoria activa por ex-socio</span>
 </div>
 <div class="an-copilot-actions">
-<button class="an-copilot-reset" id="anCopilotReset" title="Empezar con otro ex-socio">🔄 Nuevo ex-socio</button>
+<button class="an-copilot-reset" id="anCopilotReset" title="Empezar con otro ex-socio">🔄 Nuevo</button>
 <button class="an-copilot-close" id="anCopilotClose">✕</button>
 </div>
 </div>
@@ -838,7 +761,7 @@ Copiloto Aikido · IA
 <div class="an-copilot-messages" id="anCopilotMessages">
 <div class="an-msg bot">
 <strong>Bienvenido al Copiloto 48H.</strong><br>
-Pega aquí el mensaje del ex-socio y te redactaré la respuesta con <strong>Mentalidad Aikido</strong>. Puedes encadenar varios mensajes sobre el mismo caso o pulsar <em>"🔄 Nuevo ex-socio"</em> arriba cuando pases al siguiente.
+Pega aquí el mensaje del ex-socio y te redactaré la respuesta con <strong>Mentalidad Aikido</strong>. Puedes encadenar varios mensajes sobre el mismo caso o pulsar <em>"🔄 Nuevo"</em> arriba cuando pases al siguiente.
 </div>
 </div>
 
@@ -878,7 +801,7 @@ const SESSION_KEY = "activonorte_portal_session_v1";
 function applyUserSession(user) {
   document.body.classList.remove("locked");
   authGate.classList.add("hidden-gate");
-  portalUserBadge.innerHTML = '<strong>●</strong> ' + user.email + ' · ' + user.planLabel;
+  portalUserBadge.innerHTML = '<strong>●</strong> ' + user.email;
 
   if (user.role === "dominio" || user.role === "growth") {
     tabDominio.classList.remove("locked-tab");
@@ -909,7 +832,6 @@ function checkSavedSession() {
     }
   } catch (e) {}
 }
-
 checkSavedSession();
 
 authForm.addEventListener("submit", async (e) => {
@@ -963,9 +885,8 @@ function openUpsellModal(type) {
     upsellTitle.textContent = "Pack Dominio Local · Panel SEO";
     upsellDescription.textContent = "Tu licencia actual incluye el Protocolo de Reactivación 48H. Activa el Pack Dominio Local para posicionar tu centro deportivo en el Top 3 de Google Maps en tu ciudad y captar socios en automático.";
     upsellFeatures.innerHTML = [
-      '<li><span class="check">✓</span> <div><strong>Auditoría y Optimización de Google Business Profile:</strong> Corrección de los factores que esconden tu ficha frente a la competencia.</div></li>',
-      '<li><span class="check">✓</span> <div><strong>Sistema Automatizado de Reseñas:</strong> Protocolo en recepción para escalar posiciones cada semana.</div></li>',
-      '<li><span class="check">✓</span> <div><strong>Panel de Visibilidad Local:</strong> Seguimiento de llamadas, clics a ruta y nuevos socios desde Google.</div></li>'
+      '<li><span class="check">✓</span> <div><strong>Auditoría de Google Business:</strong> Corrección de los factores que esconden tu ficha frente a la competencia.</div></li>',
+      '<li><span class="check">✓</span> <div><strong>Sistema Automatizado de Reseñas:</strong> Protocolo en recepción para escalar posiciones cada semana.</div></li>'
     ].join("");
     const msg = "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero desbloquear el Pack Dominio Local con la Auditoría Gratuita de 15 min.";
     upsellWaBtn.href = "https://wa.me/34610387276?text=" + encodeURIComponent(msg);
@@ -973,24 +894,17 @@ function openUpsellModal(type) {
     upsellTitle.textContent = "Growth Partner 360 & Sistema Phygital";
     upsellDescription.textContent = "Conviértenos en tu departamento de marketing externo completo. Integramos captación continua en Meta Ads con nuestro sistema de retención comunitaria Phygital.";
     upsellFeatures.innerHTML = [
-      '<li><span class="check">✓</span> <div><strong>Captación Continua en Instagram y Facebook:</strong> Flujo predecible de leads cualificados todos los meses.</div></li>',
-      '<li><span class="check">✓</span> <div><strong>Sistema Phygital de Retención (Pulseras + QR):</strong> Comunidad interna para reducir drásticamente las bajas mensuales.</div></li>',
-      '<li><span class="check">✓</span> <div><strong>Consultoría Estratégica 1 a 1:</strong> Reunión mensual de seguimiento financiero y crecimiento del centro.</div></li>'
+      '<li><span class="check">✓</span> <div><strong>Captación Continua en Meta:</strong> Flujo predecible de leads cualificados todos los meses.</div></li>',
+      '<li><span class="check">✓</span> <div><strong>Sistema Phygital (Pulseras+QR):</strong> Comunidad interna para reducir drásticamente las bajas mensuales.</div></li>'
     ].join("");
     const msg = "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero agendar una consultoría para activar Growth Partner 360.";
     upsellWaBtn.href = "https://wa.me/34610387276?text=" + encodeURIComponent(msg);
   }
-
   upsellOverlay.classList.add("open");
 }
 
-tabDominio.addEventListener("click", () => {
-  openUpsellModal("dominio");
-});
-
-tabGrowth.addEventListener("click", () => {
-  openUpsellModal("growth");
-});
+tabDominio.addEventListener("click", () => openUpsellModal("dominio"));
+tabGrowth.addEventListener("click", () => openUpsellModal("growth"));
 
 upsellCloseBtn.addEventListener("click", () => upsellOverlay.classList.remove("open"));
 upsellOverlay.addEventListener("click", (e) => {
@@ -998,23 +912,8 @@ upsellOverlay.addEventListener("click", (e) => {
 });
 
 /* ══════════════════════════════════════════════════════════
-   EFECTOS VISUALES Y COPILOTO 48H CON MEMORIA
+   COPILOTO 48H CON MEMORIA
 ══════════════════════════════════════════════════════════ */
-const heroSection = document.getElementById('hero-section');
-const heroGlow = document.getElementById('hero-glow');
-heroSection.addEventListener('mousemove', (e) => {
-const r = heroSection.getBoundingClientRect();
-heroGlow.style.left = (e.clientX - r.left) + 'px';
-heroGlow.style.top = (e.clientY - r.top) + 'px';
-});
-const finalCard = document.getElementById('final-card');
-const finalGlow = document.getElementById('final-glow');
-finalCard.addEventListener('mousemove', (e) => {
-const r = finalCard.getBoundingClientRect();
-finalGlow.style.left = (e.clientX - r.left) + 'px';
-finalGlow.style.top = (e.clientY - r.top) + 'px';
-});
-
 const anToggle = document.getElementById("anCopilotToggle");
 const anWindow = document.getElementById("anCopilotWindow");
 const anClose = document.getElementById("anCopilotClose");
@@ -1025,8 +924,19 @@ const anMessages = document.getElementById("anCopilotMessages");
 
 let copilotHistory = [];
 
-anToggle.addEventListener("click", () => anWindow.classList.toggle("open"));
-anClose.addEventListener("click", () => anWindow.classList.remove("open"));
+anToggle.addEventListener("click", () => {
+  anWindow.classList.toggle("open");
+  if(anWindow.classList.contains("open") && window.innerWidth <= 600) {
+    document.body.style.overflow = "hidden"; // Evita scroll de fondo en móvil
+  } else {
+    document.body.style.overflow = "";
+  }
+});
+
+anClose.addEventListener("click", () => {
+  anWindow.classList.remove("open");
+  document.body.style.overflow = "";
+});
 
 anReset.addEventListener("click", () => {
 copilotHistory = [];
@@ -1058,31 +968,27 @@ return div;
 
 function copyWhatsApp(btn, text) {
 navigator.clipboard.writeText(text);
-btn.textContent = "✓ Copiado al portapapeles";
+btn.textContent = "✓ Copiado";
 setTimeout(() => (btn.textContent = "Copiar para WhatsApp"), 2000);
 }
 
 function localAikidoFallback(input) {
 const q = input.toLowerCase();
-if (q.includes("tiempo") || q.includes("horario") || q.includes("trabajo") || q.includes("tarde") || q.includes("liado")) {
-const wa = "Te entiendo perfectamente, cuando el trabajo aprieta es imposible sacar hora y media. Precisamente por eso hemos montado un formato Exprés de 30 minutos para gente con agenda complicada, ir al grano y salir listo. ¿Te cuadra si nos vemos 5 minutos esta semana en el centro y te enseño cómo encajarlo sin quitarte tiempo?";
-return '<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de contestar.<br><strong>🥋 Aikido aplicado:</strong> Validamos su falta de tiempo y derivamos a <em>Plan Exprés de 30 min</em>.<div class="an-copy-box">' + wa + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + wa + '\')">Copiar para WhatsApp</button></div>';
+if (q.includes("tiempo") || q.includes("tarde") || q.includes("liado")) {
+const wa = "Te entiendo perfectamente, cuando el trabajo aprieta es imposible sacar hora y media. Por eso hemos montado un formato Exprés de 30 minutos para gente con agenda complicada. ¿Te cuadra si nos vemos 5 minutos esta semana y te enseño cómo encajarlo sin quitarte tiempo?";
+return '<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos.<br><strong>🥋 Aikido aplicado:</strong> Validamos su falta de tiempo y derivamos a <em>Plan Exprés de 30 min</em>.<div class="an-copy-box">' + wa + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + wa + '\')">Copiar para WhatsApp</button></div>';
 }
-if (q.includes("caro") || q.includes("precio") || q.includes("dinero") || q.includes("presupuesto") || q.includes("cuota")) {
-const wa = "Totalmente comprensible, hoy en día hay que mirar bien cada gasto fijo. De hecho, no te escribía para meterte en la cuota completa de antes, sino porque tenemos una opción reducida muy económica para no perder el hábito sin que pese en el bolsillo. ¿Te cuadra si nos vemos 5 minutos o te pego un toque rápido y te cuento de qué va?";
-return '<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos antes de responder.<br><strong>🥋 Aikido aplicado:</strong> Validamos el factor económico y aplicamos <em>Downsell / Sesión económica</em>.<div class="an-copy-box">' + wa + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + wa + '\')">Copiar para WhatsApp</button></div>';
+if (q.includes("caro") || q.includes("precio") || q.includes("dinero")) {
+const wa = "Totalmente comprensible, hoy en día hay que mirar bien cada gasto. No te escribía para meterte en la cuota completa de antes, sino porque tenemos una opción reducida para no perder el hábito sin que pese en el bolsillo. ¿Te cuadra si nos vemos 5 minutos o te pego un toque rápido?";
+return '<strong>⏱️ Regla del Tempomat:</strong> Espera entre 5 y 15 minutos.<br><strong>🥋 Aikido aplicado:</strong> Validamos el factor económico y aplicamos <em>Downsell</em>.<div class="an-copy-box">' + wa + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + wa + '\')">Copiar para WhatsApp</button></div>';
 }
-if (q.includes("otro") || q.includes("competencia") || q.includes("apunté") || q.includes("entreno en") || q.includes("low cost")) {
-const wa = "¡Qué buena noticia que sigas entrenando! Lo importante es no parar. Como ya te conocemos de tu etapa aquí, estamos haciendo revisiones técnicas gratuitas de 15 minutos para antiguos socios y así ajustar tu planificación actual sin ningún compromiso. ¿Te cuadra si nos vemos 5 minutos esta semana y le echamos un ojo?";
-return '<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min.<br><strong>🥋 Aikido aplicado:</strong> Nunca discutimos con la competencia; derivamos a <em>Revisión Técnica gratuita</em>.<div class="an-copy-box">' + wa + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + wa + '\')">Copiar para WhatsApp</button></div>';
-}
-const waDefault = "Te entiendo perfectamente, es normal que después de unos meses cueste retomar el ritmo de golpe. No te escribía para que vuelvas con la rutina pesada de antes, sino para ver qué tal estabas y enseñarte una opción súper ligera de readaptación. ¿Te cuadra si nos vemos 5 minutos por el centro sin ningún compromiso?";
-return '<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min y no des consejos de entreno por chat.<br><strong>🥋 Respuesta de baja fricción:</strong><div class="an-copy-box">' + waDefault + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + waDefault + '\')">Copiar para WhatsApp</button></div>';
+const waDefault = "Te entiendo perfectamente, es normal que después de unos meses cueste retomar el ritmo. No te escribía para que vuelvas con la rutina de antes, sino para ver qué tal estabas y enseñarte una opción súper ligera. ¿Te cuadra si nos vemos 5 minutos por el centro sin compromiso?";
+return '<strong>⏱️ Regla del Tempomat:</strong> Espera 5-15 min.<br><strong>🥋 Respuesta de baja fricción:</strong><div class="an-copy-box">' + waDefault + '<br><button class="an-copy-btn" onclick="copyWhatsApp(this, \'' + waDefault + '\')">Copiar para WhatsApp</button></div>';
 }
 
 async function handleUserPrompt(promptText) {
 appendMessage(promptText, "user");
-const loadingMsg = appendMessage("Analizando caso con el protocolo 48H...", "bot");
+const loadingMsg = appendMessage("Analizando caso...", "bot");
 try {
 const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/copiloto", {
 method: "POST",
