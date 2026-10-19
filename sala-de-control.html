@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema de Reactivación de Ex-Socios | Activonorte</title>
-<meta name="description" content="Sistema de Despliegue Táctico de Activonorte para la reactivación de capital retenido en centros deportivos.">
+<title>Portal de Clientes · Sistema 48H | Activonorte</title>
+<meta name="description" content="Área privada y Sistema de Despliegue Táctico de Activonorte para centros deportivos.">
 <link rel="icon" type="image/png" sizes="any" href="favicon-azul.png?v=3">
 <link rel="apple-touch-icon" href="favicon-azul.png?v=3">
 <style>
@@ -16,12 +16,191 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: Arial, Helvetica, sans-serif; background: var(--gris); color: var(--azul); line-height: 1.6; overflow-x: hidden; }
+body.locked { overflow: hidden; height: 100vh; }
 a { color: inherit; }
 .container { width: min(1180px, 92%); margin: 0 auto; }
+
+/* ══════════════════════════════════════════════════════════
+   PANTALLA DE LOGIN PRIVADO (ACTIVONORTE OS)
+══════════════════════════════════════════════════════════ */
+#an-auth-gate {
+position: fixed; inset: 0; z-index: 2147483646;
+background: radial-gradient(circle at 80% 20%, rgba(224,94,0,0.18), transparent 35%), linear-gradient(135deg, #001e25 0%, #003b46 65%, #064854 100%);
+display: flex; align-items: center; justify-content: center; padding: 20px;
+transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+#an-auth-gate.hidden-gate { opacity: 0; visibility: hidden; pointer-events: none; }
+#an-auth-gate::before {
+content: ''; position: absolute; inset: 0;
+background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+background-size: 38px 38px; pointer-events: none;
+}
+.auth-card {
+position: relative; z-index: 2; width: 100%; max-width: 440px;
+background: #ffffff; border-radius: 24px; padding: 38px 34px;
+border: 2px solid rgba(255,255,255,0.15);
+box-shadow: 0 30px 70px rgba(0,0,0,0.5); text-align: left;
+}
+.auth-badge {
+display: inline-flex; align-items: center; gap: 8px;
+padding: 6px 13px; border-radius: 999px;
+background: #e9f1f2; color: var(--azul);
+font-size: 11px; font-weight: 900; letter-spacing: 0.08em;
+text-transform: uppercase; margin-bottom: 18px;
+}
+.auth-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--naranja); }
+.auth-card h2 { font-size: 26px; color: var(--azul); line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.5px; }
+.auth-card > p { font-size: 14px; color: var(--gris-texto); margin-bottom: 24px; }
+.auth-field { margin-bottom: 16px; }
+.auth-field label { display: block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--azul); margin-bottom: 6px; }
+.auth-field input {
+width: 100%; padding: 13px 15px; border-radius: 12px;
+border: 1.5px solid #cbd5e1; background: #f8fafc;
+font-size: 14px; color: var(--azul); outline: none; transition: 0.2s;
+}
+.auth-field input:focus { border-color: var(--naranja); background: #ffffff; box-shadow: 0 0 0 3px rgba(224,94,0,0.12); }
+.auth-error {
+display: none; margin-bottom: 16px; padding: 11px 14px;
+border-radius: 10px; background: #fef2f2; border: 1px solid #fecaca;
+color: #b91c1c; font-size: 13px; font-weight: 700;
+}
+.auth-submit {
+width: 100%; padding: 15px; border: none; border-radius: 12px;
+background: var(--naranja); color: #ffffff; font-size: 15px;
+font-weight: 900; cursor: pointer; transition: 0.2s;
+box-shadow: 0 10px 25px rgba(224,94,0,0.35);
+}
+.auth-submit:hover { background: var(--naranja-hover); transform: translateY(-1px); }
+.auth-footer {
+margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--borde);
+display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--gris-texto); text-align: center;
+}
+.auth-footer a { color: var(--naranja); font-weight: 800; text-decoration: none; }
+.auth-footer a:hover { text-decoration: underline; }
+
+/* ══════════════════════════════════════════════════════════
+   BARRA SUPERIOR DEL ECOSISTEMA (DISEÑO 2 - RBAC)
+══════════════════════════════════════════════════════════ */
+.portal-topbar {
+position: sticky; top: 0; z-index: 9999;
+background: #00262e; color: #ffffff;
+border-bottom: 2px solid var(--naranja);
+box-shadow: 0 8px 25px rgba(0,0,0,0.22);
+}
+.portal-topbar-inner {
+width: min(1180px, 95%); margin: 0 auto; min-height: 64px;
+display: flex; align-items: center; justify-content: space-between;
+gap: 14px; padding: 10px 0; flex-wrap: wrap;
+}
+.portal-brand {
+display: flex; align-items: center; gap: 10px;
+font-weight: 900; font-size: 15px; letter-spacing: 0.5px;
+}
+.portal-brand-badge {
+width: 32px; height: 32px; border-radius: 8px;
+background: var(--naranja); color: #fff;
+display: grid; place-items: center; font-weight: 900; font-size: 14px;
+}
+.portal-brand span { color: var(--naranja); }
+.portal-tabs {
+display: flex; align-items: center; gap: 8px; overflow-x: auto;
+padding: 2px 0;
+}
+.portal-tab {
+display: inline-flex; align-items: center; gap: 7px;
+padding: 8px 14px; border-radius: 10px;
+background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82);
+border: 1px solid rgba(255,255,255,0.14);
+font-size: 12.5px; font-weight: 800; cursor: pointer;
+white-space: nowrap; transition: 0.2s ease;
+}
+.portal-tab:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.portal-tab.active-tab {
+background: var(--naranja); color: #ffffff;
+border-color: var(--naranja); box-shadow: 0 4px 14px rgba(224,94,0,0.35);
+}
+.portal-tab.locked-tab {
+background: rgba(0,0,0,0.25); color: rgba(255,255,255,0.65);
+border: 1px dashed rgba(255,255,255,0.28);
+}
+.portal-tab.locked-tab:hover {
+border-color: var(--naranja); color: #ffffff; background: rgba(224,94,0,0.18);
+}
+.portal-user-area {
+display: flex; align-items: center; gap: 10px;
+}
+.portal-user-pill {
+font-size: 11.5px; font-weight: 700; color: #cbd5e1;
+background: rgba(255,255,255,0.08); padding: 6px 12px;
+border-radius: 999px; border: 1px solid rgba(255,255,255,0.12);
+}
+.portal-user-pill strong { color: #4ade80; }
+.portal-logout {
+background: transparent; color: #ffb07a;
+border: 1px solid rgba(255,176,122,0.4); padding: 6px 11px;
+border-radius: 8px; font-size: 11.5px; font-weight: 800;
+cursor: pointer; transition: 0.2s;
+}
+.portal-logout:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+
+/* ══════════════════════════════════════════════════════════
+   MODAL DE UPSELL PARA MÓDULOS BLOQUEADOS (🔒)
+══════════════════════════════════════════════════════════ */
+.upsell-overlay {
+position: fixed; inset: 0; z-index: 2147483645;
+background: rgba(0,22,27,0.75); backdrop-filter: blur(6px);
+display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.upsell-overlay.open { display: flex; }
+.upsell-modal {
+background: #ffffff; width: 100%; max-width: 560px;
+border-radius: 24px; border: 2px solid var(--azul);
+overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+animation: modalPop 0.25s ease-out;
+}
+@keyframes modalPop { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.upsell-header {
+background: var(--azul); color: #ffffff; padding: 24px 28px;
+border-bottom: 3px solid var(--naranja);
+display: flex; align-items: flex-start; justify-content: space-between; gap: 15px;
+}
+.upsell-tag {
+display: inline-block; font-size: 10.5px; font-weight: 900;
+text-transform: uppercase; letter-spacing: 0.1em;
+color: #ffb07a; margin-bottom: 6px;
+}
+.upsell-header h3 { font-size: 22px; color: #ffffff; line-height: 1.2; }
+.upsell-close {
+background: rgba(255,255,255,0.15); color: #fff; border: none;
+width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
+font-weight: 900; font-size: 14px; flex-shrink: 0;
+}
+.upsell-close:hover { background: var(--naranja); }
+.upsell-body { padding: 28px; color: var(--azul); }
+.upsell-body p { color: var(--gris-texto); font-size: 14.5px; margin-bottom: 18px; }
+.upsell-list { list-style: none; margin-bottom: 24px; display: grid; gap: 10px; }
+.upsell-list li {
+padding: 12px 14px; border-radius: 12px; background: #f8fafc;
+border: 1px solid var(--borde); font-size: 13.5px; color: var(--azul);
+display: flex; align-items: flex-start; gap: 10px;
+}
+.upsell-list li span.check { color: var(--naranja); font-weight: 900; }
+.upsell-cta {
+display: inline-flex; align-items: center; justify-content: center;
+width: 100%; padding: 15px 20px; border-radius: 12px;
+background: var(--naranja); color: #ffffff; text-decoration: none;
+font-size: 15px; font-weight: 900; transition: 0.2s;
+box-shadow: 0 12px 28px rgba(224,94,0,0.32);
+}
+.upsell-cta:hover { background: var(--naranja-hover); transform: translateY(-2px); }
+
+/* ══════════════════════════════════════════════════════════
+   ESTILOS ORIGINALES SALA DE CONTROL
+══════════════════════════════════════════════════════════ */
 .hero {
 position: relative;
 background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 35%), linear-gradient(135deg, var(--azul), #183f44);
-color: white; padding: 90px 7vw 100px; border-radius: 0 0 35px 35px; overflow: hidden;
+color: white; padding: 75px 7vw 90px; border-radius: 0 0 35px 35px; overflow: hidden;
 }
 .hero::before {
 content: ''; position: absolute; inset: 0;
@@ -239,7 +418,7 @@ footer { background: var(--azul-oscuro); color: rgba(255,255,255,0.55); text-ali
 footer strong { color: white; }
 @media (max-width: 900px) { .intro-grid, .documents, .bonus-grid { grid-template-columns: 1fr; } .final-card { padding: 45px 30px; } .phase-content { padding: 30px 25px; } }
 @media (max-width: 600px) {
-.hero { padding: 60px 20px 70px; }
+.hero { padding: 50px 20px 65px; }
 .eyebrow { font-size: 11px; padding: 8px 16px; margin-bottom: 25px; gap: 6px; letter-spacing: 0.5px; }
 .hero h1 { letter-spacing: -2px; }
 .phase-header { padding: 25px 20px; align-items: flex-start; }
@@ -250,12 +429,13 @@ footer strong { color: white; }
 .final-card h2 { letter-spacing: -2px; }
 .schedule-table { font-size: 13px; }
 .schedule-table td, .schedule-table th { padding: 10px 14px; }
+.portal-user-pill { display: none; }
 }
 /* ESTILOS COPILOTO IA BLINDADOS */
-.an-copilot-trigger{position:fixed!important;bottom:24px!important;right:24px!important;z-index:2147483647!important;background:#e05e00!important;color:#ffffff!important;border:2px solid #ffffff!important;border-radius:999px!important;padding:14px 22px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:800!important;display:flex!important;align-items:center!important;gap:10px!important;cursor:pointer!important;box-shadow:0 12px 30px rgba(0,0,0,0.35)!important;transition:transform 0.2s ease,background 0.2s ease!important;}
+.an-copilot-trigger{position:fixed!important;bottom:24px!important;right:24px!important;z-index:2147483640!important;background:#e05e00!important;color:#ffffff!important;border:2px solid #ffffff!important;border-radius:999px!important;padding:14px 22px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:800!important;display:flex!important;align-items:center!important;gap:10px!important;cursor:pointer!important;box-shadow:0 12px 30px rgba(0,0,0,0.35)!important;transition:transform 0.2s ease,background 0.2s ease!important;}
 .an-copilot-trigger:hover{transform:translateY(-2px)!important;background:#c94f00!important;}
 .an-copilot-dot{width:10px!important;height:10px!important;background:#22c55e!important;border-radius:50%!important;box-shadow:0 0 0 4px rgba(34,197,94,0.3)!important;flex-shrink:0!important;}
-.an-copilot-window{position:fixed!important;bottom:88px!important;right:24px!important;z-index:2147483647!important;width:min(420px,calc(100vw - 32px))!important;height:550px!important;max-height:calc(100vh - 120px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 60px rgba(0,0,0,0.45)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:Arial,Helvetica,sans-serif!important;}
+.an-copilot-window{position:fixed!important;bottom:88px!important;right:24px!important;z-index:2147483640!important;width:min(420px,calc(100vw - 32px))!important;height:550px!important;max-height:calc(100vh - 120px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 60px rgba(0,0,0,0.45)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:Arial,Helvetica,sans-serif!important;}
 .an-copilot-window.open{display:flex!important;}
 .an-copilot-header{background:#003b46!important;color:#ffffff!important;padding:14px 16px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border-bottom:3px solid #e05e00!important;flex-shrink:0!important;}
 .an-copilot-header-info h4{font-size:15px!important;font-weight:800!important;color:#ffffff!important;margin:0 0 2px 0!important;line-height:1.2!important;}
@@ -284,8 +464,97 @@ footer strong { color: white; }
 .an-copilot-send:hover{background:#c94f00!important;}
 </style>
 </head>
-<body>
+<body class="locked">
 
+<!-- ══════════════════════════════════════════════════════════
+     MURO DE ACCESO PRIVADO · ACTIVONORTE OS
+══════════════════════════════════════════════════════════ -->
+<div id="an-auth-gate">
+  <div class="auth-card">
+    <div class="auth-badge">
+      <span class="auth-badge-dot"></span>
+      ACTIVONORTE OS · ÁREA DE CLIENTES
+    </div>
+    <h2>Acceso a la Sala de Control</h2>
+    <p>Introduce el correo de tu centro deportivo y la clave de acceso incluida en tu confirmación de compra.</p>
+
+    <div class="auth-error" id="authErrorBox"></div>
+
+    <form id="authLoginForm">
+      <div class="auth-field">
+        <label for="authEmail">Correo electrónico del gimnasio</label>
+        <input type="email" id="authEmail" placeholder="direccion@tugimnasio.com" required />
+      </div>
+      <div class="auth-field">
+        <label for="authPassword">Clave de Licencia</label>
+        <input type="password" id="authPassword" placeholder="••••••••••••" required />
+      </div>
+      <button type="submit" class="auth-submit" id="authSubmitBtn">Entrar al Ecosistema →</button>
+    </form>
+
+    <div class="auth-footer">
+      <span>¿Aún no tienes tu licencia activa? <a href="https://activonorte.com">Adquirir Protocolo 48H (17€) →</a></span>
+      <span>¿Problemas con tu clave? <a href="https://wa.me/34610387276?text=Hola%20Sergio,%20necesito%20ayuda%20con%20mi%20clave%20de%20la%20Sala%20de%20Control" target="_blank" rel="noopener noreferrer">Soporte directo por WhatsApp</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     BARRA DE NAVEGACIÓN DEL ECOSISTEMA (DISEÑO 2)
+══════════════════════════════════════════════════════════ -->
+<nav class="portal-topbar">
+  <div class="portal-topbar-inner">
+    <div class="portal-brand">
+      <div class="portal-brand-badge">A</div>
+      <div>ACTIVO<span>NORTE</span> · OS</div>
+    </div>
+
+    <div class="portal-tabs">
+      <button class="portal-tab active-tab" id="tabProtocolo">
+        🟢 Protocolo 48H & Copiloto IA
+      </button>
+      <button class="portal-tab locked-tab" id="tabDominio">
+        <span id="lockIconDominio">🔒</span> Pack Dominio Local (SEO)
+      </button>
+      <button class="portal-tab locked-tab" id="tabGrowth">
+        <span id="lockIconGrowth">🔒</span> Growth Partner 360 & Phygital
+      </button>
+    </div>
+
+    <div class="portal-user-area">
+      <div class="portal-user-pill" id="portalUserBadge">
+        <strong>●</strong> Conectado
+      </div>
+      <button class="portal-logout" id="portalLogoutBtn">Cerrar sesión</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     MODAL DE UPSELL PARA SERVICIOS CON CANDADO (🔒)
+══════════════════════════════════════════════════════════ -->
+<div class="upsell-overlay" id="upsellOverlay">
+  <div class="upsell-modal">
+    <div class="upsell-header">
+      <div>
+        <span class="upsell-tag" id="upsellTag">MÓDULO BLOQUEADO EN TU LICENCIA ACTUAL</span>
+        <h3 id="upsellTitle">Pack Dominio Local</h3>
+      </div>
+      <button class="upsell-close" id="upsellCloseBtn">✕</button>
+    </div>
+    <div class="upsell-body">
+      <p id="upsellDescription"></p>
+      <ul class="upsell-list" id="upsellFeatures"></ul>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="upsell-cta" id="upsellWaBtn">
+        📲 Solicitar Auditoría Gratuita de Activación (15 min) →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTENIDO PRINCIPAL SALA DE CONTROL 48H
+══════════════════════════════════════════════════════════ -->
 <header class="hero" id="hero-section">
 <div class="hero-cursor-glow" id="hero-glow"></div>
 <div class="container">
@@ -580,6 +849,157 @@ Pega aquí el mensaje del ex-socio y te redactaré la respuesta con <strong>Ment
 </div>
 
 <script>
+/* ══════════════════════════════════════════════════════════
+   LÓGICA DE AUTENTICACIÓN Y CONTROL DE ROLES (RBAC)
+══════════════════════════════════════════════════════════ */
+const authGate = document.getElementById("an-auth-gate");
+const authForm = document.getElementById("authLoginForm");
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+const authErrorBox = document.getElementById("authErrorBox");
+const authSubmitBtn = document.getElementById("authSubmitBtn");
+const portalUserBadge = document.getElementById("portalUserBadge");
+const portalLogoutBtn = document.getElementById("portalLogoutBtn");
+
+const tabDominio = document.getElementById("tabDominio");
+const tabGrowth = document.getElementById("tabGrowth");
+const lockIconDominio = document.getElementById("lockIconDominio");
+const lockIconGrowth = document.getElementById("lockIconGrowth");
+
+const upsellOverlay = document.getElementById("upsellOverlay");
+const upsellCloseBtn = document.getElementById("upsellCloseBtn");
+const upsellTitle = document.getElementById("upsellTitle");
+const upsellDescription = document.getElementById("upsellDescription");
+const upsellFeatures = document.getElementById("upsellFeatures");
+const upsellWaBtn = document.getElementById("upsellWaBtn");
+
+const SESSION_KEY = "activonorte_portal_session_v1";
+
+function applyUserSession(user) {
+  document.body.classList.remove("locked");
+  authGate.classList.add("hidden-gate");
+  portalUserBadge.innerHTML = '<strong>●</strong> ' + user.email + ' · ' + user.planLabel;
+
+  if (user.role === "dominio" || user.role === "growth") {
+    tabDominio.classList.remove("locked-tab");
+    lockIconDominio.textContent = "🟢";
+  } else {
+    tabDominio.classList.add("locked-tab");
+    lockIconDominio.textContent = "🔒";
+  }
+
+  if (user.role === "growth") {
+    tabGrowth.classList.remove("locked-tab");
+    lockIconGrowth.textContent = "🟢";
+  } else {
+    tabGrowth.classList.add("locked-tab");
+    lockIconGrowth.textContent = "🔒";
+  }
+}
+
+function checkSavedSession() {
+  try {
+    const saved = localStorage.getItem(SESSION_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && parsed.email && parsed.role) {
+        applyUserSession(parsed);
+        return;
+      }
+    }
+  } catch (e) {}
+}
+
+checkSavedSession();
+
+authForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  authErrorBox.style.display = "none";
+  authSubmitBtn.textContent = "Verificando licencia...";
+  authSubmitBtn.disabled = true;
+
+  const emailVal = authEmail.value.trim();
+  const passVal = authPassword.value.trim();
+
+  try {
+    const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: emailVal, password: passVal })
+    });
+    const data = await res.json();
+
+    if (res.ok && data.ok) {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(data.user));
+      applyUserSession(data.user);
+    } else {
+      authErrorBox.textContent = data.error || "Clave de acceso no válida.";
+      authErrorBox.style.display = "block";
+    }
+  } catch (err) {
+    authErrorBox.textContent = "Error de conexión con el servidor. Inténtalo de nuevo en unos segundos.";
+    authErrorBox.style.display = "block";
+  } finally {
+    authSubmitBtn.textContent = "Entrar al Ecosistema →";
+    authSubmitBtn.disabled = false;
+  }
+});
+
+portalLogoutBtn.addEventListener("click", () => {
+  localStorage.removeItem(SESSION_KEY);
+  document.body.classList.add("locked");
+  authGate.classList.remove("hidden-gate");
+  authPassword.value = "";
+});
+
+function openUpsellModal(type) {
+  let savedEmail = "";
+  try {
+    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "{}");
+    savedEmail = s.email || "";
+  } catch (e) {}
+
+  if (type === "dominio") {
+    upsellTitle.textContent = "Pack Dominio Local · Panel SEO";
+    upsellDescription.textContent = "Tu licencia actual incluye el Protocolo de Reactivación 48H. Activa el Pack Dominio Local para posicionar tu centro deportivo en el Top 3 de Google Maps en tu ciudad y captar socios en automático.";
+    upsellFeatures.innerHTML = [
+      '<li><span class="check">✓</span> <div><strong>Auditoría y Optimización de Google Business Profile:</strong> Corrección de los factores que esconden tu ficha frente a la competencia.</div></li>',
+      '<li><span class="check">✓</span> <div><strong>Sistema Automatizado de Reseñas:</strong> Protocolo en recepción para escalar posiciones cada semana.</div></li>',
+      '<li><span class="check">✓</span> <div><strong>Panel de Visibilidad Local:</strong> Seguimiento de llamadas, clics a ruta y nuevos socios desde Google.</div></li>'
+    ].join("");
+    const msg = "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero desbloquear el Pack Dominio Local con la Auditoría Gratuita de 15 min.";
+    upsellWaBtn.href = "https://wa.me/34610387276?text=" + encodeURIComponent(msg);
+  } else {
+    upsellTitle.textContent = "Growth Partner 360 & Sistema Phygital";
+    upsellDescription.textContent = "Conviértenos en tu departamento de marketing externo completo. Integramos captación continua en Meta Ads con nuestro sistema de retención comunitaria Phygital.";
+    upsellFeatures.innerHTML = [
+      '<li><span class="check">✓</span> <div><strong>Captación Continua en Instagram y Facebook:</strong> Flujo predecible de leads cualificados todos los meses.</div></li>',
+      '<li><span class="check">✓</span> <div><strong>Sistema Phygital de Retención (Pulseras + QR):</strong> Comunidad interna para reducir drásticamente las bajas mensuales.</div></li>',
+      '<li><span class="check">✓</span> <div><strong>Consultoría Estratégica 1 a 1:</strong> Reunión mensual de seguimiento financiero y crecimiento del centro.</div></li>'
+    ].join("");
+    const msg = "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero agendar una consultoría para activar Growth Partner 360.";
+    upsellWaBtn.href = "https://wa.me/34610387276?text=" + encodeURIComponent(msg);
+  }
+
+  upsellOverlay.classList.add("open");
+}
+
+tabDominio.addEventListener("click", () => {
+  openUpsellModal("dominio");
+});
+
+tabGrowth.addEventListener("click", () => {
+  openUpsellModal("growth");
+});
+
+upsellCloseBtn.addEventListener("click", () => upsellOverlay.classList.remove("open"));
+upsellOverlay.addEventListener("click", (e) => {
+  if (e.target === upsellOverlay) upsellOverlay.classList.remove("open");
+});
+
+/* ══════════════════════════════════════════════════════════
+   EFECTOS VISUALES Y COPILOTO 48H CON MEMORIA
+══════════════════════════════════════════════════════════ */
 const heroSection = document.getElementById('hero-section');
 const heroGlow = document.getElementById('hero-glow');
 heroSection.addEventListener('mousemove', (e) => {
