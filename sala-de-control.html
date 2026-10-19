@@ -79,7 +79,7 @@ display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(-
 .auth-footer a:hover { text-decoration: underline; }
 
 /* ══════════════════════════════════════════════════════════
-   BARRA SUPERIOR DEL ECOSISTEMA (CALIBRADA PC + MÓVIL)
+   BARRA SUPERIOR DEL ECOSISTEMA (CON LOGO ACTIVONORTE)
 ══════════════════════════════════════════════════════════ */
 .portal-topbar {
 position: sticky; top: 0; z-index: 9999;
@@ -97,11 +97,10 @@ display: flex; align-items: center; gap: 10px;
 font-weight: 900; font-size: 15px; letter-spacing: 0.5px;
 white-space: nowrap; flex-shrink: 0; order: 1;
 }
-.portal-brand-badge {
-width: 32px; height: 32px; border-radius: 8px;
-background: var(--naranja); color: #fff;
-display: grid; place-items: center; font-weight: 900; font-size: 14px;
-flex-shrink: 0;
+.portal-brand-logo {
+width: 34px; height: 34px; object-fit: contain;
+display: block; flex-shrink: 0;
+filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
 }
 .portal-brand span { color: var(--naranja); }
 
@@ -155,7 +154,7 @@ cursor: pointer; transition: 0.2s; white-space: nowrap;
     flex-wrap: wrap; padding: 12px 0; gap: 10px; min-height: auto;
   }
   .portal-brand { order: 1; font-size: 14px; gap: 8px; }
-  .portal-brand-badge { width: 28px; height: 28px; font-size: 13px; border-radius: 6px; }
+  .portal-brand-logo { width: 30px; height: 30px; }
   .portal-user-area { order: 2; }
   .portal-logout { font-size: 11px; padding: 5px 10px; border-radius: 6px; }
   .portal-tabs {
@@ -567,12 +566,17 @@ footer strong { color: white; }
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
-     BARRA DE NAVEGACIÓN DEL ECOSISTEMA (PC 1 FILA / MÓVIL 2 FILAS)
+     BARRA DE NAVEGACIÓN DEL ECOSISTEMA (LOGO ACTIVONORTE)
 ══════════════════════════════════════════════════════════ -->
 <nav class="portal-topbar">
   <div class="portal-topbar-inner">
     <div class="portal-brand">
-      <div class="portal-brand-badge">A</div>
+      <img
+        class="portal-brand-logo"
+        src="favicon-azul.png?v=3"
+        onerror="if(this.src.indexOf('logo.png')===-1){this.src='logo.png';}else{this.src='https://app.activonorte.com/Logoazul.png';}"
+        alt="Activonorte"
+      />
       <div>ACTIVO<span>NORTE</span> · OS</div>
     </div>
 
@@ -1026,7 +1030,6 @@ authForm.addEventListener("submit", async (e) => {
       authErrorBox.style.display = "block";
     }
   } catch (err) {
-    // Respaldo instantáneo si el servidor o la red fallan
     const fallbackResult = localAuthCheck(emailVal, passVal);
     if (fallbackResult.ok) {
       localStorage.setItem(SESSION_KEY, JSON.stringify(fallbackResult.user));
