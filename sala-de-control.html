@@ -140,6 +140,15 @@ button { cursor: pointer; background: none; border: 0; }
 .user-meta strong { display: block; color: #fff; font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .user-meta span { font-size: 11.5px; color: rgba(255,255,255,.55); }
 .side-out { color: #ffb07a; }
+.sync { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.sync::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+.sync.s-ok { color: var(--green); }
+.sync.s-pendiente, .sync.s-guardando { color: var(--amber); }
+.sync.s-offline, .sync.s-error, .sync.s-grande { color: var(--red); }
+.user-meta .sync { display: flex; font-size: 11px; margin-top: 2px; color: rgba(255,255,255,.55); }
+.user-meta .sync.s-ok { color: #86efac; }
+.user-meta .sync.s-pendiente, .user-meta .sync.s-guardando { color: #fcd34d; }
+.user-meta .sync.s-offline, .user-meta .sync.s-error, .user-meta .sync.s-grande { color: #fca5a5; }
 .side-out:hover { background: rgba(255,255,255,.08); }
 
 .main { min-width: 0; display: flex; flex-direction: column; }
@@ -581,6 +590,7 @@ button { cursor: pointer; background: none; border: 0; }
   <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H7a5 5 0 1 1 1.2-9.86A6.5 6.5 0 0 1 20.5 11 4 4 0 0 1 17.5 19z"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
 </svg>
 
@@ -647,7 +657,7 @@ button { cursor: pointer; background: none; border: 0; }
       <button class="nav-item" data-go="ajustes" data-nav="ajustes"><svg class="ico" aria-hidden="true"><use href="#i-settings"/></svg>Mi centro y datos</button>
       <div class="user-row">
         <span class="avatar" id="sideAvatar">A</span>
-        <div class="user-meta"><strong id="sideEmail"></strong><span id="sidePlan"></span></div>
+        <div class="user-meta"><strong id="sideEmail"></strong><span id="sidePlan"></span><span data-sync hidden></span></div>
         <button class="btn btn-icon side-out" data-act="logout" aria-label="Cerrar sesión" title="Cerrar sesión"><svg class="ico" aria-hidden="true"><use href="#i-logout"/></svg></button>
       </div>
     </div>
@@ -809,7 +819,7 @@ function loadScript(src) {
 }
 
 /* ══════════════════════════════════════════════════════════
-   DATOS (se guardan solo en este dispositivo, por cuenta)
+   DATOS (por cuenta: en este dispositivo y en la nube, ver «NUBE» más abajo)
 ══════════════════════════════════════════════════════════ */
 const DEF = () => ({ v: 3, perfil: { yo: '', centro: '', ciudad: '', cuota: '', contacto: '', resenas: '' }, contactos: [], checks: {}, socios: [], copiloto: {}, gbpPost: '', lastBackup: '', creado: new Date().toISOString() });
 const Store = {
@@ -819,11 +829,17 @@ const Store = {
     let raw = null;
     try { raw = JSON.parse(localStorage.getItem(this.key) || 'null'); } catch (e) {}
     this.d = merge(raw);
+    Sync.loadMeta();
+  },
+  saveLocal() {
+    if (!this.key) return;
+    try { localStorage.setItem(this.key, JSON.stringify(this.d)); } catch (e) { if (Sync.off) toast('No se ha podido guardar en este navegador. Descarga una copia de seguridad en «Mi centro».'); }
   },
   save() {
     if (!this.key) return;
-    try { localStorage.setItem(this.key, JSON.stringify(this.d)); } catch (e) { toast('No se ha podido guardar en este navegador. Descarga una copia de seguridad en «Mi centro».'); }
+    this.saveLocal();
     askPersist();
+    Sync.schedule();
   }
 };
 function merge(raw) {
@@ -843,6 +859,151 @@ function askPersist() { if (persistAsked) return; persistAsked = true; try { if 
 const P = () => Store.d.perfil;
 const byId = (id) => Store.d.contactos.find((c) => c.id === id);
 const socioById = (id) => Store.d.socios.find((s) => s.id === id);
+const datosVacios = (d) => !d.contactos.length && !d.socios.length && !Object.keys(d.checks).length && !Object.values(d.perfil).some(Boolean);
+
+/* ══════════════════════════════════════════════════════════
+   NUBE: los datos de cada cuenta se sincronizan entre dispositivos (/api/datos).
+   Si dos dispositivos cambian cosas a la vez, se combinan elemento a elemento
+   (cada ex-socio, cada socio, cada casilla…) comparando con la última versión común.
+══════════════════════════════════════════════════════════ */
+function stable(v) {
+  if (v === undefined) return 'u';
+  if (v === null || typeof v !== 'object') return JSON.stringify(v);
+  if (Array.isArray(v)) return '[' + v.map(stable).join(',') + ']';
+  return '{' + Object.keys(v).filter((k) => v[k] !== undefined).sort().map((k) => JSON.stringify(k) + ':' + stable(v[k])).join(',') + '}';
+}
+const same = (a, b) => stable(a) === stable(b);
+const vacio = (v) => v === undefined || v === null || v === '';
+function pick3(b, l, r) {
+  if (same(l, b)) return r;          // solo cambió la nube (o se borró allí)
+  if (same(r, b)) return l;          // solo cambió este dispositivo
+  if (same(l, r)) return l;
+  if (vacio(l)) return r;            // editado en un sitio y borrado en otro: gana la edición
+  if (vacio(r)) return l;
+  return String((r && r.upd) || '') > String((l && l.upd) || '') ? r : l;
+}
+function mergeMap(b, l, r) {
+  b = b || {}; l = l || {}; r = r || {};
+  const out = {};
+  new Set(Object.keys(l).concat(Object.keys(r), Object.keys(b))).forEach((k) => { const v = pick3(b[k], l[k], r[k]); if (v !== undefined) out[k] = v; });
+  return out;
+}
+function mergeList(b, l, r) {
+  const toMap = (a) => { const m = {}; (Array.isArray(a) ? a : []).forEach((x) => { if (x && x.id) m[x.id] = x; }); return m; };
+  const m = mergeMap(toMap(b), toMap(l), toMap(r)), out = [];
+  [l, r].forEach((a) => (Array.isArray(a) ? a : []).forEach((x) => { if (x && m[x.id]) { out.push(m[x.id]); delete m[x.id]; } }));
+  return out.concat(Object.values(m));
+}
+function merge3(b, l, r) {
+  b = b || {}; l = l || {}; r = r || {};
+  const out = { contactos: mergeList(b.contactos, l.contactos, r.contactos), socios: mergeList(b.socios, l.socios, r.socios), perfil: mergeMap(b.perfil, l.perfil, r.perfil), checks: mergeMap(b.checks, l.checks, r.checks), copiloto: mergeMap(b.copiloto, l.copiloto, r.copiloto) };
+  ['v', 'gbpPost', 'lastBackup', 'creado'].forEach((k) => { const v = pick3(b[k], l[k], r[k]); if (v !== undefined) out[k] = v; });
+  return merge(out);
+}
+const SYNC_TXT = { local: '', off: 'Solo en este dispositivo', pendiente: 'Guardando…', guardando: 'Guardando…', ok: 'Guardado en la nube', offline: 'Sin conexión: se guardará al volver', error: 'Sesión caducada: vuelve a entrar', grande: 'Demasiados datos para la nube' };
+const Sync = {
+  estado: 'local', rev: 0, base: null, timer: null, busy: false, pending: false, off: false, retry: 0, gen: 0, lastCheck: 0,
+  metaKey() { return Store.key + '|nube'; },
+  loadMeta() {
+    this.rev = 0; this.base = null;
+    try { const m = JSON.parse(localStorage.getItem(this.metaKey()) || 'null'); if (m) { this.rev = Number(m.rev) || 0; this.base = m.base || null; } } catch (e) {}
+  },
+  saveMeta() { try { localStorage.setItem(this.metaKey(), JSON.stringify({ rev: this.rev, base: this.base })); } catch (e) {} },
+  reset() { clearTimeout(this.timer); this.gen++; Object.assign(this, { estado: 'local', rev: 0, base: null, busy: false, pending: false, off: false, retry: 0, lastCheck: 0 }); paintSync(); },
+  set(e) { this.estado = e; paintSync(); },
+  dirty() { return this.base ? !same(Store.d, this.base) : !datosVacios(Store.d); },
+  async call(payload, keepalive) {
+    const body = JSON.stringify(Object.assign({ token: session.token }, payload));
+    const res = await fetch(API_BASE + '/datos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: !!keepalive && body.length < 60000 });
+    let data = {};
+    try { data = await res.json(); } catch (e) {}
+    data.status = res.status;
+    return data;
+  },
+  handled(r) {
+    if (r.status === 503 && r.sinNube) { this.off = true; this.pending = false; this.set('off'); return true; }
+    if (r.status === 401) { this.pending = false; this.set('error'); return true; }
+    if (r.status === 413) { this.pending = false; this.set('grande'); return true; }
+    return false;
+  },
+  schedule(ms) {
+    if (this.off || !session) return;
+    this.pending = true;
+    clearTimeout(this.timer);
+    if (this.estado !== 'offline') this.set('pendiente');
+    this.timer = setTimeout(() => this.push(), ms == null ? 1500 : ms);
+  },
+  // Aplica la versión de la nube; si aquí también había cambios, los combina. Devuelve true si queda algo por subir.
+  applyRemote(remote, rev) {
+    const merged = this.dirty() ? merge3(this.base, Store.d, remote) : merge(remote);
+    Store.d = merged; this.base = remote; this.rev = Number(rev) || 0;
+    this.saveMeta(); Store.saveLocal();
+    refreshAfterSync();
+    return !same(merged, remote);
+  },
+  async pull() {
+    if (this.off || !session || this.busy) return;
+    const gen = this.gen; let again = false;
+    this.busy = true;
+    try {
+      const r = await this.call({ accion: 'leer', rev: this.base ? this.rev : null });
+      if (gen !== this.gen) return;
+      this.lastCheck = Date.now();
+      if (this.handled(r)) return;
+      if (!r.ok) throw new Error('leer');
+      if (r.sinCambios) again = this.dirty();
+      else if (!r.datos) { this.rev = Number(r.rev) || 0; this.base = null; again = !datosVacios(Store.d); }
+      else again = this.applyRemote(r.datos, r.rev);
+      if (!again) this.set('ok');
+    } catch (e) { if (gen === this.gen) this.set('offline'); }
+    finally { if (gen === this.gen) { this.busy = false; if (again) this.schedule(0); } }
+  },
+  async push() {
+    if (this.off || !session) return;
+    if (this.busy) { this.schedule(800); return; }
+    const gen = this.gen; let again = false;
+    this.busy = true; this.pending = false; clearTimeout(this.timer);
+    this.set('guardando');
+    const snap = JSON.parse(JSON.stringify(Store.d));
+    try {
+      const r = await this.call({ accion: 'guardar', datos: snap, baseRev: this.rev });
+      if (gen !== this.gen) return;
+      if (this.handled(r)) return;
+      if (r.status === 409 && r.conflicto) {
+        if (r.datos) again = this.applyRemote(r.datos, r.rev); else { this.rev = Number(r.rev) || 0; this.base = null; again = true; }
+        if (!again && !this.pending) this.set('ok');
+        return;
+      }
+      if (!r.ok) throw new Error('guardar');
+      this.rev = Number(r.rev) || 0; this.base = snap; this.retry = 0;
+      this.saveMeta();
+      if (!this.pending) this.set('ok');
+    } catch (e) {
+      if (gen !== this.gen) return;
+      this.retry++; this.pending = true; this.set('offline');
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.push(), Math.min(60000, 4000 * this.retry));
+    } finally { if (gen === this.gen) { this.busy = false; if (again) this.schedule(0); } }
+  },
+  flush() { if (this.pending && !this.off && session) { try { this.call({ accion: 'guardar', datos: Store.d, baseRev: this.rev }, true).catch(() => {}); } catch (e) {} } }
+};
+function paintSync() {
+  const t = SYNC_TXT[Sync.estado] || '';
+  $$('[data-sync]').forEach((el) => { el.textContent = t; el.className = 'sync s-' + Sync.estado; el.hidden = !t; });
+}
+function refreshAfterSync() {
+  if (!session) return;
+  $('#sideAvatar').textContent = (P().yo || session.user.email).trim().charAt(0) || 'A';
+  const a = document.activeElement;
+  const typing = a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && $('#view').contains(a) && !a.dataset.check;
+  if (typing) updateBadges(); else render();
+  if ($('#cop').classList.contains('open')) { if (Cop.caseId && !byId(Cop.caseId)) Cop.caseId = ''; copCases(); if (!Cop.busy) copRender(); }
+}
+function syncCheck() { if (session && !Sync.off && !Sync.busy && !Sync.pending && !Cop.busy && !document.hidden) Sync.pull(); }
+setInterval(syncCheck, 120000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - Sync.lastCheck > 15000) syncCheck(); });
+window.addEventListener('online', () => { if (Sync.pending) Sync.push(); else syncCheck(); });
+window.addEventListener('pagehide', () => Sync.flush());
 
 /* ══════════════════════════════════════════════════════════
    METODOLOGÍA ACTIVONORTE (de los PDFs del protocolo y bonus)
@@ -1104,6 +1265,7 @@ function onAccess(data) {
   session = { token: data.token, user: data.user };
   try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch (e) {}
   recursos = data.recursos || {};
+  Sync.reset();
   Store.load(data.user.email);
   authError('');
   $('#gate').hidden = true;
@@ -1119,9 +1281,12 @@ function onAccess(data) {
   });
   render();
   tick();
+  Sync.pull();
 }
 
 function logout() {
+  Sync.flush();
+  Sync.reset();
   session = null; recursos = {};
   try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
   Store.key = ''; Store.d = DEF(); Cop.caseId = ''; Cop.mem = [];
@@ -1207,6 +1372,7 @@ function render() {
   $('#tabMore').classList.toggle('active', !TAB_ROUTES.includes(r));
   updateBadges();
   if (AFTER[r]) AFTER[r]();
+  paintSync();
   if (refocus) { const el = $(refocus); if (el) el.focus({ preventScroll: true }); }
 }
 function save() { Store.save(); render(); }
@@ -1344,7 +1510,7 @@ RENDER.inicio = function () {
   const funnel = [
     ['En tu lista', k.n, k.n], ['Contactados', k.contactados, k.n], ['Respondieron', k.respondieron, k.n], ['Cita cerrada', k.citas, k.n], ['Recuperados', k.by.matriculado, k.n]
   ];
-  const backupOld = k.n >= 5 && (!Store.d.lastBackup || daysBetween(new Date(Store.d.lastBackup), new Date()) >= 14);
+  const backupOld = Sync.off && k.n >= 5 && (!Store.d.lastBackup || daysBetween(new Date(Store.d.lastBackup), new Date()) >= 14);
   let html = ph('home', 'Panel de control', esc(saludo) + ', ' + esc(nombre), (p.centro ? esc(p.centro) + ' · ' : '') + esc(PLAN[role()] || ''),
     '<button class="btn btn-outline" data-act="c-new">' + ico('plus') + 'Añadir ex-socio</button><button class="btn btn-primary" data-act="cop-open">' + ico('spark') + 'Copiloto IA</button>');
   if (setup) {
@@ -1505,7 +1671,7 @@ function readContactForm(f, base) {
   c.notas = String(fd.get('notas') || '').slice(0, 1000);
   return String(fd.get('estado') || 'pendiente');
 }
-function logC(c, t) { c.log = c.log || []; c.log.push({ f: new Date().toISOString(), t }); if (c.log.length > 30) c.log.shift(); }
+function logC(c, t) { c.log = c.log || []; c.log.push({ f: new Date().toISOString(), t }); if (c.log.length > 15) c.log.splice(0, c.log.length - 15); c.upd = new Date().toISOString(); }
 function setEstado(c, k, nota) {
   if (!EST[k] || c.estado === k) return;
   const prev = c.estado;
@@ -1949,10 +2115,12 @@ RENDER.ajustes = function () {
     '<label class="field full"><span>WhatsApp o email del centro</span><input class="input" name="contacto" maxlength="80" value="' + esc(p.contacto) + '" placeholder="hola@fitboxnorte.com o 612 345 678"><small>Aparece en la plantilla de respuesta a reseñas negativas.</small></label>' +
     '<label class="field full"><span>Enlace de reseñas de Google</span><input class="input" name="resenas" type="url" maxlength="300" value="' + esc(p.resenas) + '" placeholder="https://g.page/r/…/review"></label>' +
     '<div class="full"><button class="btn btn-primary" type="submit">Guardar cambios</button></div></form></div>' +
-    '<div class="grid" style="align-content:start"><div class="card"><div class="card-h"><h2>' + ico('shield') + 'Tus datos</h2></div><p class="card-sub" style="margin-bottom:12px">Tus contactos se guardan <b>solo en este dispositivo</b>: no salen de tu navegador ni los vemos nosotros. Haz una copia de seguridad de vez en cuando y úsala para pasarlos a otro dispositivo.</p>' +
+    '<div class="grid" style="align-content:start"><div class="card"><div class="card-h"><h2>' + ico('cloud') + 'Tus datos</h2><span data-sync></span></div>' +
+    (Sync.off ? '<p class="card-sub" style="margin-bottom:12px">Tus contactos se guardan <b>solo en este dispositivo</b>. Haz una copia de seguridad de vez en cuando y úsala para pasarlos a otro dispositivo.</p>'
+      : '<p class="card-sub" style="margin-bottom:12px">Tus datos se guardan <b>en tu cuenta, en la nube</b>, y también en este dispositivo para que funcione sin conexión. Entra con tu email y tu clave en cualquier móvil u ordenador y lo tendrás todo al día.</p>') +
     '<p class="hint" style="margin-bottom:12px">' + n + ' ex-socios · ' + Store.d.socios.length + ' socios en el plan · Última copia: ' + (Store.d.lastBackup ? fmtDate(Store.d.lastBackup) : 'nunca') + '</p>' +
     '<div class="row-actions"><button class="btn btn-dark btn-sm" data-act="backup">' + ico('download') + 'Descargar copia</button><button class="btn btn-outline btn-sm" data-act="restore">' + ico('upload') + 'Restaurar copia</button>' + (n ? '<button class="btn btn-outline btn-sm" data-act="export-csv">' + ico('file') + 'Exportar a Excel</button>' : '') + '</div>' +
-    '<button class="link" style="margin-top:14px;color:var(--red)" data-act="wipe">Borrar todos los datos de este dispositivo</button></div>' +
+    '<button class="link" style="margin-top:14px;color:var(--red)" data-act="wipe">Borrar todos mis datos</button></div>' +
     '<div class="card"><div class="card-h"><h2>' + ico('phone') + 'Llévala en el móvil</h2></div><p class="card-sub" style="margin-bottom:12px">Instálala como una app: se abre a pantalla completa y tus datos se conservan mejor.</p><button class="btn btn-outline btn-sm" data-act="install">' + ico('phone') + 'Instalar en este dispositivo</button></div>' +
     '<div class="card"><div class="card-h"><h2>' + ico('users') + 'Tu cuenta</h2></div><p class="card-sub">' + esc(session.user.email) + '<br>' + esc(PLAN[role()] || '') + '</p><div class="row-actions" style="margin-top:12px"><button class="btn btn-outline btn-sm" data-act="logout">' + ico('logout') + 'Cerrar sesión</button></div></div></div></div>';
 };
@@ -2041,7 +2209,7 @@ async function copSend(text) {
   }
   rep.text = rep.est + ' | Mensaje WhatsApp propuesto: ' + rep.msg;
   h.push(rep);
-  if (h.length > 40) h.splice(0, h.length - 40);
+  if (h.length > 24) h.splice(0, h.length - 24);
   if (Cop.caseId) Store.save();
   Cop.busy = false;
   copRender();
@@ -2065,6 +2233,7 @@ function openModal(html, wide) {
   const wasOpen = m.classList.contains('open');
   box.innerHTML = html;
   box.classList.toggle('wide', !!wide);
+  paintSync();
   if (!wasOpen) lastFocus = document.activeElement;
   m.classList.add('open'); m.setAttribute('aria-hidden', 'false');
   document.body.classList.add('noscroll');
@@ -2102,7 +2271,7 @@ const ACTIONS = {
   'cop-adapt': (el) => copOpen(el.dataset.id || Cop.caseId, 'Adapta este mensaje a mi caso: «' + el.dataset.t + '»'),
   'more-open': () => {
     const items = [['protocolo', 'route', 'Protocolo 48H'], ['antidoto', 'tag', 'Antídoto Low-Cost'], ['retencion', 'shield', 'Muralla de Retención'], ['google', 'pin', 'Dominio en Google'], ['descargas', 'download', 'Biblioteca'], ['dominio', hasDominio() ? 'trend' : 'lock', 'Pack Dominio Local'], ['growth', hasGrowth() ? 'rocket' : 'lock', 'Growth Partner 360'], ['ajustes', 'settings', 'Mi centro y datos']];
-    openModal(mHead('Activonorte OS', 'Todas las herramientas') + '<div class="modal-b"><div class="more-grid">' + items.map((x) => '<button class="more-item" data-go="' + x[0] + '">' + ico(x[1]) + esc(x[2]) + '</button>').join('') + '</div><button class="btn btn-outline btn-block" data-act="logout">' + ico('logout') + 'Cerrar sesión</button></div>');
+    openModal(mHead('Activonorte OS', 'Todas las herramientas') + '<div class="modal-b"><span data-sync></span><div class="more-grid">' + items.map((x) => '<button class="more-item" data-go="' + x[0] + '">' + ico(x[1]) + esc(x[2]) + '</button>').join('') + '</div><button class="btn btn-outline btn-block" data-act="logout">' + ico('logout') + 'Cerrar sesión</button></div>');
   },
   'copy-txt': (el) => copyText(el.dataset.t),
   'copy-code': (el) => copyText(el.dataset.code, 'Clave copiada. Guárdala en un lugar seguro.'),
@@ -2197,7 +2366,7 @@ const ACTIONS = {
   },
   's-done': (el) => {
     const s = socioById(el.dataset.id); if (!s) return;
-    s.done = s.done || {}; s.done[el.dataset.hk] = todayISO();
+    s.done = s.done || {}; s.done[el.dataset.hk] = todayISO(); s.upd = new Date().toISOString();
     closeModal(); save();
     toast('Hecho. Te avisaremos del siguiente mensaje.');
   },
@@ -2228,8 +2397,8 @@ const ACTIONS = {
   },
   'restore': () => { const f = $('#fileRestore'); f.value = ''; f.click(); },
   'wipe': () => {
-    if (!confirm('¿Seguro? Se borrarán todos tus ex-socios, el plan de retención y tus checklists de este dispositivo. Esto no se puede deshacer.')) return;
-    Store.d = DEF(); save(); toast('Datos borrados de este dispositivo.');
+    if (!confirm('¿Seguro? Se borrarán todos tus ex-socios, el plan de retención y tus checklists' + (Sync.off ? ' de este dispositivo' : ', en este dispositivo y en la nube') + '. Esto no se puede deshacer.')) return;
+    Store.d = DEF(); save(); toast('Datos borrados.');
   },
   'install': async () => {
     if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; return; }
@@ -2330,6 +2499,7 @@ document.addEventListener('submit', (e) => {
     const c = existing || { id: uid(), estado: 'pendiente', creado: new Date().toISOString(), log: [] };
     const nextEstado = readContactForm(f, c);
     if (!c.nombre) return;
+    c.upd = new Date().toISOString();
     if (!existing) { c.estado = nextEstado; logC(c, 'Añadido al tracker'); if (nextEstado === 'contactado') c.fcontacto = todayISO(); if (nextEstado === 'no') c.recontacto = isoDate(addDays(new Date(), 90)); Store.d.contactos.push(c); }
     else setEstado(c, nextEstado);
     closeModal(); save();
