@@ -1,1176 +1,1807 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Protocolo de Reactivación de Ex-Socios™ | Activo Norte</title>
-<meta name="description" content="Cómo reactivar de 5 a 10 antiguos socios esta misma semana sin gastar un euro en publicidad. Sistema de mensajes probado para dueños de gimnasios." />
-<meta name="author" content="Activo Norte" />
-<meta property="og:title" content="Protocolo de Reactivación de Ex-Socios™ | Activo Norte" />
-<meta property="og:description" content="El sistema de 'Copiar y Pegar' para llenar tus clases vacías. Solo 17€." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="logo.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Protocolo de Reactivación de Ex-Socios™ | Activonorte</title>
+<meta name="description" content="Reactiva de 5 a 10 antiguos socios esta semana sin gastar un euro en publicidad. Mensajes de WhatsApp listos para copiar y pegar, Copiloto IA para las objeciones y garantía de 30 días. Solo 17 €." />
+<meta name="theme-color" content="#003b46" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="author" content="Activonorte" />
+<link rel="canonical" href="https://activonorte.com/" />
 
+<!-- Compartir en redes y WhatsApp -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content="Activonorte" />
+<meta property="og:url" content="https://activonorte.com/" />
+<meta property="og:title" content="Protocolo de Reactivación de Ex-Socios™ · Activonorte" />
+<meta property="og:description" content="El sistema de «copiar y pegar» para recuperar antiguos socios por WhatsApp en 48 horas. Con Copiloto IA y garantía de 30 días. Solo 17 €." />
+<meta property="og:image" content="https://activonorte.com/assets/img/og-protocolo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Protocolo de Reactivación de Ex-Socios de Activonorte por 17 €" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Protocolo de Reactivación de Ex-Socios™ · Activonorte" />
+<meta name="twitter:description" content="Recupera antiguos socios por WhatsApp en 48 horas sin gastar en publicidad. Solo 17 €." />
+<meta name="twitter:image" content="https://activonorte.com/assets/img/og-protocolo.jpg" />
+
+<!-- Iconos -->
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<!-- Rendimiento: fuente propia (sin Google Fonts) y primer fotograma del vídeo -->
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/video/hero-gym-poster.jpg" as="image" fetchpriority="high" />
 
-<script src="https://cdn.tailwindcss.com"></script>
+<script>document.documentElement.classList.add('js');</script>
 
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: [
-          'Roboto',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'sans-serif',
-        ],
-        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
-      },
-      colors: {
-        primary: '#ea580c',
-        'primary-dark': '#c2410c',
-        heading: '#0f172a',
-        body: '#475569',
-        'page-bg': '#f8fafc',
-        card: '#ffffff',
-        'hero-dark': '#00313d',
-        success: '#15803d',
-        'success-bg': '#dcfce7',
-        danger: '#ef4444',
-        'danger-bg': '#fef2f2',
-        border: '#e2e8f0',
-        muted: '#94a3b8',
-      },
-      borderRadius: {
-        sm: '0.375rem',
-        DEFAULT: '0.5rem',
-        lg: '0.75rem',
-        xl: '1rem',
-      },
-      boxShadow: {
-        card: '0 1px 3px 0 rgb(0 0 0 / .06), 0 1px 2px -1px rgb(0 0 0 / .06)',
-        'card-hover': '0 4px 12px 0 rgb(0 0 0 / .10)',
-        'cta': '0 4px 16px rgb(234 88 12 / .40)',
-        'cta-hover': '0 6px 22px rgb(234 88 12 / .55)',
-      },
+<!-- Datos estructurados para Google (producto + preguntas frecuentes) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "Protocolo de Reactivación de Ex-Socios",
+      "description": "Sistema paso a paso para que gimnasios y centros deportivos recuperen antiguos socios por WhatsApp en 48 horas: guía de estrategia, 3 scripts de WhatsApp, manual de cierre, tracker de resultados, Copiloto IA y 3 bonus.",
+      "brand": { "@type": "Brand", "name": "Activonorte" },
+      "image": "https://activonorte.com/assets/img/og-protocolo.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "17.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": "https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2"
+      }
     },
-  },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Cómo recibo el protocolo?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Al momento. Tras el pago recibes por correo la confirmación de compra con tu clave de acceso a la Sala de Control, donde tienes todo el material, los bonus y el Copiloto IA." } },
+        { "@type": "Question", "name": "¿Es un pago único o una suscripción?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Pago único de 17 €. Sin cuotas ni renovaciones." } },
+        { "@type": "Question", "name": "¿Me sirve si tengo un box, un estudio de entrenamiento personal o un centro de yoga o pilates?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí. Funciona en cualquier centro deportivo con cuota mensual y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates." } },
+        { "@type": "Question", "name": "¿Necesito algún programa o conocimientos técnicos?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Solo necesitas tu lista de ex-socios (la puedes exportar de tu software de gestión, como Trainingym o Resawod, o tenerla en un Excel o en el móvil) y WhatsApp. Todo lo demás está explicado paso a paso." } },
+        { "@type": "Question", "name": "¿Y si tengo pocos ex-socios?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Con que vuelva uno solo, ya has recuperado la inversión. Además, el Filtro Oro te ayuda a centrarte en quienes tienen más opciones de volver, así que también saca partido a una lista corta." } },
+        { "@type": "Question", "name": "¿No voy a parecer pesado o que hago spam?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Al contrario. Los mensajes se envían uno a uno, nunca por listas de difusión, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña." } },
+        { "@type": "Question", "name": "¿Cuánto tiempo me va a llevar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "El protocolo está diseñado para ejecutarse en 48 horas: una mañana para preparar la lista y después mensajes individuales en franjas horarias concretas. Unos minutos por contacto." } },
+        { "@type": "Question", "name": "¿Y si no me funciona?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Tienes 30 días de garantía. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17 €. Sin preguntas y sin letra pequeña." } },
+        { "@type": "Question", "name": "¿Es seguro el pago?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí. El pago se procesa a través de Lemon Squeezy, una pasarela de pago segura. Nosotros nunca vemos los datos de tu tarjeta." } }
+      ]
+    }
+  ]
 }
 </script>
 
 <style>
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Roboto', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  background-color: #f8fafc;
-  color: #475569;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ════════ FUENTE (alojada en la propia web: más rápida y sin cookies de terceros) ════════ */
+@font-face {
+  font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url('assets/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-.font-display { font-family: 'Bebas Neue', Impact, sans-serif; }
-h2, h3 { color: #0f172a; }
 
-.hero-video-section {
-  position: relative;
-  width: 100%;
-  min-height: 100svh;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #001f28;
+/* ════════ BASE (mismos colores y medidas que la web de Activonorte) ════════ */
+:root {
+  --teal-950: #001a20; --teal-900: #00262e; --teal: #003b46; --teal-700: #0a4f5c; --teal-50: #eef5f6;
+  --orange: #e05e00;          /* color de marca: acentos y textos grandes */
+  --orange-btn: #c75300;      /* fondo de botones (contraste AA con texto blanco) */
+  --orange-btn-h: #a94600;
+  --orange-light: #ff7a1a;    /* naranja sobre fondos oscuros */
+  --orange-text: #b34a00;     /* naranja para texto pequeño sobre fondo claro */
+  --orange-50: #fdeee4;
+  --ink: #0f1f24; --text: #33464b; --muted: #5b6b70; --line: #e3e9ea; --bg-soft: #f5f8f8;
+  --green: #127a3f; --green-50: #e9f7ef; --red: #b42318; --red-50: #fdecea;
+  --shadow-sm: 0 2px 10px -2px rgba(15,31,36,.08);
+  --shadow-md: 0 14px 34px -12px rgba(15,31,36,.18);
+  --shadow-lg: 0 30px 60px -24px rgba(15,31,36,.28);
+  --header-h: 72px;
 }
-@supports (min-height: 100svh) {
-  .hero-video-section { min-height: 100svh; }
-}
-.hero-section {
-  background-color: #003a47;
-}
-.hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 0;
-  pointer-events: none;
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 58, 71, 0.78);
-  z-index: 1;
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-@media (min-width: 768px) {
-  .hero-content { padding-top: 8rem; padding-bottom: 8rem; }
-}
-.hero-label {
-  color: #ea580c;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-@media (min-width: 768px) {
-  .hero-label { font-size: 0.8rem; }
-}
-.hero-title {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  color: #ffffff;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 400;
-  line-height: 1.12;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 1rem;
-}
-.hero-title-accent { color: #ea580c; }
-.hero-subtitle {
-  font-family: 'Roboto', sans-serif;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: clamp(0.875rem, 1.6vw, 1rem);
-  font-weight: 400;
-  line-height: 1.65;
-  max-width: 500px;
-  margin: 0 auto 2rem;
-}
-.hero-subtitle-accent {
-  color: #ea580c;
-  font-weight: 700;
-  text-decoration: none;
-}
-.hero-trust {
-  margin-top: 0.875rem;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.45);
-  letter-spacing: 0.04em;
-}
-.container-narrow {
-  max-width: 56rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: #ea580c;
-  color: #ffffff;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.01em;
-  padding: 0.875rem 2rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  min-height: 44px;
-  transition: background-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
-  box-shadow: 0 4px 16px rgb(234 88 12 / .40);
-}
-.btn-cta:hover {
-  background-color: #c2410c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgb(234 88 12 / .55);
-}
-.btn-cta:active { transform: translateY(0); }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: #fff; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--orange-light); outline-offset: 3px; border-radius: 6px; }
+.container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; left: 16px; top: -80px; z-index: 1000; background: #fff; color: var(--teal); font-weight: 800; padding: 12px 18px; border-radius: 10px; box-shadow: var(--shadow-md); }
+.skip-link:focus { top: 16px; }
+.ico { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.txt-orange { color: var(--orange-text); }
 
-.card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / .06), 0 1px 2px -1px rgb(0 0 0 / .06);
-}
-.card:hover {
-  box-shadow: 0 4px 12px 0 rgb(0 0 0 / .10);
-  transition: box-shadow 0.2s ease;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  background-color: #fff7ed;
-  color: #ea580c;
-  border: 1px solid #fdba74;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.problem-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.875rem;
-  padding: 1rem 1.25rem;
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 0.5rem;
-}
-.benefit-item {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 0.875rem 1rem;
-  background-color: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 0.5rem;
-}
-.benefit-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: #15803d;
-  color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.item-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  background-color: #f0fdf4;
-  border: 1px solid #d1fae5;
-  border-radius: 0.75rem;
-}
-.item-check {
-  width: 1.75rem;
-  height: 1.75rem;
-  min-width: 1.75rem;
-  background-color: #dcfce7;
-  border-radius: 0.375rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.item-check svg { color: #16a34a; stroke: #16a34a; }
-.item-card h3 {
-  font-family: 'Roboto', sans-serif !important;
-  font-weight: 700;
-  font-size: 0.875rem;
-  text-transform: none !important;
-  letter-spacing: normal !important;
-  color: #0f172a;
-  line-height: 1.3;
-}
-@media (min-width: 768px) {
-  .item-card h3 { font-size: 0.9375rem; }
-}
-.bonus-card {
-  background-color: #fff7ed;
-  border: 1px solid #fed7aa;
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-}
-@media (min-width: 768px) { .bonus-card { padding: 1.5rem; } }
-.number-box {
-  background-color: #003a47;
-  border-radius: 0.75rem;
-  padding: 1.75rem;
-  color: #ffffff;
-}
-@media (min-width: 768px) { .number-box { padding: 2.75rem; } }
-.guarantee-box {
-  background-color: #ffffff;
-  border: 2px solid #15803d;
-  border-radius: 0.75rem;
-  padding: 1.25rem 1.5rem;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in { animation: fadeIn 0.65s ease-out both; }
-.text-orange { color: #ea580c; }
-.text-heading { color: #0f172a; }
-.text-body { color: #475569; }
-.text-muted { color: #94a3b8; }
-.text-success { color: #15803d; }
-.text-danger { color: #ef4444; }
-.line-through { text-decoration: line-through; }
-.section-white { background-color: #ffffff; }
-.section-hueso { background-color: #f8fafc; }
+/* ════════ BOTONES ════════ */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; font-size: 1rem; line-height: 1.25; text-align: center; padding: 14px 26px; border-radius: 12px; border: 2px solid transparent; cursor: pointer; transition: transform .18s ease, box-shadow .22s ease, background-color .22s ease, border-color .22s ease, color .22s ease; }
+.btn .ico { width: 20px; height: 20px; }
+.btn:active { transform: translateY(0) !important; }
+.btn-primary { background: var(--orange-btn); color: #fff; box-shadow: 0 8px 22px -8px rgba(224,94,0,.7), inset 0 1px 0 rgba(255,255,255,.18); }
+.btn-primary:hover { background: var(--orange-btn-h); transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(224,94,0,.8); }
+.btn-primary .ico-arrow { transition: transform .2s ease; }
+.btn-primary:hover .ico-arrow { transform: translateX(3px); }
+.btn-ghost { background: rgba(255,255,255,.06); color: #fff; border-color: rgba(255,255,255,.3); }
+.btn-ghost:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.55); transform: translateY(-2px); }
+.btn-outline { background: #fff; color: var(--teal); border-color: #cfdcde; }
+.btn-outline:hover { border-color: var(--teal); transform: translateY(-2px); }
+.btn-lg { padding: 17px 30px; font-size: 1.0625rem; }
+.btn-sm { padding: 10px 18px; font-size: .92rem; border-radius: 10px; }
+.btn-block { width: 100%; }
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; background: linear-gradient(110deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-20deg); animation: shine 4.5s ease-in-out 2s infinite; pointer-events: none; }
+@keyframes shine { 0% { left: -120%; } 22%, 100% { left: 160%; } }
 
-html, body { overflow-x: hidden; max-width: 100%; }
-@media (max-width: 380px) {
-  .hero-content { padding-top: 3rem; padding-bottom: 3rem; }
-  .hero-title { font-size: 1.45rem; }
+/* ════════ TÍTULOS DE SECCIÓN ════════ */
+.section { padding: clamp(72px, 9vw, 120px) 0; }
+.section-head { max-width: 760px; margin: 0 auto clamp(40px, 5vw, 64px); text-align: center; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--orange-text); margin-bottom: 14px; }
+.eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--orange); border-radius: 2px; }
+.h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); line-height: 1.1; font-weight: 900; letter-spacing: -.028em; color: var(--ink); text-wrap: balance; }
+.h2 .accent { color: var(--orange); }
+.section-head > p:not(.eyebrow) { margin-top: 16px; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--muted); }
+.section-head > p strong { color: var(--ink); }
+.on-dark .eyebrow { color: var(--orange-light); }
+.on-dark .h2 { color: #fff; }
+.on-dark .section-head > p:not(.eyebrow) { color: rgba(255,255,255,.75); }
+.on-dark .section-head > p strong { color: #fff; }
+
+/* ════════ LOADER (al saltar a WhatsApp) ════════ */
+#page-loader { position: fixed; inset: 0; z-index: 9999; background: radial-gradient(ellipse at center, #004f60 0%, #003b46 45%, #001e25 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s; overflow: hidden; }
+#page-loader.active { opacity: 1; visibility: visible; transition: opacity .3s ease; }
+#page-loader::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+.loader-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(224,94,0,.2); pointer-events: none; opacity: 0; }
+#page-loader.active .loader-ring { animation: ringExpand 2.4s ease-out infinite; }
+.loader-ring:nth-child(1) { width: 180px; height: 180px; }
+.loader-ring:nth-child(2) { width: 300px; height: 300px; animation-delay: .6s; }
+.loader-ring:nth-child(3) { width: 440px; height: 440px; animation-delay: 1.2s; }
+@keyframes ringExpand { 0% { opacity: .7; transform: scale(.75); } 100% { opacity: 0; transform: scale(1.15); } }
+#loader-center { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+#page-loader.active #loader-center { animation: centerReveal .5s cubic-bezier(.34,1.4,.64,1) both; }
+@keyframes centerReveal { 0% { opacity: 0; transform: scale(.75) translateY(12px); } 100% { opacity: 1; transform: none; } }
+#loader-logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+#loader-logo-wrap::before { content: ''; position: absolute; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(224,94,0,.22) 0%, transparent 70%); }
+#page-loader.active #loader-logo-wrap::before { animation: haloPulse 1.8s ease-in-out infinite; }
+@keyframes haloPulse { 0%, 100% { transform: scale(1); opacity: .8; } 50% { transform: scale(1.15); opacity: 1; } }
+#loader-logo { width: 84px; height: 84px; position: relative; z-index: 1; filter: drop-shadow(0 0 18px rgba(224,94,0,.35)); }
+#loader-divider { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #e05e00, transparent); border-radius: 2px; }
+#loader-tagline { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.7); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; }
+.loader-dots { display: flex; align-items: center; gap: 5px; }
+.loader-dots span { display: block; width: 5px; height: 5px; border-radius: 50%; background: #e05e00; }
+#page-loader.active .loader-dots span { animation: dotBounce 1.2s ease-in-out infinite; }
+.loader-dots span:nth-child(2) { animation-delay: .2s; }
+.loader-dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes dotBounce { 0%, 100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(-5px); opacity: 1; } }
+#loader-bar-wrap { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(255,255,255,.08); }
+#loader-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #e05e00, #ff8c38); border-radius: 0 2px 2px 0; }
+#page-loader.active #loader-bar { animation: barFill 1s linear forwards; }
+@keyframes barFill { from { width: 0%; } to { width: 100%; } }
+
+/* ════════ ANIMACIÓN DE ENTRADA ════════ */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js .reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: .08s !important; }
+.reveal-d2 { transition-delay: .16s !important; }
+.reveal-d3 { transition-delay: .24s !important; }
+
+/* ════════ CABECERA ════════ */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--header-h); transition: background-color .3s ease, box-shadow .3s ease; }
+.site-header.scrolled, .site-header.menu-open { background: rgba(0,38,46,.94); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 10px 30px -12px rgba(0,0,0,.45); }
+.header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 900; letter-spacing: .14em; font-size: 1.05rem; }
+.brand img { width: 32px; height: 32px; }
+.main-nav { display: flex; gap: 30px; }
+.main-nav a { color: rgba(255,255,255,.82); font-weight: 600; font-size: .95rem; position: relative; padding: 6px 0; transition: color .2s; }
+.main-nav a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--orange); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.main-nav a:hover, .main-nav a.active { color: #fff; }
+.main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); }
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.hamburger { display: none; width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+.hamburger span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s ease, opacity .2s ease; }
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { position: absolute; top: 100%; left: 0; right: 0; background: #001e25; border-top: 1px solid rgba(255,255,255,.08); padding: 8px 24px 24px; box-shadow: 0 24px 40px -12px rgba(0,0,0,.55); animation: dropIn .25s ease; }
+.mobile-nav[hidden] { display: none; }
+.mobile-nav a:not(.btn) { display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 700; font-size: 1.1rem; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.mobile-nav a:not(.btn) .ico { width: 18px; height: 18px; color: var(--orange-light); }
+.mobile-nav .btn { margin-top: 20px; width: 100%; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* ════════ HERO (vídeo de fondo) ════════ */
+.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--teal-950); color: #fff; min-height: min(100svh, 980px); display: flex; align-items: center; padding: calc(var(--header-h) + clamp(32px, 5vw, 64px)) 0 clamp(120px, 13vw, 160px); }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .5; }
+.hero-shade { position: absolute; inset: 0; z-index: -1; background: radial-gradient(55% 60% at 88% 18%, rgba(224,94,0,.24), transparent 62%), linear-gradient(100deg, rgba(0,22,27,.96) 0%, rgba(0,30,37,.86) 48%, rgba(0,38,46,.6) 100%); }
+.hero-shade::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 85%); mask-image: linear-gradient(to bottom, #000 20%, transparent 85%); }
+.hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 12px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.92); margin-bottom: 24px; }
+.pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange-light); box-shadow: 0 0 0 4px rgba(255,122,26,.25); }
+.hero h1 { font-size: clamp(2.2rem, 4.3vw, 3.4rem); line-height: 1.05; font-weight: 900; letter-spacing: -.03em; margin-bottom: 22px; text-wrap: balance; }
+.hl { background: linear-gradient(90deg, #ff8a2a, #ffb067); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-lead { font-size: clamp(1.05rem, 1.7vw, 1.22rem); color: rgba(255,255,255,.82); max-width: 600px; margin-bottom: 32px; }
+.hero-lead strong { color: #fff; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+.hero-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: .92rem; color: rgba(255,255,255,.82); }
+.hero-trust li { display: flex; align-items: center; gap: 8px; }
+.hero-trust .ico { width: 18px; height: 18px; color: var(--orange-light); stroke-width: 2.6; }
+.hero-copy { animation: heroIn .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero-visual { animation: heroIn .8s .15s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes heroIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* Móvil ilustrativo (conversación de WhatsApp) */
+.hero-visual { position: relative; display: flex; flex-direction: column; align-items: center; }
+.phone-wrap { position: relative; width: min(318px, 100%); }
+.phone { position: relative; border-radius: 46px; padding: 11px; background: linear-gradient(160deg, #26363a, #0b1416); box-shadow: 0 50px 90px -30px rgba(0,0,0,.85), inset 0 0 0 1.5px rgba(255,255,255,.14); transform: rotate(2deg); }
+.phone-notch { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 86px; height: 22px; border-radius: 20px; background: #0b1416; z-index: 2; }
+.phone-screen { border-radius: 36px; overflow: hidden; background: #efeae2; color: #111b21; }
+.wa-head { display: flex; align-items: center; gap: 10px; padding: 40px 14px 11px; background: #0b6b5f; color: #fff; }
+.wa-back { font-size: 1.4rem; line-height: 1; opacity: .9; }
+.wa-avatar { width: 34px; height: 34px; border-radius: 50%; background: #f6cfb1; color: #7a3d12; font-weight: 800; display: grid; place-items: center; font-size: .9rem; flex: none; }
+.wa-head strong { display: block; font-size: .92rem; line-height: 1.2; }
+.wa-head div span { display: block; font-size: .7rem; opacity: .82; }
+.wa-body { padding: 14px 12px 10px; display: flex; flex-direction: column; gap: 9px; min-height: 318px; background-color: #efeae2; background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 14px 14px; }
+.wa-day { align-self: center; font-size: .66rem; background: #fff; color: #54656f; padding: 4px 10px; border-radius: 8px; box-shadow: 0 1px 1px rgba(0,0,0,.08); text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+.wa-msg { max-width: 86%; padding: 8px 10px 5px; border-radius: 10px; font-size: .83rem; line-height: 1.42; box-shadow: 0 1px 1px rgba(0,0,0,.1); }
+.wa-msg.out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 3px; }
+.wa-msg.in { align-self: flex-start; background: #fff; border-top-left-radius: 3px; }
+.wa-redact { display: block; height: 7px; border-radius: 4px; background: rgba(17,27,33,.13); margin: 6px 0; }
+.wa-tag { display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; font-size: .64rem; font-weight: 800; color: #0b6b5f; background: rgba(11,107,95,.1); padding: 3px 8px; border-radius: 999px; }
+.wa-tag .ico { width: 11px; height: 11px; stroke-width: 2.6; }
+.wa-time { display: block; text-align: right; font-size: .62rem; color: #667781; margin-top: 2px; }
+.wa-time b { color: #53bdeb; font-weight: 700; letter-spacing: -.12em; margin-left: 3px; }
+.wa-typing { align-self: flex-start; background: #fff; border-radius: 10px; border-top-left-radius: 3px; padding: 10px 12px; display: flex; gap: 4px; box-shadow: 0 1px 1px rgba(0,0,0,.1); }
+.wa-typing i, .cd-typing i { width: 6px; height: 6px; border-radius: 50%; background: #8696a0; animation: dotBounce 1.2s ease-in-out infinite; }
+.wa-typing i:nth-child(2), .cd-typing i:nth-child(2) { animation-delay: .2s; }
+.wa-typing i:nth-child(3), .cd-typing i:nth-child(3) { animation-delay: .4s; }
+.wa-input { display: flex; align-items: center; gap: 8px; padding: 6px 10px 16px; background: #efeae2; }
+.wa-field { flex: 1; background: #fff; border-radius: 999px; padding: 9px 14px; font-size: .78rem; color: #8696a0; }
+.wa-mic { width: 34px; height: 34px; border-radius: 50%; background: #00a884; flex: none; display: grid; place-items: center; color: #fff; }
+.wa-mic .ico { width: 16px; height: 16px; }
+.float-card { position: absolute; background: #fff; color: var(--ink); border-radius: 16px; box-shadow: 0 24px 50px -16px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.04); }
+.copilot-float { left: -22%; bottom: -2%; width: 232px; padding: 13px 15px; transform: rotate(-2deg); animation: floaty 6s ease-in-out infinite; }
+.cf-badge { display: inline-flex; align-items: center; gap: 6px; font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--orange-text); background: var(--orange-50); padding: 4px 9px; border-radius: 999px; margin-bottom: 7px; }
+.cf-badge .ico { width: 12px; height: 12px; }
+.copilot-float strong { display: block; font-size: .86rem; line-height: 1.3; }
+.copilot-float p { font-size: .76rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.phase-float { right: -12%; top: -3%; padding: 9px 12px; display: flex; align-items: center; gap: 9px; font-size: .74rem; font-weight: 700; line-height: 1.25; animation: floaty 7s ease-in-out infinite reverse; }
+.phase-float .ico { width: 28px; height: 28px; padding: 6px; border-radius: 9px; background: var(--teal); color: #fff; }
+.phase-float small { display: block; font-size: .64rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+@keyframes floaty { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+.visual-note { margin-top: 22px; font-size: .78rem; color: rgba(255,255,255,.55); text-align: center; }
+
+/* ════════ CIFRAS + PROBLEMA ════════ */
+.problem { background: var(--bg-soft); padding-top: 0; display: flow-root; }
+.stats-grid { position: relative; z-index: 2; margin-top: -64px; margin-bottom: clamp(56px, 7vw, 88px); display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-radius: 22px; box-shadow: var(--shadow-lg); border: 1px solid var(--line); overflow: hidden; }
+.stat { padding: 26px 24px; border-right: 1px solid var(--line); }
+.stat:last-child { border-right: 0; }
+.stat strong { display: block; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: var(--teal); letter-spacing: -.03em; line-height: 1.05; }
+.stat strong small { font-size: .5em; font-weight: 800; color: var(--orange); margin-left: 4px; letter-spacing: 0; }
+.stat span { display: block; margin-top: 8px; font-size: .9rem; color: var(--muted); line-height: 1.45; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.problem-copy .h2 { margin-bottom: 22px; }
+.problem-copy p { font-size: 1.08rem; color: var(--text); margin-bottom: 14px; }
+.problem-copy p strong { color: var(--ink); }
+.pain-list { display: grid; gap: 14px; }
+.pain-intro { font-weight: 800; color: var(--ink); font-size: 1.05rem; margin-bottom: 2px; }
+.pain-card { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.pain-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); border-color: #f2c4bf; }
+.pain-ico { flex: none; width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: var(--red-50); color: var(--red); }
+.pain-ico .ico { width: 22px; height: 22px; }
+.pain-card h3 { font-size: 1.04rem; font-weight: 800; color: var(--ink); margin-bottom: 3px; line-height: 1.3; letter-spacing: -.01em; }
+.pain-card p { font-size: .94rem; color: var(--muted); }
+.pain-card em { font-style: normal; font-weight: 700; color: var(--ink); }
+.pain-bridge { margin: clamp(48px, 6vw, 72px) auto 0; max-width: 780px; text-align: center; font-size: clamp(1.3rem, 2.6vw, 1.75rem); font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.3; text-wrap: balance; }
+.pain-bridge span { color: var(--orange); }
+
+/* ════════ CÓMO FUNCIONA ════════ */
+.steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.step { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 28px 26px; box-shadow: var(--shadow-sm); transition: transform .25s ease, box-shadow .25s ease; }
+.step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.step:not(:last-child)::after { content: ''; position: absolute; right: -19px; top: 54px; width: 10px; height: 10px; border-top: 2.5px solid var(--orange); border-right: 2.5px solid var(--orange); transform: rotate(45deg); }
+.step-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.step-num { width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; background: var(--teal-50); color: var(--teal); font-weight: 900; font-size: 1.05rem; }
+.step:first-child .step-num { background: var(--orange-btn); color: #fff; }
+.step-when { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 800; color: var(--teal); background: var(--teal-50); padding: 6px 11px; border-radius: 999px; }
+.step-when .ico { width: 14px; height: 14px; }
+.step h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink); margin-bottom: 8px; letter-spacing: -.015em; }
+.step p { font-size: .95rem; color: var(--muted); flex: 1; }
+.step p strong { color: var(--ink); }
+.step-meta { display: inline-flex; align-self: flex-start; align-items: center; gap: 7px; margin-top: 18px; font-size: .8rem; font-weight: 700; color: var(--orange-text); background: var(--orange-50); padding: 6px 12px; border-radius: 999px; }
+.step-meta .ico { width: 14px; height: 14px; }
+.method-cta { margin-top: 52px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; text-align: center; }
+.method-cta p { font-weight: 700; color: var(--ink); }
+
+/* ════════ QUÉ INCLUYE ════════ */
+.include-section { background: var(--bg-soft); }
+.inc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.inc-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 28px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.inc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #cfdcde; }
+.inc-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.inc-ico { flex: none; width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; background: var(--orange-50); color: var(--orange-text); }
+.fmt { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.fmt.new { background: var(--orange-btn); color: #fff; border-color: transparent; }
+.inc-card h3 { font-size: 1.15rem; font-weight: 800; color: var(--ink); letter-spacing: -.015em; line-height: 1.28; margin-bottom: 8px; }
+.inc-card p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
+.inc-list { list-style: none; display: grid; gap: 8px; margin-top: 4px; }
+.inc-list li { display: flex; gap: 9px; font-size: .92rem; color: var(--muted); line-height: 1.45; }
+.inc-list li b { color: var(--ink); font-weight: 700; }
+.inc-list .ico { width: 18px; height: 18px; color: var(--orange); stroke-width: 2.6; margin-top: 1px; }
+.inc-card.feature { grid-column: span 2; background: linear-gradient(135deg, var(--teal) 0%, var(--teal-900) 100%); border-color: transparent; color: #fff; }
+.inc-card.feature::after { content: ''; position: absolute; right: -50px; bottom: -70px; width: 300px; height: 300px; background: url('assets/img/mark-white.png') center / contain no-repeat; opacity: .05; pointer-events: none; }
+.inc-card.feature .inc-ico { background: rgba(255,255,255,.1); color: var(--orange-light); }
+.inc-card.feature .fmt { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.22); }
+.inc-card.feature h3 { color: #fff; font-size: clamp(1.35rem, 2.4vw, 1.7rem); }
+.inc-card.feature p { color: rgba(255,255,255,.8); max-width: 580px; }
+.tag-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; position: relative; z-index: 1; }
+.tag-list li { font-size: .8rem; font-weight: 600; padding: 6px 13px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+.inc-card.ai { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 24px; border: 1.5px solid #f3c9ab; background: linear-gradient(100deg, #fff6ef 0%, #fff 60%); }
+.inc-card.ai .inc-ico { width: 64px; height: 64px; border-radius: 18px; background: var(--orange-btn); color: #fff; box-shadow: 0 12px 24px -10px rgba(224,94,0,.7); }
+.inc-card.ai .inc-ico .ico { width: 30px; height: 30px; }
+.inc-body { flex: 1; min-width: 0; }
+.inc-body h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.value-band { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; padding: 24px 28px; border-radius: 22px; background: #fff; border: 1.5px dashed #c9d6d8; }
+.value-band strong { display: block; color: var(--ink); font-size: 1.12rem; font-weight: 800; letter-spacing: -.01em; }
+.value-band span { color: var(--muted); font-size: .92rem; }
+
+/* ════════ COPILOTO IA (demo interactiva) ════════ */
+.copilot-section { background: radial-gradient(60% 70% at 100% 0%, rgba(224,94,0,.2), transparent 60%), radial-gradient(50% 60% at 0% 100%, rgba(20,104,122,.35), transparent 60%), var(--teal-900); color: #fff; }
+.copilot-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.copilot-copy .h2 { margin-bottom: 18px; }
+.copilot-copy > p { color: rgba(255,255,255,.78); font-size: 1.08rem; margin-bottom: 26px; }
+.copilot-copy > p strong { color: #fff; }
+.check-list { list-style: none; display: grid; gap: 14px; }
+.check-list li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: rgba(255,255,255,.92); line-height: 1.45; }
+.check-list .ico { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: rgba(255,122,26,.18); color: var(--orange-light); stroke-width: 3; }
+.cd-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.cd-tab { padding: 10px 15px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); font-weight: 700; font-size: .88rem; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+.cd-tab:hover { border-color: rgba(255,255,255,.5); }
+.cd-tab[aria-selected="true"] { background: #fff; color: var(--teal); border-color: #fff; }
+.cd-window { background: #fff; color: var(--text); border-radius: 22px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
+.cd-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--teal); color: #fff; border-bottom: 3px solid var(--orange); }
+.cd-avatar { flex: none; width: 38px; height: 38px; border-radius: 11px; background: rgba(255,255,255,.1); display: grid; place-items: center; }
+.cd-avatar img { width: 22px; height: 22px; }
+.cd-head strong { display: block; font-size: .95rem; line-height: 1.2; }
+.cd-head div span { display: block; font-size: .68rem; color: #ffb07a; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; margin-top: 2px; }
+.cd-live { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 700; color: #86efac; white-space: nowrap; }
+.cd-live::before { content: ''; flex: none; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.25); }
+.cd-body { padding: 20px; background: #f1f5f9; display: flex; flex-direction: column; gap: 10px; min-height: 400px; }
+.cd-label { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.cd-bubble { padding: 13px 15px; border-radius: 14px; font-size: .95rem; line-height: 1.55; max-width: 94%; color: var(--ink); }
+.cd-bubble.in { background: #fff; border: 1px solid #d5dee6; align-self: flex-start; border-bottom-left-radius: 4px; }
+.cd-bubble.out { background: var(--green-50); border: 1px solid #bfe5cf; align-self: flex-end; border-bottom-right-radius: 4px; min-height: 50px; }
+.cd-strategy { display: flex; align-items: center; gap: 8px; font-size: .84rem; font-weight: 700; color: var(--orange-text); background: var(--orange-50); padding: 8px 12px; border-radius: 10px; margin: 4px 0; }
+.cd-strategy .ico { width: 16px; height: 16px; }
+.cd-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+.cd-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.cd-copy { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 10px; background: var(--teal); color: #fff; border: 0; font-weight: 700; font-size: .85rem; cursor: pointer; transition: background-color .2s; }
+.cd-copy:hover { background: var(--teal-700); }
+.cd-copy .ico { width: 16px; height: 16px; }
+.cd-flow { font-size: .78rem; font-weight: 700; color: var(--muted); }
+.cd-note { margin-top: 14px; font-size: .8rem; color: rgba(255,255,255,.6); text-align: center; }
+
+/* ════════ BONUS ════════ */
+.bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.bonus-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 30px 28px 28px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.bonus-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--orange), #ffb067); }
+.bonus-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.bonus-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 22px; }
+.bonus-num { font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-text); }
+.bonus-val { font-size: .8rem; font-weight: 800; color: var(--green); background: var(--green-50); padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
+.bonus-val s { color: var(--muted); font-weight: 600; margin-right: 5px; }
+.bonus-ico { width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; background: var(--teal-50); color: var(--teal); margin-bottom: 18px; transition: background-color .25s, color .25s; }
+.bonus-card:hover .bonus-ico { background: var(--orange-50); color: var(--orange-text); }
+.bonus-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink); letter-spacing: -.015em; line-height: 1.25; margin-bottom: 10px; }
+.bonus-card p { color: var(--muted); font-size: .95rem; line-height: 1.68; }
+.bonus-card p strong { color: var(--ink); }
+.bonus-total { margin-top: 32px; text-align: center; color: var(--muted); font-size: 1.02rem; }
+.bonus-total strong { color: var(--ink); }
+
+/* ════════ CALCULADORA ════════ */
+.calc-section { background: radial-gradient(60% 70% at 100% 0%, rgba(224,94,0,.18), transparent 60%), radial-gradient(50% 60% at 0% 100%, rgba(20,104,122,.35), transparent 60%), var(--teal-900); color: #fff; }
+.calc { display: grid; grid-template-columns: 1fr 1.05fr; gap: 28px; align-items: stretch; }
+.calc-inputs { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: clamp(24px, 3.5vw, 36px); }
+.calc-inputs h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+.calc-inputs > p { color: rgba(255,255,255,.65); font-size: .92rem; margin-bottom: 28px; }
+.field { margin-bottom: 30px; }
+.field:last-child { margin-bottom: 0; }
+.field-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.field-top label { font-weight: 700; font-size: .98rem; }
+.num-wrap { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.16); border-radius: 10px; padding: 6px 10px; transition: border-color .2s; }
+.num-wrap:focus-within { border-color: var(--orange-light); }
+.num-wrap input { width: 52px; background: transparent; border: 0; color: #fff; font-weight: 800; font-size: 1rem; text-align: right; outline: none; -moz-appearance: textfield; appearance: textfield; }
+.num-wrap input::-webkit-outer-spin-button, .num-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.num-wrap span { font-size: .85rem; color: rgba(255,255,255,.65); }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 999px; background: linear-gradient(90deg, var(--orange) 0 var(--p, 50%), rgba(255,255,255,.16) var(--p, 50%) 100%); cursor: pointer; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 5px solid var(--orange); box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 5px solid var(--orange); box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outline-offset: 6px; }
+.range-scale { display: flex; justify-content: space-between; font-size: .75rem; color: rgba(255,255,255,.5); margin-top: 8px; }
+.calc-results { background: #fff; color: var(--text); border-radius: 24px; padding: clamp(24px, 3.5vw, 36px); display: flex; flex-direction: column; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
+.res-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.res { padding: 18px; border-radius: 16px; background: var(--bg-soft); border: 1px solid var(--line); }
+.res small { display: block; font-size: .74rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+.res strong { display: block; font-size: clamp(1.7rem, 3vw, 2.25rem); font-weight: 900; letter-spacing: -.03em; color: var(--green); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.res .res-sub { display: block; margin-top: 4px; font-size: .84rem; color: var(--muted); }
+.res-bars { display: grid; gap: 10px; margin-bottom: 20px; }
+.bar-row { display: grid; grid-template-columns: 92px 1fr 74px; align-items: center; gap: 12px; font-size: .85rem; color: var(--muted); font-weight: 600; }
+.bar-row b { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+.bar { height: 12px; border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: 999px; background: #9aa9ad; transition: width .45s cubic-bezier(.2,.7,.2,1); }
+.bar.good i { background: linear-gradient(90deg, #16a34a, #22c55e); }
+.res-insight { padding: 14px 16px; border-left: 4px solid var(--green); background: #effaf3; border-radius: 0 12px 12px 0; font-size: .96rem; color: var(--ink); margin-bottom: 22px; }
+.res-insight strong { font-weight: 800; }
+.calc-results .btn { margin-top: auto; }
+.calc-note { font-size: .76rem; color: var(--muted); margin-top: 12px; text-align: center; }
+
+/* ════════ COMPARATIVA ════════ */
+.compare-section { background: var(--bg-soft); }
+.compare-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow-sm); -webkit-overflow-scrolling: touch; }
+.compare { width: 100%; min-width: 700px; border-collapse: separate; border-spacing: 0; }
+.compare th, .compare td { padding: 18px 20px; text-align: left; border-bottom: 1px solid var(--line); font-size: .94rem; vertical-align: middle; }
+.compare thead th { font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--bg-soft); }
+.compare thead th.is-us { background: var(--teal); color: #fff; }
+.compare thead th.is-us .brand-cell { display: flex; align-items: center; gap: 8px; }
+.compare thead th.is-us img { width: 20px; height: 20px; }
+.compare tbody th { font-weight: 700; color: var(--ink); width: 30%; background: #fff; }
+.compare td { color: var(--text); }
+.compare td.is-us { background: #f0f7f8; font-weight: 700; color: var(--ink); }
+.compare tr:last-child > * { border-bottom: 0; }
+.compare th:first-child { position: sticky; left: 0; z-index: 1; }
+.cell { display: flex; align-items: center; gap: 10px; }
+.mk { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; }
+.mk .ico { width: 13px; height: 13px; stroke-width: 3.4; }
+.mk.yes { background: #dcfce7; color: #15803d; }
+.mk.no { background: #fee4e2; color: var(--red); }
+.mk.meh { background: #fef3c7; color: #a15c07; }
+.scroll-tip { display: none; font-size: .82rem; color: var(--muted); text-align: center; margin-top: 12px; }
+
+/* ════════ QUIÉN SOY + GARANTÍA ════════ */
+.trust-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: stretch; }
+.founder { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 24px; padding: clamp(26px, 3.5vw, 42px); }
+.founder-head { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+.founder-avatar { flex: none; width: 72px; height: 72px; border-radius: 20px; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; box-shadow: var(--shadow-sm); }
+.founder-avatar img { width: 42px; height: 42px; }
+.founder-head .eyebrow { margin-bottom: 6px; }
+.founder h2, .guarantee h2 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.2; text-wrap: balance; }
+.founder p { color: var(--text); margin-bottom: 14px; }
+.founder p strong { color: var(--ink); }
+.founder-quote { font-weight: 800; color: var(--ink) !important; font-size: 1.08rem; border-left: 4px solid var(--orange); padding-left: 14px; margin: 20px 0 !important; }
+.founder-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--teal); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+.founder-link:hover { color: var(--orange-text); }
+.founder-link .ico { width: 16px; height: 16px; }
+.guarantee { position: relative; overflow: hidden; border-radius: 24px; padding: clamp(26px, 3.5vw, 42px); background: linear-gradient(160deg, #eefaf3 0%, #fff 72%); border: 2px solid #9fd8b5; }
+.seal { width: 116px; height: 116px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #1f9d55, var(--green)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 0 6px #fff, 0 0 0 8px #9fd8b5, 0 20px 34px -12px rgba(18,122,63,.55); margin-bottom: 24px; }
+.seal span { font-size: 2.5rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; }
+.seal small { font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-top: 2px; }
+.guarantee .eyebrow { color: var(--green); }
+.guarantee .eyebrow::before { background: var(--green); }
+.guarantee p:not(.eyebrow) { color: var(--text); margin-top: 12px; }
+.guarantee p strong { color: var(--green); }
+.guarantee .guarantee-strong { font-weight: 800; color: var(--ink); }
+
+/* ════════ FAQ ════════ */
+.faq-section { background: var(--bg-soft); }
+.faq-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+.faq-aside { position: sticky; top: calc(var(--header-h) + 28px); }
+.faq-aside .section-head { text-align: left; margin: 0 0 26px; }
+.faq-help { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+.faq-help p { color: var(--ink); font-weight: 700; margin-bottom: 4px; }
+.faq-help span { display: block; color: var(--muted); font-size: .92rem; margin-bottom: 16px; }
+.faq-list { display: grid; gap: 12px; }
+.faq-item { border: 1px solid var(--line); border-radius: 16px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+.faq-item[open] { border-color: #c9d6d8; box-shadow: var(--shadow-sm); }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 22px; font-weight: 700; color: var(--ink); font-size: 1.02rem; line-height: 1.4; border-radius: 16px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary .ico { width: 22px; height: 22px; color: var(--orange); transition: transform .25s ease; }
+.faq-item[open] summary .ico { transform: rotate(45deg); }
+.faq-answer { padding: 0 22px 22px; color: var(--muted); font-size: .97rem; line-height: 1.7; }
+.faq-answer strong { color: var(--ink); }
+.faq-answer a { color: var(--teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ════════ CTA FINAL + RESUMEN DEL PEDIDO ════════ */
+.cta-final { background: radial-gradient(70% 80% at 0% 0%, rgba(224,94,0,.25), transparent 60%), linear-gradient(135deg, var(--teal) 0%, var(--teal-950) 100%); color: #fff; }
+.cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.cta-copy h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); font-weight: 900; line-height: 1.06; letter-spacing: -.03em; margin-bottom: 18px; text-wrap: balance; }
+.cta-copy > p { color: rgba(255,255,255,.8); font-size: 1.1rem; margin-bottom: 26px; max-width: 520px; }
+.cta-points { list-style: none; display: grid; gap: 14px; }
+.cta-points li { display: flex; gap: 12px; align-items: center; font-weight: 600; }
+.cta-points .ico { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: rgba(255,122,26,.18); color: var(--orange-light); stroke-width: 3; }
+.order-card { position: relative; background: #fff; color: var(--text); border-radius: 24px; padding: clamp(24px, 3.5vw, 34px); box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
+.order-tag { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: var(--orange-btn); padding: 5px 12px; border-radius: 999px; margin-bottom: 12px; }
+.order-card h3 { font-size: 1.3rem; font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.25; margin-bottom: 18px; }
+.order-list { list-style: none; display: grid; gap: 10px; padding-bottom: 18px; border-bottom: 1.5px dashed #cdd8da; margin-bottom: 18px; }
+.order-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .94rem; color: var(--ink); line-height: 1.4; }
+.order-list .ico { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: var(--green-50); color: var(--green); stroke-width: 3.2; margin-top: 1px; }
+.order-list li.is-bonus .ico { background: var(--orange-50); color: var(--orange-text); stroke-width: 2.4; }
+.order-list .v { margin-left: auto; padding-left: 10px; color: var(--muted); font-size: .85rem; white-space: nowrap; text-decoration: line-through; }
+.order-price { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.order-price .was { display: block; font-size: .9rem; color: var(--muted); margin-bottom: 2px; }
+.order-price strong { display: block; font-size: 3.1rem; font-weight: 900; color: var(--ink); letter-spacing: -.045em; line-height: 1; }
+.order-price .once { font-size: .85rem; color: var(--muted); text-align: right; line-height: 1.4; }
+.order-price .once b { display: block; color: var(--green); }
+.secure-row { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; font-size: .8rem; color: var(--muted); font-weight: 600; }
+.secure-row li { display: flex; align-items: center; gap: 6px; }
+.secure-row .ico { width: 15px; height: 15px; color: var(--teal); }
+
+/* ════════ PIE ════════ */
+.site-footer { background: var(--teal-950); color: rgba(255,255,255,.7); padding: 64px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+.footer-brand p { margin-top: 16px; font-size: .93rem; max-width: 330px; }
+.footer-title { color: #fff; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-col a { display: block; padding: 5px 0; font-size: .94rem; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { margin-top: 48px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .85rem; color: rgba(255,255,255,.5); }
+
+/* ════════ BARRA DE COMPRA FIJA (solo móvil) ════════ */
+.buy-bar { display: none; }
+
+/* ════════ ASISTENTE IA (SETTER B2B) ════════ */
+.chat-trigger { position: fixed; right: 20px; bottom: 20px; z-index: 400; display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 999px; background: var(--teal); color: #fff; border: 2px solid var(--orange); font-weight: 800; font-size: .9rem; cursor: pointer; box-shadow: 0 14px 34px -8px rgba(0,0,0,.5); transition: transform .2s ease, background-color .2s ease, border-color .2s ease, bottom .3s ease; }
+.chat-trigger:hover { transform: translateY(-2px); background: var(--orange-btn); border-color: #fff; }
+.chat-dot { position: relative; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.3); flex: none; }
+.chat-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: rgba(34,197,94,.35); animation: livePulse 2s ease-out infinite; }
+@keyframes livePulse { 0% { transform: scale(.8); opacity: .9; } 100% { transform: scale(2); opacity: 0; } }
+.chat-window { position: fixed; right: 20px; bottom: 88px; z-index: 400; width: min(410px, calc(100vw - 24px)); height: 560px; max-height: calc(100vh - 120px); max-height: calc(100dvh - 120px); display: none; flex-direction: column; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px -10px rgba(0,0,0,.5); border: 1px solid rgba(0,59,70,.25); }
+.chat-window.open { display: flex; animation: dropIn .25s ease; }
+.chat-header { background: var(--teal); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--orange); flex-shrink: 0; }
+.chat-avatar { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,.1); display: grid; place-items: center; flex: none; position: relative; }
+.chat-avatar img { width: 24px; height: 24px; }
+.chat-avatar::after { content: ''; position: absolute; right: -2px; bottom: -2px; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 2px solid var(--teal); }
+.chat-header-info { flex: 1; min-width: 0; }
+.chat-header-info strong { display: block; font-size: 15px; font-weight: 800; line-height: 1.2; }
+.chat-header-info span { display: block; font-size: 11px; color: #ffb07a; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; margin-top: 2px; }
+.chat-close { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); width: 34px; height: 34px; border-radius: 10px; cursor: pointer; display: grid; place-items: center; flex: none; }
+.chat-close .ico { width: 16px; height: 16px; stroke-width: 2.6; }
+.chat-close:hover { background: var(--orange-btn); }
+.chat-chips { padding: 10px 12px; background: #e9f1f2; border-bottom: 1px solid #cbd5e1; display: flex; gap: 8px; overflow-x: auto; flex-shrink: 0; scrollbar-width: thin; }
+.chat-chip { background: #fff; color: var(--teal); border: 1px solid var(--teal); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; }
+.chat-chip:hover { background: var(--orange-btn); color: #fff; border-color: var(--orange-btn); }
+.chat-messages { padding: 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; background: #f1f5f9; overscroll-behavior: contain; }
+.chat-msg { padding: 12px 15px; border-radius: 14px; font-size: 13.5px; line-height: 1.55; max-width: 92%; overflow-wrap: anywhere; }
+.chat-msg.bot { background: #fff; border: 1px solid #d5dee6; color: #0f172a; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+.chat-msg.bot strong { color: var(--teal); font-weight: 800; }
+.chat-msg.user { background: var(--teal); color: #fff; align-self: flex-end; font-weight: 600; border-bottom-right-radius: 4px; }
+.chat-typing { display: inline-flex; gap: 4px; margin-left: 6px; vertical-align: middle; }
+.chat-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); opacity: .4; animation: dotBounce 1.2s ease-in-out infinite; }
+.chat-typing i:nth-child(2) { animation-delay: .2s; }
+.chat-typing i:nth-child(3) { animation-delay: .4s; }
+.chat-wa { margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #16a34a; color: #fff; padding: 10px 14px; border-radius: 9px; font-size: 12.5px; font-weight: 800; transition: background-color .2s; }
+.chat-wa:hover { background: #15803d; }
+.chat-buy { margin-top: 8px; display: flex; align-items: center; justify-content: center; width: 100%; background: var(--orange-btn); color: #fff; padding: 10px 14px; border-radius: 9px; font-size: 12.5px; font-weight: 800; transition: background-color .2s; }
+.chat-buy:hover { background: var(--orange-btn-h); }
+.chat-form { padding: 12px; background: #fff; border-top: 1px solid #d5dee6; display: flex; gap: 8px; flex-shrink: 0; }
+.chat-input { flex: 1; min-width: 0; background: #f8fafc; color: #0f172a; border: 1.5px solid #94a3b8; border-radius: 10px; padding: 10px 12px; font-size: 16px; outline: none; }
+.chat-input:focus { border-color: var(--teal); background: #fff; }
+.chat-send { background: var(--orange-btn); color: #fff; border: none; border-radius: 10px; padding: 0 16px; font-weight: 800; font-size: 13.5px; cursor: pointer; }
+.chat-send:hover { background: var(--orange-btn-h); }
+.chat-send:disabled { opacity: .6; cursor: wait; }
+
+/* ════════ RESPONSIVE ════════ */
+@media (max-width: 1080px) {
+  .main-nav { gap: 22px; }
+  .copilot-float { left: -10%; }
+  .phase-float { right: -6%; }
+  .inc-grid { grid-template-columns: repeat(2, 1fr); }
+  .inc-card.feature { grid-column: 1 / -1; }
 }
-img, video, iframe { max-width: 100%; height: auto; }
+@media (max-width: 960px) {
+  :root { --header-h: 64px; }
+  .main-nav { display: none; }
+  .hamburger { display: flex; }
+  .hero { min-height: 0; }
+  .hero-grid, .problem-grid, .copilot-grid, .calc, .cta-grid, .faq-layout, .trust-grid { grid-template-columns: 1fr; }
+  .hero-visual { margin-top: 12px; }
+  .steps { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; gap: 30px; }
+  .step:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -21px; transform: translateX(-50%) rotate(135deg); }
+  .bonus-grid { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; }
+  .faq-aside { position: static; }
+  .scroll-tip { display: block; }
+  .copilot-copy { text-align: left; }
+}
+@media (max-width: 860px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
+  .buy-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 300; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(0,38,46,.97); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,.1); box-shadow: 0 -12px 30px -12px rgba(0,0,0,.5); color: #fff; transform: translateY(110%); visibility: hidden; transition: transform .3s ease, visibility 0s linear .3s; }
+  .buy-bar.show { transform: none; visibility: visible; transition: transform .3s ease; }
+  .buy-bar strong { display: block; font-size: .9rem; line-height: 1.2; }
+  .buy-bar span { display: block; font-size: .8rem; color: rgba(255,255,255,.72); }
+  .buy-bar span s { margin-right: 4px; }
+  .buy-bar span b { color: #fff; font-size: .95rem; }
+  .buy-bar .btn { flex: none; }
+  body.has-buybar .chat-trigger { bottom: calc(80px + env(safe-area-inset-bottom)); }
+}
 @media (max-width: 640px) {
-  .grid.md\:grid-cols-2 { grid-template-columns: 1fr !important; }
-  .container-narrow { padding-left: 1rem; padding-right: 1rem; }
+  .container { padding: 0 18px; }
+  .hero-ctas .btn { width: 100%; }
+  .hero-trust { flex-direction: column; gap: 10px; }
+  .phone-wrap { width: min(290px, 82vw); }
+  .copilot-float { left: -9%; bottom: -4%; width: 200px; padding: 11px 13px; }
+  .phase-float { right: -7%; top: -4%; }
+  .stat { padding: 20px 16px; }
+  .stat span { font-size: .82rem; }
+  .inc-grid { grid-template-columns: 1fr; }
+  .inc-card { padding: 24px; }
+  .inc-card.ai { flex-direction: column; align-items: flex-start; }
+  .inc-card.ai .btn { width: 100%; }
+  .value-band { padding: 22px; }
+  .value-band .btn { width: 100%; }
+  .method-cta .btn { width: 100%; }
+  .res-row { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 78px 1fr 64px; gap: 8px; }
+  .cd-body { padding: 16px; min-height: 0; }
+  .cd-live { display: none; }
+  .founder-head { flex-direction: column; align-items: flex-start; }
+  .order-price strong { font-size: 2.6rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .chat-trigger { right: 12px; bottom: 12px; padding: 12px 16px; font-size: .84rem; }
+  .chat-trigger .long { display: none; }
+  .chat-window { right: 12px; bottom: 72px; height: calc(100vh - 96px); height: calc(100dvh - 96px); max-height: none; }
 }
-@media (max-width: 480px) {
-  .hero-subtitle { font-size: 0.875rem; }
-  p, li { font-size: 0.875rem; line-height: 1.6; }
+@media (max-width: 440px) {
+  .header-actions .btn-sm { display: none; }
 }
-.scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  cursor: pointer;
-  animation: scrollHintFade 2.5s ease-in-out infinite;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
 }
-.scroll-hint-text {
-  color: rgba(255,255,255,0.65);
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-.scroll-hint-arrow {
-  width: 1.25rem;
-  height: 1.25rem;
-  color: rgba(255,255,255,0.65);
-  animation: arrowBounce 1.4s ease-in-out infinite;
-}
-@keyframes arrowBounce {
-  0%, 100% { transform: translateY(0); opacity: 0.65; }
-  50% { transform: translateY(6px); opacity: 1; }
-}
-@keyframes scrollHintFade {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-.scroll-hint.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-/* ESTILOS AGENTE SETTER B2B BLINDADOS */
-.an-setter-trigger{position:fixed!important;bottom:24px!important;right:24px!important;z-index:2147483647!important;background:#003b46!important;color:#ffffff!important;border:2px solid #e05e00!important;border-radius:999px!important;padding:14px 22px!important;font-family:'Roboto',Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:800!important;display:flex!important;align-items:center!important;gap:10px!important;cursor:pointer!important;box-shadow:0 12px 30px rgba(0,0,0,0.35)!important;transition:transform 0.2s ease,background 0.2s ease!important;}
-.an-setter-trigger:hover{transform:translateY(-2px)!important;background:#e05e00!important;border-color:#ffffff!important;}
-.an-setter-dot{width:10px!important;height:10px!important;background:#22c55e!important;border-radius:50%!important;box-shadow:0 0 0 4px rgba(34,197,94,0.3)!important;flex-shrink:0!important;}
-.an-setter-window{position:fixed!important;bottom:88px!important;right:24px!important;z-index:2147483647!important;width:min(420px,calc(100vw - 32px))!important;height:550px!important;max-height:calc(100vh - 120px)!important;background:#ffffff!important;border:2px solid #003b46!important;border-radius:20px!important;box-shadow:0 25px 60px rgba(0,0,0,0.45)!important;display:none!important;flex-direction:column!important;overflow:hidden!important;font-family:'Roboto',Arial,Helvetica,sans-serif!important;}
-.an-setter-window.open{display:flex!important;}
-.an-setter-header{background:#003b46!important;color:#ffffff!important;padding:16px 20px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border-bottom:3px solid #e05e00!important;flex-shrink:0!important;}
-.an-setter-header-info h4{font-size:16px!important;font-weight:800!important;color:#ffffff!important;margin:0 0 3px 0!important;line-height:1.2!important;font-family:'Roboto',sans-serif!important;}
-.an-setter-header-info span{font-size:11px!important;color:#ffb07a!important;text-transform:uppercase!important;letter-spacing:0.06em!important;font-weight:700!important;display:block!important;}
-.an-setter-close{background:rgba(255,255,255,0.18)!important;color:#ffffff!important;border:1px solid rgba(255,255,255,0.35)!important;width:32px!important;height:32px!important;border-radius:8px!important;cursor:pointer!important;font-weight:900!important;font-size:14px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
-.an-setter-close:hover{background:#e05e00!important;}
-.an-setter-chips{padding:10px 14px!important;background:#e9f1f2!important;border-bottom:1px solid #cbd5e1!important;display:flex!important;gap:8px!important;overflow-x:auto!important;flex-shrink:0!important;}
-.an-setter-chip{background:#ffffff!important;color:#003b46!important;border:1px solid #003b46!important;padding:6px 12px!important;border-radius:999px!important;font-size:12px!important;font-weight:700!important;white-space:nowrap!important;cursor:pointer!important;transition:0.15s ease!important;}
-.an-setter-chip:hover{background:#e05e00!important;color:#ffffff!important;border-color:#e05e00!important;}
-.an-setter-messages{padding:16px!important;overflow-y:auto!important;flex:1!important;display:flex!important;flex-direction:column!important;gap:12px!important;background:#f1f5f9!important;}
-.an-s-msg{padding:12px 15px!important;border-radius:14px!important;font-size:13.5px!important;line-height:1.55!important;max-width:92%!important;word-wrap:break-word!important;text-align:left!important;}
-.an-s-msg.bot{background:#ffffff!important;border:1px solid #cbd5e1!important;color:#0f172a!important;align-self:flex-start!important;box-shadow:0 2px 6px rgba(0,0,0,0.06)!important;}
-.an-s-msg.bot strong{color:#003b46!important;font-weight:800!important;}
-.an-s-msg.user{background:#003b46!important;color:#ffffff!important;align-self:flex-end!important;font-weight:600!important;box-shadow:0 2px 6px rgba(0,59,70,0.25)!important;}
-.an-wa-cta{margin-top:10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:100%!important;background:#16a34a!important;color:#ffffff!important;text-decoration:none!important;padding:9px 14px!important;border-radius:8px!important;font-size:12.5px!important;font-weight:800!important;transition:background 0.2s ease!important;}
-.an-wa-cta:hover{background:#15803d!important;}
-.an-setter-input-area{padding:12px!important;background:#ffffff!important;border-top:1px solid #cbd5e1!important;display:flex!important;gap:8px!important;flex-shrink:0!important;}
-.an-setter-input{flex:1!important;background:#f8fafc!important;color:#0f172a!important;border:1.5px solid #94a3b8!important;border-radius:10px!important;padding:10px 12px!important;font-size:13.5px!important;outline:none!important;}
-.an-setter-input:focus{border-color:#003b46!important;background:#ffffff!important;}
-.an-setter-send{background:#e05e00!important;color:#ffffff!important;border:none!important;border-radius:10px!important;padding:0 18px!important;font-weight:800!important;font-size:13.5px!important;cursor:pointer!important;}
-.an-setter-send:hover{background:#c94f00!important;}
 </style>
 </head>
-
 <body>
 
-  <!-- HERO -->
-  <section class="hero-video-section">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="hero-gym-video.mp4" type="video/mp4" />
-    </video>
+<!-- Iconos SVG (se reutilizan en toda la página) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16v-4M12 16V8M17 16v-7"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9Z"/><path d="M19 3v4M17 5h4M5 17v4M3 19h4"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7Z"/></symbol>
+  <symbol id="i-frown" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2M9 9h.01M15 9h.01"/></symbol>
+  <symbol id="i-msg-x" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="m14.5 7.5-5 5M9.5 7.5l5 5"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><path d="M7 7h.01"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+</svg>
 
-    <div class="hero-overlay"></div>
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
 
-    <div class="hero-content container-narrow text-center px-5">
-      <p class="hero-label animate-fade-in">
-        ATENCIÓN DUEÑOS DE GIMNASIOS Y CENTROS DEPORTIVOS
-      </p>
+<!-- ════════ LOADER (transición hacia WhatsApp) ════════ -->
+<div id="page-loader" aria-hidden="true">
+  <div class="loader-ring"></div>
+  <div class="loader-ring"></div>
+  <div class="loader-ring"></div>
+  <div id="loader-center">
+    <div id="loader-logo-wrap"><img id="loader-logo" src="assets/img/mark-white.png" alt="" width="84" height="84" /></div>
+    <div id="loader-divider"></div>
+    <div id="loader-tagline">Conectando con Sergio <span class="loader-dots"><span></span><span></span><span></span></span></div>
+  </div>
+  <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
+</div>
 
-      <h1 class="hero-title">
-        CÓMO REACTIVAR DE
-        <span class="hero-title-accent">5 A 10 ANTIGUOS SOCIOS</span>
-        ESTA MISMA SEMANA SIN GASTAR UN EURO EN PUBLICIDAD
-      </h1>
-
-      <p class="hero-subtitle">
-        Olvídate de perseguir a gente por teléfono. Copia y pega este sistema de mensajes
-        probado para convertir tu "lista de bajas" en
-        <span class="hero-subtitle-accent">dinero fresco para la caja</span>
-        en menos de 48 horas.
-      </p>
-
-      <a
-        href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-cta"
-      >
-        👉 QUIERO EL PROTOCOLO POR 17€
-      </a>
-
-      <p class="hero-trust">Acceso Inmediato · Oferta Limitada</p>
-    </div>
-
-    <div class="scroll-hint">
-      <span class="scroll-hint-text">SCROLL</span>
-      <svg class="scroll-hint-arrow" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- PROBLEMA / AGITACIÓN -->
-  <section class="section-white py-12 md:py-24">
-    <div class="container-narrow">
-      <h2 class="font-display text-xl md:text-3xl lg:text-4xl text-center mb-7 text-heading">
-        Seamos sinceros:
-        <span class="text-orange">Estás sentado sobre una mina de oro</span>
-        y no lo sabes.
-      </h2>
-
-      <div class="space-y-4 text-sm md:text-base mb-8 text-body leading-relaxed">
-        <p>
-          Seguro que tienes un Excel en el ordenador, o una lista de contactos en el móvil,
-          llena de nombres de personas que entrenaron contigo y se fueron.
-        </p>
-        <p>
-          Ahora mismo, esa lista es un
-          <strong class="text-heading">cementerio digital</strong>.
-          Cada día que pasa sin que hagas nada con ella, estás perdiendo cientos de euros.
-        </p>
-        <p class="font-semibold text-heading">
-          Pero te entiendo, no les escribes porque:
-        </p>
-      </div>
-
-      <div class="space-y-3 mb-8">
-        <div class="problem-card">
-          <svg class="text-danger w-5 h-5 mt-0.5 flex-shrink-0"
-               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2.5">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="15" y1="9" x2="9" y2="15"/>
-            <line x1="9" y1="9" x2="15" y2="15"/>
-          </svg>
-          <div>
-            <p class="font-bold text-sm text-heading">No quieres parecer desesperado</p>
-            <p class="text-sm mt-0.5 text-body">
-              Odiarías ser ese vendedor pesado que molesta a la gente.
-            </p>
-          </div>
-        </div>
-
-        <div class="problem-card">
-          <svg class="text-danger w-5 h-5 mt-0.5 flex-shrink-0"
-               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2.5">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="15" y1="9" x2="9" y2="15"/>
-            <line x1="9" y1="9" x2="15" y2="15"/>
-          </svg>
-          <div>
-            <p class="font-bold text-sm text-heading">No sabes qué decir</p>
-            <p class="text-sm mt-0.5 text-body">
-              Tienes miedo de escribir y que te dejen en «visto» o te digan que no.
-            </p>
-          </div>
-        </div>
-
-        <div class="problem-card">
-          <svg class="text-danger w-5 h-5 mt-0.5 flex-shrink-0"
-               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2.5">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="15" y1="9" x2="9" y2="15"/>
-            <line x1="9" y1="9" x2="15" y2="15"/>
-          </svg>
-          <div>
-            <p class="font-bold text-sm text-heading">Crees que ya es tarde</p>
-            <p class="text-sm mt-0.5 text-body">
-              Piensas que se han ido a la competencia
-              <em>(Spoiler: La mayoría no están entrenando en ningún lado, están en el sofá).</em>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRESENTACIÓN DEL PROTOCOLO -->
-  <section class="section-hueso py-12 md:py-24">
-    <div class="container-narrow text-center">
-      <p class="text-orange font-semibold text-xs tracking-widest uppercase mb-3">
-        Presentamos
-      </p>
-
-      <h2 class="font-display text-xl md:text-3xl lg:text-4xl text-heading mb-3">
-        El Protocolo de Reactivación de Ex-Socios™
-      </h2>
-
-      <p class="text-sm md:text-xl text-body mb-8">
-        El sistema de «Copiar y Pegar» para llenar tus clases vacías.
-      </p>
-
-      <div class="card p-5 md:p-8 mb-8 text-left">
-        <p class="text-sm md:text-base text-body leading-relaxed mb-6">
-          No es un curso teórico de 10 horas. Es una
-          <strong class="text-heading">herramienta táctica de ejecución rápida</strong>.
-          He diseñado este protocolo para centros deportivos que necesitan facturar más
-          <span class="text-orange font-bold">HOY</span>.
-        </p>
-
-        <p class="font-semibold text-sm md:text-base text-heading mb-4">
-          Esto es lo que vas a conseguir:
-        </p>
-
-        <div class="space-y-3">
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-            </div>
-            <p class="text-sm md:text-base font-medium text-heading">
-              Abrir tu lista de antiguos clientes.
-            </p>
-          </div>
-
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <p class="text-sm md:text-base font-medium text-heading">
-              Copiar mis guiones psicológicos.
-            </p>
-          </div>
-
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                   stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <p class="text-sm md:text-base font-medium text-heading">
-              Ver cómo tu móvil empieza a recibir notificaciones de gente queriendo volver.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUÉ RECIBES -->
-  <section class="section-white py-12 md:py-24">
-    <div class="container-narrow">
-      <h2 class="text-heading text-center mb-2"
-          style="font-family:'Roboto',sans-serif;font-weight:900;font-size:clamp(1.4rem,3.5vw,2rem);text-transform:uppercase;letter-spacing:.02em">
-        ¿QUÉ RECIBES EXACTAMENTE POR
-        <span class="text-orange">17€</span>?
-      </h2>
-      <p class="text-center text-body text-sm mb-8">Cuatro recursos listos para usar hoy mismo.</p>
-
-      <div class="space-y-4">
-        <div class="item-card">
-          <div class="item-check">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="#16a34a" stroke-width="3" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-          </div>
-          <div>
-            <div class="flex items-start gap-2 mb-1">
-              <svg class="text-orange w-4 h-4 mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
-                   fill="none" viewBox="0 0 24 24" stroke="#ea580c" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 0 3-3h7z"/>
-              </svg>
-              <h3 class="font-bold text-sm md:text-base text-heading">
-                La Guía de Estrategia «Paso a Paso»
-              </h3>
-            </div>
-            <p class="ml-6 text-xs md:text-sm text-body">
-              Para que sepas exactamente a quién escribir (y a quién no) y en qué horario
-              hacerlo para asegurar la respuesta.
-            </p>
-          </div>
-        </div>
-
-        <div class="item-card">
-          <div class="item-check">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="#16a34a" stroke-width="3" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-start gap-2 mb-1">
-              <svg class="text-orange w-4 h-4 mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
-                   fill="none" viewBox="0 0 24 24" stroke="#ea580c" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              <h3 class="font-bold text-sm md:text-base text-heading">
-                Los 3 Scripts de WhatsApp «Rompehielos»
-              </h3>
-            </div>
-            <ul class="ml-6 mt-1 space-y-1">
-              <li class="text-xs md:text-sm text-body flex items-start gap-2">
-                <span class="text-orange font-bold flex-shrink-0">→</span>
-                <span>Mensaje 1: El de reconexión genuina (sin que parezca venta).</span>
-              </li>
-              <li class="text-xs md:text-sm text-body flex items-start gap-2">
-                <span class="text-orange font-bold flex-shrink-0">→</span>
-                <span>Mensaje 2: La Oferta Irresistible (El gancho).</span>
-              </li>
-              <li class="text-xs md:text-sm text-body flex items-start gap-2">
-                <span class="text-orange font-bold flex-shrink-0">→</span>
-                <span>Mensaje 3: La Urgencia (El cierre para indecisos).</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="item-card">
-          <div class="item-check">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="#16a34a" stroke-width="3" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-          </div>
-          <div>
-            <div class="flex items-start gap-2 mb-1">
-              <svg class="text-orange w-4 h-4 mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
-                   fill="none" viewBox="0 0 24 24" stroke="#ea580c" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline stroke-linecap="round" stroke-linejoin="round" points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-                <polyline stroke-linecap="round" stroke-linejoin="round" points="10 9 9 9 8 9"/>
-              </svg>
-              <h3 class="font-bold text-sm md:text-base text-heading">
-                El Manual de Cierre de 1 Hoja
-              </h3>
-            </div>
-            <p class="ml-6 text-xs md:text-sm text-body">
-              Qué responder exactamente cuando te digan «me lo tengo que pensar» o
-              «ahora no tengo dinero» para cerrar la matrícula.
-            </p>
-          </div>
-        </div>
-
-        <div class="item-card">
-          <div class="item-check">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="#16a34a" stroke-width="3" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-          </div>
-          <div>
-            <div class="flex items-start gap-2 mb-1">
-              <svg class="text-orange w-4 h-4 mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
-                   fill="none" viewBox="0 0 24 24" stroke="#ea580c" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7"/>
-                <rect x="14" y="3" width="7" height="7"/>
-                <rect x="14" y="14" width="7" height="7"/>
-                <rect x="3" y="14" width="7" height="7"/>
-              </svg>
-              <h3 class="font-bold text-sm md:text-base text-heading">Tracker de Resultados</h3>
-            </div>
-            <p class="ml-6 text-xs md:text-sm text-body">
-              Un Excel simple para que veas cuánto dinero estás recuperando en tiempo real.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BONUS -->
-  <section class="section-hueso py-12 md:py-24">
-    <div class="container-narrow">
-      <div class="text-center mb-8">
-        <div style="display:inline-flex;align-items:center;gap:.45rem;
-                    background:#fff7ed;border:1.5px solid #ea580c;border-radius:9999px;
-                    padding:.3rem 1rem;margin-bottom:1.25rem">
-          <svg style="width:1rem;height:1rem;flex-shrink:0" viewBox="0 0 24 24"
-               fill="none" stroke="#ea580c" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 12 20 22 4 22 4 12"/>
-            <rect x="2" y="7" width="20" height="5"/>
-            <line x1="12" y1="22" x2="12" y2="7"/>
-            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
-            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-          </svg>
-          <span style="font-family:'Roboto',sans-serif;font-weight:700;
-                       font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
-                       color:#ea580c">BONUS EXCLUSIVOS</span>
-        </div>
-
-        <h2 style="font-family:'Bebas Neue',Impact,sans-serif;
-                   font-size:clamp(1.8rem,5vw,2.8rem);
-                   font-weight:400;letter-spacing:.04em;text-transform:uppercase;
-                   color:#0f172a;line-height:1.1;margin-bottom:.75rem">
-          🎁 PERO ESPERA, ESO NO ES TODO…
-        </h2>
-
-        <p style="font-family:'Roboto',sans-serif;font-size:.9rem;color:#475569">
-          Con tu compra también recibes estos 3 bonus valorados en más de
-          <strong style="color:#0f172a">100€</strong>:
-        </p>
-      </div>
-
-      <div class="space-y-4">
-        <div style="background:#fff7ed;border:1.5px solid #fdba74;border-radius:.75rem;padding:1.25rem 1.5rem">
-          <div style="display:flex;align-items:flex-start;gap:.875rem;margin-bottom:.5rem">
-            <span style="font-size:2rem;flex-shrink:0;line-height:1.1">📘</span>
-            <div style="flex:1;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem">
-              <h3 style="font-family:'Roboto',sans-serif;font-weight:700;font-size:.875rem;
-                         color:#0f172a;text-transform:none;letter-spacing:normal;
-                         line-height:1.3;margin:0">
-                BONUS #1: El Antídoto «Low-Cost»
-              </h3>
-              <span style="flex-shrink:0;font-family:'Roboto',sans-serif;font-size:.78rem;
-                           font-weight:700;color:#ea580c;background:#fff7ed;
-                           border:1.5px solid #fdba74;border-radius:9999px;
-                           padding:.2rem .7rem;white-space:nowrap;line-height:1.5">
-                Valor 27€
-              </span>
-            </div>
-          </div>
-          <p style="font-family:'Roboto',sans-serif;font-size:.8125rem;
-                    color:#475569;line-height:1.65;margin:0;padding-left:2.875rem">
-            ¿Te da rabia que abran un gimnasio de cadena a 29,90€ cerca del tuyo?
-            En esta guía aprenderás cómo vender tu cuota a 50€, 60€ o más, haciendo
-            que el cliente perciba que el gimnasio barato es la peor opción.
-            Aprende a competir por VALOR, no por precio.
-          </p>
-        </div>
-
-        <div style="background:#fff7ed;border:1.5px solid #fdba74;border-radius:.75rem;padding:1.25rem 1.5rem">
-          <div style="display:flex;align-items:flex-start;gap:.875rem;margin-bottom:.5rem">
-            <span style="font-size:2rem;flex-shrink:0;line-height:1.1">📗</span>
-            <div style="flex:1;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem">
-              <h3 style="font-family:'Roboto',sans-serif;font-weight:700;font-size:.875rem;
-                         color:#0f172a;text-transform:none;letter-spacing:normal;
-                         line-height:1.3;margin:0">
-                BONUS #2: La Muralla de Retención
-              </h3>
-              <span style="flex-shrink:0;font-family:'Roboto',sans-serif;font-size:.78rem;
-                           font-weight:700;color:#ea580c;background:#fff7ed;
-                           border:1.5px solid #fdba74;border-radius:9999px;
-                           padding:.2rem .7rem;white-space:nowrap;line-height:1.5">
-                Valor 27€
-              </span>
-            </div>
-          </div>
-          <p style="font-family:'Roboto',sans-serif;font-size:.8125rem;
-                    color:#475569;line-height:1.65;margin:0;padding-left:2.875rem">
-            De nada sirve traer clientes si se van al mes siguiente.
-            Descubre el plan de acción para los «Primeros 30 Días» de un socio nuevo.
-            Si aplicas estos pequeños gestos, fidelizarás al cliente por años, no por semanas.
-          </p>
-        </div>
-
-        <div style="background:#fff7ed;border:1.5px solid #fdba74;border-radius:.75rem;padding:1.25rem 1.5rem">
-          <div style="display:flex;align-items:flex-start;gap:.875rem;margin-bottom:.5rem">
-            <span style="font-size:2rem;flex-shrink:0;line-height:1.1">📙</span>
-            <div style="flex:1;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem">
-              <h3 style="font-family:'Roboto',sans-serif;font-weight:700;font-size:.875rem;
-                         color:#0f172a;text-transform:none;letter-spacing:normal;
-                         line-height:1.3;margin:0">
-                BONUS #3: Dominando el Barrio en Google
-              </h3>
-              <span style="flex-shrink:0;font-family:'Roboto',sans-serif;font-size:.78rem;
-                           font-weight:700;color:#ea580c;background:#fff7ed;
-                           border:1.5px solid #fdba74;border-radius:9999px;
-                           padding:.2rem .7rem;white-space:nowrap;line-height:1.5">
-                Valor 47€
-              </span>
-            </div>
-          </div>
-          <p style="font-family:'Roboto',sans-serif;font-size:.8125rem;
-                    color:#475569;line-height:1.65;margin:0;padding-left:2.875rem">
-            Cuando alguien busca «Gimnasio cerca de mí»… ¿sales tú o sale tu competencia?
-            Te doy la Checklist de 10 puntos para optimizar tu ficha de Google Maps y
-            aparecer el primero en las búsquedas locales. Tráfico gratis y constante.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HAGAMOS NÚMEROS -->
-  <section class="section-white py-12 md:py-24">
-    <div class="container-narrow">
-      <div class="text-center mb-7">
-        <div style="display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="#ea580c" stroke-width="2" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-          <span class="text-orange font-semibold text-xs tracking-widest uppercase">
-            Lógica de Inversión
-          </span>
-        </div>
-        <h2 class="font-display text-xl md:text-3xl lg:text-4xl text-heading">
-          Hagamos Números
-        </h2>
-      </div>
-
-      <div class="number-box">
-        <p class="text-sm md:text-base mb-3" style="color:rgba(255,255,255,.75)">
-          El valor total de todo este pack supera los
-          <span class="line-through" style="opacity:.55">150€</span>.
-        </p>
-        <p class="text-lg md:text-2xl font-bold mb-7" style="color:#fff">
-          Pero hoy te lo llevas todo por
-          <span class="text-orange" style="font-size:1.75rem;vertical-align:baseline">17€</span>
-        </p>
-
-        <div class="space-y-3 text-sm md:text-base" style="color:rgba(255,255,255,.88)">
-          <p class="font-semibold text-base mb-3" style="color:#fff">Piénsalo un segundo:</p>
-
-          <div class="flex items-start gap-2">
-            <svg style="width:1rem;height:1rem;flex-shrink:0;margin-top:.25rem" viewBox="0 0 24 24"
-                 fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-              <polyline points="17 6 23 6 23 12"/>
-            </svg>
-            <p>Si tu cuota mensual media es de <strong style="color:#fff">40€</strong>…</p>
-          </div>
-
-          <div class="flex items-start gap-2">
-            <svg style="width:1rem;height:1rem;flex-shrink:0;margin-top:.25rem" viewBox="0 0 24 24"
-                 fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-              <polyline points="17 6 23 6 23 12"/>
-            </svg>
-            <p>Con que <strong style="color:#fff">SOLO UNO</strong> vuelva gracias a este pack…</p>
-          </div>
-
-          <div class="flex items-start gap-2">
-            <svg style="width:1rem;height:1rem;flex-shrink:0;margin-top:.25rem" viewBox="0 0 24 24"
-                 fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-              <polyline points="17 6 23 6 23 12"/>
-            </svg>
-            <p>
-              Ya has <strong style="color:#fff">recuperado tu inversión</strong> +
-              <strong class="text-orange">23€ de beneficio</strong>.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-7 p-4 rounded-lg" style="background:rgba(255,255,255,.1)">
-          <p class="text-base md:text-xl font-bold text-center" style="color:#fff">
-            Si vuelven 5 personas, ganas
-            <span class="text-orange" style="font-size:1.4rem">200€</span>.
-          </p>
-          <p class="text-center text-xs md:text-sm mt-1" style="color:rgba(255,255,255,.65)">
-            El riesgo es ridículo. El potencial es enorme.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUIÉN SOY + GARANTÍA -->
-  <section class="section-hueso py-12 md:py-24">
-    <div class="container-narrow">
-      <div class="grid md:grid-cols-2 gap-6 items-start">
-        <div class="py-2">
-          <div class="flex items-center gap-2 mb-4">
-            <svg style="color:#ea580c;width:1.15rem;height:1.15rem;flex-shrink:0"
-                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-            <h2 class="font-bold text-sm md:text-base uppercase tracking-wide" style="color:#0f172a;letter-spacing:.03em">
-              ¿Quién soy y por qué solo cuesta 17€?
-            </h2>
-          </div>
-
-          <div class="space-y-3 text-sm text-body leading-relaxed">
-            <p>
-              Soy <strong style="color:#0f172a">Sergio</strong>, consultor de crecimiento
-              para negocios deportivos. No soy un gurú inalcanzable, soy un profesional
-              que ayuda a dueños de gimnasios a simplificar su marketing.
-            </p>
-            <p>
-              <strong style="color:#0f172a">¿Por qué tan barato?</strong>
-              Porque sé que si pruebas este producto y te hago ganar dinero rápido,
-              confiarás en mí para cosas más grandes.
-            </p>
-            <p class="font-semibold" style="color:#0f172a">
-              Es mi forma de demostrarte que sé de lo que hablo, con resultados.
-            </p>
-          </div>
-        </div>
-
-        <div class="guarantee-box">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
-                 style="background:#dcfce7">
-              <svg class="text-success w-5 h-5" xmlns="http://www.w3.org/2000/svg"
-                   fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-lg md:text-xl text-heading">
-              Garantía de Hierro 30 Días
-            </h3>
-          </div>
-
-          <div class="space-y-2 text-xs md:text-sm text-body leading-relaxed">
-            <p>
-              No quiero tu dinero si no estás
-              <strong class="text-success">100% satisfecho</strong>.
-            </p>
-            <p>
-              Descarga el pack. Aplícalos. Si sientes que no vale el triple de lo que
-              has pagado, te devuelvo tus <strong class="text-heading">17€</strong>.
-            </p>
-            <p class="font-semibold text-heading">Sin preguntas. Sin letra pequeña.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <section class="hero-section py-14 md:py-28">
-    <div class="container-narrow text-center">
-      <h2 class="font-display text-xl md:text-3xl lg:text-4xl mb-4" style="color:#fff">
-        ¿Vas a dejar que esa lista siga cogiendo polvo o
-        <span class="text-orange">vas a reactivarla hoy</span>?
-      </h2>
-
-      <p class="text-sm md:text-lg mb-8" style="color:rgba(255,255,255,.75)">
-        El precio subirá pronto. Aprovecha el pack completo ahora.
-      </p>
-
-      <a href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2"
-         target="_blank" rel="noopener noreferrer"
-         class="btn-cta text-sm md:text-base">
-        👉 DESCARGAR EL PACK POR 17€
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor" stroke-width="2.5" class="w-4 h-4 ml-1">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-      </a>
-
-      <div class="flex items-center justify-center gap-5 mt-5 text-xs flex-wrap"
-           style="color:rgba(255,255,255,.5)">
-        <div class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-          </svg>
-          <span>Pago Seguro</span>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>
-          <span>Entrega inmediata</span>
-        </div>
-        <a href="https://app.activonorte.com" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-1.5 transition-colors hover:text-orange"
-           style="color:rgba(255,255,255,.5)">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
-          </svg>
-          <span>Página web</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="hero-section py-6 text-center" style="border-top:1px solid rgba(255,255,255,.1)">
-    <a href="https://app.activonorte.com" target="_blank" rel="noopener noreferrer"
-       class="text-sm transition-colors hover:text-orange"
-       style="color:rgba(255,255,255,.45)">
-      Creado por Activo Norte
+<!-- ════════ CABECERA ════════ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#inicio" class="brand" aria-label="Activonorte, ir al inicio">
+      <img src="assets/img/mark-white.png" alt="" width="32" height="32" />
+      <span>ACTIVONORTE</span>
     </a>
-  </footer>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#incluye">Qué incluye</a>
+      <a href="#copiloto">Copiloto IA</a>
+      <a href="#numeros">Números</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_header">Comprar · 17&nbsp;€</a>
+      <button class="hamburger" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil" hidden>
+    <a href="#como-funciona">Cómo funciona <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#incluye">Qué incluye <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#copiloto">Copiloto IA <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#numeros">Hagamos números <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#faq">Preguntas frecuentes <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-primary" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_mobile_menu">Quiero el protocolo · 17&nbsp;€</a>
+  </nav>
+</header>
 
-  <!-- WIDGET AGENTE SETTER B2B · ACTIVONORTE -->
-  <button class="an-setter-trigger" id="anSetterToggle">
-    <span class="an-setter-dot"></span>
-    Diagnóstico Gratuito · IA
-  </button>
+<main id="contenido">
 
-  <div class="an-setter-window" id="anSetterWindow">
-    <div class="an-setter-header">
-      <div class="an-setter-header-info">
-        <h4>Consultor Activonorte · IA</h4>
-        <span>Diagnóstico y Captación para Gimnasios</span>
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="inicio">
+  <video class="hero-video" id="heroVideo" muted loop playsinline preload="none"
+    poster="assets/video/hero-gym-poster.jpg" data-src="assets/video/hero-gym.mp4" aria-hidden="true" tabindex="-1"></video>
+  <div class="hero-shade"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="pill"><span class="pill-dot"></span> Para dueños de gimnasios y centros deportivos</p>
+      <h1>Reactiva de <span class="hl">5 a 10 antiguos socios</span> esta misma semana sin gastar un euro en publicidad</h1>
+      <p class="hero-lead">Olvídate de perseguir a gente por teléfono. Copia y pega este sistema de mensajes de WhatsApp probado y convierte tu «lista de bajas» en <strong>dinero fresco para la caja en menos de 48 horas.</strong></p>
+      <div class="hero-ctas" id="heroCtas">
+        <a class="btn btn-primary btn-lg btn-shine" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_hero">
+          Quiero el protocolo por 17&nbsp;€ <svg class="ico ico-arrow"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#incluye" data-track="hero_incluye">Ver qué incluye</a>
       </div>
-      <button class="an-setter-close" id="anSetterClose">✕</button>
+      <ul class="hero-trust">
+        <li><svg class="ico"><use href="#i-check"/></svg> Pago único, sin cuotas</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Acceso inmediato</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Garantía de 30 días</li>
+      </ul>
     </div>
 
-    <div class="an-setter-chips">
-      <button class="an-setter-chip" data-prompt="Quiero solicitar la Auditoría Gratuita de Google de 15 minutos">📈 Auditoría Gratuita</button>
-      <button class="an-setter-chip" data-prompt="Se me dan de baja socios cada mes, ¿cómo funciona el Protocolo 48H?">🔄 Frenar bajas (48H)</button>
-      <button class="an-setter-chip" data-prompt="¿Qué incluye el Pack Dominio Local y Growth Partner 360?">🚀 Servicios y Precios</button>
+    <div class="hero-visual">
+      <div class="phone-wrap" role="img" aria-label="Ejemplo ilustrativo: una ex-socia responde al mensaje Rompehielos y el Copiloto IA prepara la respuesta">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="wa-head">
+              <span class="wa-back">‹</span>
+              <span class="wa-avatar">L</span>
+              <div><strong>Laura</strong><span>Ex-socia · baja hace 5 meses</span></div>
+            </div>
+            <div class="wa-body">
+              <span class="wa-day">Martes</span>
+              <div class="wa-msg out">
+                Hola Laura 👋, soy Sergio…
+                <span class="wa-redact" style="width:100%"></span>
+                <span class="wa-redact" style="width:88%"></span>
+                <span class="wa-redact" style="width:62%"></span>
+                <span class="wa-tag"><svg class="ico"><use href="#i-lock"/></svg> Plantilla «Rompehielos»</span>
+                <span class="wa-time">13:42<b>✓✓</b></span>
+              </div>
+              <div class="wa-msg in">
+                ¡Hola Sergio! Qué ilusión 😊 La verdad es que tenía ganas de volver, pero ahora voy fatal de tiempo…
+                <span class="wa-time">13:58</span>
+              </div>
+              <div class="wa-typing"><i></i><i></i><i></i></div>
+            </div>
+            <div class="wa-input">
+              <span class="wa-field">Mensaje</span>
+              <span class="wa-mic"><svg class="ico"><use href="#i-send"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="float-card phase-float" aria-hidden="true">
+          <svg class="ico"><use href="#i-clock"/></svg>
+          <span><small>Fase 2</small>El primer impacto</span>
+        </div>
+        <div class="float-card copilot-float" aria-hidden="true">
+          <span class="cf-badge"><svg class="ico"><use href="#i-sparkles"/></svg> Copiloto IA</span>
+          <strong>Objeción detectada: «no tengo tiempo»</strong>
+          <p>Te propongo una respuesta lista para enviar →</p>
+        </div>
+      </div>
+      <p class="visual-note">Ilustración del sistema. Las plantillas completas están dentro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CIFRAS + PROBLEMA ════════ -->
+<section class="problem section" id="problema" aria-labelledby="problema-title">
+  <div class="container">
+    <div class="stats-grid reveal" role="list" aria-label="El protocolo en cifras">
+      <div class="stat" role="listitem"><strong>48<small>h</small></strong><span>Para ejecutar las 3 fases del protocolo</span></div>
+      <div class="stat" role="listitem"><strong>3<small>scripts</small></strong><span>Mensajes de WhatsApp listos para copiar y pegar</span></div>
+      <div class="stat" role="listitem"><strong>IA<small>incluida</small></strong><span>Un copiloto que te redacta la respuesta a cada objeción</span></div>
+      <div class="stat" role="listitem"><strong>30<small>días</small></strong><span>De garantía: si no te convence, te devuelvo tus 17&nbsp;€</span></div>
     </div>
 
-    <div class="an-setter-messages" id="anSetterMessages">
-      <div class="an-s-msg bot">
-        <strong>¡Hola! Bienvenido a Activonorte.</strong><br>
-        Ayudamos a gimnasios y centros deportivos a recuperar ex-socios en 48h y liderar las búsquedas en Google de su ciudad.<br><br>
-        Cuéntame, <strong>¿qué tipo de centro deportivo diriges y en qué ciudad estáis?</strong>
+    <div class="problem-grid">
+      <div class="problem-copy reveal">
+        <p class="eyebrow">Seamos sinceros</p>
+        <h2 class="h2" id="problema-title">Estás sentado sobre una <span class="accent">mina de oro</span> y no lo sabes</h2>
+        <p>Seguro que tienes un Excel en el ordenador, o una lista de contactos en el móvil, llena de nombres de personas que entrenaron contigo y se fueron.</p>
+        <p>Ahora mismo esa lista es un <strong>cementerio digital</strong>. Cada día que pasa sin que hagas nada con ella, estás perdiendo cientos de euros.</p>
+      </div>
+
+      <div class="pain-list">
+        <p class="pain-intro reveal">Pero te entiendo. No les escribes porque…</p>
+        <article class="pain-card reveal reveal-d1">
+          <div class="pain-ico"><svg class="ico"><use href="#i-frown"/></svg></div>
+          <div>
+            <h3>No quieres parecer desesperado</h3>
+            <p>Odiarías ser ese vendedor pesado que molesta a la gente.</p>
+          </div>
+        </article>
+        <article class="pain-card reveal reveal-d2">
+          <div class="pain-ico"><svg class="ico"><use href="#i-msg-x"/></svg></div>
+          <div>
+            <h3>No sabes qué decir</h3>
+            <p>Te da miedo escribir y que te dejen en «visto» o te digan que no.</p>
+          </div>
+        </article>
+        <article class="pain-card reveal reveal-d3">
+          <div class="pain-ico"><svg class="ico"><use href="#i-clock"/></svg></div>
+          <div>
+            <h3>Crees que ya es tarde</h3>
+            <p>Piensas que se han ido a la competencia. <em>Spoiler: la mayoría no entrena en ningún sitio. Está en el sofá.</em></p>
+          </div>
+        </article>
       </div>
     </div>
 
-    <form class="an-setter-input-area" id="anSetterForm">
-      <input type="text" class="an-setter-input" id="anSetterInput" placeholder="Escribe tu duda o tipo de gimnasio..." required />
-      <button type="submit" class="an-setter-send">Enviar</button>
-    </form>
+    <p class="pain-bridge reveal">No te falta una lista. <span>Te falta un sistema para escribirles.</span></p>
+  </div>
+</section>
+
+<!-- ════════ EL PROTOCOLO · CÓMO FUNCIONA ════════ -->
+<section class="section" id="como-funciona" aria-labelledby="protocolo-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Presentamos</p>
+      <h2 class="h2" id="protocolo-title">El Protocolo de Reactivación de Ex-Socios™</h2>
+      <p>El sistema de «copiar y pegar» para volver a llenar tus clases. No es un curso teórico de 10 horas: es una <strong>herramienta táctica de ejecución rápida</strong> para centros que necesitan facturar más <strong class="txt-orange">hoy</strong>. 48 horas, 3 fases y cero improvisación.</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal reveal-d1">
+        <div class="step-top">
+          <div class="step-num">01</div>
+          <span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 1 · Mañana</span>
+        </div>
+        <h3>Calibración y filtrado</h3>
+        <p>Exportas tu lista de bajas (de Trainingym, Resawod o un simple Excel) y aplicas el <strong>Filtro Oro</strong> y la <strong>Lista Negra</strong>. Solo escribes a quien tiene opciones reales de volver.</p>
+        <span class="step-meta"><svg class="ico"><use href="#i-book"/></svg> Guía de Estrategia + Tracker</span>
+      </li>
+      <li class="step reveal reveal-d2">
+        <div class="step-top">
+          <div class="step-num">02</div>
+          <span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 1 · Tarde</span>
+        </div>
+        <h3>El primer impacto</h3>
+        <p>Envías el mensaje <strong>Rompehielos</strong>, uno a uno y en las franjas horarias de <strong>El Cronómetro</strong>. Sin precios ni enlaces: solo reabres la conversación.</p>
+        <span class="step-meta"><svg class="ico"><use href="#i-chat"/></svg> 3 scripts de WhatsApp</span>
+      </li>
+      <li class="step reveal reveal-d3">
+        <div class="step-top">
+          <div class="step-num">03</div>
+          <span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 2</span>
+        </div>
+        <h3>Neutralización y cierre</h3>
+        <p>Cuando respondan, aplicas la regla del <strong>Tempomat</strong> y la <strong>Mentalidad Aikido</strong> para convertir cada «no tengo tiempo» o «es muy caro» en una visita a tu centro.</p>
+        <span class="step-meta"><svg class="ico"><use href="#i-sparkles"/></svg> Manual de cierre + Copiloto IA</span>
+      </li>
+    </ol>
+
+    <div class="method-cta reveal">
+      <p>Lo puedes empezar hoy mismo.</p>
+      <a class="btn btn-primary" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_metodo">Quiero el protocolo · 17&nbsp;€ <svg class="ico ico-arrow"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ QUÉ INCLUYE ════════ -->
+<section class="include-section section" id="incluye" aria-labelledby="incluye-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Qué incluye</p>
+      <h2 class="h2" id="incluye-title">Todo lo que recibes por 17&nbsp;€</h2>
+      <p>Acceso inmediato a tu Sala de Control privada, con todo el material listo para usar hoy mismo.</p>
+    </div>
+
+    <div class="inc-grid">
+      <article class="inc-card feature reveal">
+        <div class="inc-top">
+          <span class="inc-ico"><svg class="ico"><use href="#i-monitor"/></svg></span>
+          <span class="fmt">Área privada</span>
+        </div>
+        <h3>Sala de Control</h3>
+        <p>Tu panel paso a paso. Entras con tu correo y tu clave de licencia y sigues las 3 fases en el orden exacto, desde el móvil o el ordenador. Sin perderte entre archivos.</p>
+        <ul class="tag-list" aria-label="Características de la Sala de Control">
+          <li>Acceso inmediato</li><li>Móvil y ordenador</li><li>Todo en un solo sitio</li>
+        </ul>
+      </article>
+
+      <article class="inc-card reveal reveal-d1">
+        <div class="inc-top">
+          <span class="inc-ico"><svg class="ico"><use href="#i-book"/></svg></span>
+          <span class="fmt">PDF</span>
+        </div>
+        <h3>La Guía de Estrategia «Paso a Paso»</h3>
+        <p>Para que sepas exactamente a quién escribir (y a quién no) y en qué horario hacerlo para asegurar la respuesta.</p>
+      </article>
+
+      <article class="inc-card reveal">
+        <div class="inc-top">
+          <span class="inc-ico"><svg class="ico"><use href="#i-chat"/></svg></span>
+          <span class="fmt">PDF</span>
+        </div>
+        <h3>Los 3 Scripts de WhatsApp «Rompehielos»</h3>
+        <ul class="inc-list">
+          <li><svg class="ico"><use href="#i-arrow"/></svg><span><b>Mensaje 1:</b> la reconexión genuina (sin que parezca venta).</span></li>
+          <li><svg class="ico"><use href="#i-arrow"/></svg><span><b>Mensaje 2:</b> la oferta irresistible (el gancho).</span></li>
+          <li><svg class="ico"><use href="#i-arrow"/></svg><span><b>Mensaje 3:</b> la urgencia (el cierre para indecisos).</span></li>
+        </ul>
+      </article>
+
+      <article class="inc-card reveal reveal-d1">
+        <div class="inc-top">
+          <span class="inc-ico"><svg class="ico"><use href="#i-file"/></svg></span>
+          <span class="fmt">PDF</span>
+        </div>
+        <h3>El Manual de Cierre de 1 Hoja</h3>
+        <p>Qué responder exactamente cuando te digan «me lo tengo que pensar» o «ahora no tengo dinero» para cerrar la matrícula.</p>
+      </article>
+
+      <article class="inc-card reveal reveal-d2">
+        <div class="inc-top">
+          <span class="inc-ico"><svg class="ico"><use href="#i-chart"/></svg></span>
+          <span class="fmt">Excel</span>
+        </div>
+        <h3>Tracker de Resultados</h3>
+        <p>Un Excel sencillo para que veas cuánto dinero estás recuperando en tiempo real. Lo que no se mide, no se cobra.</p>
+      </article>
+
+      <article class="inc-card ai reveal">
+        <span class="inc-ico"><svg class="ico"><use href="#i-sparkles"/></svg></span>
+        <div class="inc-body">
+          <h3>Copiloto Táctico IA <span class="fmt new">Exclusivo</span></h3>
+          <p>Pega el mensaje del ex-socio y te redacta la respuesta con Mentalidad Aikido. Recuerda cada conversación para que nunca te quedes en blanco.</p>
+        </div>
+        <a class="btn btn-outline" href="#copiloto" data-track="inc_copiloto">Ver cómo funciona <svg class="ico"><use href="#i-down"/></svg></a>
+      </article>
+    </div>
+
+    <div class="value-band reveal">
+      <p><strong>Todo esto por menos de lo que cuesta una cuota mensual.</strong><span>Pago único · Acceso inmediato · Garantía de 30 días</span></p>
+      <a class="btn btn-primary" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_incluye">Quiero el protocolo · 17&nbsp;€ <svg class="ico ico-arrow"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ COPILOTO IA ════════ -->
+<section class="copilot-section section on-dark" id="copiloto" aria-labelledby="copiloto-title">
+  <div class="container copilot-grid">
+    <div class="copilot-copy reveal">
+      <p class="eyebrow">Copiloto Táctico IA</p>
+      <h2 class="h2" id="copiloto-title">¿Te han contestado y no sabes qué decir? Tu Copiloto te lo escribe</h2>
+      <p>Las objeciones son donde se pierden la mayoría de matrículas. Pega lo que te ha escrito el ex-socio y el Copiloto te devuelve una respuesta lista para enviar con <strong>Mentalidad Aikido</strong>: valida su postura, aísla el problema real y propone algo pequeño.</p>
+      <ul class="check-list">
+        <li><svg class="ico"><use href="#i-check"/></svg> Detecta la objeción y te propone la respuesta</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Memoria activa: recuerda la conversación de cada ex-socio</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Atajos para «no tengo tiempo», «es muy caro» o «voy a otro gym»</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Algo que ninguna plantilla gratis de internet te da</li>
+      </ul>
+    </div>
+
+    <div class="cd reveal reveal-d2">
+      <div class="cd-tabs" role="tablist" aria-label="Elige una objeción para ver la demo">
+        <button type="button" class="cd-tab" role="tab" id="cd-tab-tiempo" aria-selected="true" aria-controls="cdPanel" data-case="tiempo">⏱️ «No tengo tiempo»</button>
+        <button type="button" class="cd-tab" role="tab" id="cd-tab-precio" aria-selected="false" aria-controls="cdPanel" data-case="precio" tabindex="-1">💸 «Es muy caro»</button>
+        <button type="button" class="cd-tab" role="tab" id="cd-tab-gym" aria-selected="false" aria-controls="cdPanel" data-case="gym" tabindex="-1">🏋️ «Voy a otro gym»</button>
+      </div>
+      <div class="cd-window" id="cdPanel" role="tabpanel" aria-labelledby="cd-tab-tiempo">
+        <div class="cd-head">
+          <span class="cd-avatar"><img src="assets/img/mark-white.png" alt="" width="22" height="22" loading="lazy" /></span>
+          <div><strong>Copiloto Táctico · 48H</strong><span>Memoria activa por ex-socio</span></div>
+          <span class="cd-live">En línea</span>
+        </div>
+        <div class="cd-body">
+          <p class="cd-label">Lo que te ha escrito el ex-socio</p>
+          <div class="cd-bubble in" id="cdIn">Me encantaría volver, de verdad, pero con el trabajo y los niños ahora mismo no saco tiempo para nada 😩</div>
+          <p class="cd-strategy"><svg class="ico"><use href="#i-target"/></svg><span id="cdStrategy">Estrategia: solución exprés adaptada a su disponibilidad</span></p>
+          <p class="cd-label">Respuesta sugerida por el Copiloto</p>
+          <div class="cd-bubble out" id="cdOut" aria-live="polite">Te entiendo perfectamente, Laura, es justo lo que más nos cuenta la gente. Si el problema es el tiempo, no hace falta venir cinco días: con dos sesiones cortas a la semana ya se nota muchísimo. ¿Te cuadra que nos veamos 5 minutos y te enseño cómo encajarlo en tu semana?</div>
+          <div class="cd-actions">
+            <button type="button" class="cd-copy" id="cdCopy"><svg class="ico"><use href="#i-copy"/></svg> <span>Copiar respuesta</span></button>
+            <span class="cd-flow">Valida · Aísla · Propón</span>
+          </div>
+        </div>
+      </div>
+      <p class="cd-note">Respuestas de ejemplo. Dentro, el Copiloto las redacta para cada conversación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BONUS ════════ -->
+<section class="section" id="bonus" aria-labelledby="bonus-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Bonus incluidos</p>
+      <h2 class="h2" id="bonus-title">Pero espera, eso no es todo…</h2>
+      <p>Con tu compra también te llevas estos 3 bonus valorados en <strong>más de 100&nbsp;€</strong>. Para que, además de recuperar socios, no se te vuelvan a ir.</p>
+    </div>
+
+    <div class="bonus-grid">
+      <article class="bonus-card reveal reveal-d1">
+        <div class="bonus-top"><span class="bonus-num">Bonus #1</span><span class="bonus-val"><s>27&nbsp;€</s>Gratis</span></div>
+        <span class="bonus-ico"><svg class="ico"><use href="#i-tag"/></svg></span>
+        <h3>El Antídoto «Low-Cost»</h3>
+        <p>¿Te da rabia que abran un gimnasio de cadena a 29,90&nbsp;€ cerca del tuyo? Aprende a vender tu cuota a 50&nbsp;€, 60&nbsp;€ o más, haciendo que el cliente perciba el barato como la peor opción. <strong>Compite por valor, no por precio.</strong></p>
+      </article>
+      <article class="bonus-card reveal reveal-d2">
+        <div class="bonus-top"><span class="bonus-num">Bonus #2</span><span class="bonus-val"><s>27&nbsp;€</s>Gratis</span></div>
+        <span class="bonus-ico"><svg class="ico"><use href="#i-heart"/></svg></span>
+        <h3>La Muralla de Retención</h3>
+        <p>De nada sirve traer clientes si se van al mes siguiente. Descubre el plan de acción para los <strong>«primeros 30 días»</strong> de un socio nuevo: pequeños gestos que lo fidelizan durante años, no semanas.</p>
+      </article>
+      <article class="bonus-card reveal reveal-d3">
+        <div class="bonus-top"><span class="bonus-num">Bonus #3</span><span class="bonus-val"><s>47&nbsp;€</s>Gratis</span></div>
+        <span class="bonus-ico"><svg class="ico"><use href="#i-pin"/></svg></span>
+        <h3>Dominando el Barrio en Google</h3>
+        <p>Cuando alguien busca «gimnasio cerca de mí»… ¿sales tú o sale tu competencia? La <strong>checklist de 10 puntos</strong> para optimizar tu ficha de Google Maps y aparecer el primero en las búsquedas locales.</p>
+      </article>
+    </div>
+
+    <p class="bonus-total reveal">Valor de los bonus: <strong>101&nbsp;€</strong>. Para ti, <strong>incluidos sin coste</strong> con el protocolo.</p>
+  </div>
+</section>
+
+<!-- ════════ HAGAMOS NÚMEROS ════════ -->
+<section class="calc-section section on-dark" id="numeros" aria-labelledby="numeros-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Hagamos números</p>
+      <h2 class="h2" id="numeros-title">Con que vuelva una sola persona, ya lo has pagado</h2>
+      <p>Mueve los valores con los datos de tu centro y mira lo que puede valer tu lista de bajas.</p>
+    </div>
+
+    <div class="calc reveal" id="calc">
+      <form class="calc-inputs" onsubmit="return false" aria-label="Datos de tu centro">
+        <h3>Tus números</h3>
+        <p>Aproximados valen. Nada de esto se envía a ningún sitio.</p>
+
+        <div class="field">
+          <div class="field-top">
+            <label for="c-cuota-r">Cuota media mensual</label>
+            <span class="num-wrap"><input type="number" id="c-cuota" inputmode="numeric" min="10" max="150" step="1" value="40" aria-label="Cuota media mensual en euros" /><span>€/mes</span></span>
+          </div>
+          <input type="range" id="c-cuota-r" min="10" max="150" step="1" value="40" data-pair="c-cuota" />
+          <div class="range-scale"><span>10 €</span><span>150 €</span></div>
+        </div>
+
+        <div class="field">
+          <div class="field-top">
+            <label for="c-vuelven-r">Ex-socios que vuelven</label>
+            <span class="num-wrap"><input type="number" id="c-vuelven" inputmode="numeric" min="1" max="20" step="1" value="5" aria-label="Ex-socios que vuelven" /><span id="u-vuelven">socios</span></span>
+          </div>
+          <input type="range" id="c-vuelven-r" min="1" max="20" step="1" value="5" data-pair="c-vuelven" />
+          <div class="range-scale"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="field">
+          <div class="field-top">
+            <label for="c-meses-r">Meses que se quedan</label>
+            <span class="num-wrap"><input type="number" id="c-meses" inputmode="numeric" min="1" max="12" step="1" value="1" aria-label="Meses que se quedan" /><span id="u-meses">mes</span></span>
+          </div>
+          <input type="range" id="c-meses-r" min="1" max="12" step="1" value="1" data-pair="c-meses" />
+          <div class="range-scale"><span>1 mes</span><span>12 meses</span></div>
+        </div>
+      </form>
+
+      <div class="calc-results" aria-live="polite">
+        <div class="res-row">
+          <div class="res">
+            <small>Dinero recuperado</small>
+            <strong><span id="r-ingresos">200</span>&nbsp;€</strong>
+            <span class="res-sub">con <b id="r-socios">5 socios</b> durante <b id="r-meses">1 mes</b></span>
+          </div>
+          <div class="res">
+            <small>Retorno</small>
+            <strong><span id="r-roi">11,8</span>×</strong>
+            <span class="res-sub">lo que pagas por el protocolo</span>
+          </div>
+        </div>
+        <div class="res-bars" aria-hidden="true">
+          <div class="bar-row"><span>Inviertes</span><div class="bar"><i id="r-bar-in"></i></div><b>17 €</b></div>
+          <div class="bar-row"><span>Recuperas</span><div class="bar good"><i id="r-bar-out"></i></div><b id="r-ingresos2">200 €</b></div>
+        </div>
+        <p class="res-insight" id="r-insight">Con <strong>1 solo socio</strong> que vuelva un mes ya cubres los 17&nbsp;€ y te sobran <strong>23&nbsp;€</strong>.</p>
+        <a class="btn btn-primary btn-lg btn-block" id="calcCta" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_calc"><span>Quiero recuperar esos <span id="r-cta">200</span>&nbsp;€</span> <svg class="ico ico-arrow"><use href="#i-arrow"/></svg></a>
+        <p class="calc-note">Estimación orientativa: socios que vuelven × cuota media × meses. No es una promesa de resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ COMPARATIVA ════════ -->
+<section class="compare-section section" id="comparativa" aria-labelledby="comparativa-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Comparativa</p>
+      <h2 class="h2" id="comparativa-title">¿Por qué no usar plantillas gratis de internet?</h2>
+      <p>Porque un mensaje suelto no es un sistema. Esta es la diferencia.</p>
+    </div>
+
+    <div class="compare-wrap reveal" role="region" aria-labelledby="comparativa-title" tabindex="0">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Criterio</span></th>
+            <th scope="col" class="is-us"><span class="brand-cell"><img src="assets/img/mark-white.png" alt="" width="20" height="20" loading="lazy" />El Protocolo</span></th>
+            <th scope="col">Plantillas gratis</th>
+            <th scope="col">Anuncios para captar gente nueva</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Sabes a quién escribir (y a quién no)</th>
+            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Filtro Oro y Lista Negra</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>A todos por igual</span></td>
+            <td><span class="cell"><span class="mk meh"><svg class="ico"><use href="#i-minus"/></svg></span>Gente que no te conoce</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Sabes cuándo enviar para que contesten</th>
+            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Días y franjas marcadas</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Cuando te acuerdes</span></td>
+            <td><span class="cell"><span class="mk meh"><svg class="ico"><use href="#i-minus"/></svg></span>Lo decide el algoritmo</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Sabes qué responder a las objeciones</th>
+            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Manual de cierre + Copiloto IA</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Te quedas solo</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Te quedas solo</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Mides el dinero que recuperas</th>
+            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Tracker de resultados</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Sin seguimiento</span></td>
+            <td><span class="cell"><span class="mk meh"><svg class="ico"><use href="#i-minus"/></svg></span>Clics y alcance</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Coste</th>
+            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>17 € una sola vez</span></td>
+            <td><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Gratis</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Presupuesto cada mes</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Garantía si no te funciona</th>
+            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>30 días de devolución</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>No</span></td>
+            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>No</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-tip">Desliza la tabla hacia los lados para ver todas las columnas →</p>
+  </div>
+</section>
+
+<!-- ════════ QUIÉN SOY + GARANTÍA ════════ -->
+<section class="section" id="garantia">
+  <div class="container trust-grid">
+    <article class="founder reveal">
+      <div class="founder-head">
+        <span class="founder-avatar"><img src="assets/img/mark-teal.png" alt="" width="42" height="42" loading="lazy" /></span>
+        <div>
+          <p class="eyebrow">Quién está detrás</p>
+          <h2>¿Quién soy y por qué solo cuesta 17&nbsp;€?</h2>
+        </div>
+      </div>
+      <p>Soy <strong>Sergio Gómez</strong>, fundador de Activonorte y consultor de crecimiento para negocios deportivos. No soy un gurú inalcanzable: soy un profesional que ayuda a dueños de gimnasios a simplificar su marketing.</p>
+      <p><strong>¿Por qué tan barato?</strong> Porque sé que si pruebas este protocolo y te hago ganar dinero rápido, confiarás en mí para cosas más grandes.</p>
+      <p class="founder-quote">Es mi forma de demostrarte que sé de lo que hablo: con resultados.</p>
+      <a class="founder-link" href="https://app.activonorte.com" target="_blank" rel="noopener" data-track="web_founder">Conoce Activonorte <svg class="ico"><use href="#i-ext"/></svg></a>
+    </article>
+
+    <article class="guarantee reveal reveal-d2">
+      <div class="seal" aria-hidden="true"><span>30</span><small>días</small></div>
+      <p class="eyebrow">Riesgo cero</p>
+      <h2>Garantía de Hierro de 30 días</h2>
+      <p>No quiero tu dinero si no estás <strong>100&nbsp;% satisfecho</strong>.</p>
+      <p>Descarga el pack y aplícalo. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17&nbsp;€.</p>
+      <p class="guarantee-strong">Sin preguntas. Sin letra pequeña.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ════════ PREGUNTAS FRECUENTES ════════ -->
+<section class="faq-section section" id="faq" aria-labelledby="faq-title">
+  <div class="container faq-layout">
+    <div class="faq-aside reveal">
+      <div class="section-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="h2" id="faq-title">Lo que te preguntas antes de comprar</h2>
+      </div>
+      <div class="faq-help">
+        <p>¿Tienes otra duda?</p>
+        <span>Escríbeme directamente y te respondo yo.</span>
+        <a class="btn btn-outline btn-block" href="https://wa.me/34610387276?text=Hola%20Sergio%2C%20tengo%20una%20duda%20sobre%20el%20Protocolo%20de%20Reactivaci%C3%B3n%20antes%20de%20comprarlo." target="_blank" rel="noopener" data-loader data-track="wa_faq"><svg class="ico"><use href="#i-chat"/></svg> Preguntar por WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="faq-list reveal reveal-d1">
+      <details class="faq-item">
+        <summary>¿Cómo recibo el protocolo? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Al momento. Tras el pago recibes por correo la confirmación de compra con tu <strong>clave de acceso a la Sala de Control</strong>, donde tienes todo el material, los bonus y el Copiloto IA. Si ya eres cliente, entra desde el <a href="sala-de-control.html">Área de clientes</a>.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Es un pago único o una suscripción? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer"><strong>Pago único de 17&nbsp;€.</strong> Sin cuotas ni renovaciones.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Me sirve si tengo un box, un estudio de entrenamiento personal o un centro de yoga o pilates? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Sí. Funciona en <strong>cualquier centro deportivo con cuota mensual</strong> y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Necesito algún programa o conocimientos técnicos? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">No. Solo necesitas tu lista de ex-socios (la puedes exportar de tu software de gestión, como Trainingym o Resawod, o tenerla en un Excel o en el móvil) y <strong>WhatsApp</strong>. Todo lo demás está explicado paso a paso.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Y si tengo pocos ex-socios? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Con que vuelva <strong>uno solo</strong>, ya has recuperado la inversión. Además, el Filtro Oro te ayuda a centrarte en quienes tienen más opciones de volver, así que también saca partido a una lista corta.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿No voy a parecer pesado o que hago spam? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Al contrario. Los mensajes se envían <strong>uno a uno, nunca por listas de difusión</strong>, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuánto tiempo me va a llevar? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">El protocolo está diseñado para ejecutarse en <strong>48 horas</strong>: una mañana para preparar la lista y después mensajes individuales en franjas horarias concretas. Unos minutos por contacto.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Y si no me funciona? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Tienes <strong>30 días de garantía</strong>. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17&nbsp;€. Sin preguntas y sin letra pequeña.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Es seguro el pago? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Sí. El pago se procesa a través de <strong>Lemon Squeezy</strong>, una pasarela de pago segura. Nosotros nunca vemos los datos de tu tarjeta.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CTA FINAL ════════ -->
+<section class="cta-final section" id="comprar" aria-labelledby="comprar-title">
+  <div class="container cta-grid">
+    <div class="cta-copy reveal">
+      <p class="eyebrow" style="color:var(--orange-light)">Tu turno</p>
+      <h2 id="comprar-title">¿Vas a dejar que esa lista siga cogiendo polvo o <span class="hl">vas a reactivarla hoy</span>?</h2>
+      <p>El precio subirá pronto. Aprovecha ahora el pack completo con los 3 bonus incluidos.</p>
+      <ul class="cta-points">
+        <li><svg class="ico"><use href="#i-check"/></svg> Acceso inmediato a tu Sala de Control</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Listo para ejecutar en 48 horas</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Garantía de devolución de 30 días</li>
+      </ul>
+    </div>
+
+    <div class="order-card reveal reveal-d2">
+      <span class="order-tag">Pack completo</span>
+      <h3>Protocolo de Reactivación de Ex-Socios™</h3>
+      <ul class="order-list">
+        <li><svg class="ico"><use href="#i-check"/></svg> Sala de Control + Copiloto Táctico IA</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Guía de Estrategia «Paso a Paso»</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> 3 Scripts de WhatsApp «Rompehielos»</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Manual de Cierre de 1 Hoja</li>
+        <li><svg class="ico"><use href="#i-check"/></svg> Tracker de Resultados (Excel)</li>
+        <li class="is-bonus"><svg class="ico"><use href="#i-gift"/></svg> Bonus #1: El Antídoto «Low-Cost» <span class="v">27&nbsp;€</span></li>
+        <li class="is-bonus"><svg class="ico"><use href="#i-gift"/></svg> Bonus #2: La Muralla de Retención <span class="v">27&nbsp;€</span></li>
+        <li class="is-bonus"><svg class="ico"><use href="#i-gift"/></svg> Bonus #3: Dominando el Barrio en Google <span class="v">47&nbsp;€</span></li>
+      </ul>
+      <div class="order-price">
+        <div>
+          <span class="was">Valor total: <s>más de 150&nbsp;€</s></span>
+          <strong>17&nbsp;€</strong>
+        </div>
+        <span class="once"><b>Pago único</b>Sin cuotas</span>
+      </div>
+      <a class="btn btn-primary btn-lg btn-block btn-shine" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_final">Descargar el pack por 17&nbsp;€ <svg class="ico ico-arrow"><use href="#i-arrow"/></svg></a>
+      <ul class="secure-row">
+        <li><svg class="ico"><use href="#i-lock"/></svg> Pago seguro</li>
+        <li><svg class="ico"><use href="#i-zap"/></svg> Acceso inmediato</li>
+        <li><svg class="ico"><use href="#i-shield"/></svg> Garantía 30 días</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════ PIE ════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#inicio" class="brand" aria-label="Activonorte, volver arriba"><img src="assets/img/mark-white.png" alt="" width="32" height="32" loading="lazy" /><span>ACTIVONORTE</span></a>
+        <p>Consultoría de marketing deportivo especializada en gimnasios y centros deportivos. Hecho en Cantabria.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">El protocolo</p>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#incluye">Qué incluye</a>
+        <a href="#copiloto">Copiloto IA</a>
+        <a href="#faq">Preguntas frecuentes</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Activonorte</p>
+        <a href="https://app.activonorte.com" target="_blank" rel="noopener" data-track="web_footer">Web de Activonorte</a>
+        <a href="sala-de-control.html" data-track="area_clientes">Área de clientes</a>
+        <a href="https://wa.me/34610387276?text=Hola%20Sergio%2C%20vengo%20de%20la%20p%C3%A1gina%20del%20Protocolo%20de%20Reactivaci%C3%B3n." target="_blank" rel="noopener" data-loader data-track="wa_footer">WhatsApp: +34 610 38 72 76</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> Activonorte. Todos los derechos reservados.</p>
+      <p>Pago procesado de forma segura por Lemon Squeezy</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════ BARRA DE COMPRA FIJA (móvil) ════════ -->
+<div class="buy-bar" id="buyBar">
+  <div>
+    <strong>Protocolo de Reactivación</strong>
+    <span><s>150 €</s><b>17&nbsp;€</b> · pago único</span>
+  </div>
+  <a class="btn btn-primary btn-sm" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_sticky">Comprar ahora</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     ASISTENTE IA · SETTER B2B · ACTIVONORTE
+════════════════════════════════════════════════════════════ -->
+<button class="chat-trigger" id="chatToggle" type="button" aria-expanded="false" aria-controls="chatWindow">
+  <span class="chat-dot" aria-hidden="true"></span>
+  <span>¿Dudas?<span class="long"> Pregunta a la IA</span></span>
+</button>
+
+<div class="chat-window" id="chatWindow" role="dialog" aria-label="Asistente de Activonorte">
+  <div class="chat-header">
+    <div class="chat-avatar"><img src="assets/img/mark-white.png" alt="" width="24" height="24" loading="lazy" /></div>
+    <div class="chat-header-info">
+      <strong>Consultor Activonorte · IA</strong>
+      <span>Resuelve tus dudas antes de comprar</span>
+    </div>
+    <button type="button" class="chat-close" id="chatClose" aria-label="Cerrar asistente"><svg class="ico"><use href="#i-x"/></svg></button>
   </div>
 
-  <!-- SCRIPTS -->
-  <script>
-    (function () {
-      var hint = document.querySelector('.scroll-hint');
-      if (!hint) return;
+  <div class="chat-chips">
+    <button type="button" class="chat-chip" data-prompt="¿Qué incluye exactamente el Protocolo de Reactivación de 17€?">📦 ¿Qué incluye?</button>
+    <button type="button" class="chat-chip" data-prompt="¿El Protocolo de Reactivación sirve para mi tipo de centro deportivo?">🏋️ ¿Sirve para mi centro?</button>
+    <button type="button" class="chat-chip" data-prompt="Quiero solicitar la Auditoría Gratuita de Google de 15 minutos">📈 Auditoría gratuita</button>
+  </div>
 
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 80) {
-          hint.classList.add('hidden');
-        } else {
-          hint.classList.remove('hidden');
-        }
-      }, { passive: true });
+  <div class="chat-messages" id="chatMessages" aria-live="polite">
+    <div class="chat-msg bot">
+      <strong>¡Hola! Soy el asistente de Activonorte.</strong><br>
+      Si tienes cualquier duda sobre el Protocolo de Reactivación, pregúntame.<br><br>
+      Para empezar, <strong>¿qué tipo de centro deportivo diriges y en qué ciudad estáis?</strong>
+    </div>
+  </div>
 
-      hint.addEventListener('click', function () {
-        var hero = document.querySelector('.hero-video-section');
-        if (hero) {
-          var next = hero.nextElementSibling;
-          if (next) next.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    })();
+  <form class="chat-form" id="chatForm">
+    <label for="chatInput" class="sr-only">Escribe tu mensaje</label>
+    <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu duda o tipo de gimnasio…" autocomplete="off" required />
+    <button type="submit" class="chat-send" id="chatSend">Enviar</button>
+  </form>
+</div>
 
-    (function() {
-      const sToggle = document.getElementById("anSetterToggle");
-      const sWindow = document.getElementById("anSetterWindow");
-      const sClose = document.getElementById("anSetterClose");
-      const sForm = document.getElementById("anSetterForm");
-      const sInput = document.getElementById("anSetterInput");
-      const sMessages = document.getElementById("anSetterMessages");
-      const chatHistory = [];
+<script>
+(function () {
+  'use strict';
 
-      sToggle.addEventListener("click", () => sWindow.classList.toggle("open"));
-      sClose.addEventListener("click", () => sWindow.classList.remove("open"));
+  var WA_NUMBER = '34610387276';
+  var CHECKOUT_URL = 'https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2';
+  var PRICE = 17;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function waLink(text) { return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text); }
+  function fmt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function fmtDec(n) { var r = Math.round(n * 10) / 10; return (r % 1 === 0 ? String(r) : r.toFixed(1)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 
-      document.querySelectorAll(".an-setter-chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          sendSetterPrompt(chip.getAttribute("data-prompt"));
-        });
-      });
-
-      sForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const text = sInput.value.trim();
-        if (!text) return;
-        sInput.value = "";
-        sendSetterPrompt(text);
-      });
-
-      function addMsg(html, type) {
-        const div = document.createElement("div");
-        div.className = "an-s-msg " + type;
-        div.innerHTML = html;
-        sMessages.appendChild(div);
-        sMessages.scrollTop = sMessages.scrollHeight;
-        return div;
+  /* ── MEDICIÓN DE CONVERSIONES ─────────────────────────────
+     Si añades Google Analytics, Tag Manager o el Pixel de Meta,
+     estos eventos (compras, WhatsApp, demo del Copiloto…) les
+     llegan automáticamente. Los clics de compra envían
+     «InitiateCheckout» al Pixel de Meta. */
+  function track(name, params) {
+    try {
+      params = params || {};
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: name }, params));
+      if (typeof window.gtag === 'function') window.gtag('event', name, params);
+      if (typeof window.fbq === 'function') {
+        if (name.indexOf('buy_') === 0) window.fbq('track', 'InitiateCheckout', { value: PRICE, currency: 'EUR' });
+        if (name.indexOf('wa_') === 0) window.fbq('track', 'Contact');
       }
+    } catch (e) {}
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-track]');
+    if (el && el.tagName !== 'BUTTON') track(el.getAttribute('data-track'));
+  });
 
-      async function sendSetterPrompt(text) {
-        addMsg(text, "user");
-        const loading = addMsg("Analizando el caso de tu centro deportivo...", "bot");
-
-        try {
-          const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/setter", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text, history: chatHistory })
-          });
-          if (!res.ok) throw new Error("Fallback");
-          const data = await res.json();
-          chatHistory.push({ role: "user", text: text });
-          chatHistory.push({ role: "assistant", text: data.reply });
-
-          loading.innerHTML = data.reply + '<br><a href="' + data.waUrl + '" target="_blank" rel="noopener noreferrer" class="an-wa-cta">📲 Agendar Auditoría de 15 min por WhatsApp →</a>';
-        } catch (err) {
-          const fallbackWa = "https://wa.me/34610387276?text=" + encodeURIComponent("Hola Sergio, vengo de la web de Activonorte y quiero información para mi gimnasio: " + text);
-          loading.innerHTML = 'En Activonorte diseñamos estrategias a medida según el volumen de socios y la competencia de tu barrio. Para darte números exactos, hacemos primero una <strong>Auditoría Gratuita de 15 minutos</strong> viendo tu ficha de Google en directo.<br><a href="' + fallbackWa + '" target="_blank" rel="noopener noreferrer" class="an-wa-cta">📲 Hablar con Sergio por WhatsApp →</a>';
-        }
-        sMessages.scrollTop = sMessages.scrollHeight;
+  /* ── LOADER (pantalla de transición hacia WhatsApp) ─────── */
+  var loader = document.getElementById('page-loader');
+  var loaderBar = document.getElementById('loader-bar');
+  function showLoader(url) {
+    if (reduceMotion) {
+      var w = window.open(url, '_blank');
+      if (w) { try { w.opener = null; } catch (e) {} } else { window.location.href = url; }
+      return;
+    }
+    var nuevaPestana = window.open('', '_blank');
+    loaderBar.style.animation = 'none';
+    void loaderBar.offsetHeight;
+    loaderBar.style.animation = '';
+    loader.classList.add('active');
+    loader.setAttribute('aria-hidden', 'false');
+    setTimeout(function () {
+      if (nuevaPestana && !nuevaPestana.closed) {
+        try { nuevaPestana.opener = null; } catch (e) {}
+        nuevaPestana.location.href = url;
+      } else {
+        window.location.href = url;
       }
-    })();
-  </script>
+      setTimeout(function () { loader.classList.remove('active'); loader.setAttribute('aria-hidden', 'true'); }, 500);
+    }, 1050);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-loader]');
+    if (!a || e.defaultPrevented) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    showLoader(a.href);
+  });
 
+  /* ── CABECERA ──────────────────────────────────────────── */
+  var header = document.getElementById('siteHeader');
+  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 12); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── MENÚ MÓVIL ────────────────────────────────────────── */
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  function setMenu(open) {
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    mobileNav.hidden = !open;
+    header.classList.toggle('menu-open', open);
+  }
+  menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
+  mobileNav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 960) setMenu(false); });
+
+  /* ── VÍDEO DEL HERO ────────────────────────────────────────
+     Solo se descarga si el visitante no ha pedido «menos movimiento»
+     ni «ahorro de datos». Se pausa al salir de pantalla. */
+  var vid = document.getElementById('heroVideo');
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (vid && !reduceMotion && !saveData) {
+    vid.src = vid.getAttribute('data-src');
+    var playVid = function () { var p = vid.play(); if (p && p.catch) p.catch(function () {}); };
+    playVid();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) playVid(); else vid.pause();
+      }).observe(vid);
+    }
+  }
+
+  /* ── ANIMACIONES DE ENTRADA ────────────────────────────── */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('visible');
+        ro.unobserve(el);
+        setTimeout(function () { el.classList.remove('reveal', 'visible', 'reveal-d1', 'reveal-d2', 'reveal-d3'); }, 1200);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { ro.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ── MENÚ: SECCIÓN ACTIVA ──────────────────────────────── */
+  var navLinks = document.querySelectorAll('.main-nav a');
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['inicio', 'problema', 'como-funciona', 'incluye', 'copiloto', 'bonus', 'numeros', 'comparativa', 'garantia', 'faq', 'comprar'].forEach(function (id) {
+      var s = document.getElementById(id); if (s) spy.observe(s);
+    });
+  }
+
+  /* ── CALCULADORA «HAGAMOS NÚMEROS» ─────────────────────── */
+  function paint(range) {
+    var p = (range.value - range.min) / (range.max - range.min) * 100;
+    range.style.setProperty('--p', p + '%');
+  }
+  function val(id) { return parseFloat(document.getElementById(id).value) || 0; }
+  function setText(id, text) { document.getElementById(id).textContent = text; }
+  function updateCalc() {
+    var cuota = val('c-cuota-r'), socios = val('c-vuelven-r'), meses = val('c-meses-r');
+    var ingresos = cuota * socios * meses;
+    var max = Math.max(ingresos, PRICE);
+    var minSocios = Math.max(1, Math.ceil(PRICE / cuota));
+    var sobra = minSocios * cuota - PRICE;
+    setText('r-ingresos', fmt(ingresos));
+    setText('r-ingresos2', fmt(ingresos) + ' €');
+    setText('r-socios', socios === 1 ? '1 socio' : fmt(socios) + ' socios');
+    setText('r-meses', meses === 1 ? '1 mes' : meses + ' meses');
+    setText('r-roi', fmtDec(ingresos / PRICE));
+    setText('r-cta', fmt(ingresos));
+    setText('u-vuelven', socios === 1 ? 'socio' : 'socios');
+    setText('u-meses', meses === 1 ? 'mes' : 'meses');
+    document.getElementById('r-bar-in').style.width = (PRICE / max * 100) + '%';
+    document.getElementById('r-bar-out').style.width = (ingresos / max * 100) + '%';
+    document.getElementById('r-insight').innerHTML =
+      (minSocios === 1 ? 'Con <strong>1 solo socio</strong> que vuelva' : 'Con <strong>' + minSocios + ' socios</strong> que vuelvan') +
+      ' un mes ya cubres los 17&nbsp;€' + (sobra > 0 ? ' y te sobran <strong>' + fmt(sobra) + '&nbsp;€</strong>.' : '.');
+  }
+  document.querySelectorAll('input[type=range]').forEach(function (range) {
+    var num = document.getElementById(range.getAttribute('data-pair'));
+    paint(range);
+    range.addEventListener('input', function () {
+      if (num) num.value = range.value;
+      paint(range);
+      updateCalc();
+    });
+    if (num) {
+      num.addEventListener('input', function () {
+        var v = parseFloat(num.value);
+        if (isNaN(v)) return;
+        range.value = Math.min(Math.max(v, +range.min), +range.max);
+        paint(range);
+        updateCalc();
+      });
+      num.addEventListener('change', function () {
+        var v = parseFloat(num.value);
+        if (isNaN(v)) v = +range.value;
+        v = Math.min(Math.max(Math.round(v), +num.min), +num.max);
+        num.value = v;
+        range.value = v;
+        paint(range);
+        updateCalc();
+      });
+    }
+  });
+  updateCalc();
+  var calcTracked = false;
+  document.getElementById('calc').addEventListener('input', function () {
+    if (!calcTracked) { calcTracked = true; track('calc_used'); }
+  });
+
+  /* ── DEMO DEL COPILOTO IA ──────────────────────────────── */
+  var CASES = {
+    tiempo: {
+      in: 'Me encantaría volver, de verdad, pero con el trabajo y los niños ahora mismo no saco tiempo para nada 😩',
+      strategy: 'Estrategia: solución exprés adaptada a su disponibilidad',
+      out: 'Te entiendo perfectamente, Laura, es justo lo que más nos cuenta la gente. Si el problema es el tiempo, no hace falta venir cinco días: con dos sesiones cortas a la semana ya se nota muchísimo. ¿Te cuadra que nos veamos 5 minutos y te enseño cómo encajarlo en tu semana?'
+    },
+    precio: {
+      in: 'La verdad es que ahora mismo no me lo puedo permitir, ando justo de dinero.',
+      strategy: 'Estrategia: alternativa de menor fricción económica',
+      out: 'Gracias por decírmelo con sinceridad, Laura. Lo último que quiero es que pagues algo que no vas a aprovechar. ¿Te parece si vemos una opción más ligera que encaje con tu bolsillo y la pruebas un par de semanas? Te lo cuento en 5 minutos cuando te venga bien.'
+    },
+    gym: {
+      in: 'Es que me apunté a uno más barato al lado de casa y de momento voy tirando.',
+      strategy: 'Estrategia: revisión técnica para comparar su situación',
+      out: '¡Qué bien que sigas entrenando, eso es lo más importante! Si te apetece, un día te hago una revisión técnica gratis para ver cómo vas y compararlo con lo que hacías aquí. Sin compromiso. ¿Te cuadra el jueves a última hora?'
+    }
+  };
+  var cdTabs = Array.prototype.slice.call(document.querySelectorAll('.cd-tab'));
+  var cdPanel = document.getElementById('cdPanel');
+  var cdIn = document.getElementById('cdIn');
+  var cdOut = document.getElementById('cdOut');
+  var cdStrategy = document.getElementById('cdStrategy');
+  var cdCopy = document.getElementById('cdCopy');
+  var cdTimer = null;
+  function showCase(key, focus) {
+    var c = CASES[key];
+    if (!c) return;
+    cdTabs.forEach(function (t) {
+      var on = t.getAttribute('data-case') === key;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on) { cdPanel.setAttribute('aria-labelledby', t.id); if (focus) t.focus(); }
+    });
+    cdIn.textContent = c.in;
+    cdStrategy.textContent = c.strategy;
+    clearTimeout(cdTimer);
+    if (reduceMotion) { cdOut.textContent = c.out; return; }
+    cdOut.innerHTML = '<span class="cd-typing" aria-label="El Copiloto está escribiendo"><i></i><i></i><i></i></span>';
+    cdTimer = setTimeout(function () { cdOut.textContent = c.out; }, 950);
+    track('copilot_demo', { caso: key });
+  }
+  cdTabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { showCase(t.getAttribute('data-case')); });
+    t.addEventListener('keydown', function (e) {
+      var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!dir) return;
+      e.preventDefault();
+      var next = cdTabs[(i + dir + cdTabs.length) % cdTabs.length];
+      showCase(next.getAttribute('data-case'), true);
+    });
+  });
+  cdCopy.addEventListener('click', function () {
+    var label = cdCopy.querySelector('span');
+    var text = cdOut.textContent.trim();
+    function done() {
+      label.textContent = '¡Copiada!';
+      setTimeout(function () { label.textContent = 'Copiar respuesta'; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, done);
+    } else { done(); }
+    track('copilot_copy');
+  });
+
+  /* ── BARRA DE COMPRA FIJA (móvil) ──────────────────────────
+     Aparece al pasar el botón del hero y se oculta al llegar
+     al bloque final de compra. */
+  var buyBar = document.getElementById('buyBar');
+  var heroCtas = document.getElementById('heroCtas');
+  var finalSec = document.getElementById('comprar');
+  var pastHero = false, atFinal = false;
+  function updateBar() {
+    var show = pastHero && !atFinal;
+    buyBar.classList.toggle('show', show);
+    document.body.classList.toggle('has-buybar', show);
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      pastHero = !en[0].isIntersecting && en[0].boundingClientRect.top < 0;
+      updateBar();
+    }).observe(heroCtas);
+    new IntersectionObserver(function (en) {
+      atFinal = en[0].isIntersecting || en[0].boundingClientRect.top < 0;
+      updateBar();
+    }).observe(finalSec);
+  }
+
+  /* ── PREGUNTAS FRECUENTES ──────────────────────────────── */
+  document.querySelectorAll('.faq-item').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) track('faq_open', { pregunta: d.querySelector('summary').textContent.trim() });
+    });
+  });
+
+  /* ── AÑO DEL PIE ───────────────────────────────────────── */
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* ══════════════════════════════════════════════════════════
+     ASISTENTE IA · SETTER B2B
+  ══════════════════════════════════════════════════════════ */
+  var chatToggle = document.getElementById('chatToggle');
+  var chatWindow = document.getElementById('chatWindow');
+  var chatClose = document.getElementById('chatClose');
+  var chatForm = document.getElementById('chatForm');
+  var chatInput = document.getElementById('chatInput');
+  var chatSend = document.getElementById('chatSend');
+  var chatMessages = document.getElementById('chatMessages');
+  var chatHistory = [];
+
+  function setChat(open) {
+    chatWindow.classList.toggle('open', open);
+    chatToggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      track('chat_open');
+      if (window.matchMedia('(min-width: 641px)').matches) setTimeout(function () { chatInput.focus(); }, 60);
+    }
+  }
+  chatToggle.addEventListener('click', function () { setChat(!chatWindow.classList.contains('open')); });
+  chatClose.addEventListener('click', function () { setChat(false); chatToggle.focus(); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (chatWindow.classList.contains('open')) { setChat(false); chatToggle.focus(); return; }
+    if (menuBtn.getAttribute('aria-expanded') === 'true') { setMenu(false); menuBtn.focus(); }
+  });
+
+  document.querySelectorAll('.chat-chip').forEach(function (chip) {
+    chip.addEventListener('click', function () { sendPrompt(chip.getAttribute('data-prompt')); });
+  });
+  chatForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = chatInput.value.trim();
+    if (!text) return;
+    chatInput.value = '';
+    sendPrompt(text);
+  });
+
+  // Solo se permite HTML básico en las respuestas (negritas, saltos, listas)
+  var ALLOWED = { B: 1, STRONG: 1, EM: 1, I: 1, BR: 1, P: 1, UL: 1, OL: 1, LI: 1 };
+  function sanitize(html) {
+    var tpl = document.createElement('template');
+    tpl.innerHTML = String(html);
+    (function clean(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 1) {
+          if (!ALLOWED[child.tagName]) { child.replaceWith(document.createTextNode(child.textContent)); return; }
+          while (child.attributes.length) child.removeAttribute(child.attributes[0].name);
+          clean(child);
+        } else if (child.nodeType !== 3) { child.remove(); }
+      });
+    })(tpl.content);
+    var div = document.createElement('div');
+    div.appendChild(tpl.content);
+    return div.innerHTML;
+  }
+  function safeWa(url) {
+    return /^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(String(url || '')) ? url : null;
+  }
+  function addMsg(type) {
+    var div = document.createElement('div');
+    div.className = 'chat-msg ' + type;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return div;
+  }
+  function linkButton(cls, url, label, trackName, useLoader) {
+    var a = document.createElement('a');
+    a.className = cls;
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    if (useLoader) a.setAttribute('data-loader', '');
+    a.setAttribute('data-track', trackName);
+    a.textContent = label;
+    return a;
+  }
+
+  async function sendPrompt(text) {
+    addMsg('user').textContent = text;
+    var loading = addMsg('bot');
+    loading.innerHTML = 'Analizando el caso de tu centro deportivo<span class="chat-typing" aria-hidden="true"><i></i><i></i><i></i></span>';
+    chatSend.disabled = true;
+    track('chat_message');
+    try {
+      var res = await fetch('https://landing-page-beta-ivory-99.vercel.app/api/setter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history: chatHistory })
+      });
+      if (!res.ok) throw new Error('Fallback');
+      var data = await res.json();
+      if (!data || !data.reply) throw new Error('Fallback');
+      chatHistory.push({ role: 'user', text: text });
+      chatHistory.push({ role: 'assistant', text: data.reply });
+      var reply = String(data.reply);
+      if (reply.indexOf('<') === -1) reply = reply.replace(/\n/g, '<br>');
+      loading.innerHTML = sanitize(reply);
+      loading.appendChild(linkButton('chat-buy', CHECKOUT_URL, 'Quiero el protocolo por 17 € →', 'buy_chat', false));
+      loading.appendChild(linkButton('chat-wa', safeWa(data.waUrl) || waLink('Hola Sergio, vengo de la página del Protocolo de Reactivación y tengo una duda.'), '📲 Hablar con Sergio por WhatsApp →', 'wa_chat', true));
+    } catch (err) {
+      loading.innerHTML = 'Ahora mismo no puedo conectar con el asistente. Escríbele a <strong>Sergio en persona</strong> por WhatsApp y te responde él directamente.';
+      loading.appendChild(linkButton('chat-wa', waLink('Hola Sergio, vengo de la página del Protocolo de Reactivación y tengo una duda: ' + text), '📲 Preguntar a Sergio por WhatsApp →', 'wa_chat', true));
+    }
+    chatSend.disabled = false;
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+})();
+</script>
 </body>
 </html>
