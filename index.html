@@ -249,10 +249,11 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .pbtn-voldown { left: -3px; top: 34%; height: 52px; }
 .pbtn-power { right: -3px; top: 27%; height: 84px; }
 .phone-screen { position: relative; height: 100%; display: flex; flex-direction: column; border-radius: 42px; overflow: hidden; background: #efeae2; color: #111b21; }
-.ios-island { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 26px; border-radius: 20px; background: #000; z-index: 3; }
-.ios-status { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 30px; color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: -.01em; z-index: 2; }
-.ios-icons { display: flex; align-items: center; gap: 5px; }
-.ios-icons svg { height: 11px; width: auto; fill: currentColor; }
+.ios-island { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 30%; height: 25px; border-radius: 20px; background: #000; z-index: 3; }
+.ios-island::after { content: ''; position: absolute; right: 9px; top: 50%; width: 8px; height: 8px; border-radius: 50%; transform: translateY(-50%); background: radial-gradient(circle at 35% 35%, #33456a, #0b111c 62%); }
+.ios-status { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px 0 26px; color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: -.01em; z-index: 2; }
+.ios-icons { display: flex; align-items: center; gap: 4px; }
+.ios-icons svg { height: 10px; width: auto; fill: currentColor; }
 .ios-home { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); width: 36%; height: 5px; border-radius: 3px; background: #111b21; z-index: 2; }
 .wa-head { flex: none; display: flex; align-items: center; gap: 9px; padding: 50px 14px 10px 10px; background: #0b6b5f; color: #fff; }
 .wa-back { font-size: 1.5rem; line-height: 1; opacity: .9; }
@@ -643,7 +644,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .hero-trust { flex-direction: column; gap: 10px; }
   .phone-wrap { width: min(268px, 74vw); }
   .copilot-float { left: -9%; bottom: -4%; width: 200px; padding: 11px 13px; }
-  .phase-float { right: -10%; top: -7%; }
+  .hero-visual { margin-top: 72px; }
+  .phase-float { top: auto; bottom: calc(100% + 10px); right: -2%; }
   .wa-e2e { display: none; }
   .stat { padding: 20px 16px; }
   .stat span { font-size: .82rem; }
