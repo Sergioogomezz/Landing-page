@@ -178,6 +178,11 @@ background: rgba(0,22,27,0.75); backdrop-filter: blur(6px);
 display: none; align-items: center; justify-content: center; padding: 20px;
 }
 .upsell-overlay.open { display: flex; }
+.welcome-code { font-family: "Courier New", monospace; font-size: 30px; font-weight: 900; letter-spacing: 3px; color: var(--azul); background: #fff4ec; border: 2px dashed var(--naranja); border-radius: 14px; padding: 16px; text-align: center; margin: 10px 0 12px; user-select: all; }
+.welcome-copy { display: block; width: 100%; background: var(--azul); color: #fff; border: 0; border-radius: 10px; padding: 12px; font-weight: 800; font-size: 14px; cursor: pointer; margin-bottom: 14px; }
+.welcome-copy:hover { background: var(--azul-oscuro); }
+.welcome-note { font-size: 14px; color: var(--gris-texto); margin-bottom: 16px; overflow-wrap: anywhere; }
+.download-btn.pending-access { opacity: .55; pointer-events: none; }
 .upsell-modal {
 background: #ffffff; width: 100%; max-width: 560px;
 border-radius: 24px; border: 2px solid var(--azul);
@@ -544,25 +549,25 @@ footer strong { color: white; }
       ACTIVONORTE OS · ÁREA DE CLIENTES
     </div>
     <h2>Acceso a la Sala de Control</h2>
-    <p>Introduce el correo de tu centro deportivo y la clave de acceso incluida en tu confirmación de compra.</p>
+    <p>Entra con el <strong>email con el que pagaste</strong> y tu <strong>clave personal</strong> (te la mostramos al terminar el pago).</p>
 
     <div class="auth-error" id="authErrorBox"></div>
 
     <form id="authLoginForm">
       <div class="auth-field">
-        <label for="authEmail">Correo electrónico del gimnasio</label>
-        <input type="email" id="authEmail" placeholder="direccion@tugimnasio.com" required />
+        <label for="authEmail">Email de la compra</label>
+        <input type="email" id="authEmail" placeholder="direccion@tugimnasio.com" autocomplete="email" required />
       </div>
       <div class="auth-field">
-        <label for="authPassword">Clave de Licencia</label>
-        <input type="password" id="authPassword" placeholder="••••••••••••" required />
+        <label for="authPassword">Clave personal</label>
+        <input type="text" id="authPassword" placeholder="XXXXX-XXXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" required />
       </div>
       <button type="submit" class="auth-submit" id="authSubmitBtn">Entrar al Ecosistema →</button>
     </form>
 
     <div class="auth-footer">
       <span>¿Aún no tienes tu licencia activa? <a href="https://activonorte.com">Adquirir Protocolo 48H (17€) →</a></span>
-      <span>¿Problemas con tu clave? <a href="https://wa.me/34610387276?text=Hola%20Sergio,%20necesito%20ayuda%20con%20mi%20clave%20de%20la%20Sala%20de%20Control" target="_blank" rel="noopener noreferrer">Soporte directo por WhatsApp</a></span>
+      <span>¿Has perdido tu clave? <a href="https://wa.me/34610387276?text=Hola%20Sergio,%20necesito%20recuperar%20mi%20clave%20personal%20de%20la%20Sala%20de%20Control" target="_blank" rel="noopener noreferrer">Soporte por WhatsApp</a> · <a href="mailto:activonorte.media@gmail.com">activonorte.media@gmail.com</a></span>
     </div>
   </div>
 </div>
@@ -602,6 +607,28 @@ footer strong { color: white; }
     </div>
   </div>
 </nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     BIENVENIDA TRAS EL PAGO (clave personal)
+══════════════════════════════════════════════════════════ -->
+<div class="upsell-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="upsell-modal">
+    <div class="upsell-header">
+      <div>
+        <span class="upsell-tag">PAGO CONFIRMADO · ACTIVONORTE OS</span>
+        <h3 id="welcomeTitle">¡Pago confirmado!</h3>
+      </div>
+      <button class="upsell-close" id="welcomeCloseBtn" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="upsell-body">
+      <p>Tu clave de licencia personal es:</p>
+      <div class="welcome-code" id="welcomeCode">·····-·····</div>
+      <button type="button" class="welcome-copy" id="welcomeCopyBtn">Copiar clave</button>
+      <p class="welcome-note">Guárdala (una captura de pantalla vale). Para volver a entrar en <strong>https://activonorte.com/sala-de-control.html</strong> necesitarás tu email <strong id="welcomeEmail"></strong> y esta clave.</p>
+      <a href="#" class="upsell-cta" id="welcomeEnterBtn">Entrar en mi panel operativo →</a>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════
      MODAL DE UPSELL (🔒)
@@ -688,14 +715,14 @@ footer strong { color: white; }
 <div class="document-icon pdf">PDF</div>
 <div class="document-name">PROTOCOLO DE REACTIVACIÓN 1.pdf</div>
 </div>
-<a href="https://drive.google.com/uc?export=download&id=1HfJxDhCXMTYw5RZ-qyqBXwZyfNEZmXKo" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
+<a href="#" data-recurso="guia1" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
 </div>
 <div class="document">
 <div class="document-info">
 <div class="document-icon">XLSX</div>
 <div class="document-name">TRACKER DE REACTIVACIÓN - ACTIVONORTE.xlsx</div>
 </div>
-<a href="https://docs.google.com/spreadsheets/d/1OBZ_Y9JMNNLf--7fiY6w-MF4wzOqFWd6/export?format=xlsx" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar XLSX →</a>
+<a href="#" data-recurso="tracker" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar XLSX →</a>
 </div>
 </div>
 </div>
@@ -730,7 +757,7 @@ footer strong { color: white; }
 <div class="document-icon pdf">PDF</div>
 <div class="document-name">PROTOCOLO DE REACTIVACIÓN ACTIVONORTE 2.pdf</div>
 </div>
-<a href="https://drive.google.com/uc?export=download&id=1WekMyXDubGP84yPH7rcR_F5mtFYwRv2C" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
+<a href="#" data-recurso="guia2" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
 </div>
 </div>
 </div>
@@ -824,7 +851,7 @@ footer strong { color: white; }
 <div class="document-icon pdf">PDF</div>
 <div class="document-name">PROTOCOLO DE REACTIVACIÓN ACTIVONORTE 3.pdf</div>
 </div>
-<a href="https://drive.google.com/uc?export=download&id=1y88ciX1I36PAgdR1HpbDFeMgag3zCChe" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
+<a href="#" data-recurso="guia3" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar PDF →</a>
 </div>
 </div>
 </div>
@@ -852,19 +879,19 @@ footer strong { color: white; }
 <div class="bonus-number">Bonus #1</div>
 <h3>El Antídoto Low-Cost</h3>
 <p>Material adicional para trabajar la percepción de valor y responder ante la presión de los modelos low-cost.</p>
-<a href="https://drive.google.com/uc?export=download&id=1p3CEgHKMjHxoLePyL9_lqvP8ye0Zar9_" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
+<a href="#" data-recurso="bonus1" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
 </div>
 <div class="bonus-card">
 <div class="bonus-number">Bonus #2</div>
 <h3>La Muralla de Retención</h3>
 <p>Recurso estratégico para reforzar los sistemas de retención y evitar que el centro vuelva a perder capital.</p>
-<a href="https://drive.google.com/uc?export=download&id=10NPOcgSVF3jLPnCSvbBtWgQY3LMEzVo4" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
+<a href="#" data-recurso="bonus2" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
 </div>
 <div class="bonus-card">
 <div class="bonus-number">Bonus #3</div>
 <h3>Dominando el Barrio en Google</h3>
 <p>Recurso adicional para trabajar el posicionamiento local y aumentar la visibilidad del centro deportivo en Google.</p>
-<a href="https://drive.google.com/uc?export=download&id=1C9MjQhTW7U4BvrkAohQstiq4igT6BfDm" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
+<a href="#" data-recurso="bonus3" target="_blank" rel="noopener noreferrer" class="download-btn">Descargar bonus →</a>
 </div>
 </div>
 </div>
@@ -950,12 +977,32 @@ const upsellDescription = document.getElementById("upsellDescription");
 const upsellFeatures = document.getElementById("upsellFeatures");
 const upsellWaBtn = document.getElementById("upsellWaBtn");
 
-const SESSION_KEY = "activonorte_portal_session_v1";
+const SESSION_KEY = "activonorte_portal_v2";
+const API_AUTH = "https://landing-page-beta-ivory-99.vercel.app/api/auth";
+let currentSession = null;
+try { localStorage.removeItem("activonorte_portal_session_v1"); } catch (e) {}
+
+const welcomeOverlay = document.getElementById("welcomeOverlay");
+document.querySelectorAll("a[data-recurso]").forEach((a) => a.classList.add("pending-access"));
+
+function getToken() { return currentSession ? currentSession.token : ""; }
+
+function applyRecursos(recursos) {
+  document.querySelectorAll("a[data-recurso]").forEach((a) => {
+    const url = recursos && recursos[a.getAttribute("data-recurso")];
+    if (url) { a.href = url; a.classList.remove("pending-access"); }
+  });
+}
+
+function saveSession(data) {
+  currentSession = { token: data.token, user: data.user };
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(currentSession)); } catch (e) {}
+}
 
 function applyUserSession(user) {
   document.body.classList.remove("locked");
   authGate.classList.add("hidden-gate");
-  portalUserBadge.innerHTML = '<strong>●</strong> ' + user.email;
+  portalUserBadge.textContent = "● " + user.email;
 
   if (user.role === "dominio" || user.role === "growth") {
     tabDominio.classList.remove("locked-tab");
@@ -974,72 +1021,85 @@ function applyUserSession(user) {
   }
 }
 
-function checkSavedSession() {
-  try {
-    const saved = localStorage.getItem(SESSION_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed && parsed.email && parsed.role) {
-        applyUserSession(parsed);
-        return;
-      }
+function showAuthError(msg) {
+  authErrorBox.textContent = msg;
+  authErrorBox.style.display = "block";
+}
+
+async function callAuth(payload) {
+  const res = await fetch(API_AUTH, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+  let data = {};
+  try { data = await res.json(); } catch (e) {}
+  if (!res.ok || !data.ok) throw new Error(data.error || "No hemos podido verificar tu acceso.");
+  return data;
+}
+
+function onAccessGranted(data) {
+  saveSession(data);
+  applyUserSession(data.user);
+  applyRecursos(data.recursos);
+}
+
+function showWelcome(data) {
+  document.getElementById("welcomeCode").textContent = data.codigo;
+  document.getElementById("welcomeEmail").textContent = data.user.email;
+  welcomeOverlay.classList.add("open");
+}
+function closeWelcome(e) { if (e) e.preventDefault(); welcomeOverlay.classList.remove("open"); }
+document.getElementById("welcomeCloseBtn").addEventListener("click", closeWelcome);
+document.getElementById("welcomeEnterBtn").addEventListener("click", closeWelcome);
+document.getElementById("welcomeCopyBtn").addEventListener("click", function () {
+  const code = document.getElementById("welcomeCode").textContent;
+  const btn = this;
+  const done = () => { btn.textContent = "¡Copiada!"; setTimeout(() => { btn.textContent = "Copiar clave"; }, 2000); };
+  if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, done); else done();
+});
+
+// Al cargar: 1) vuelta del pago de Stripe, 2) sesión guardada, 3) pantalla de acceso
+(async function initAccess() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get("session_id");
+  if (sessionId) {
+    history.replaceState(null, "", window.location.pathname);
+    authSubmitBtn.textContent = "Verificando tu pago...";
+    authSubmitBtn.disabled = true;
+    try {
+      const data = await callAuth({ session_id: sessionId });
+      onAccessGranted(data);
+      showWelcome(data);
+    } catch (err) {
+      showAuthError(err.message);
+    } finally {
+      authSubmitBtn.textContent = "Entrar al Ecosistema →";
+      authSubmitBtn.disabled = false;
     }
-  } catch (e) {}
-}
-checkSavedSession();
-
-function localAuthCheck(email, rawPass) {
-  const cleanEmail = (email || "").trim().toLowerCase();
-  const cleanPass = (rawPass || "").trim().toUpperCase();
-
-  if (!cleanEmail || !cleanEmail.includes("@")) {
-    return { ok: false, error: "Introduce un correo electrónico válido." };
+    return;
   }
-  if (cleanPass === "ACTIVO48H") {
-    return { ok: true, user: { email: cleanEmail, role: "protocolo", planLabel: "Licencia · Protocolo 48H" } };
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); } catch (e) {}
+  if (saved && saved.token) {
+    try {
+      onAccessGranted(await callAuth({ token: saved.token }));
+    } catch (err) {
+      try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+      showAuthError(err.message);
+    }
   }
-  if (cleanPass === "DOMINIOLOCAL") {
-    return { ok: true, user: { email: cleanEmail, role: "dominio", planLabel: "Cliente · Pack Dominio Local" } };
-  }
-  if (cleanPass === "GROWTH360") {
-    return { ok: true, user: { email: cleanEmail, role: "growth", planLabel: "Partner · Growth 360" } };
-  }
-  return { ok: false, error: "Clave de licencia incorrecta. Revisa el correo de confirmación de tu compra." };
-}
+})();
 
 authForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   authErrorBox.style.display = "none";
   authSubmitBtn.textContent = "Verificando licencia...";
   authSubmitBtn.disabled = true;
-
-  const emailVal = authEmail.value.trim();
-  const passVal = authPassword.value.trim();
-
   try {
-    const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: emailVal, password: passVal })
-    });
-    const data = await res.json();
-
-    if (res.ok && data.ok) {
-      localStorage.setItem(SESSION_KEY, JSON.stringify(data.user));
-      applyUserSession(data.user);
-    } else {
-      authErrorBox.textContent = data.error || "Clave de acceso no válida.";
-      authErrorBox.style.display = "block";
-    }
+    onAccessGranted(await callAuth({ email: authEmail.value.trim(), password: authPassword.value.trim() }));
   } catch (err) {
-    const fallbackResult = localAuthCheck(emailVal, passVal);
-    if (fallbackResult.ok) {
-      localStorage.setItem(SESSION_KEY, JSON.stringify(fallbackResult.user));
-      applyUserSession(fallbackResult.user);
-    } else {
-      authErrorBox.textContent = fallbackResult.error;
-      authErrorBox.style.display = "block";
-    }
+    showAuthError(err.message);
   } finally {
     authSubmitBtn.textContent = "Entrar al Ecosistema →";
     authSubmitBtn.disabled = false;
@@ -1047,28 +1107,31 @@ authForm.addEventListener("submit", async (e) => {
 });
 
 portalLogoutBtn.addEventListener("click", () => {
-  localStorage.removeItem(SESSION_KEY);
+  currentSession = null;
+  try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+  document.querySelectorAll("a[data-recurso]").forEach((a) => { a.href = "#"; a.classList.add("pending-access"); });
   document.body.classList.add("locked");
   authGate.classList.remove("hidden-gate");
   authPassword.value = "";
 });
 
 function openUpsellModal(type) {
-  let savedEmail = "";
-  try {
-    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "{}");
-    savedEmail = s.email || "";
-  } catch (e) {}
+  const savedEmail = currentSession ? currentSession.user.email : "";
+  const role = currentSession ? currentSession.user.role : "";
+  const activo = (type === "dominio" && (role === "dominio" || role === "growth")) || (type === "growth" && role === "growth");
+  document.getElementById("upsellTag").textContent = activo ? "SERVICIO ACTIVO EN TU CUENTA" : "MÓDULO BLOQUEADO EN TU LICENCIA ACTUAL";
 
   if (type === "dominio") {
     upsellTitle.textContent = "Pack Dominio Local · Panel SEO";
-    upsellDescription.textContent = "Tu licencia actual incluye el Protocolo de Reactivación 48H. Activa el Pack Dominio Local para posicionar tu centro deportivo en el Top 3 de Google Maps en tu ciudad y captar socios en automático.";
+    upsellDescription.textContent = "Tu licencia actual incluye el Protocolo de Reactivación 48H. Activa el Pack Dominio Local para que tu centro deportivo luche por el Top 3 de Google Maps en tu ciudad y capte socios sin depender de anuncios.";
     upsellFeatures.innerHTML = [
       '<li><span class="check">✓</span> <div><strong>Auditoría y Optimización de Google Business Profile:</strong> Corrección de los factores que esconden tu ficha frente a la competencia.</div></li>',
       '<li><span class="check">✓</span> <div><strong>Sistema Automatizado de Reseñas:</strong> Protocolo en recepción para escalar posiciones cada semana.</div></li>',
       '<li><span class="check">✓</span> <div><strong>Panel de Visibilidad Local:</strong> Seguimiento de llamadas, clics a ruta y nuevos socios desde Google.</div></li>'
     ].join("");
-    const msg = "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero desbloquear el Pack Dominio Local con la Auditoría Gratuita de 15 min.";
+    const msg = activo
+      ? "Hola Sergio, soy cliente del Pack Dominio Local (" + savedEmail + ") y quiero coordinar los siguientes pasos."
+      : "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero desbloquear el Pack Dominio Local con la Auditoría Gratuita de 15 min.";
     upsellWaBtn.href = "https://wa.me/34610387276?text=" + encodeURIComponent(msg);
   } else {
     upsellTitle.textContent = "Growth Partner 360 & Sistema Phygital";
@@ -1078,9 +1141,12 @@ function openUpsellModal(type) {
       '<li><span class="check">✓</span> <div><strong>Sistema Phygital de Retención (Pulseras + QR):</strong> Comunidad interna para reducir drásticamente las bajas mensuales.</div></li>',
       '<li><span class="check">✓</span> <div><strong>Consultoría Estratégica 1 a 1:</strong> Reunión mensual de seguimiento financiero y crecimiento del centro.</div></li>'
     ].join("");
-    const msg = "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero agendar una consultoría para activar Growth Partner 360.";
+    const msg = activo
+      ? "Hola Sergio, soy partner de Growth Partner 360 (" + savedEmail + ") y quiero coordinar los siguientes pasos."
+      : "Hola Sergio, estoy dentro de la Sala de Control (" + savedEmail + ") y quiero agendar una consultoría para activar Growth Partner 360.";
     upsellWaBtn.href = "https://wa.me/34610387276?text=" + encodeURIComponent(msg);
   }
+  upsellWaBtn.textContent = activo ? "📲 Hablar con Sergio por WhatsApp →" : "📲 Solicitar Auditoría Gratuita de Activación (15 min) →";
   upsellOverlay.classList.add("open");
 }
 
@@ -1197,7 +1263,7 @@ async function handleUserPrompt(promptText) {
     const res = await fetch("https://landing-page-beta-ivory-99.vercel.app/api/copiloto", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: promptText, history: copilotHistory }),
+      body: JSON.stringify({ message: promptText, history: copilotHistory, token: getToken() }),
     });
     if (!res.ok) throw new Error("Fallback local");
     const data = await res.json();
