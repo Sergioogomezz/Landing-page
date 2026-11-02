@@ -3,15 +3,28 @@
 // POST { session_id }        → cliente que vuelve de pagar: comprueba el pago y le da su clave personal.
 // POST { email, password }   → cliente que vuelve otro día: email + clave personal.
 // POST { token }             → sesión guardada en el navegador.
-// GET  ?admin=CLAVE_ADMIN&email=cliente@x.com → (solo tú) claves personales y compras de ese email.
+// GET  ?admin=CLAVE_ADMIN&email=cliente@x.com → (solo tú) claves personales, compras y cifras en la nube de ese email.
 
 import {
   PLAN_LABEL, cors, leerBody, limpiarEmail, codigoPersonal, rolDeCodigo,
-  crearToken, leerToken, verificarPago, growthActivo, recursos, comprasDe, accesosManuales
+  crearToken, leerToken, verificarPago, growthActivo, recursos, comprasDe, accesosManuales, esAdmin
 } from "./_acceso.js";
-import crypto from "node:crypto";
+import { nubeActiva, redis, claveDatos, resumen } from "./_nube.js";
 
 const SOPORTE = "Escríbenos por WhatsApp al +34 610 38 72 76 o a activonorte.media@gmail.com y lo resolvemos.";
+
+// Cifras del cliente guardadas en la nube (null si la base de datos no está conectada).
+async function cifrasEnNube(email) {
+  if (!nubeActiva()) return null;
+  try {
+    const valor = await redis(["GET", claveDatos(email)]);
+    if (!valor) return { sincronizado: false };
+    const g = JSON.parse(valor);
+    return Object.assign({ sincronizado: true, actualizado: g.actualizado || null }, resumen(g.datos));
+  } catch (e) {
+    return { error: "No se ha podido leer la nube" };
+  }
+}
 
 function respuesta(email, rol, extra) {
   return Object.assign({
@@ -32,11 +45,8 @@ export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
       const admin = String((req.query && req.query.admin) || "");
-      const clave = process.env.CLAVE_ADMIN || "";
       if (!admin) return res.status(200).json({ estado: "Sistema de Autenticación Activonorte OS operativo" });
-      const okAdmin = clave.length >= 12 && admin.length === clave.length &&
-        crypto.timingSafeEqual(Buffer.from(admin), Buffer.from(clave));
-      if (!okAdmin) return res.status(403).json({ ok: false, error: "Clave de administrador incorrecta." });
+      if (!esAdmin(admin)) return res.status(403).json({ ok: false, error: "Clave de administrador incorrecta." });
       const email = limpiarEmail(req.query.email);
       if (!email.includes("@")) return res.status(400).json({ ok: false, error: "Añade &email=correo@cliente.com" });
       return res.status(200).json({
@@ -47,7 +57,8 @@ export default async function handler(req, res) {
           growth: codigoPersonal(email, "growth")
         },
         accesoManual: accesosManuales()[email] || null,
-        comprasEnStripe: await comprasDe(email)
+        comprasEnStripe: await comprasDe(email),
+        datosEnNube: await cifrasEnNube(email)
       });
     }
 

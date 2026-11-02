@@ -33,6 +33,12 @@ function iguales(a, b) {
   return x.length === y.length && crypto.timingSafeEqual(x, y);
 }
 
+// Contraseña de administrador (variable CLAVE_ADMIN, mínimo 12 caracteres).
+export function esAdmin(valor) {
+  const clave = process.env.CLAVE_ADMIN || "";
+  return clave.length >= 12 && iguales(String(valor || ""), clave);
+}
+
 export function limpiarEmail(email) {
   return String(email || "").trim().toLowerCase();
 }
