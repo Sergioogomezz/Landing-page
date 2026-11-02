@@ -1,3 +1,5 @@
+import { leerToken } from "./_acceso.js";
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -16,11 +18,16 @@ export default async function handler(req, res) {
   let history = [];
 
   if (req.method === "GET") {
-    message = req.query?.message || "El ex-socio dice: me da pereza volver porque entreno solo y me queda lejos";
+    // Solo estado: el copiloto ya no responde a peticiones anónimas (gasta créditos de IA).
+    return res.status(200).json({ estado: "Copiloto Táctico 48H operativo" });
   } else if (req.method === "POST") {
     let body = req.body;
     if (typeof body === "string") {
       try { body = JSON.parse(body); } catch (e) { body = {}; }
+    }
+    // Solo clientes con sesión válida en la Sala de Control
+    if (!leerToken(body?.token)) {
+      return res.status(401).json({ error: "Acceso no válido. Entra en la Sala de Control con tu clave personal." });
     }
     message = body?.message || "";
     history = Array.isArray(body?.history) ? body.history : [];
