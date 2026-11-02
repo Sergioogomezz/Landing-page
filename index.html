@@ -240,16 +240,30 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 
 /* Móvil ilustrativo (conversación de WhatsApp) */
 .hero-visual { position: relative; display: flex; flex-direction: column; align-items: center; }
-.phone-wrap { position: relative; width: min(318px, 100%); }
-.phone { position: relative; border-radius: 46px; padding: 11px; background: linear-gradient(160deg, #26363a, #0b1416); box-shadow: 0 50px 90px -30px rgba(0,0,0,.85), inset 0 0 0 1.5px rgba(255,255,255,.14); transform: rotate(2deg); }
-.phone-notch { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 86px; height: 22px; border-radius: 20px; background: #0b1416; z-index: 2; }
-.phone-screen { border-radius: 36px; overflow: hidden; background: #efeae2; color: #111b21; }
-.wa-head { display: flex; align-items: center; gap: 10px; padding: 40px 14px 11px; background: #0b6b5f; color: #fff; }
-.wa-back { font-size: 1.4rem; line-height: 1; opacity: .9; }
-.wa-avatar { width: 34px; height: 34px; border-radius: 50%; background: #f6cfb1; color: #7a3d12; font-weight: 800; display: grid; place-items: center; font-size: .9rem; flex: none; }
-.wa-head strong { display: block; font-size: .92rem; line-height: 1.2; }
-.wa-head div span { display: block; font-size: .7rem; opacity: .82; }
-.wa-body { padding: 14px 12px 10px; display: flex; flex-direction: column; gap: 9px; min-height: 318px; background-color: #efeae2; background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 14px 14px; }
+/* Proporciones reales de iPhone (cuerpo 71,6 × 146,6 mm) */
+.phone-wrap { position: relative; width: min(290px, 100%); }
+.phone { position: relative; aspect-ratio: 71.6 / 146.6; border-radius: 50px; padding: 9px; background: linear-gradient(150deg, #56656a 0%, #26332f 16%, #121b1d 55%, #2c393c 100%); box-shadow: 0 50px 90px -30px rgba(0,0,0,.85), inset 0 0 0 1.5px rgba(255,255,255,.24), inset 0 0 0 4px #0a1214; transform: rotate(2deg); }
+.pbtn { position: absolute; width: 3px; border-radius: 2px; background: linear-gradient(90deg, #45555a, #1b2629); }
+.pbtn-action { left: -3px; top: 17%; height: 28px; }
+.pbtn-volup { left: -3px; top: 24.5%; height: 52px; }
+.pbtn-voldown { left: -3px; top: 34%; height: 52px; }
+.pbtn-power { right: -3px; top: 27%; height: 84px; }
+.phone-screen { position: relative; height: 100%; display: flex; flex-direction: column; border-radius: 42px; overflow: hidden; background: #efeae2; color: #111b21; }
+.ios-island { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 26px; border-radius: 20px; background: #000; z-index: 3; }
+.ios-status { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 30px; color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: -.01em; z-index: 2; }
+.ios-icons { display: flex; align-items: center; gap: 5px; }
+.ios-icons svg { height: 11px; width: auto; fill: currentColor; }
+.ios-home { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); width: 36%; height: 5px; border-radius: 3px; background: #111b21; z-index: 2; }
+.wa-head { flex: none; display: flex; align-items: center; gap: 9px; padding: 50px 14px 10px 10px; background: #0b6b5f; color: #fff; }
+.wa-back { font-size: 1.5rem; line-height: 1; opacity: .9; }
+.wa-avatar { width: 34px; height: 34px; border-radius: 50%; background: #cfe3f6; color: #1e4f7a; font-weight: 800; display: grid; place-items: center; font-size: .9rem; flex: none; }
+.wa-who { flex: 1; min-width: 0; }
+.wa-who strong { display: block; font-size: .92rem; line-height: 1.2; }
+.wa-who span { display: block; font-size: .68rem; opacity: .82; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wa-head-ico { display: flex; gap: 12px; flex: none; }
+.wa-head-ico .ico { width: 18px; height: 18px; }
+.wa-body { flex: 1; min-height: 0; padding: 10px 11px; display: flex; flex-direction: column; justify-content: flex-end; gap: 9px; overflow: hidden; background-color: #efeae2; background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 14px 14px; }
+.wa-e2e { align-self: center; margin-bottom: auto; max-width: 90%; text-align: center; font-size: .6rem; line-height: 1.35; color: #54656f; background: #fdf4c5; padding: 6px 10px; border-radius: 8px; box-shadow: 0 1px 1px rgba(0,0,0,.08); }
 .wa-day { align-self: center; font-size: .66rem; background: #fff; color: #54656f; padding: 4px 10px; border-radius: 8px; box-shadow: 0 1px 1px rgba(0,0,0,.08); text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
 .wa-msg { max-width: 86%; padding: 8px 10px 5px; border-radius: 10px; font-size: .83rem; line-height: 1.42; box-shadow: 0 1px 1px rgba(0,0,0,.1); }
 .wa-msg.out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 3px; }
@@ -263,7 +277,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .wa-typing i, .cd-typing i { width: 6px; height: 6px; border-radius: 50%; background: #8696a0; animation: dotBounce 1.2s ease-in-out infinite; }
 .wa-typing i:nth-child(2), .cd-typing i:nth-child(2) { animation-delay: .2s; }
 .wa-typing i:nth-child(3), .cd-typing i:nth-child(3) { animation-delay: .4s; }
-.wa-input { display: flex; align-items: center; gap: 8px; padding: 6px 10px 16px; background: #efeae2; }
+.wa-input { flex: none; display: flex; align-items: center; gap: 8px; padding: 6px 10px 22px; background: #efeae2; }
 .wa-field { flex: 1; background: #fff; border-radius: 999px; padding: 9px 14px; font-size: .78rem; color: #8696a0; }
 .wa-mic { width: 34px; height: 34px; border-radius: 50%; background: #00a884; flex: none; display: grid; place-items: center; color: #fff; }
 .wa-mic .ico { width: 16px; height: 16px; }
@@ -273,7 +287,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .cf-badge .ico { width: 12px; height: 12px; }
 .copilot-float strong { display: block; font-size: .86rem; line-height: 1.3; }
 .copilot-float p { font-size: .76rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-.phase-float { right: -12%; top: -3%; padding: 9px 12px; display: flex; align-items: center; gap: 9px; font-size: .74rem; font-weight: 700; line-height: 1.25; animation: floaty 7s ease-in-out infinite reverse; }
+.phase-float { right: -14%; top: 25%; padding: 9px 12px; display: flex; align-items: center; gap: 9px; font-size: .74rem; font-weight: 700; line-height: 1.25; animation: floaty 7s ease-in-out infinite reverse; }
 .phase-float .ico { width: 28px; height: 28px; padding: 6px; border-radius: 9px; background: var(--teal); color: #fff; }
 .phase-float small { display: block; font-size: .64rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
 @keyframes floaty { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
@@ -590,7 +604,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 @media (max-width: 1080px) {
   .main-nav { gap: 22px; }
   .copilot-float { left: -10%; }
-  .phase-float { right: -6%; }
+  .phase-float { right: -8%; }
   .inc-grid { grid-template-columns: repeat(2, 1fr); }
   .inc-card.feature { grid-column: 1 / -1; }
 }
@@ -627,9 +641,10 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .container { padding: 0 18px; }
   .hero-ctas .btn { width: 100%; }
   .hero-trust { flex-direction: column; gap: 10px; }
-  .phone-wrap { width: min(290px, 82vw); }
+  .phone-wrap { width: min(268px, 74vw); }
   .copilot-float { left: -9%; bottom: -4%; width: 200px; padding: 11px 13px; }
-  .phase-float { right: -7%; top: -4%; }
+  .phase-float { right: -10%; top: -7%; }
+  .wa-e2e { display: none; }
   .stat { padding: 20px 16px; }
   .stat span { font-size: .82rem; }
   .inc-grid { grid-template-columns: 1fr; }
@@ -690,6 +705,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
 </svg>
 
@@ -766,19 +783,30 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
     </div>
 
     <div class="hero-visual">
-      <div class="phone-wrap" role="img" aria-label="Ejemplo ilustrativo: una ex-socia responde al mensaje Rompehielos y el Copiloto IA prepara la respuesta">
+      <div class="phone-wrap" role="img" aria-label="Ejemplo ilustrativo: un ex-socio responde al mensaje Rompehielos y el Copiloto IA prepara la respuesta">
         <div class="phone" aria-hidden="true">
-          <div class="phone-notch"></div>
+          <span class="pbtn pbtn-action"></span><span class="pbtn pbtn-volup"></span><span class="pbtn pbtn-voldown"></span><span class="pbtn pbtn-power"></span>
           <div class="phone-screen">
+            <div class="ios-island"></div>
+            <div class="ios-status">
+              <span>13:59</span>
+              <span class="ios-icons">
+                <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.3 2.5l1.2-1.3A10.6 10.6 0 0 0 8 .4C5.2.4 2.5 1.5.5 3.4l1.2 1.3A8.9 8.9 0 0 1 8 2.2Zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.3A7.1 7.1 0 0 0 8 4c-1.8 0-3.6.7-4.9 1.9l1.2 1.3c1-.9 2.3-1.4 3.7-1.4Zm0 3.5c-.6 0-1.2.2-1.6.6L8 11.6l1.6-1.7c-.4-.4-1-.6-1.6-.6Z"/></svg>
+                <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="16" height="8" rx="2"/><path d="M24.5 4v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2Z" opacity=".5"/></svg>
+              </span>
+            </div>
             <div class="wa-head">
               <span class="wa-back">‹</span>
-              <span class="wa-avatar">L</span>
-              <div><strong>Laura</strong><span>Ex-socia · baja hace 5 meses</span></div>
+              <span class="wa-avatar">C</span>
+              <div class="wa-who"><strong>Carlos</strong><span>Baja hace 5 meses</span></div>
+              <span class="wa-head-ico"><svg class="ico"><use href="#i-video"/></svg><svg class="ico"><use href="#i-phone"/></svg></span>
             </div>
             <div class="wa-body">
+              <span class="wa-e2e">🔒 Los mensajes están cifrados de extremo a extremo.</span>
               <span class="wa-day">Martes</span>
               <div class="wa-msg out">
-                Hola Laura 👋, soy Sergio…
+                Hola Carlos 👋, soy Sergio…
                 <span class="wa-redact" style="width:100%"></span>
                 <span class="wa-redact" style="width:88%"></span>
                 <span class="wa-redact" style="width:62%"></span>
@@ -795,6 +823,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
               <span class="wa-field">Mensaje</span>
               <span class="wa-mic"><svg class="ico"><use href="#i-send"/></svg></span>
             </div>
+            <span class="ios-home"></span>
           </div>
         </div>
         <div class="float-card phase-float" aria-hidden="true">
@@ -1017,7 +1046,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
           <div class="cd-bubble in" id="cdIn">Me encantaría volver, de verdad, pero con el trabajo y los niños ahora mismo no saco tiempo para nada 😩</div>
           <p class="cd-strategy"><svg class="ico"><use href="#i-target"/></svg><span id="cdStrategy">Estrategia: solución exprés adaptada a su disponibilidad</span></p>
           <p class="cd-label">Respuesta sugerida por el Copiloto</p>
-          <div class="cd-bubble out" id="cdOut" aria-live="polite">Te entiendo perfectamente, Laura, es justo lo que más nos cuenta la gente. Si el problema es el tiempo, no hace falta venir cinco días: con dos sesiones cortas a la semana ya se nota muchísimo. ¿Te cuadra que nos veamos 5 minutos y te enseño cómo encajarlo en tu semana?</div>
+          <div class="cd-bubble out" id="cdOut" aria-live="polite">Te entiendo perfectamente, Carlos, es justo lo que más nos cuenta la gente. Si el problema es el tiempo, no hace falta venir cinco días: con dos sesiones cortas a la semana ya se nota muchísimo. ¿Te cuadra que nos veamos 5 minutos y te enseño cómo encajarlo en tu semana?</div>
           <div class="cd-actions">
             <button type="button" class="cd-copy" id="cdCopy"><svg class="ico"><use href="#i-copy"/></svg> <span>Copiar respuesta</span></button>
             <span class="cd-flow">Valida · Aísla · Propón</span>
@@ -1598,12 +1627,12 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
     tiempo: {
       in: 'Me encantaría volver, de verdad, pero con el trabajo y los niños ahora mismo no saco tiempo para nada 😩',
       strategy: 'Estrategia: solución exprés adaptada a su disponibilidad',
-      out: 'Te entiendo perfectamente, Laura, es justo lo que más nos cuenta la gente. Si el problema es el tiempo, no hace falta venir cinco días: con dos sesiones cortas a la semana ya se nota muchísimo. ¿Te cuadra que nos veamos 5 minutos y te enseño cómo encajarlo en tu semana?'
+      out: 'Te entiendo perfectamente, Carlos, es justo lo que más nos cuenta la gente. Si el problema es el tiempo, no hace falta venir cinco días: con dos sesiones cortas a la semana ya se nota muchísimo. ¿Te cuadra que nos veamos 5 minutos y te enseño cómo encajarlo en tu semana?'
     },
     precio: {
       in: 'La verdad es que ahora mismo no me lo puedo permitir, ando justo de dinero.',
       strategy: 'Estrategia: alternativa de menor fricción económica',
-      out: 'Gracias por decírmelo con sinceridad, Laura. Lo último que quiero es que pagues algo que no vas a aprovechar. ¿Te parece si vemos una opción más ligera que encaje con tu bolsillo y la pruebas un par de semanas? Te lo cuento en 5 minutos cuando te venga bien.'
+      out: 'Gracias por decírmelo con sinceridad, Carlos. Lo último que quiero es que pagues algo que no vas a aprovechar. ¿Te parece si vemos una opción más ligera que encaje con tu bolsillo y la pruebas un par de semanas? Te lo cuento en 5 minutos cuando te venga bien.'
     },
     gym: {
       in: 'Es que me apunté a uno más barato al lado de casa y de momento voy tirando.',
