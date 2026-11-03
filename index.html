@@ -68,39 +68,31 @@
           "name": "¿Cómo recibo el protocolo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Al momento. Tras el pago recibes por correo la confirmación de compra con tu clave de acceso a la Sala de Control, donde tienes todo el material, los bonus y el Copiloto IA."
+            "text": "Al momento. Tras el pago te llega por correo tu clave de acceso a la Sala de Control, con todo el material, los bonus y el Copiloto IA."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Es un pago único o una suscripción?",
+          "name": "¿Me sirve para mi tipo de centro?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Pago único de 17 €. Sin cuotas ni renovaciones."
+            "text": "Sí: gimnasios, boxes, estudios de entrenamiento personal, yoga o pilates. Cualquier centro con cuota mensual y antiguos clientes."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Me sirve si tengo un box, un estudio de entrenamiento personal o un centro de yoga o pilates?",
+          "name": "¿No voy a parecer pesado?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí. Funciona en cualquier centro deportivo con cuota mensual y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates."
+            "text": "No. Los mensajes van uno a uno y el primero no vende nada: solo reabre la conversación."
           }
         },
         {
           "@type": "Question",
-          "name": "¿No voy a parecer pesado o que hago spam?",
+          "name": "¿Por qué solo cuesta 17 €?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Al contrario. Los mensajes se envían uno a uno, nunca por listas de difusión, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Y si no me funciona?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Tienes 30 días de garantía. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17 €. Sin preguntas y sin letra pequeña."
+            "text": "Soy Sergio Gómez, fundador de Activonorte. Si te hago ganar dinero rápido con esto, confiarás en mí para cosas más grandes. Es mi forma de demostrarte que sé de lo que hablo."
           }
         }
       ]
@@ -302,28 +294,23 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 
 /* ════════ PROBLEMA ════════ */
 .problem { background: var(--bg-soft); }
-.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.problem-copy .h2 { margin-bottom: 22px; }
-.problem-copy p { font-size: 1.08rem; color: var(--text); margin-bottom: 14px; }
-.problem-copy p strong { color: var(--ink); }
-.pain-list { display: grid; gap: 14px; }
-.pain-intro { font-weight: 800; color: var(--ink); font-size: 1.05rem; margin-bottom: 2px; }
+.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .pain-card { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-.pain-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); border-color: #f2c4bf; }
+.pain-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #f2c4bf; }
 .pain-ico { flex: none; width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: var(--red-50); color: var(--red); }
 .pain-ico .ico { width: 22px; height: 22px; }
 .pain-card h3 { font-size: 1.04rem; font-weight: 800; color: var(--ink); margin-bottom: 3px; line-height: 1.3; letter-spacing: -.01em; }
 .pain-card p { font-size: .94rem; color: var(--muted); }
 .pain-card em { font-style: normal; font-weight: 700; color: var(--ink); }
-.pain-bridge { margin: clamp(48px, 6vw, 72px) auto 0; max-width: 780px; text-align: center; font-size: clamp(1.3rem, 2.6vw, 1.75rem); font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.3; text-wrap: balance; }
+.pain-bridge { margin: clamp(40px, 5vw, 56px) auto 0; max-width: 780px; text-align: center; font-size: clamp(1.3rem, 2.6vw, 1.75rem); font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.3; text-wrap: balance; }
 .pain-bridge span { color: var(--orange); }
 
 /* ════════ CÓMO FUNCIONA ════════ */
 .steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.step { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 28px 26px; box-shadow: var(--shadow-sm); transition: transform .25s ease, box-shadow .25s ease; }
+.step { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 24px; box-shadow: var(--shadow-sm); transition: transform .25s ease, box-shadow .25s ease; }
 .step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .step:not(:last-child)::after { content: ''; position: absolute; right: -19px; top: 54px; width: 10px; height: 10px; border-top: 2.5px solid var(--orange); border-right: 2.5px solid var(--orange); transform: rotate(45deg); }
-.step-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.step-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
 .step-num { width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; background: var(--teal-50); color: var(--teal); font-weight: 900; font-size: 1.05rem; }
 .step:first-child .step-num { background: var(--orange-btn); color: #fff; }
 .step-when { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 800; color: var(--teal); background: var(--teal-50); padding: 6px 11px; border-radius: 999px; }
@@ -331,40 +318,30 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .step h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink); margin-bottom: 8px; letter-spacing: -.015em; }
 .step p { font-size: .95rem; color: var(--muted); flex: 1; }
 .step p strong { color: var(--ink); }
-.step-meta { display: inline-flex; align-self: flex-start; align-items: center; gap: 7px; margin-top: 18px; font-size: .8rem; font-weight: 700; color: var(--orange-text); background: var(--orange-50); padding: 6px 12px; border-radius: 999px; }
-.step-meta .ico { width: 14px; height: 14px; }
-.method-cta { margin-top: 52px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; text-align: center; }
-.method-cta p { font-weight: 700; color: var(--ink); }
 
 /* ════════ QUÉ INCLUYE ════════ */
 .include-section { background: var(--bg-soft); }
 .inc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.inc-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 28px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.inc-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 24px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
 .inc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #cfdcde; }
-.inc-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.inc-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
 .inc-ico { flex: none; width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; background: var(--orange-50); color: var(--orange-text); }
 .fmt { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
 .fmt.new { background: var(--orange-btn); color: #fff; border-color: transparent; }
 .inc-card h3 { font-size: 1.15rem; font-weight: 800; color: var(--ink); letter-spacing: -.015em; line-height: 1.28; margin-bottom: 8px; }
-.inc-card p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
-.inc-list { list-style: none; display: grid; gap: 8px; margin-top: 4px; }
-.inc-list li { display: flex; gap: 9px; font-size: .92rem; color: var(--muted); line-height: 1.45; }
-.inc-list li b { color: var(--ink); font-weight: 700; }
-.inc-list .ico { width: 18px; height: 18px; color: var(--orange); stroke-width: 2.6; margin-top: 1px; }
-.inc-card.feature { grid-column: span 2; background: linear-gradient(135deg, var(--teal) 0%, var(--teal-900) 100%); border-color: transparent; color: #fff; }
+.inc-card p { color: var(--muted); font-size: .95rem; line-height: 1.55; }
+.inc-card.feature { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-900) 100%); border-color: transparent; color: #fff; }
 .inc-card.feature::after { content: ''; position: absolute; right: -50px; bottom: -70px; width: 300px; height: 300px; background: url('assets/img/mark-white.png') center / contain no-repeat; opacity: .05; pointer-events: none; }
 .inc-card.feature .inc-ico { background: rgba(255,255,255,.1); color: var(--orange-light); }
 .inc-card.feature .fmt { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.22); }
-.inc-card.feature h3 { color: #fff; font-size: clamp(1.35rem, 2.4vw, 1.7rem); }
+.inc-card.feature h3 { color: #fff; }
 .inc-card.feature p { color: rgba(255,255,255,.8); max-width: 580px; }
-.tag-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; position: relative; z-index: 1; }
-.tag-list li { font-size: .8rem; font-weight: 600; padding: 6px 13px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
-.inc-card.ai { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 24px; border: 1.5px solid #f3c9ab; background: linear-gradient(100deg, #fff6ef 0%, #fff 60%); }
-.inc-card.ai .inc-ico { width: 64px; height: 64px; border-radius: 18px; background: var(--orange-btn); color: #fff; box-shadow: 0 12px 24px -10px rgba(224,94,0,.7); }
-.inc-card.ai .inc-ico .ico { width: 30px; height: 30px; }
-.inc-body { flex: 1; min-width: 0; }
-.inc-body h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-.value-band { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; padding: 24px 28px; border-radius: 22px; background: #fff; border: 1.5px dashed #c9d6d8; }
+.inc-card.is-ai { border: 1.5px solid #f3c9ab; background: linear-gradient(160deg, #fff6ef 0%, #fff 70%); }
+.inc-card.is-ai .inc-ico { background: var(--orange-btn); color: #fff; box-shadow: 0 10px 22px -10px rgba(224,94,0,.7); }
+.inc-link { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--orange-text); white-space: nowrap; }
+.inc-link .ico { width: 15px; height: 15px; }
+.inc-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.value-band { margin-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; padding: 24px 28px; border-radius: 22px; background: #fff; border: 1.5px dashed #c9d6d8; }
 .value-band strong { display: block; color: var(--ink); font-size: 1.12rem; font-weight: 800; letter-spacing: -.01em; }
 .value-band span { color: var(--muted); font-size: .92rem; }
 
@@ -372,13 +349,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .copilot-section { background: radial-gradient(60% 70% at 100% 0%, rgba(224,94,0,.2), transparent 60%), radial-gradient(50% 60% at 0% 100%, rgba(20,104,122,.35), transparent 60%), var(--teal-900); color: #fff; }
 .copilot-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .copilot-copy .h2 { margin-bottom: 18px; }
-.copilot-copy > p { color: rgba(255,255,255,.78); font-size: 1.08rem; margin-bottom: 26px; }
+.copilot-copy > p { color: rgba(255,255,255,.78); font-size: 1.08rem; }
 .copilot-copy > p strong { color: #fff; }
-.check-list { list-style: none; display: grid; gap: 14px; }
-.check-list li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: rgba(255,255,255,.92); line-height: 1.45; }
-.copilot-vs { margin-top: 26px; padding: 16px 18px; border-left: 4px solid var(--orange-light); background: rgba(255,255,255,.06); border-radius: 0 14px 14px 0; color: rgba(255,255,255,.8); font-size: .97rem; line-height: 1.55; }
-.copilot-vs strong { display: block; color: #fff; margin-bottom: 4px; }
-.check-list .ico { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: rgba(255,122,26,.18); color: var(--orange-light); stroke-width: 3; }
 .cd-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .cd-tab { padding: 10px 15px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); font-weight: 700; font-size: .88rem; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
 .cd-tab:hover { border-color: rgba(255,255,255,.5); }
@@ -407,28 +379,26 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .cd-note { margin-top: 14px; font-size: .8rem; color: rgba(255,255,255,.6); text-align: center; }
 
 /* ════════ BONUS ════════ */
-.bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.bonus-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 30px 28px 28px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.bonus-head { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 14px; margin: clamp(40px, 5vw, 56px) 0 20px; }
+.bonus-pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 999px; background: var(--orange-btn); color: #fff; font-weight: 800; font-size: .98rem; box-shadow: 0 10px 22px -10px rgba(224,94,0,.7); }
+.bonus-pill .ico { width: 18px; height: 18px; }
+.bonus-sum { color: var(--muted); font-weight: 600; }
+.bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.bonus-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 24px 24px 22px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
 .bonus-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--orange), #ffb067); }
 .bonus-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-.bonus-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 22px; }
+.bonus-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
 .bonus-num { font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-text); }
 .bonus-val { font-size: .8rem; font-weight: 800; color: var(--green); background: var(--green-50); padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
 .bonus-val s { color: var(--muted); font-weight: 600; margin-right: 5px; }
-.bonus-ico { width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; background: var(--teal-50); color: var(--teal); margin-bottom: 18px; transition: background-color .25s, color .25s; }
-.bonus-card:hover .bonus-ico { background: var(--orange-50); color: var(--orange-text); }
-.bonus-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink); letter-spacing: -.015em; line-height: 1.25; margin-bottom: 10px; }
-.bonus-card p { color: var(--muted); font-size: .95rem; line-height: 1.68; }
-.bonus-card p strong { color: var(--ink); }
-.bonus-total { margin-top: 32px; text-align: center; color: var(--muted); font-size: 1.02rem; }
-.bonus-total strong { color: var(--ink); }
+.bonus-card h3 { font-size: 1.12rem; font-weight: 800; color: var(--ink); letter-spacing: -.015em; line-height: 1.25; margin-bottom: 6px; }
+.bonus-card p { color: var(--muted); font-size: .93rem; line-height: 1.55; }
 
 /* ════════ CALCULADORA ════════ */
 .calc-section { background: radial-gradient(60% 70% at 100% 0%, rgba(224,94,0,.18), transparent 60%), radial-gradient(50% 60% at 0% 100%, rgba(20,104,122,.35), transparent 60%), var(--teal-900); color: #fff; }
 .calc { display: grid; grid-template-columns: 1fr 1.05fr; gap: 28px; align-items: stretch; }
-.calc-inputs { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: clamp(24px, 3.5vw, 36px); }
-.calc-inputs h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
-.calc-inputs > p { color: rgba(255,255,255,.65); font-size: .92rem; margin-bottom: 28px; }
+.calc-inputs { display: flex; flex-direction: column; justify-content: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: clamp(24px, 3.5vw, 36px); }
+.calc-inputs h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 26px; }
 .field { margin-bottom: 30px; }
 .field:last-child { margin-bottom: 0; }
 .field-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -460,35 +430,12 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 .calc-results .btn { margin-top: auto; }
 .calc-note { font-size: .76rem; color: var(--muted); margin-top: 12px; text-align: center; }
 
-/* ════════ QUIÉN SOY + GARANTÍA ════════ */
-.trust-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: stretch; }
-.founder { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 24px; padding: clamp(26px, 3.5vw, 42px); }
-.founder-head { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
-.founder-avatar { flex: none; width: 72px; height: 72px; border-radius: 20px; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; box-shadow: var(--shadow-sm); }
-.founder-avatar img { width: 42px; height: 42px; }
-.founder-head .eyebrow { margin-bottom: 6px; }
-.founder h2, .guarantee h2 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.2; text-wrap: balance; }
-.founder p { color: var(--text); margin-bottom: 14px; }
-.founder p strong { color: var(--ink); }
-.founder-quote { font-weight: 800; color: var(--ink) !important; font-size: 1.08rem; border-left: 4px solid var(--orange); padding-left: 14px; margin: 20px 0 !important; }
-.guarantee { position: relative; overflow: hidden; border-radius: 24px; padding: clamp(26px, 3.5vw, 42px); background: linear-gradient(160deg, #eefaf3 0%, #fff 72%); border: 2px solid #9fd8b5; }
-.seal { width: 116px; height: 116px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #1f9d55, var(--green)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 0 6px #fff, 0 0 0 8px #9fd8b5, 0 20px 34px -12px rgba(18,122,63,.55); margin-bottom: 24px; }
-.seal span { font-size: 2.5rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; }
-.seal small { font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-top: 2px; }
-.guarantee .eyebrow { color: var(--green); }
-.guarantee .eyebrow::before { background: var(--green); }
-.guarantee p:not(.eyebrow) { color: var(--text); margin-top: 12px; }
-.guarantee p strong { color: var(--green); }
-.guarantee .guarantee-strong { font-weight: 800; color: var(--ink); }
-
 /* ════════ FAQ ════════ */
 .faq-section { background: var(--bg-soft); }
-.faq-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
-.faq-aside { position: sticky; top: calc(var(--header-h) + 28px); }
-.faq-aside .section-head { text-align: left; margin: 0 0 26px; }
-.faq-help { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
-.faq-help p { color: var(--ink); font-weight: 700; margin-bottom: 4px; }
-.faq-help span { display: block; color: var(--muted); font-size: .92rem; margin-bottom: 16px; }
+.faq-wrap { max-width: 820px; }
+.faq-more { margin-top: 22px; text-align: center; color: var(--muted); }
+.faq-more a { color: var(--teal); font-weight: 700; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.faq-more a:hover { color: var(--orange-text); }
 .faq-list { display: grid; gap: 12px; }
 .faq-item { border: 1px solid var(--line); border-radius: 16px; background: #fff; transition: border-color .2s, box-shadow .2s; }
 .faq-item[open] { border-color: #c9d6d8; box-shadow: var(--shadow-sm); }
@@ -498,16 +445,18 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 .faq-item[open] summary .ico { transform: rotate(45deg); }
 .faq-answer { padding: 0 22px 22px; color: var(--muted); font-size: .97rem; line-height: 1.7; }
 .faq-answer strong { color: var(--ink); }
-.faq-answer a { color: var(--teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ════════ CTA FINAL + RESUMEN DEL PEDIDO ════════ */
 .cta-final { background: radial-gradient(70% 80% at 0% 0%, rgba(224,94,0,.25), transparent 60%), linear-gradient(135deg, var(--teal) 0%, var(--teal-950) 100%); color: #fff; }
 .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .cta-copy h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); font-weight: 900; line-height: 1.06; letter-spacing: -.03em; margin-bottom: 18px; text-wrap: balance; }
 .cta-copy > p { color: rgba(255,255,255,.8); font-size: 1.1rem; margin-bottom: 26px; max-width: 520px; }
-.cta-points { list-style: none; display: grid; gap: 14px; }
-.cta-points li { display: flex; gap: 12px; align-items: center; font-weight: 600; }
-.cta-points .ico { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: rgba(255,122,26,.18); color: var(--orange-light); stroke-width: 3; }
+.guarantee-badge { display: flex; align-items: center; gap: 18px; max-width: 520px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); }
+.seal { flex: none; width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #1f9d55, var(--green)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 0 4px rgba(255,255,255,.92), 0 0 0 6px #9fd8b5, 0 16px 30px -12px rgba(0,0,0,.6); }
+.seal span { font-size: 1.9rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; }
+.seal small { font-size: .62rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-top: 2px; }
+.guarantee-badge strong { display: block; font-size: 1.08rem; font-weight: 800; color: #fff; }
+.guarantee-badge p { margin-top: 3px; color: rgba(255,255,255,.78); font-size: .95rem; line-height: 1.5; }
 .order-card { position: relative; background: #fff; color: var(--text); border-radius: 24px; padding: clamp(24px, 3.5vw, 34px); box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
 .order-tag { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: var(--orange-btn); padding: 5px 12px; border-radius: 999px; margin-bottom: 12px; }
 .order-card h3 { font-size: 1.3rem; font-weight: 900; color: var(--ink); letter-spacing: -.02em; line-height: 1.25; margin-bottom: 18px; }
@@ -541,17 +490,16 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 @media (max-width: 1080px) {
   .copilot-float { left: -10%; }
   .inc-grid { grid-template-columns: repeat(2, 1fr); }
-  .inc-card.feature { grid-column: 1 / -1; }
 }
 @media (max-width: 960px) {
   :root { --header-h: 64px; }
   .hero { min-height: 0; }
-  .hero-grid, .problem-grid, .copilot-grid, .calc, .cta-grid, .faq-layout, .trust-grid { grid-template-columns: 1fr; }
+  .hero-grid, .copilot-grid, .calc, .cta-grid { grid-template-columns: 1fr; }
+  .pain-grid { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; }
   .hero-visual { margin-top: 12px; }
   .steps { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; gap: 30px; }
   .step:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -21px; transform: translateX(-50%) rotate(135deg); }
   .bonus-grid { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; }
-  .faq-aside { position: static; }
   .copilot-copy { text-align: left; }
 }
 @media (max-width: 760px) {
@@ -570,18 +518,24 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .phone-wrap { width: min(268px, 74vw); }
   .copilot-float { left: -9%; bottom: -4%; width: 200px; padding: 11px 13px; }
   .wa-e2e { display: none; }
-  .inc-grid { grid-template-columns: 1fr; }
-  .inc-card { padding: 24px; }
-  .inc-card.ai { flex-direction: column; align-items: flex-start; }
-  .inc-card.ai .btn { width: 100%; }
+  .inc-grid { grid-template-columns: 1fr; gap: 12px; }
+  .inc-card { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: start; padding: 16px 18px; }
+  .inc-card > :not(.inc-top) { grid-column: 2; }
+  .inc-top { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
+  .inc-card .fmt { display: none; }
+  .inc-ico { width: 44px; height: 44px; border-radius: 13px; }
+  .inc-card h3 { font-size: 1.02rem; margin-bottom: 2px; }
+  .inc-card p { font-size: .9rem; }
+  .bonus-card { padding: 20px; }
+  .guarantee-badge { padding: 16px; gap: 14px; }
+  .seal { width: 72px; height: 72px; }
+  .seal span { font-size: 1.6rem; }
   .value-band { padding: 22px; }
   .value-band .btn { width: 100%; }
-  .method-cta .btn { width: 100%; }
   .res-row { grid-template-columns: 1fr; }
   .bar-row { grid-template-columns: 78px 1fr 64px; gap: 8px; }
   .cd-body { padding: 16px; min-height: 0; }
   .cd-live { display: none; }
-  .founder-head { flex-direction: column; align-items: flex-start; }
   .order-price strong { font-size: 2.6rem; }
 }
 @media (max-width: 400px) {
@@ -621,12 +575,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   <symbol id="i-frown" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2M9 9h.01M15 9h.01"/></symbol>
   <symbol id="i-msg-x" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="m14.5 7.5-5 5M9.5 7.5l5 5"/></symbol>
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
-  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><path d="M7 7h.01"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
-  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
   <symbol id="i-video" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></symbol>
 </svg>
@@ -741,159 +691,117 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 <!-- ════════ PROBLEMA ════════ -->
 <section class="problem section" id="problema" aria-labelledby="problema-title">
   <div class="container">
-    <div class="problem-grid">
-      <div class="problem-copy reveal">
-        <p class="eyebrow">Seamos sinceros</p>
-        <h2 class="h2" id="problema-title">Estás sentado sobre una <span class="accent">mina de oro</span> y no lo sabes</h2>
-        <p>Seguro que tienes un Excel en el ordenador, o una lista de contactos en el móvil, llena de nombres de personas que entrenaron contigo y se fueron.</p>
-        <p>Ahora mismo esa lista es un <strong>cementerio digital</strong>. Cada día que pasa sin que hagas nada con ella, estás perdiendo cientos de euros.</p>
-      </div>
-
-      <div class="pain-list">
-        <p class="pain-intro reveal">Pero te entiendo. No les escribes porque…</p>
-        <article class="pain-card reveal reveal-d1">
-          <div class="pain-ico"><svg class="ico"><use href="#i-frown"/></svg></div>
-          <div>
-            <h3>No quieres parecer desesperado</h3>
-            <p>Odiarías ser ese vendedor pesado que molesta a la gente.</p>
-          </div>
-        </article>
-        <article class="pain-card reveal reveal-d2">
-          <div class="pain-ico"><svg class="ico"><use href="#i-msg-x"/></svg></div>
-          <div>
-            <h3>No sabes qué decir</h3>
-            <p>Te da miedo escribir y que te dejen en «visto» o te digan que no.</p>
-          </div>
-        </article>
-        <article class="pain-card reveal reveal-d3">
-          <div class="pain-ico"><svg class="ico"><use href="#i-clock"/></svg></div>
-          <div>
-            <h3>Crees que ya es tarde</h3>
-            <p>Piensas que se han ido a la competencia. <em>Spoiler: la mayoría no entrena en ningún sitio. Está en el sofá.</em></p>
-          </div>
-        </article>
-      </div>
+    <div class="section-head reveal">
+      <p class="eyebrow">Seamos sinceros</p>
+      <h2 class="h2" id="problema-title">Estás sentado sobre una <span class="accent">mina de oro</span> y no lo sabes</h2>
+      <p>Tu lista de bajas está llena de gente que ya te conoce. No vuelven porque nadie les escribe. Y tú no lo haces porque…</p>
     </div>
-
+    <div class="pain-grid">
+      <article class="pain-card reveal reveal-d1">
+        <div class="pain-ico"><svg class="ico"><use href="#i-frown"/></svg></div>
+        <div><h3>No quieres parecer desesperado</h3><p>Nadie quiere ser el vendedor pesado.</p></div>
+      </article>
+      <article class="pain-card reveal reveal-d2">
+        <div class="pain-ico"><svg class="ico"><use href="#i-msg-x"/></svg></div>
+        <div><h3>No sabes qué decir</h3><p>Te da miedo el «visto» o un «no».</p></div>
+      </article>
+      <article class="pain-card reveal reveal-d3">
+        <div class="pain-ico"><svg class="ico"><use href="#i-clock"/></svg></div>
+        <div><h3>Crees que ya es tarde</h3><p>Spoiler: la mayoría <em>está en el sofá</em>, no en otro gimnasio.</p></div>
+      </article>
+    </div>
     <p class="pain-bridge reveal">No te falta una lista. <span>Te falta un sistema para escribirles.</span></p>
   </div>
 </section>
 
-<!-- ════════ EL PROTOCOLO · CÓMO FUNCIONA ════════ -->
+<!-- ════════ CÓMO FUNCIONA ════════ -->
 <section class="section" id="como-funciona" aria-labelledby="protocolo-title">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Presentamos</p>
-      <h2 class="h2" id="protocolo-title">El Protocolo de Reactivación de Ex-Socios™</h2>
-      <p>El sistema de «copiar y pegar» para volver a llenar tus clases. No es un curso teórico de 10 horas: es una <strong>herramienta táctica de ejecución rápida</strong> para centros que necesitan facturar más <strong class="txt-orange">hoy</strong>. 48 horas, 3 fases y cero improvisación.</p>
+      <p class="eyebrow">El Protocolo de Reactivación</p>
+      <h2 class="h2" id="protocolo-title">48 horas. 3 fases. Cero improvisación.</h2>
+      <p>No es un curso de 10 horas: es un sistema de «copiar y pegar» que sigues paso a paso.</p>
     </div>
-
     <ol class="steps">
       <li class="step reveal reveal-d1">
-        <div class="step-top">
-          <div class="step-num">01</div>
-          <span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 1 · Mañana</span>
-        </div>
-        <h3>Calibración y filtrado</h3>
-        <p>Exportas tu lista de bajas (de Trainingym, Resawod o un simple Excel) y aplicas el <strong>Filtro Oro</strong> y la <strong>Lista Negra</strong>. Solo escribes a quien tiene opciones reales de volver.</p>
-        <span class="step-meta"><svg class="ico"><use href="#i-book"/></svg> Guía de Estrategia + Tracker</span>
+        <div class="step-top"><div class="step-num">01</div><span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 1 · Mañana</span></div>
+        <h3>Filtra tu lista</h3>
+        <p>Con el <strong>Filtro Oro</strong> escribes solo a quien tiene opciones reales de volver.</p>
       </li>
       <li class="step reveal reveal-d2">
-        <div class="step-top">
-          <div class="step-num">02</div>
-          <span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 1 · Tarde</span>
-        </div>
-        <h3>El primer impacto</h3>
-        <p>Envías el mensaje <strong>Rompehielos</strong>, uno a uno y en las franjas horarias de <strong>El Cronómetro</strong>. Sin precios ni enlaces: solo reabres la conversación.</p>
-        <span class="step-meta"><svg class="ico"><use href="#i-chat"/></svg> 3 scripts de WhatsApp</span>
+        <div class="step-top"><div class="step-num">02</div><span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 1 · Tarde</span></div>
+        <h3>Rompe el hielo</h3>
+        <p>Envías el mensaje <strong>Rompehielos</strong>, uno a uno y a la hora exacta. Sin vender nada.</p>
       </li>
       <li class="step reveal reveal-d3">
-        <div class="step-top">
-          <div class="step-num">03</div>
-          <span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 2</span>
-        </div>
-        <h3>Neutralización y cierre</h3>
-        <p>Cuando respondan, aplicas la regla del <strong>Tempomat</strong> y la <strong>Mentalidad Aikido</strong> para convertir cada «no tengo tiempo» o «es muy caro» en una visita a tu centro.</p>
-        <span class="step-meta"><svg class="ico"><use href="#i-sparkles"/></svg> Manual de cierre + Copiloto IA</span>
+        <div class="step-top"><div class="step-num">03</div><span class="step-when"><svg class="ico"><use href="#i-clock"/></svg> Día 2</span></div>
+        <h3>Cierra la vuelta</h3>
+        <p>Respondes cada «no tengo tiempo» o «es caro» con el <strong>Copiloto IA</strong> y cierras la visita.</p>
       </li>
     </ol>
-
-    <div class="method-cta reveal">
-      <p>Lo puedes empezar hoy mismo.</p>
-      <a class="btn btn-primary" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_metodo">Quiero el protocolo · 17&nbsp;€ <svg class="ico ico-arrow"><use href="#i-arrow"/></svg></a>
-    </div>
   </div>
 </section>
 
-<!-- ════════ QUÉ INCLUYE ════════ -->
+<!-- ════════ QUÉ INCLUYE + BONUS ════════ -->
 <section class="include-section section" id="incluye" aria-labelledby="incluye-title">
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Qué incluye</p>
-      <h2 class="h2" id="incluye-title">Todo lo que recibes por 17&nbsp;€</h2>
-      <p>Acceso inmediato a tu Sala de Control privada, con todo el material listo para usar hoy mismo.</p>
+      <h2 class="h2" id="incluye-title">Todo lo que te llevas por 17&nbsp;€</h2>
     </div>
 
     <div class="inc-grid">
       <article class="inc-card feature reveal">
-        <div class="inc-top">
-          <span class="inc-ico"><svg class="ico"><use href="#i-monitor"/></svg></span>
-          <span class="fmt">Área privada</span>
-        </div>
+        <div class="inc-top"><span class="inc-ico"><svg class="ico"><use href="#i-monitor"/></svg></span><span class="fmt">Área privada</span></div>
         <h3>Sala de Control</h3>
-        <p>Tu panel paso a paso. Entras con tu correo y tu clave de licencia y sigues las 3 fases en el orden exacto, desde el móvil o el ordenador. Sin perderte entre archivos.</p>
-        <ul class="tag-list" aria-label="Características de la Sala de Control">
-          <li>Acceso inmediato</li><li>Móvil y ordenador</li><li>Todo en un solo sitio</li>
-        </ul>
+        <p>Tu panel privado con las 3 fases paso a paso. Desde el móvil o el ordenador.</p>
       </article>
-
-      <article class="inc-card reveal reveal-d1">
-        <div class="inc-top">
-          <span class="inc-ico"><svg class="ico"><use href="#i-book"/></svg></span>
-          <span class="fmt">PDF</span>
-        </div>
-        <h3>La Guía de Estrategia «Paso a Paso»</h3>
-        <p>Para que sepas exactamente a quién escribir (y a quién no) y en qué horario hacerlo para asegurar la respuesta.</p>
+      <article class="inc-card is-ai reveal reveal-d1">
+        <div class="inc-top"><span class="inc-ico"><svg class="ico"><use href="#i-sparkles"/></svg></span><span class="fmt new">IA</span></div>
+        <h3>Copiloto Táctico IA</h3>
+        <p>Te escribe la respuesta a cada objeción. <a class="inc-link" href="#copiloto" data-track="inc_copiloto">Pruébalo <svg class="ico"><use href="#i-down"/></svg></a></p>
       </article>
-
-      <article class="inc-card reveal">
-        <div class="inc-top">
-          <span class="inc-ico"><svg class="ico"><use href="#i-chat"/></svg></span>
-          <span class="fmt">PDF</span>
-        </div>
-        <h3>Los 3 Scripts de WhatsApp «Rompehielos»</h3>
-        <ul class="inc-list">
-          <li><svg class="ico"><use href="#i-arrow"/></svg><span><b>Mensaje 1:</b> la reconexión genuina (sin que parezca venta).</span></li>
-          <li><svg class="ico"><use href="#i-arrow"/></svg><span><b>Mensaje 2:</b> la oferta irresistible (el gancho).</span></li>
-          <li><svg class="ico"><use href="#i-arrow"/></svg><span><b>Mensaje 3:</b> la urgencia (el cierre para indecisos).</span></li>
-        </ul>
-      </article>
-
-      <article class="inc-card reveal reveal-d1">
-        <div class="inc-top">
-          <span class="inc-ico"><svg class="ico"><use href="#i-file"/></svg></span>
-          <span class="fmt">PDF</span>
-        </div>
-        <h3>El Manual de Cierre de 1 Hoja</h3>
-        <p>Qué responder exactamente cuando te digan «me lo tengo que pensar» o «ahora no tengo dinero» para cerrar la matrícula.</p>
-      </article>
-
       <article class="inc-card reveal reveal-d2">
-        <div class="inc-top">
-          <span class="inc-ico"><svg class="ico"><use href="#i-chart"/></svg></span>
-          <span class="fmt">Excel</span>
-        </div>
-        <h3>Tracker de Resultados</h3>
-        <p>Un Excel sencillo para que veas cuánto dinero estás recuperando en tiempo real. Lo que no se mide, no se cobra.</p>
+        <div class="inc-top"><span class="inc-ico"><svg class="ico"><use href="#i-chat"/></svg></span><span class="fmt">PDF</span></div>
+        <h3>3 Scripts de WhatsApp «Rompehielos»</h3>
+        <p>Reconexión, oferta y urgencia: listos para copiar y pegar.</p>
       </article>
+      <article class="inc-card reveal">
+        <div class="inc-top"><span class="inc-ico"><svg class="ico"><use href="#i-book"/></svg></span><span class="fmt">PDF</span></div>
+        <h3>Guía «Paso a Paso»</h3>
+        <p>A quién escribir, a quién no y a qué hora.</p>
+      </article>
+      <article class="inc-card reveal reveal-d1">
+        <div class="inc-top"><span class="inc-ico"><svg class="ico"><use href="#i-file"/></svg></span><span class="fmt">PDF</span></div>
+        <h3>Manual de Cierre de 1 Hoja</h3>
+        <p>Qué contestar a «me lo tengo que pensar».</p>
+      </article>
+      <article class="inc-card reveal reveal-d2">
+        <div class="inc-top"><span class="inc-ico"><svg class="ico"><use href="#i-chart"/></svg></span><span class="fmt">Excel</span></div>
+        <h3>Tracker de Resultados</h3>
+        <p>El dinero que recuperas, en tiempo real.</p>
+      </article>
+    </div>
 
-      <article class="inc-card ai reveal">
-        <span class="inc-ico"><svg class="ico"><use href="#i-sparkles"/></svg></span>
-        <div class="inc-body">
-          <h3>Copiloto Táctico IA <span class="fmt new">Exclusivo</span></h3>
-          <p>Pega el mensaje del ex-socio y te redacta la respuesta con Mentalidad Aikido. Recuerda cada conversación para que nunca te quedes en blanco.</p>
-        </div>
-        <a class="btn btn-outline" href="#copiloto" data-track="inc_copiloto">Ver cómo funciona <svg class="ico"><use href="#i-down"/></svg></a>
+    <div class="bonus-head reveal">
+      <span class="bonus-pill"><svg class="ico"><use href="#i-gift"/></svg> + 3 bonus de regalo</span>
+      <span class="bonus-sum">Valorados en 101&nbsp;€ · hoy, gratis</span>
+    </div>
+    <div class="bonus-grid">
+      <article class="bonus-card reveal reveal-d1">
+        <div class="bonus-top"><span class="bonus-num">Bonus #1</span><span class="bonus-val"><s>27&nbsp;€</s>Gratis</span></div>
+        <h3>El Antídoto «Low-Cost»</h3>
+        <p>Vende tu cuota a 50&nbsp;€ o más aunque abra un gimnasio barato al lado.</p>
+      </article>
+      <article class="bonus-card reveal reveal-d2">
+        <div class="bonus-top"><span class="bonus-num">Bonus #2</span><span class="bonus-val"><s>27&nbsp;€</s>Gratis</span></div>
+        <h3>La Muralla de Retención</h3>
+        <p>El plan de los primeros 30 días para que no se te vuelvan a ir.</p>
+      </article>
+      <article class="bonus-card reveal reveal-d3">
+        <div class="bonus-top"><span class="bonus-num">Bonus #3</span><span class="bonus-val"><s>47&nbsp;€</s>Gratis</span></div>
+        <h3>Dominando el Barrio en Google</h3>
+        <p>Checklist de 10 puntos para salir primero en Google Maps.</p>
       </article>
     </div>
 
@@ -909,14 +817,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   <div class="container copilot-grid">
     <div class="copilot-copy reveal">
       <p class="eyebrow">Copiloto Táctico IA</p>
-      <h2 class="h2" id="copiloto-title">¿Te han contestado y no sabes qué decir? Tu Copiloto te lo escribe</h2>
-      <p>Las objeciones son donde se pierden la mayoría de matrículas. Pega lo que te ha escrito el ex-socio y el Copiloto te devuelve una respuesta lista para enviar con <strong>Mentalidad Aikido</strong>: valida su postura, aísla el problema real y propone algo pequeño.</p>
-      <ul class="check-list">
-        <li><svg class="ico"><use href="#i-check"/></svg> Detecta la objeción y te propone la respuesta</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Memoria activa: recuerda la conversación de cada ex-socio</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Atajos para «no tengo tiempo», «es muy caro» o «voy a otro gym»</li>
-      </ul>
-      <p class="copilot-vs"><strong>¿Por qué no una plantilla gratis de internet?</strong> Porque un mensaje suelto no es un sistema: no te dice a quién escribir, cuándo enviarlo ni qué contestar cuando te ponen una pega.</p>
+      <h2 class="h2" id="copiloto-title">¿Te contestan y no sabes qué decir? Tu Copiloto te lo escribe</h2>
+      <p>Pega lo que te ha escrito el ex-socio y recibe una respuesta lista para enviar. <strong>Pruébalo con estas tres pegas típicas.</strong></p>
     </div>
 
     <div class="cd reveal reveal-d2">
@@ -948,53 +850,17 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   </div>
 </section>
 
-<!-- ════════ BONUS ════════ -->
-<section class="section" id="bonus" aria-labelledby="bonus-title">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Bonus incluidos</p>
-      <h2 class="h2" id="bonus-title">Pero espera, eso no es todo…</h2>
-      <p>Con tu compra también te llevas estos 3 bonus valorados en <strong>más de 100&nbsp;€</strong>. Para que, además de recuperar socios, no se te vuelvan a ir.</p>
-    </div>
-
-    <div class="bonus-grid">
-      <article class="bonus-card reveal reveal-d1">
-        <div class="bonus-top"><span class="bonus-num">Bonus #1</span><span class="bonus-val"><s>27&nbsp;€</s>Gratis</span></div>
-        <span class="bonus-ico"><svg class="ico"><use href="#i-tag"/></svg></span>
-        <h3>El Antídoto «Low-Cost»</h3>
-        <p>¿Te da rabia que abran un gimnasio de cadena a 29,90&nbsp;€ cerca del tuyo? Aprende a vender tu cuota a 50&nbsp;€, 60&nbsp;€ o más, haciendo que el cliente perciba el barato como la peor opción. <strong>Compite por valor, no por precio.</strong></p>
-      </article>
-      <article class="bonus-card reveal reveal-d2">
-        <div class="bonus-top"><span class="bonus-num">Bonus #2</span><span class="bonus-val"><s>27&nbsp;€</s>Gratis</span></div>
-        <span class="bonus-ico"><svg class="ico"><use href="#i-heart"/></svg></span>
-        <h3>La Muralla de Retención</h3>
-        <p>De nada sirve traer clientes si se van al mes siguiente. Descubre el plan de acción para los <strong>«primeros 30 días»</strong> de un socio nuevo: pequeños gestos que lo fidelizan durante años, no semanas.</p>
-      </article>
-      <article class="bonus-card reveal reveal-d3">
-        <div class="bonus-top"><span class="bonus-num">Bonus #3</span><span class="bonus-val"><s>47&nbsp;€</s>Gratis</span></div>
-        <span class="bonus-ico"><svg class="ico"><use href="#i-pin"/></svg></span>
-        <h3>Dominando el Barrio en Google</h3>
-        <p>Cuando alguien busca «gimnasio cerca de mí»… ¿sales tú o sale tu competencia? La <strong>checklist de 10 puntos</strong> para optimizar tu ficha de Google Maps y aparecer el primero en las búsquedas locales.</p>
-      </article>
-    </div>
-
-    <p class="bonus-total reveal">Valor de los bonus: <strong>101&nbsp;€</strong>. Para ti, <strong>incluidos sin coste</strong> con el protocolo.</p>
-  </div>
-</section>
-
 <!-- ════════ HAGAMOS NÚMEROS ════════ -->
 <section class="calc-section section on-dark" id="numeros" aria-labelledby="numeros-title">
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Hagamos números</p>
       <h2 class="h2" id="numeros-title">Con que vuelva una sola persona, ya lo has pagado</h2>
-      <p>Mueve los valores con los datos de tu centro y mira lo que puede valer tu lista de bajas.</p>
     </div>
 
     <div class="calc reveal" id="calc">
       <form class="calc-inputs" onsubmit="return false" aria-label="Datos de tu centro">
-        <h3>Tus números</h3>
-        <p>Aproximados valen. Nada de esto se envía a ningún sitio.</p>
+        <h3>Mueve tus números</h3>
 
         <div class="field">
           <div class="field-top">
@@ -1014,14 +880,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
           <div class="range-scale"><span>1</span><span>20</span></div>
         </div>
 
-        <div class="field">
-          <div class="field-top">
-            <label for="c-meses-r">Meses que se quedan</label>
-            <span class="num-wrap"><input type="number" id="c-meses" inputmode="numeric" min="1" max="12" step="1" value="1" aria-label="Meses que se quedan" /><span id="u-meses">mes</span></span>
-          </div>
-          <input type="range" id="c-meses-r" min="1" max="12" step="1" value="1" data-pair="c-meses" />
-          <div class="range-scale"><span>1 mes</span><span>12 meses</span></div>
-        </div>
       </form>
 
       <div class="calc-results" aria-live="polite">
@@ -1029,7 +887,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
           <div class="res">
             <small>Dinero recuperado</small>
             <strong><span id="r-ingresos">200</span>&nbsp;€</strong>
-            <span class="res-sub">con <b id="r-socios">5 socios</b> durante <b id="r-meses">1 mes</b></span>
+            <span class="res-sub">con <b id="r-socios">5 socios</b>, solo el primer mes</span>
           </div>
           <div class="res">
             <small>Retorno</small>
@@ -1043,76 +901,38 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
         </div>
         <p class="res-insight" id="r-insight">Con <strong>1 solo socio</strong> que vuelva un mes ya cubres los 17&nbsp;€ y te sobran <strong>23&nbsp;€</strong>.</p>
         <a class="btn btn-primary btn-lg btn-block" id="calcCta" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_calc"><span>Quiero recuperar esos <span id="r-cta">200</span>&nbsp;€</span> <svg class="ico ico-arrow"><use href="#i-arrow"/></svg></a>
-        <p class="calc-note">Estimación orientativa: socios que vuelven × cuota media × meses. No es una promesa de resultados.</p>
+        <p class="calc-note">Estimación orientativa: socios que vuelven × cuota media, solo el primer mes. No es una promesa de resultados.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ════════ QUIÉN SOY + GARANTÍA ════════ -->
-<section class="section" id="garantia">
-  <div class="container trust-grid">
-    <article class="founder reveal">
-      <div class="founder-head">
-        <span class="founder-avatar"><img src="assets/img/mark-teal.png" alt="" width="42" height="42" loading="lazy" /></span>
-        <div>
-          <p class="eyebrow">Quién está detrás</p>
-          <h2>¿Quién soy y por qué solo cuesta 17&nbsp;€?</h2>
-        </div>
-      </div>
-      <p>Soy <strong>Sergio Gómez</strong>, fundador de Activonorte y consultor de crecimiento para negocios deportivos. No soy un gurú inalcanzable: soy un profesional que ayuda a dueños de gimnasios a simplificar su marketing.</p>
-      <p><strong>¿Por qué tan barato?</strong> Porque sé que si pruebas este protocolo y te hago ganar dinero rápido, confiarás en mí para cosas más grandes.</p>
-      <p class="founder-quote">Es mi forma de demostrarte que sé de lo que hablo: con resultados.</p>
-    </article>
-
-    <article class="guarantee reveal reveal-d2">
-      <div class="seal" aria-hidden="true"><span>30</span><small>días</small></div>
-      <p class="eyebrow">Riesgo cero</p>
-      <h2>Garantía de Hierro de 30 días</h2>
-      <p>No quiero tu dinero si no estás <strong>100&nbsp;% satisfecho</strong>.</p>
-      <p>Descarga el pack y aplícalo. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17&nbsp;€.</p>
-      <p class="guarantee-strong">Sin preguntas. Sin letra pequeña.</p>
-    </article>
   </div>
 </section>
 
 <!-- ════════ PREGUNTAS FRECUENTES ════════ -->
 <section class="faq-section section" id="faq" aria-labelledby="faq-title">
-  <div class="container faq-layout">
-    <div class="faq-aside reveal">
-      <div class="section-head">
-        <p class="eyebrow">Preguntas frecuentes</p>
-        <h2 class="h2" id="faq-title">Lo que te preguntas antes de comprar</h2>
-      </div>
-      <div class="faq-help">
-        <p>¿Tienes otra duda?</p>
-        <span>Escríbeme directamente y te respondo yo.</span>
-        <a class="btn btn-outline btn-block" href="https://wa.me/34610387276?text=Hola%20Sergio%2C%20tengo%20una%20duda%20sobre%20el%20Protocolo%20de%20Reactivaci%C3%B3n%20antes%20de%20comprarlo." target="_blank" rel="noopener" data-loader data-track="wa_faq"><svg class="ico"><use href="#i-chat"/></svg> Preguntar por WhatsApp</a>
-      </div>
+  <div class="container faq-wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2 class="h2" id="faq-title">Antes de comprar</h2>
     </div>
-
-    <div class="faq-list reveal reveal-d1">
+    <div class="faq-list reveal">
       <details class="faq-item">
         <summary>¿Cómo recibo el protocolo? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">Al momento. Tras el pago recibes por correo la confirmación de compra con tu <strong>clave de acceso a la Sala de Control</strong>, donde tienes todo el material, los bonus y el Copiloto IA. Si ya eres cliente, entra desde el <a href="sala-de-control.html">Área de clientes</a>.</div>
+        <div class="faq-answer">Al momento. Tras el pago te llega por correo tu <strong>clave de acceso a la Sala de Control</strong>, con todo el material, los bonus y el Copiloto IA.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Es un pago único o una suscripción? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer"><strong>Pago único de 17&nbsp;€.</strong> Sin cuotas ni renovaciones.</div>
+        <summary>¿Me sirve para mi tipo de centro? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Sí: gimnasios, boxes, estudios de entrenamiento personal, yoga o pilates. Cualquier centro con <strong>cuota mensual y antiguos clientes</strong>.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Me sirve si tengo un box, un estudio de entrenamiento personal o un centro de yoga o pilates? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">Sí. Funciona en <strong>cualquier centro deportivo con cuota mensual</strong> y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates.</div>
+        <summary>¿No voy a parecer pesado? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">No. Los mensajes van <strong>uno a uno</strong> y el primero no vende nada: solo reabre la conversación.</div>
       </details>
       <details class="faq-item">
-        <summary>¿No voy a parecer pesado o que hago spam? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">Al contrario. Los mensajes se envían <strong>uno a uno, nunca por listas de difusión</strong>, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña.</div>
-      </details>
-      <details class="faq-item">
-        <summary>¿Y si no me funciona? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">Tienes <strong>30 días de garantía</strong>. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17&nbsp;€. Sin preguntas y sin letra pequeña.</div>
+        <summary>¿Por qué solo cuesta 17&nbsp;€? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="faq-answer">Soy <strong>Sergio Gómez</strong>, fundador de Activonorte. Si te hago ganar dinero rápido con esto, confiarás en mí para cosas más grandes. Es mi forma de demostrarte que sé de lo que hablo.</div>
       </details>
     </div>
+    <p class="faq-more reveal">¿Otra duda? <a href="https://wa.me/34610387276?text=Hola%20Sergio%2C%20tengo%20una%20duda%20sobre%20el%20Protocolo%20de%20Reactivaci%C3%B3n%20antes%20de%20comprarlo." target="_blank" rel="noopener" data-loader data-track="wa_faq">Pregúntame por WhatsApp</a></p>
   </div>
 </section>
 
@@ -1122,12 +942,14 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
     <div class="cta-copy reveal">
       <p class="eyebrow" style="color:var(--orange-light)">Tu turno</p>
       <h2 id="comprar-title">¿Vas a dejar que esa lista siga cogiendo polvo o <span class="hl">vas a reactivarla hoy</span>?</h2>
-      <p>El precio subirá pronto. Aprovecha ahora el pack completo con los 3 bonus incluidos.</p>
-      <ul class="cta-points">
-        <li><svg class="ico"><use href="#i-check"/></svg> Acceso inmediato a tu Sala de Control</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Listo para ejecutar en 48 horas</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Garantía de devolución de 30 días</li>
-      </ul>
+      <p>El precio subirá pronto. Llévate hoy el pack completo con los 3 bonus.</p>
+      <div class="guarantee-badge">
+        <div class="seal" aria-hidden="true"><span>30</span><small>días</small></div>
+        <div>
+          <strong>Garantía de Hierro</strong>
+          <p>Si no vale el triple de lo que pagas, te devuelvo tus 17&nbsp;€. Sin preguntas. Sin letra pequeña.</p>
+        </div>
+      </div>
     </div>
 
     <div class="order-card reveal reveal-d2">
@@ -1302,7 +1124,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   function val(id) { return parseFloat(document.getElementById(id).value) || 0; }
   function setText(id, text) { document.getElementById(id).textContent = text; }
   function updateCalc() {
-    var cuota = val('c-cuota-r'), socios = val('c-vuelven-r'), meses = val('c-meses-r');
+    var cuota = val('c-cuota-r'), socios = val('c-vuelven-r'), meses = 1;
     var ingresos = cuota * socios * meses;
     var max = Math.max(ingresos, PRICE);
     var minSocios = Math.max(1, Math.ceil(PRICE / cuota));
@@ -1310,11 +1132,9 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
     setText('r-ingresos', fmt(ingresos));
     setText('r-ingresos2', fmt(ingresos) + ' €');
     setText('r-socios', socios === 1 ? '1 socio' : fmt(socios) + ' socios');
-    setText('r-meses', meses === 1 ? '1 mes' : meses + ' meses');
     setText('r-roi', fmtDec(ingresos / PRICE));
     setText('r-cta', fmt(ingresos));
     setText('u-vuelven', socios === 1 ? 'socio' : 'socios');
-    setText('u-meses', meses === 1 ? 'mes' : 'meses');
     document.getElementById('r-bar-in').style.width = (PRICE / max * 100) + '%';
     document.getElementById('r-bar-out').style.width = (ingresos / max * 100) + '%';
     document.getElementById('r-insight').innerHTML =
