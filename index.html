@@ -47,7 +47,10 @@
       "@type": "Product",
       "name": "Protocolo de Reactivación de Ex-Socios",
       "description": "Sistema paso a paso para que gimnasios y centros deportivos recuperen antiguos socios por WhatsApp en 48 horas: guía de estrategia, 3 scripts de WhatsApp, manual de cierre, tracker de resultados, Copiloto IA y 3 bonus.",
-      "brand": { "@type": "Brand", "name": "Activonorte" },
+      "brand": {
+        "@type": "Brand",
+        "name": "Activonorte"
+      },
       "image": "https://activonorte.com/assets/img/og-protocolo.jpg",
       "offers": {
         "@type": "Offer",
@@ -60,24 +63,46 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "¿Cómo recibo el protocolo?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Al momento. Tras el pago recibes por correo la confirmación de compra con tu clave de acceso a la Sala de Control, donde tienes todo el material, los bonus y el Copiloto IA." } },
-        { "@type": "Question", "name": "¿Es un pago único o una suscripción?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Pago único de 17 €. Sin cuotas ni renovaciones." } },
-        { "@type": "Question", "name": "¿Me sirve si tengo un box, un estudio de entrenamiento personal o un centro de yoga o pilates?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Sí. Funciona en cualquier centro deportivo con cuota mensual y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates." } },
-        { "@type": "Question", "name": "¿Necesito algún programa o conocimientos técnicos?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. Solo necesitas tu lista de ex-socios (la puedes exportar de tu software de gestión, como Trainingym o Resawod, o tenerla en un Excel o en el móvil) y WhatsApp. Todo lo demás está explicado paso a paso." } },
-        { "@type": "Question", "name": "¿Y si tengo pocos ex-socios?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Con que vuelva uno solo, ya has recuperado la inversión. Además, el Filtro Oro te ayuda a centrarte en quienes tienen más opciones de volver, así que también saca partido a una lista corta." } },
-        { "@type": "Question", "name": "¿No voy a parecer pesado o que hago spam?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Al contrario. Los mensajes se envían uno a uno, nunca por listas de difusión, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña." } },
-        { "@type": "Question", "name": "¿Cuánto tiempo me va a llevar?",
-          "acceptedAnswer": { "@type": "Answer", "text": "El protocolo está diseñado para ejecutarse en 48 horas: una mañana para preparar la lista y después mensajes individuales en franjas horarias concretas. Unos minutos por contacto." } },
-        { "@type": "Question", "name": "¿Y si no me funciona?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Tienes 30 días de garantía. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17 €. Sin preguntas y sin letra pequeña." } },
-        { "@type": "Question", "name": "¿Es seguro el pago?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Sí. El pago se procesa a través de Lemon Squeezy, una pasarela de pago segura. Nosotros nunca vemos los datos de tu tarjeta." } }
+        {
+          "@type": "Question",
+          "name": "¿Cómo recibo el protocolo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Al momento. Tras el pago recibes por correo la confirmación de compra con tu clave de acceso a la Sala de Control, donde tienes todo el material, los bonus y el Copiloto IA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es un pago único o una suscripción?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pago único de 17 €. Sin cuotas ni renovaciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Me sirve si tengo un box, un estudio de entrenamiento personal o un centro de yoga o pilates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Funciona en cualquier centro deportivo con cuota mensual y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿No voy a parecer pesado o que hago spam?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Al contrario. Los mensajes se envían uno a uno, nunca por listas de difusión, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Y si no me funciona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tienes 30 días de garantía. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17 €. Sin preguntas y sin letra pequeña."
+          }
+        }
       ]
     }
   ]
@@ -196,30 +221,14 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 
 /* ════════ CABECERA ════════ */
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--header-h); transition: background-color .3s ease, box-shadow .3s ease; }
-.site-header.scrolled, .site-header.menu-open { background: rgba(0,38,46,.94); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 10px 30px -12px rgba(0,0,0,.45); }
+.site-header.scrolled { background: rgba(0,38,46,.94); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 10px 30px -12px rgba(0,0,0,.45); }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 900; letter-spacing: .14em; font-size: 1.05rem; }
 .brand img { width: 32px; height: 32px; }
-.main-nav { display: flex; gap: 30px; }
-.main-nav a { color: rgba(255,255,255,.82); font-weight: 600; font-size: .95rem; position: relative; padding: 6px 0; transition: color .2s; }
-.main-nav a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--orange); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
-.main-nav a:hover, .main-nav a.active { color: #fff; }
-.main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); }
-.header-actions { display: flex; align-items: center; gap: 12px; }
-.hamburger { display: none; width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
-.hamburger span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s ease, opacity .2s ease; }
-.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-nav { position: absolute; top: 100%; left: 0; right: 0; background: #001e25; border-top: 1px solid rgba(255,255,255,.08); padding: 8px 24px 24px; box-shadow: 0 24px 40px -12px rgba(0,0,0,.55); animation: dropIn .25s ease; }
-.mobile-nav[hidden] { display: none; }
-.mobile-nav a:not(.btn) { display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 700; font-size: 1.1rem; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-.mobile-nav a:not(.btn) .ico { width: 18px; height: 18px; color: var(--orange-light); }
-.mobile-nav .btn { margin-top: 20px; width: 100%; }
-@keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+.site-header .btn { white-space: nowrap; }
 
 /* ════════ HERO (vídeo de fondo) ════════ */
-.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--teal-950); color: #fff; min-height: min(100svh, 980px); display: flex; align-items: center; padding: calc(var(--header-h) + clamp(32px, 5vw, 64px)) 0 clamp(120px, 13vw, 160px); }
+.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--teal-950); color: #fff; min-height: min(100svh, 980px); display: flex; align-items: center; padding: calc(var(--header-h) + clamp(32px, 5vw, 64px)) 0 clamp(64px, 8vw, 104px); }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .5; }
 .hero-shade { position: absolute; inset: 0; z-index: -1; background: radial-gradient(55% 60% at 88% 18%, rgba(224,94,0,.24), transparent 62%), linear-gradient(100deg, rgba(0,22,27,.96) 0%, rgba(0,30,37,.86) 48%, rgba(0,38,46,.6) 100%); }
 .hero-shade::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 85%); mask-image: linear-gradient(to bottom, #000 20%, transparent 85%); }
@@ -288,20 +297,11 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .cf-badge .ico { width: 12px; height: 12px; }
 .copilot-float strong { display: block; font-size: .86rem; line-height: 1.3; }
 .copilot-float p { font-size: .76rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-.phase-float { right: -14%; top: 25%; padding: 9px 12px; display: flex; align-items: center; gap: 9px; font-size: .74rem; font-weight: 700; line-height: 1.25; animation: floaty 7s ease-in-out infinite reverse; }
-.phase-float .ico { width: 28px; height: 28px; padding: 6px; border-radius: 9px; background: var(--teal); color: #fff; }
-.phase-float small { display: block; font-size: .64rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
 @keyframes floaty { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
 .visual-note { margin-top: 22px; font-size: .78rem; color: rgba(255,255,255,.55); text-align: center; }
 
-/* ════════ CIFRAS + PROBLEMA ════════ */
-.problem { background: var(--bg-soft); padding-top: 0; display: flow-root; }
-.stats-grid { position: relative; z-index: 2; margin-top: -64px; margin-bottom: clamp(56px, 7vw, 88px); display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-radius: 22px; box-shadow: var(--shadow-lg); border: 1px solid var(--line); overflow: hidden; }
-.stat { padding: 26px 24px; border-right: 1px solid var(--line); }
-.stat:last-child { border-right: 0; }
-.stat strong { display: block; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: var(--teal); letter-spacing: -.03em; line-height: 1.05; }
-.stat strong small { font-size: .5em; font-weight: 800; color: var(--orange); margin-left: 4px; letter-spacing: 0; }
-.stat span { display: block; margin-top: 8px; font-size: .9rem; color: var(--muted); line-height: 1.45; }
+/* ════════ PROBLEMA ════════ */
+.problem { background: var(--bg-soft); }
 .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
 .problem-copy .h2 { margin-bottom: 22px; }
 .problem-copy p { font-size: 1.08rem; color: var(--text); margin-bottom: 14px; }
@@ -376,6 +376,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) - 1px); }
 .copilot-copy > p strong { color: #fff; }
 .check-list { list-style: none; display: grid; gap: 14px; }
 .check-list li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: rgba(255,255,255,.92); line-height: 1.45; }
+.copilot-vs { margin-top: 26px; padding: 16px 18px; border-left: 4px solid var(--orange-light); background: rgba(255,255,255,.06); border-radius: 0 14px 14px 0; color: rgba(255,255,255,.8); font-size: .97rem; line-height: 1.55; }
+.copilot-vs strong { display: block; color: #fff; margin-bottom: 4px; }
 .check-list .ico { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: rgba(255,122,26,.18); color: var(--orange-light); stroke-width: 3; }
 .cd-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .cd-tab { padding: 10px 15px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); font-weight: 700; font-size: .88rem; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
@@ -458,28 +460,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 .calc-results .btn { margin-top: auto; }
 .calc-note { font-size: .76rem; color: var(--muted); margin-top: 12px; text-align: center; }
 
-/* ════════ COMPARATIVA ════════ */
-.compare-section { background: var(--bg-soft); }
-.compare-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow-sm); -webkit-overflow-scrolling: touch; }
-.compare { width: 100%; min-width: 700px; border-collapse: separate; border-spacing: 0; }
-.compare th, .compare td { padding: 18px 20px; text-align: left; border-bottom: 1px solid var(--line); font-size: .94rem; vertical-align: middle; }
-.compare thead th { font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--bg-soft); }
-.compare thead th.is-us { background: var(--teal); color: #fff; }
-.compare thead th.is-us .brand-cell { display: flex; align-items: center; gap: 8px; }
-.compare thead th.is-us img { width: 20px; height: 20px; }
-.compare tbody th { font-weight: 700; color: var(--ink); width: 30%; background: #fff; }
-.compare td { color: var(--text); }
-.compare td.is-us { background: #f0f7f8; font-weight: 700; color: var(--ink); }
-.compare tr:last-child > * { border-bottom: 0; }
-.compare th:first-child { position: sticky; left: 0; z-index: 1; }
-.cell { display: flex; align-items: center; gap: 10px; }
-.mk { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; }
-.mk .ico { width: 13px; height: 13px; stroke-width: 3.4; }
-.mk.yes { background: #dcfce7; color: #15803d; }
-.mk.no { background: #fee4e2; color: var(--red); }
-.mk.meh { background: #fef3c7; color: #a15c07; }
-.scroll-tip { display: none; font-size: .82rem; color: var(--muted); text-align: center; margin-top: 12px; }
-
 /* ════════ QUIÉN SOY + GARANTÍA ════════ */
 .trust-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: stretch; }
 .founder { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 24px; padding: clamp(26px, 3.5vw, 42px); }
@@ -491,9 +471,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 .founder p { color: var(--text); margin-bottom: 14px; }
 .founder p strong { color: var(--ink); }
 .founder-quote { font-weight: 800; color: var(--ink) !important; font-size: 1.08rem; border-left: 4px solid var(--orange); padding-left: 14px; margin: 20px 0 !important; }
-.founder-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--teal); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
-.founder-link:hover { color: var(--orange-text); }
-.founder-link .ico { width: 16px; height: 16px; }
 .guarantee { position: relative; overflow: hidden; border-radius: 24px; padding: clamp(26px, 3.5vw, 42px); background: linear-gradient(160deg, #eefaf3 0%, #fff 72%); border: 2px solid #9fd8b5; }
 .seal { width: 116px; height: 116px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #1f9d55, var(--green)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 0 6px #fff, 0 0 0 8px #9fd8b5, 0 20px 34px -12px rgba(18,122,63,.55); margin-bottom: 24px; }
 .seal span { font-size: 2.5rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; }
@@ -550,69 +527,24 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 
 /* ════════ PIE ════════ */
 .site-footer { background: var(--teal-950); color: rgba(255,255,255,.7); padding: 64px 0 28px; }
-.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+.footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 28px 48px; }
 .footer-brand p { margin-top: 16px; font-size: .93rem; max-width: 330px; }
 .footer-title { color: #fff; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
 .footer-col a { display: block; padding: 5px 0; font-size: .94rem; transition: color .2s; }
 .footer-col a:hover { color: #fff; }
-.footer-bottom { margin-top: 48px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .85rem; color: rgba(255,255,255,.5); }
+.footer-bottom { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .85rem; color: rgba(255,255,255,.5); }
 
 /* ════════ BARRA DE COMPRA FIJA (solo móvil) ════════ */
 .buy-bar { display: none; }
 
-/* ════════ ASISTENTE IA (SETTER B2B) ════════ */
-.chat-trigger { position: fixed; right: 20px; bottom: 20px; z-index: 400; display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 999px; background: var(--teal); color: #fff; border: 2px solid var(--orange); font-weight: 800; font-size: .9rem; cursor: pointer; box-shadow: 0 14px 34px -8px rgba(0,0,0,.5); transition: transform .2s ease, background-color .2s ease, border-color .2s ease, bottom .3s ease; }
-.chat-trigger:hover { transform: translateY(-2px); background: var(--orange-btn); border-color: #fff; }
-.chat-dot { position: relative; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.3); flex: none; }
-.chat-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: rgba(34,197,94,.35); animation: livePulse 2s ease-out infinite; }
-@keyframes livePulse { 0% { transform: scale(.8); opacity: .9; } 100% { transform: scale(2); opacity: 0; } }
-.chat-window { position: fixed; right: 20px; bottom: 88px; z-index: 400; width: min(410px, calc(100vw - 24px)); height: 560px; max-height: calc(100vh - 120px); max-height: calc(100dvh - 120px); display: none; flex-direction: column; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px -10px rgba(0,0,0,.5); border: 1px solid rgba(0,59,70,.25); }
-.chat-window.open { display: flex; animation: dropIn .25s ease; }
-.chat-header { background: var(--teal); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--orange); flex-shrink: 0; }
-.chat-avatar { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,.1); display: grid; place-items: center; flex: none; position: relative; }
-.chat-avatar img { width: 24px; height: 24px; }
-.chat-avatar::after { content: ''; position: absolute; right: -2px; bottom: -2px; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 2px solid var(--teal); }
-.chat-header-info { flex: 1; min-width: 0; }
-.chat-header-info strong { display: block; font-size: 15px; font-weight: 800; line-height: 1.2; }
-.chat-header-info span { display: block; font-size: 11px; color: #ffb07a; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; margin-top: 2px; }
-.chat-close { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); width: 34px; height: 34px; border-radius: 10px; cursor: pointer; display: grid; place-items: center; flex: none; }
-.chat-close .ico { width: 16px; height: 16px; stroke-width: 2.6; }
-.chat-close:hover { background: var(--orange-btn); }
-.chat-chips { padding: 10px 12px; background: #e9f1f2; border-bottom: 1px solid #cbd5e1; display: flex; gap: 8px; overflow-x: auto; flex-shrink: 0; scrollbar-width: thin; }
-.chat-chip { background: #fff; color: var(--teal); border: 1px solid var(--teal); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; }
-.chat-chip:hover { background: var(--orange-btn); color: #fff; border-color: var(--orange-btn); }
-.chat-messages { padding: 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; background: #f1f5f9; overscroll-behavior: contain; }
-.chat-msg { padding: 12px 15px; border-radius: 14px; font-size: 13.5px; line-height: 1.55; max-width: 92%; overflow-wrap: anywhere; }
-.chat-msg.bot { background: #fff; border: 1px solid #d5dee6; color: #0f172a; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
-.chat-msg.bot strong { color: var(--teal); font-weight: 800; }
-.chat-msg.user { background: var(--teal); color: #fff; align-self: flex-end; font-weight: 600; border-bottom-right-radius: 4px; }
-.chat-typing { display: inline-flex; gap: 4px; margin-left: 6px; vertical-align: middle; }
-.chat-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); opacity: .4; animation: dotBounce 1.2s ease-in-out infinite; }
-.chat-typing i:nth-child(2) { animation-delay: .2s; }
-.chat-typing i:nth-child(3) { animation-delay: .4s; }
-.chat-wa { margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #16a34a; color: #fff; padding: 10px 14px; border-radius: 9px; font-size: 12.5px; font-weight: 800; transition: background-color .2s; }
-.chat-wa:hover { background: #15803d; }
-.chat-buy { margin-top: 8px; display: flex; align-items: center; justify-content: center; width: 100%; background: var(--orange-btn); color: #fff; padding: 10px 14px; border-radius: 9px; font-size: 12.5px; font-weight: 800; transition: background-color .2s; }
-.chat-buy:hover { background: var(--orange-btn-h); }
-.chat-form { padding: 12px; background: #fff; border-top: 1px solid #d5dee6; display: flex; gap: 8px; flex-shrink: 0; }
-.chat-input { flex: 1; min-width: 0; background: #f8fafc; color: #0f172a; border: 1.5px solid #94a3b8; border-radius: 10px; padding: 10px 12px; font-size: 16px; outline: none; }
-.chat-input:focus { border-color: var(--teal); background: #fff; }
-.chat-send { background: var(--orange-btn); color: #fff; border: none; border-radius: 10px; padding: 0 16px; font-weight: 800; font-size: 13.5px; cursor: pointer; }
-.chat-send:hover { background: var(--orange-btn-h); }
-.chat-send:disabled { opacity: .6; cursor: wait; }
-
 /* ════════ RESPONSIVE ════════ */
 @media (max-width: 1080px) {
-  .main-nav { gap: 22px; }
   .copilot-float { left: -10%; }
-  .phase-float { right: -8%; }
   .inc-grid { grid-template-columns: repeat(2, 1fr); }
   .inc-card.feature { grid-column: 1 / -1; }
 }
 @media (max-width: 960px) {
   :root { --header-h: 64px; }
-  .main-nav { display: none; }
-  .hamburger { display: flex; }
   .hero { min-height: 0; }
   .hero-grid, .problem-grid, .copilot-grid, .calc, .cta-grid, .faq-layout, .trust-grid { grid-template-columns: 1fr; }
   .hero-visual { margin-top: 12px; }
@@ -620,13 +552,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .step:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -21px; transform: translateX(-50%) rotate(135deg); }
   .bonus-grid { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; }
   .faq-aside { position: static; }
-  .scroll-tip { display: block; }
   .copilot-copy { text-align: left; }
-}
-@media (max-width: 860px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat:nth-child(2) { border-right: 0; }
-  .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
 }
 @media (max-width: 760px) {
   .buy-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 300; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(0,38,46,.97); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,.1); box-shadow: 0 -12px 30px -12px rgba(0,0,0,.5); color: #fff; transform: translateY(110%); visibility: hidden; transition: transform .3s ease, visibility 0s linear .3s; }
@@ -636,7 +562,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .buy-bar span s { margin-right: 4px; }
   .buy-bar span b { color: #fff; font-size: .95rem; }
   .buy-bar .btn { flex: none; }
-  body.has-buybar .chat-trigger { bottom: calc(80px + env(safe-area-inset-bottom)); }
 }
 @media (max-width: 640px) {
   .container { padding: 0 18px; }
@@ -644,11 +569,7 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .hero-trust { flex-direction: column; gap: 10px; }
   .phone-wrap { width: min(268px, 74vw); }
   .copilot-float { left: -9%; bottom: -4%; width: 200px; padding: 11px 13px; }
-  .hero-visual { margin-top: 72px; }
-  .phase-float { top: auto; bottom: calc(100% + 10px); right: -2%; }
   .wa-e2e { display: none; }
-  .stat { padding: 20px 16px; }
-  .stat span { font-size: .82rem; }
   .inc-grid { grid-template-columns: 1fr; }
   .inc-card { padding: 24px; }
   .inc-card.ai { flex-direction: column; align-items: flex-start; }
@@ -662,13 +583,14 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   .cd-live { display: none; }
   .founder-head { flex-direction: column; align-items: flex-start; }
   .order-price strong { font-size: 2.6rem; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .chat-trigger { right: 12px; bottom: 12px; padding: 12px 16px; font-size: .84rem; }
-  .chat-trigger .long { display: none; }
-  .chat-window { right: 12px; bottom: 72px; height: calc(100vh - 96px); height: calc(100dvh - 96px); max-height: none; }
 }
-@media (max-width: 440px) {
-  .header-actions .btn-sm { display: none; }
+@media (max-width: 400px) {
+  .brand { font-size: .9rem; letter-spacing: .1em; gap: 8px; }
+  .brand img { width: 28px; height: 28px; }
+  .site-header .btn-sm { padding: 9px 14px; font-size: .88rem; }
+}
+@media (max-width: 359px) {
+  .site-header .btn-price { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -682,8 +604,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
 <!-- Iconos SVG (se reutilizan en toda la página) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
-  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
-  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></symbol>
@@ -709,7 +629,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
   <symbol id="i-video" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></symbol>
-  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
 </svg>
 
 <a href="#contenido" class="skip-link">Saltar al contenido</a>
@@ -734,28 +653,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
       <img src="assets/img/mark-white.png" alt="" width="32" height="32" />
       <span>ACTIVONORTE</span>
     </a>
-    <nav class="main-nav" aria-label="Principal">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#incluye">Qué incluye</a>
-      <a href="#copiloto">Copiloto IA</a>
-      <a href="#numeros">Números</a>
-      <a href="#faq">Preguntas</a>
-    </nav>
-    <div class="header-actions">
-      <a class="btn btn-primary btn-sm" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_header">Comprar · 17&nbsp;€</a>
-      <button class="hamburger" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menú">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a class="btn btn-primary btn-sm" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_header"><span>Comprar<span class="btn-price"> · 17&nbsp;€</span></span></a>
   </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil" hidden>
-    <a href="#como-funciona">Cómo funciona <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a href="#incluye">Qué incluye <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a href="#copiloto">Copiloto IA <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a href="#numeros">Hagamos números <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a href="#faq">Preguntas frecuentes <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a class="btn btn-primary" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_mobile_menu">Quiero el protocolo · 17&nbsp;€</a>
-  </nav>
 </header>
 
 <main id="contenido">
@@ -828,10 +727,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
             <span class="ios-home"></span>
           </div>
         </div>
-        <div class="float-card phase-float" aria-hidden="true">
-          <svg class="ico"><use href="#i-clock"/></svg>
-          <span><small>Fase 2</small>El primer impacto</span>
-        </div>
         <div class="float-card copilot-float" aria-hidden="true">
           <span class="cf-badge"><svg class="ico"><use href="#i-sparkles"/></svg> Copiloto IA</span>
           <strong>Objeción detectada: «no tengo tiempo»</strong>
@@ -843,16 +738,9 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   </div>
 </section>
 
-<!-- ════════ CIFRAS + PROBLEMA ════════ -->
+<!-- ════════ PROBLEMA ════════ -->
 <section class="problem section" id="problema" aria-labelledby="problema-title">
   <div class="container">
-    <div class="stats-grid reveal" role="list" aria-label="El protocolo en cifras">
-      <div class="stat" role="listitem"><strong>48<small>h</small></strong><span>Para ejecutar las 3 fases del protocolo</span></div>
-      <div class="stat" role="listitem"><strong>3<small>scripts</small></strong><span>Mensajes de WhatsApp listos para copiar y pegar</span></div>
-      <div class="stat" role="listitem"><strong>IA<small>incluida</small></strong><span>Un copiloto que te redacta la respuesta a cada objeción</span></div>
-      <div class="stat" role="listitem"><strong>30<small>días</small></strong><span>De garantía: si no te convence, te devuelvo tus 17&nbsp;€</span></div>
-    </div>
-
     <div class="problem-grid">
       <div class="problem-copy reveal">
         <p class="eyebrow">Seamos sinceros</p>
@@ -1027,8 +915,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
         <li><svg class="ico"><use href="#i-check"/></svg> Detecta la objeción y te propone la respuesta</li>
         <li><svg class="ico"><use href="#i-check"/></svg> Memoria activa: recuerda la conversación de cada ex-socio</li>
         <li><svg class="ico"><use href="#i-check"/></svg> Atajos para «no tengo tiempo», «es muy caro» o «voy a otro gym»</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Algo que ninguna plantilla gratis de internet te da</li>
       </ul>
+      <p class="copilot-vs"><strong>¿Por qué no una plantilla gratis de internet?</strong> Porque un mensaje suelto no es un sistema: no te dice a quién escribir, cuándo enviarlo ni qué contestar cuando te ponen una pega.</p>
     </div>
 
     <div class="cd reveal reveal-d2">
@@ -1161,69 +1049,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   </div>
 </section>
 
-<!-- ════════ COMPARATIVA ════════ -->
-<section class="compare-section section" id="comparativa" aria-labelledby="comparativa-title">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Comparativa</p>
-      <h2 class="h2" id="comparativa-title">¿Por qué no usar plantillas gratis de internet?</h2>
-      <p>Porque un mensaje suelto no es un sistema. Esta es la diferencia.</p>
-    </div>
-
-    <div class="compare-wrap reveal" role="region" aria-labelledby="comparativa-title" tabindex="0">
-      <table class="compare">
-        <thead>
-          <tr>
-            <th scope="col"><span class="sr-only">Criterio</span></th>
-            <th scope="col" class="is-us"><span class="brand-cell"><img src="assets/img/mark-white.png" alt="" width="20" height="20" loading="lazy" />El Protocolo</span></th>
-            <th scope="col">Plantillas gratis</th>
-            <th scope="col">Anuncios para captar gente nueva</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Sabes a quién escribir (y a quién no)</th>
-            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Filtro Oro y Lista Negra</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>A todos por igual</span></td>
-            <td><span class="cell"><span class="mk meh"><svg class="ico"><use href="#i-minus"/></svg></span>Gente que no te conoce</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Sabes cuándo enviar para que contesten</th>
-            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Días y franjas marcadas</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Cuando te acuerdes</span></td>
-            <td><span class="cell"><span class="mk meh"><svg class="ico"><use href="#i-minus"/></svg></span>Lo decide el algoritmo</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Sabes qué responder a las objeciones</th>
-            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Manual de cierre + Copiloto IA</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Te quedas solo</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Te quedas solo</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Mides el dinero que recuperas</th>
-            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Tracker de resultados</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Sin seguimiento</span></td>
-            <td><span class="cell"><span class="mk meh"><svg class="ico"><use href="#i-minus"/></svg></span>Clics y alcance</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Coste</th>
-            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>17 € una sola vez</span></td>
-            <td><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>Gratis</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>Presupuesto cada mes</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Garantía si no te funciona</th>
-            <td class="is-us"><span class="cell"><span class="mk yes"><svg class="ico"><use href="#i-check"/></svg></span>30 días de devolución</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>No</span></td>
-            <td><span class="cell"><span class="mk no"><svg class="ico"><use href="#i-x"/></svg></span>No</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="scroll-tip">Desliza la tabla hacia los lados para ver todas las columnas →</p>
-  </div>
-</section>
-
 <!-- ════════ QUIÉN SOY + GARANTÍA ════════ -->
 <section class="section" id="garantia">
   <div class="container trust-grid">
@@ -1238,7 +1063,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
       <p>Soy <strong>Sergio Gómez</strong>, fundador de Activonorte y consultor de crecimiento para negocios deportivos. No soy un gurú inalcanzable: soy un profesional que ayuda a dueños de gimnasios a simplificar su marketing.</p>
       <p><strong>¿Por qué tan barato?</strong> Porque sé que si pruebas este protocolo y te hago ganar dinero rápido, confiarás en mí para cosas más grandes.</p>
       <p class="founder-quote">Es mi forma de demostrarte que sé de lo que hablo: con resultados.</p>
-      <a class="founder-link" href="https://app.activonorte.com" target="_blank" rel="noopener" data-track="web_founder">Conoce Activonorte <svg class="ico"><use href="#i-ext"/></svg></a>
     </article>
 
     <article class="guarantee reveal reveal-d2">
@@ -1281,28 +1105,12 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
         <div class="faq-answer">Sí. Funciona en <strong>cualquier centro deportivo con cuota mensual</strong> y una lista de antiguos clientes: gimnasios, boxes, estudios de entrenamiento personal, centros de yoga o pilates.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Necesito algún programa o conocimientos técnicos? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">No. Solo necesitas tu lista de ex-socios (la puedes exportar de tu software de gestión, como Trainingym o Resawod, o tenerla en un Excel o en el móvil) y <strong>WhatsApp</strong>. Todo lo demás está explicado paso a paso.</div>
-      </details>
-      <details class="faq-item">
-        <summary>¿Y si tengo pocos ex-socios? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">Con que vuelva <strong>uno solo</strong>, ya has recuperado la inversión. Además, el Filtro Oro te ayuda a centrarte en quienes tienen más opciones de volver, así que también saca partido a una lista corta.</div>
-      </details>
-      <details class="faq-item">
         <summary>¿No voy a parecer pesado o que hago spam? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
         <div class="faq-answer">Al contrario. Los mensajes se envían <strong>uno a uno, nunca por listas de difusión</strong>, y el primero no vende nada: solo reabre la conversación. Está pensado para que suene a ti, no a una campaña.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Cuánto tiempo me va a llevar? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">El protocolo está diseñado para ejecutarse en <strong>48 horas</strong>: una mañana para preparar la lista y después mensajes individuales en franjas horarias concretas. Unos minutos por contacto.</div>
-      </details>
-      <details class="faq-item">
         <summary>¿Y si no me funciona? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
         <div class="faq-answer">Tienes <strong>30 días de garantía</strong>. Si sientes que no vale el triple de lo que has pagado, te devuelvo tus 17&nbsp;€. Sin preguntas y sin letra pequeña.</div>
-      </details>
-      <details class="faq-item">
-        <summary>¿Es seguro el pago? <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-        <div class="faq-answer">Sí. El pago se procesa a través de <strong>Lemon Squeezy</strong>, una pasarela de pago segura. Nosotros nunca vemos los datos de tu tarjeta.</div>
       </details>
     </div>
   </div>
@@ -1363,17 +1171,8 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
         <p>Consultoría de marketing deportivo especializada en gimnasios y centros deportivos. Hecho en Cantabria.</p>
       </div>
       <div class="footer-col">
-        <p class="footer-title">El protocolo</p>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#incluye">Qué incluye</a>
-        <a href="#copiloto">Copiloto IA</a>
-        <a href="#faq">Preguntas frecuentes</a>
-      </div>
-      <div class="footer-col">
-        <p class="footer-title">Activonorte</p>
-        <a href="https://app.activonorte.com" target="_blank" rel="noopener" data-track="web_footer">Web de Activonorte</a>
-        <a href="sala-de-control.html" data-track="area_clientes">Área de clientes</a>
-        <a href="https://wa.me/34610387276?text=Hola%20Sergio%2C%20vengo%20de%20la%20p%C3%A1gina%20del%20Protocolo%20de%20Reactivaci%C3%B3n." target="_blank" rel="noopener" data-loader data-track="wa_footer">WhatsApp: +34 610 38 72 76</a>
+        <p class="footer-title">¿Ya eres cliente?</p>
+        <a href="sala-de-control.html" data-track="area_clientes">Entrar al Área de clientes →</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1392,54 +1191,12 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   <a class="btn btn-primary btn-sm" href="https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2" target="_blank" rel="noopener" data-track="buy_sticky">Comprar ahora</a>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════
-     ASISTENTE IA · SETTER B2B · ACTIVONORTE
-════════════════════════════════════════════════════════════ -->
-<button class="chat-trigger" id="chatToggle" type="button" aria-expanded="false" aria-controls="chatWindow">
-  <span class="chat-dot" aria-hidden="true"></span>
-  <span>¿Dudas?<span class="long"> Pregunta a la IA</span></span>
-</button>
-
-<div class="chat-window" id="chatWindow" role="dialog" aria-label="Asistente de Activonorte">
-  <div class="chat-header">
-    <div class="chat-avatar"><img src="assets/img/mark-white.png" alt="" width="24" height="24" loading="lazy" /></div>
-    <div class="chat-header-info">
-      <strong>Consultor Activonorte · IA</strong>
-      <span>Resuelve tus dudas antes de comprar</span>
-    </div>
-    <button type="button" class="chat-close" id="chatClose" aria-label="Cerrar asistente"><svg class="ico"><use href="#i-x"/></svg></button>
-  </div>
-
-  <div class="chat-chips">
-    <button type="button" class="chat-chip" data-prompt="¿Qué incluye exactamente el Protocolo de Reactivación de 17€?">📦 ¿Qué incluye?</button>
-    <button type="button" class="chat-chip" data-prompt="¿El Protocolo de Reactivación sirve para mi tipo de centro deportivo?">🏋️ ¿Sirve para mi centro?</button>
-    <button type="button" class="chat-chip" data-prompt="Quiero solicitar la Auditoría Gratuita de Google de 15 minutos">📈 Auditoría gratuita</button>
-  </div>
-
-  <div class="chat-messages" id="chatMessages" aria-live="polite">
-    <div class="chat-msg bot">
-      <strong>¡Hola! Soy el asistente de Activonorte.</strong><br>
-      Si tienes cualquier duda sobre el Protocolo de Reactivación, pregúntame.<br><br>
-      Para empezar, <strong>¿qué tipo de centro deportivo diriges y en qué ciudad estáis?</strong>
-    </div>
-  </div>
-
-  <form class="chat-form" id="chatForm">
-    <label for="chatInput" class="sr-only">Escribe tu mensaje</label>
-    <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu duda o tipo de gimnasio…" autocomplete="off" required />
-    <button type="submit" class="chat-send" id="chatSend">Enviar</button>
-  </form>
-</div>
-
 <script>
 (function () {
   'use strict';
 
-  var WA_NUMBER = '34610387276';
-  var CHECKOUT_URL = 'https://activonorte.lemonsqueezy.com/checkout/buy/75168a38-f4b9-42be-89cc-c9cd1e43f5c2';
   var PRICE = 17;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function waLink(text) { return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text); }
   function fmt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
   function fmtDec(n) { var r = Math.round(n * 10) / 10; return (r % 1 === 0 ? String(r) : r.toFixed(1)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 
@@ -1504,19 +1261,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ── MENÚ MÓVIL ────────────────────────────────────────── */
-  var menuBtn = document.getElementById('menuBtn');
-  var mobileNav = document.getElementById('mobileNav');
-  function setMenu(open) {
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-    mobileNav.hidden = !open;
-    header.classList.toggle('menu-open', open);
-  }
-  menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
-  mobileNav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-  window.addEventListener('resize', function () { if (window.innerWidth > 960) setMenu(false); });
-
   /* ── VÍDEO DEL HERO ────────────────────────────────────────
      Solo se descarga si el visitante no ha pedido «menos movimiento»
      ni «ahorro de datos». Se pausa al salir de pantalla. */
@@ -1548,20 +1292,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
     reveals.forEach(function (el) { ro.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('visible'); });
-  }
-
-  /* ── MENÚ: SECCIÓN ACTIVA ──────────────────────────────── */
-  var navLinks = document.querySelectorAll('.main-nav a');
-  if ('IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    ['inicio', 'problema', 'como-funciona', 'incluye', 'copiloto', 'bonus', 'numeros', 'comparativa', 'garantia', 'faq', 'comprar'].forEach(function (id) {
-      var s = document.getElementById(id); if (s) spy.observe(s);
-    });
   }
 
   /* ── CALCULADORA «HAGAMOS NÚMEROS» ─────────────────────── */
@@ -1699,7 +1429,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   function updateBar() {
     var show = pastHero && !atFinal;
     buyBar.classList.toggle('show', show);
-    document.body.classList.toggle('has-buybar', show);
   }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) {
@@ -1723,115 +1452,6 @@ input[type=range]:focus-visible { outline: 3px solid var(--orange-light); outlin
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  /* ══════════════════════════════════════════════════════════
-     ASISTENTE IA · SETTER B2B
-  ══════════════════════════════════════════════════════════ */
-  var chatToggle = document.getElementById('chatToggle');
-  var chatWindow = document.getElementById('chatWindow');
-  var chatClose = document.getElementById('chatClose');
-  var chatForm = document.getElementById('chatForm');
-  var chatInput = document.getElementById('chatInput');
-  var chatSend = document.getElementById('chatSend');
-  var chatMessages = document.getElementById('chatMessages');
-  var chatHistory = [];
-
-  function setChat(open) {
-    chatWindow.classList.toggle('open', open);
-    chatToggle.setAttribute('aria-expanded', String(open));
-    if (open) {
-      track('chat_open');
-      if (window.matchMedia('(min-width: 641px)').matches) setTimeout(function () { chatInput.focus(); }, 60);
-    }
-  }
-  chatToggle.addEventListener('click', function () { setChat(!chatWindow.classList.contains('open')); });
-  chatClose.addEventListener('click', function () { setChat(false); chatToggle.focus(); });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape') return;
-    if (chatWindow.classList.contains('open')) { setChat(false); chatToggle.focus(); return; }
-    if (menuBtn.getAttribute('aria-expanded') === 'true') { setMenu(false); menuBtn.focus(); }
-  });
-
-  document.querySelectorAll('.chat-chip').forEach(function (chip) {
-    chip.addEventListener('click', function () { sendPrompt(chip.getAttribute('data-prompt')); });
-  });
-  chatForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var text = chatInput.value.trim();
-    if (!text) return;
-    chatInput.value = '';
-    sendPrompt(text);
-  });
-
-  // Solo se permite HTML básico en las respuestas (negritas, saltos, listas)
-  var ALLOWED = { B: 1, STRONG: 1, EM: 1, I: 1, BR: 1, P: 1, UL: 1, OL: 1, LI: 1 };
-  function sanitize(html) {
-    var tpl = document.createElement('template');
-    tpl.innerHTML = String(html);
-    (function clean(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
-        if (child.nodeType === 1) {
-          if (!ALLOWED[child.tagName]) { child.replaceWith(document.createTextNode(child.textContent)); return; }
-          while (child.attributes.length) child.removeAttribute(child.attributes[0].name);
-          clean(child);
-        } else if (child.nodeType !== 3) { child.remove(); }
-      });
-    })(tpl.content);
-    var div = document.createElement('div');
-    div.appendChild(tpl.content);
-    return div.innerHTML;
-  }
-  function safeWa(url) {
-    return /^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(String(url || '')) ? url : null;
-  }
-  function addMsg(type) {
-    var div = document.createElement('div');
-    div.className = 'chat-msg ' + type;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return div;
-  }
-  function linkButton(cls, url, label, trackName, useLoader) {
-    var a = document.createElement('a');
-    a.className = cls;
-    a.href = url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    if (useLoader) a.setAttribute('data-loader', '');
-    a.setAttribute('data-track', trackName);
-    a.textContent = label;
-    return a;
-  }
-
-  async function sendPrompt(text) {
-    addMsg('user').textContent = text;
-    var loading = addMsg('bot');
-    loading.innerHTML = 'Analizando el caso de tu centro deportivo<span class="chat-typing" aria-hidden="true"><i></i><i></i><i></i></span>';
-    chatSend.disabled = true;
-    track('chat_message');
-    try {
-      var res = await fetch('https://landing-page-beta-ivory-99.vercel.app/api/setter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: chatHistory })
-      });
-      if (!res.ok) throw new Error('Fallback');
-      var data = await res.json();
-      if (!data || !data.reply) throw new Error('Fallback');
-      chatHistory.push({ role: 'user', text: text });
-      chatHistory.push({ role: 'assistant', text: data.reply });
-      var reply = String(data.reply);
-      if (reply.indexOf('<') === -1) reply = reply.replace(/\n/g, '<br>');
-      loading.innerHTML = sanitize(reply);
-      loading.appendChild(linkButton('chat-buy', CHECKOUT_URL, 'Quiero el protocolo por 17 € →', 'buy_chat', false));
-      loading.appendChild(linkButton('chat-wa', safeWa(data.waUrl) || waLink('Hola Sergio, vengo de la página del Protocolo de Reactivación y tengo una duda.'), '📲 Hablar con Sergio por WhatsApp →', 'wa_chat', true));
-    } catch (err) {
-      loading.innerHTML = 'Ahora mismo no puedo conectar con el asistente. Escríbele a <strong>Sergio en persona</strong> por WhatsApp y te responde él directamente.';
-      loading.appendChild(linkButton('chat-wa', waLink('Hola Sergio, vengo de la página del Protocolo de Reactivación y tengo una duda: ' + text), '📲 Preguntar a Sergio por WhatsApp →', 'wa_chat', true));
-    }
-    chatSend.disabled = false;
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
 })();
 </script>
 </body>
