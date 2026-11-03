@@ -1010,9 +1010,9 @@ window.addEventListener('pagehide', () => Sync.flush());
 ══════════════════════════════════════════════════════════ */
 const ESTADOS = [['pendiente', 'Pendiente'], ['contactado', 'Contactado'], ['conversacion', 'En conversación'], ['cita', 'Cita cerrada'], ['matriculado', 'Recuperado'], ['no', 'No interesa']];
 const EST = Object.fromEntries(ESTADOS);
-const MOTIVOS = [['', 'Sin datos'], ['tiempo', 'Falta de tiempo'], ['pereza', 'Pereza / motivación'], ['dinero', 'Dinero'], ['competencia', 'Se fue a otro gimnasio'], ['mudanza', 'Mudanza'], ['lesion', 'Lesión grave'], ['moroso', 'Moroso (dejó deuda)'], ['conflictivo', 'Conflictivo'], ['otro', 'Otro']];
+const MOTIVOS = [['', 'Sin datos'], ['tiempo', 'Falta de tiempo'], ['pereza', 'Pereza / motivación'], ['dinero', 'Dinero'], ['competencia', 'Se fue a otro gimnasio'], ['mudanza', 'Mudanza'], ['lesion', 'Lesión grave'], ['moroso', 'Moroso'], ['conflictivo', 'Conflictivo'], ['otro', 'Otro']];
 const MOT = Object.fromEntries(MOTIVOS);
-const OBJECIONES = [['', '—'], ['tiempo', 'No tengo tiempo'], ['precio', 'Es caro'], ['pensar', 'Me lo pienso'], ['competencia', 'Ya voy a otro'], ['estancado', 'Voy por mi cuenta'], ['motivacion', 'Falta de motivación'], ['nointeresa', 'No me interesa']];
+const OBJECIONES = [['', '—'], ['tiempo', 'No tengo tiempo'], ['precio', 'Es caro'], ['pensar', 'Me lo pienso'], ['competencia', 'Ya voy a otro gimnasio'], ['estancado', 'Voy por mi cuenta / estancado'], ['motivacion', 'Falta de motivación'], ['nointeresa', 'No me interesa']];
 const OBJ = Object.fromEntries(OBJECIONES);
 const GANCHOS = ["Plan Exprés 30'", 'Llamada de 2 min', 'Visita de 5 min', 'Revisión técnica gratis', 'Prueba de 1 semana', 'Opción reducida (downsell)', 'Plaza guardada hasta el viernes', 'Acompañamiento inicial'];
 const OBJ_FLOW = {
@@ -1763,13 +1763,15 @@ function importHTML() {
     const oro = r.list.filter((c) => filtro(c).k === 'oro').length, neg = r.list.filter((c) => filtro(c).k === 'negra').length;
     res = r.list.length ? '<div class="callout ok">' + ico('check') + '<div><strong>' + r.list.length + ' ' + plural(r.list.length, 'contacto nuevo', 'contactos nuevos') + '</strong>' + (r.dup ? ' (' + r.dup + ' ya estaban en tu lista)' : '') + '. ' + oro + ' con perfil Oro y ' + neg + ' en Lista negra.<br><span class="hint">Columnas detectadas: ' + esc(r.cols.join(', ') || 'nombre') + '</span></div></div>'
       : '<div class="callout bad">' + ico('alert') + '<div><strong>No hemos encontrado contactos nuevos.</strong> ' + (r.dup ? 'Todos ya estaban en tu lista.' : 'Comprueba que la primera fila tenga los títulos (Nombre, Teléfono…).') + '</div></div>';
+    if (r.socios && (r.socios.length || r.sociosDup)) res += '<div class="callout info">' + ico('shield') + '<div><strong>Plan 30 días:</strong> ' + r.socios.length + ' ' + plural(r.socios.length, 'socio nuevo', 'socios nuevos') + ' para la Muralla de Retención' + (r.sociosDup ? ' (' + r.sociosDup + ' ya estaban)' : '') + '.</div></div>';
   }
+  const nImp = r ? r.list.length + ((r.socios && r.socios.length) || 0) : 0;
   return mHead('Tracker de reactivación', 'Importar ex-socios') + '<div class="modal-b">' +
-    '<p class="hint">Sirve la exportación de tu software (Trainingym, Resawod…), cualquier Excel o CSV, y también el Tracker de Excel de Activonorte. Reconocemos columnas como <b>Nombre</b>, <b>Teléfono</b>, <b>Fecha de baja</b> o <b>Meses</b>, <b>Motivo</b>, <b>Visitas/mes</b> y <b>Estado</b>.</p>' +
+    '<p class="hint">Sirve la exportación de tu software (Trainingym, Resawod…), cualquier Excel o CSV, y también el Tracker de Excel de Activonorte (con su Plan 30 días). Reconocemos columnas como <b>Nombre</b>, <b>Teléfono</b>, <b>Fecha de baja</b> o <b>Meses</b>, <b>Motivo</b>, <b>Visitas/mes</b> y <b>Estado</b>.</p>' +
     '<button class="btn btn-dark btn-block" data-act="imp-file">' + ico('upload') + 'Elegir archivo (Excel o CSV)</button>' +
     '<label class="field"><span>…o pega aquí las filas copiadas desde Excel o Google Sheets</span><textarea class="textarea" id="impText" rows="5" placeholder="Nombre&#9;Teléfono&#9;Meses&#9;Motivo&#10;Carlos Martínez&#9;612345678&#9;5&#9;Falta de tiempo"></textarea></label>' +
     '<button class="btn btn-outline" data-act="imp-parse">Analizar lo pegado</button>' + res + '</div>' +
-    '<div class="modal-f"><button class="btn btn-outline" data-act="modal-close">Cancelar</button><button class="btn btn-primary" data-act="imp-do"' + (r && r.list.length ? '' : ' disabled') + '>Importar ' + (r && r.list.length ? r.list.length : '') + '</button></div>';
+    '<div class="modal-f"><button class="btn btn-outline" data-act="modal-close">Cancelar</button><button class="btn btn-primary" data-act="imp-do"' + (nImp ? '' : ' disabled') + '>Importar ' + (nImp || '') + '</button></div>';
 }
 function parseDelimited(text) {
   text = String(text || '').replace(/^﻿/, '').replace(/\r\n?/g, '\n');
@@ -1858,7 +1860,7 @@ function objecionDe(v) {
 function rowsToContacts(rows) {
   rows = rows.map((r) => r.map((x) => (x instanceof Date ? isoDate(x) : String(x == null ? '' : x).trim())));
   if (!rows.length) return { list: [], cols: [], dup: 0 };
-  const hi = rows.findIndex((r, i) => i < 20 && r.some((c) => /^(nombre|name|cliente|socio)|nombre del|nombre y/.test(norm(c))));
+  const hi = findHeader(rows);
   let idx = hi >= 0 ? mapHeaders(rows[hi]) : {};
   let start = hi >= 0 ? hi + 1 : 0;
   if (idx.nombre == null) { idx = { nombre: 0 }; if (rows[0] && rows[0].length > 1) idx.tel = 1; }
@@ -1892,20 +1894,50 @@ function rowsToContacts(rows) {
   }
   return { list, cols: Object.keys(idx).filter((k) => idx[k] != null).map((k) => COLNAME[k]), dup };
 }
+const HEADER_RE = /^(nombre|name|cliente|socio)|nombre del|nombre y/;
+const findHeader = (rows) => rows.findIndex((r, i) => i < 20 && r.some((c) => HEADER_RE.test(norm(c instanceof Date ? '' : c))));
+// Socios de la pestaña «Plan 30 días» del Tracker de Excel (Muralla de Retención)
+function rowsToSocios(rows) {
+  rows = rows.map((r) => r.map((x) => (x instanceof Date ? isoDate(x) : String(x == null ? '' : x).trim())));
+  const hi = rows.findIndex((r, i) => i < 20 && norm(r[0]) === 'socio');
+  if (hi < 0) return { list: [], dup: 0 };
+  const h = rows[hi].map(norm), col = (name) => h.indexOf(name);
+  const ix = { nombre: 0, tel: col('telefono'), alta: col('fecha de alta'), d3: col('hecho dia 3'), d15: col('hecho dia 15'), d30: col('hecho dia 30'), m6: col('hecho 6 meses') };
+  const seen = new Set(Store.d.socios.map((s) => norm(s.nombre) + '|' + waPhone(s.telefono)));
+  const list = []; let dup = 0;
+  for (let i = hi + 1; i < rows.length; i++) {
+    const r = rows[i], nombre = (r[0] || '').replace(/\s+/g, ' ').trim();
+    const alta = ix.alta >= 0 ? parseFecha(r[ix.alta]) : null;
+    if (!nombre || !alta) continue;
+    const s = { id: uid(), nombre: nombre.slice(0, 80), telefono: ix.tel >= 0 ? String(r[ix.tel] || '').slice(0, 25) : '', alta: isoDate(alta), done: {}, origen: 'nuevo' };
+    ['d3', 'd15', 'd30', 'm6'].forEach((k) => { if (ix[k] >= 0 && norm(r[ix[k]]) === 'hecho') s.done[k] = todayISO(); });
+    const key = norm(s.nombre) + '|' + waPhone(s.telefono);
+    if (seen.has(key)) { dup++; continue; }
+    seen.add(key); list.push(s);
+  }
+  return { list, dup };
+}
 async function importFile(file) {
   if (!file) return;
   try {
-    let rows;
+    let rows, socios = null;
     if (/\.xlsx?$/i.test(file.name)) {
       toast('Leyendo el Excel…');
       await loadScript(CDN_XLSX);
       const wb = window.XLSX.read(await file.arrayBuffer(), { type: 'array', cellDates: true });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      rows = window.XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: '' }).filter((r) => r.some((c) => String(c).trim()));
+      const sheet = (name) => window.XLSX.utils.sheet_to_json(wb.Sheets[name], { header: 1, raw: true, defval: '' }).filter((r) => r.some((c) => String(c).trim()));
+      const all = wb.SheetNames.map((n) => ({ n, rows: sheet(n) }));
+      const plan = all.find((x) => /plan.*30/i.test(x.n));
+      // Primero la pestaña «Tracker» (o «Ex-socios», «Bajas»…); nunca el panel, los guiones ni las instrucciones
+      const cands = all.filter((x) => x !== plan && !/panel|resumen|gu[ií]on|c[oó]mo usar|listas|instruc/i.test(x.n));
+      const main = cands.find((x) => /tracker|ex.?socio|bajas|socios/i.test(x.n) && findHeader(x.rows) >= 0) || cands.find((x) => findHeader(x.rows) >= 0) || cands[0] || all[0];
+      rows = main.rows;
+      if (plan) socios = rowsToSocios(plan.rows);
     } else {
       rows = parseDelimited(await file.text());
     }
     UI.imp = rowsToContacts(rows);
+    if (socios) { UI.imp.socios = socios.list; UI.imp.sociosDup = socios.dup; }
   } catch (e) {
     UI.imp = null;
     toast('No hemos podido leer el archivo. Prueba a guardarlo como CSV o a pegar las filas.');
@@ -1915,10 +1947,10 @@ async function importFile(file) {
 
 /* Exportar */
 function exportCSV() {
-  const cols = ['Nombre', 'Teléfono', 'Fecha contacto', 'Estado', 'Objeción principal', 'Gancho ofrecido', 'Valor recuperado (€)', 'Meses fuera', 'Motivo de baja', 'Visitas/mes', 'Filtro', 'Notas'];
+  const cols = ['Nombre', 'Teléfono', 'Meses fuera', 'Motivo de baja', 'Visitas/mes', 'Filtro Oro', 'Estado', 'Fecha contacto', 'Objeción principal', 'Gancho ofrecido', 'Valor recuperado (€)', 'Notas'];
   const safe = (v) => { let s = String(v == null ? '' : v); if (/^[=@\t\r]/.test(s) || /^[+-](?![\d\s().]+$)/.test(s)) s = "'" + s; return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
   const dec = (v) => (v === '' || v == null ? '' : String(v).replace('.', ','));
-  const lines = [cols.join(';')].concat(Store.d.contactos.map((c) => [c.nombre, c.telefono, fmtDateES(c.fcontacto), EST[c.estado], c.objecion ? OBJ[c.objecion] : '', c.gancho || '', dec(c.valor), mesesFuera(c) == null ? '' : mesesFuera(c), c.motivo ? MOT[c.motivo] : '', dec(c.visitas), filtro(c).l, c.notas || ''].map(safe).join(';')));
+  const lines = [cols.join(';')].concat(Store.d.contactos.map((c) => [c.nombre, c.telefono, mesesFuera(c) == null ? '' : mesesFuera(c), c.motivo ? MOT[c.motivo] : '', dec(c.visitas), filtro(c).l, EST[c.estado], fmtDateES(c.fcontacto), c.objecion ? OBJ[c.objecion] : '', c.gancho || '', dec(c.valor), c.notas || ''].map(safe).join(';')));
   download('﻿' + lines.join('\r\n'), 'tracker-reactivacion-' + todayISO() + '.csv', 'text/csv;charset=utf-8');
   toast('Tracker exportado. Se abre con Excel.');
 }
@@ -2340,15 +2372,18 @@ const ACTIONS = {
   'imp-file': () => { const f = $('#fileImport'); f.value = ''; f.click(); },
   'imp-parse': () => { UI.imp = rowsToContacts(parseDelimited($('#impText').value)); const t = $('#impText').value; openModal(importHTML()); $('#impText').value = t; },
   'imp-do': () => {
-    if (!UI.imp || !UI.imp.list.length) return;
+    const socios = (UI.imp && UI.imp.socios) || [];
+    if (!UI.imp || (!UI.imp.list.length && !socios.length)) return;
     const n = UI.imp.list.length;
+    if (socios.length) Store.d.socios = Store.d.socios.concat(socios);
+    if (!n) { UI.imp = null; closeModal(); Store.save(); navigate('retencion'); toast(socios.length + ' ' + plural(socios.length, 'socio añadido', 'socios añadidos') + ' al plan de 30 días.'); return; }
     Store.d.contactos = Store.d.contactos.filter((c) => !c.demo).concat(UI.imp.list);
     if (!Store.d.checks.p1a) Store.d.checks.p1a = true;
     if (!Store.d.checks.p1d) Store.d.checks.p1d = true;
     UI.imp = null; UI.tf = 'todos';
     closeModal(); Store.save();
     if (currentRoute() !== 'tracker') navigate('tracker'); else render();
-    toast(n + ' ' + plural(n, 'ex-socio importado', 'ex-socios importados') + '. Ordenados con el Filtro Oro.');
+    toast(n + ' ' + plural(n, 'ex-socio importado', 'ex-socios importados') + (socios.length ? ' y ' + socios.length + ' ' + plural(socios.length, 'socio', 'socios') + ' al plan de 30 días' : '') + '. Ordenados con el Filtro Oro.');
   },
   'export-csv': exportCSV,
 
