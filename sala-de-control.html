@@ -471,6 +471,25 @@ button { cursor: pointer; background: none; border: 0; }
 .hito.exp { text-decoration: line-through; opacity: .6; }
 @media (max-width: 640px) { .soc-row { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
 .lock-hero { position: relative; overflow: hidden; }
+.duo-brand { display: grid; grid-template-columns: minmax(0, 1.4fr) 1fr 1fr; gap: 14px; margin-top: 14px; align-items: start; }
+.duo-logo-row { display: flex; gap: 12px; align-items: center; }
+.duo-logo { width: 56px; height: 56px; border-radius: 14px; border: 1.5px dashed #cfdadc; display: grid; place-items: center; color: var(--muted); overflow: hidden; flex: none; background: #fff; }
+.duo-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.input.duo-color { height: 46px; padding: 4px; cursor: pointer; }
+.duo-objs { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 8px; }
+.duo-obj { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 8px; align-items: center; }
+.duo-obj input[type=color] { width: 46px; height: 44px; border: 1.5px solid #cfdadc; border-radius: 10px; padding: 3px; background: #fff; cursor: pointer; }
+.duo-fn .fn-row { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 36px; }
+.duo-fn .fn-l { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.duo-steps { list-style: none; counter-reset: s; display: grid; gap: 14px; }
+.duo-steps li { counter-increment: s; display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; }
+.duo-steps li::before { content: counter(s); flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--orange-btn); color: #fff; font-weight: 800; font-size: 13px; display: grid; place-items: center; }
+.duo-steps b { color: #fff; }
+.duo-det summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; list-style: none; font-weight: 800; color: var(--ink); font-size: 16px; flex-wrap: wrap; }
+.duo-det summary::-webkit-details-marker { display: none; }
+.duo-det summary > span:first-child { display: flex; gap: 8px; align-items: center; }
+.duo-det summary > span:first-child .ico { color: var(--orange-text); }
+@media (max-width: 760px) { .duo-brand { grid-template-columns: 1fr 1fr; } .duo-brand > .field:first-child { grid-column: 1 / -1; } }
 .inc { display: grid; gap: 10px; list-style: none; }
 .inc li { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; }
 .inc li .ico { color: var(--green); margin-top: 2px; }
@@ -556,6 +575,7 @@ button { cursor: pointer; background: none; border: 0; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></symbol>
   <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H16a3.5 3.5 0 0 0 0-7H8a3.5 3.5 0 0 1 0-7h7.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
   <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.9-.9L3 20.5l1.5-4.6A8.4 8.4 0 1 1 21 11.5z"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
@@ -651,6 +671,7 @@ button { cursor: pointer; background: none; border: 0; }
         <div class="nav-label">Siguiente nivel</div>
         <button class="nav-item" data-go="dominio" data-nav="dominio"><svg class="ico" aria-hidden="true"><use href="#i-trend"/></svg>Pack Dominio Local<span data-lock="dominio"></span></button>
         <button class="nav-item" data-go="growth" data-nav="growth"><svg class="ico" aria-hidden="true"><use href="#i-rocket"/></svg>Growth Partner 360<span data-lock="growth"></span></button>
+        <button class="nav-item" data-go="duo" data-nav="duo"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg>Activo Dúo<span data-lock="growth"></span></button>
       </div>
     </nav>
     <div class="side-foot">
@@ -1078,6 +1099,8 @@ const GUIONES = [
     txt: '¡{nombre}, hoy cumples 6 meses en {centro}! 🎉 Tienes una camiseta esperándote en recepción. Gracias por formar parte de esto.' },
   { id: 'ret-queja', cat: 'retencion', fase: 'La queja es una oportunidad', t: 'Avisar de que lo has solucionado', cuando: 'Transforma a un cliente molesto en un embajador fiel.',
     txt: 'Hola {nombre}, te escribo para contarte que ya hemos solucionado lo que nos comentaste. Gracias por avisarnos: así mejoramos para todos. ¡Nos vemos por el centro!' },
+  { id: 'ret-duo', cat: 'retencion', fase: 'Activo Dúo', t: 'Invitar a encontrar compañero', cuando: 'A cada socio nuevo en su primera semana, y a quien ves entrenando siempre solo.',
+    txt: '¡Hola {nombre}! En {centro} hemos lanzado Activo Dúo: te ayudamos a encontrar compañero de entreno con tu mismo objetivo y tu mismo horario 💪 Pásate por recepción a por tu pulsera y escanea el QR. ¡Entrenar acompañado engancha!' },
   { id: 'res-pedir', cat: 'resenas', fase: 'Pedirla en caliente', t: 'Pedir una reseña tras un buen entreno', cuando: 'En el momento de euforia: un récord, su primera dominada, «qué buen entreno hoy».',
     txt: '¡Qué entrenazo hoy, {nombre}! 🔥 Si te apetece contarlo, nos ayudas muchísimo dejando tu opinión aquí (son 30 segundos): {resenas}' },
   { id: 'res-mala', cat: 'resenas', fase: 'Mentalidad Aikido', t: 'Responder a una reseña negativa', cuando: 'Nunca en caliente. Escribe para los próximos 100 clientes que la lean.',
@@ -1288,6 +1311,7 @@ function logout() {
   Sync.flush();
   Sync.reset();
   session = null; recursos = {};
+  UI.duo = { gym: null, stats: null, cargado: false, cargando: false, error: '', sinNube: false, logo: undefined };
   try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
   Store.key = ''; Store.d = DEF(); Cop.caseId = ''; Cop.mem = [];
   closeModal(); copClose();
@@ -1348,7 +1372,7 @@ function showWelcome(data) {
 const ROUTES = {
   inicio: 'Panel de control', protocolo: 'Protocolo 48H', tracker: 'Ex-socios', guiones: 'Guiones',
   antidoto: 'Antídoto Low-Cost', retencion: 'Muralla de Retención', google: 'Dominio en Google', descargas: 'Biblioteca',
-  dominio: 'Pack Dominio Local', growth: 'Growth Partner 360', ajustes: 'Mi centro y datos'
+  dominio: 'Pack Dominio Local', growth: 'Growth Partner 360', duo: 'Activo Dúo', ajustes: 'Mi centro y datos'
 };
 const TAB_ROUTES = ['inicio', 'tracker', 'guiones'];
 const UI = { tf: 'todos', tq: '', oro: false, gcat: 'todos', gq: '', gcid: '', gnom: '', gobj: '', rtipo: 'mala', rcli: '', imp: null };
@@ -2029,7 +2053,9 @@ RENDER.retencion = function () {
     '<form data-form="socio" class="form-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:8px"><label class="field"><span>Nombre del socio</span><input class="input" name="nombre" maxlength="80" required placeholder="Laura Sánchez"></label><label class="field"><span>Teléfono</span><input class="input" name="telefono" type="tel" inputmode="tel" maxlength="25" placeholder="612 345 678"></label><label class="field"><span>Fecha de alta</span><input class="input" name="alta" type="date" value="' + todayISO() + '" required></label><div class="field" style="align-content:end"><button class="btn btn-primary" type="submit">' + ico('plus') + 'Añadir al plan</button></div></form>' +
     (ss.length ? '<div class="list">' + ss.map(socioRow).join('') + '</div>' : '<p class="card-sub" style="padding:10px 0 4px">Añade a cada socio nuevo (o recuperado) y te avisaremos el día exacto en que toca cada mensaje, con el texto listo para WhatsApp. Los ex-socios que marques como «Recuperado» se pueden añadir con un clic.</p>') + '</div>' +
     '<div class="card mt"><div class="card-h"><h2>' + ico('shield') + 'Tu sistema de blindaje</h2><span class="card-sub">' + RET_CHECKS.filter((c) => Store.d.checks[c[0]]).length + ' de ' + RET_CHECKS.length + ' en marcha</span></div><div class="grid g-2" style="gap:8px">' + RET_CHECKS.map((c) => chk(c[0], c[1], c[2])).join('') + '</div></div>' +
-    '<div class="card mt"><div class="card-h"><h2>' + ico('message') + 'Mensajes de retención</h2><button class="btn btn-ghost btn-sm" data-act="g-cat" data-c="retencion" data-goto="1">Ver todos' + ico('arrow') + '</button></div><div class="scripts">' + ['ret-ausencia', 'ret-queja'].map((id) => scriptCard(id, vals, {})).join('') + '</div></div>';
+    '<div class="card mt"><div class="card-h"><h2>' + ico('message') + 'Mensajes de retención</h2><button class="btn btn-ghost btn-sm" data-act="g-cat" data-c="retencion" data-goto="1">Ver todos' + ico('arrow') + '</button></div><div class="scripts">' + ['ret-ausencia', 'ret-queja'].map((id) => scriptCard(id, vals, {})).join('') + '</div></div>' +
+    '<div class="card ' + (hasGrowth() ? '' : 'accent ') + 'mt"><div class="card-h"><h2>' + ico('heart') + 'Activo Dúo: que tus socios se conozcan</h2><span class="card-sub">El coste de cambio más alto que existe</span></div><p class="card-sub" style="margin-bottom:14px">Pulseras por objetivo y una app sin descargas para que cada socio encuentre compañero con su mismo objetivo y su mismo horario. Quien tiene amigos en tu centro no se va al de al lado por 20 € menos.</p>' +
+    '<div class="row-actions"><button class="btn ' + (hasGrowth() ? 'btn-dark' : 'btn-primary') + '" data-go="duo">' + ico('heart') + (hasGrowth() ? 'Abrir Activo Dúo' : 'Descubrir Activo Dúo') + '</button><a class="btn btn-ghost" href="' + DUO_URL + '?demo=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Ver la demo</a></div></div>';
 };
 
 /* ══════════════════════════════════════════════════════════
@@ -2095,6 +2121,7 @@ function waAudit(tipo) {
     ficha: 'Hola Sergio, soy ' + (P().yo || '') + (P().centro ? ' de ' + P().centro : '') + ' (' + e + '). Estoy en la Sala de Control y quiero la auditoría gratuita de mi ficha de Google.',
     dominio: 'Hola Sergio, estoy dentro de la Sala de Control (' + e + ') y quiero desbloquear el Pack Dominio Local con la auditoría gratuita de 15 min.',
     growth: 'Hola Sergio, estoy dentro de la Sala de Control (' + e + ') y quiero agendar una consultoría para activar Growth Partner 360.',
+    duo: 'Hola Sergio, estoy dentro de la Sala de Control (' + e + ') y me interesa Activo Dúo para mi centro. ¿Me cuentas cómo lo pondríamos en marcha?',
     dominioActivo: 'Hola Sergio, soy cliente del Pack Dominio Local (' + e + ') y quiero coordinar los siguientes pasos.',
     growthActivo: 'Hola Sergio, soy partner de Growth Partner 360 (' + e + ') y quiero coordinar los siguientes pasos.'
   };
@@ -2122,19 +2149,205 @@ function nivelPage(tipo) {
     i: 'rocket', t: 'Growth Partner 360', k: 'Servicio · Asociación estratégica',
     prob: 'Los gerentes dedican su día a gestionar entrenadores e instalaciones. El marketing improvisado genera presupuestos desperdiciados y meses inestables que impiden escalar.',
     sol: 'Activonorte se convierte en el departamento de marketing externo de tu centro. Una asociación de crecimiento orientada a resultados medibles mes a mes.',
-    inc: [['Captación continua en Meta', 'campañas de Instagram y Facebook para generar leads cualificados cada mes.'], ['Sistema de retención y comunidad', 'protocolo Phygital para crear vínculos entre socios y reducir las bajas.'], ['Protocolo de reactivación trimestral', 'integrado para recuperar antiguos socios de forma recurrente.'], ['Filtrado y cualificación de leads', 'solo llegan a ti los prospectos con intención real de compra.'], ['Consultoría estratégica mensual', 'análisis de resultados y ajuste de estrategia cada mes.']]
+    inc: [['Captación continua en Meta', 'campañas de Instagram y Facebook para generar leads cualificados cada mes.'], ['Activo Dúo, retención y comunidad', 'pulseras por objetivo y una app sin descargas para que tus socios encuentren compañero de entreno y no se den de baja.'], ['Protocolo de reactivación trimestral', 'integrado para recuperar antiguos socios de forma recurrente.'], ['Filtrado y cualificación de leads', 'solo llegan a ti los prospectos con intención real de compra.'], ['Consultoría estratégica mensual', 'análisis de resultados y ajuste de estrategia cada mes.']]
   };
   const head = ph(data.i, data.k, esc(data.t), active ? '<span class="badge st-matriculado">● Servicio activo en tu cuenta</span>' : '<span class="badge f-sin">' + ico('lock', 'sm') + ' No incluido en tu licencia actual</span>');
   const body = '<div class="grid g-main"><div class="card"><div class="card-h"><h2>' + ico('alert') + 'El problema</h2></div><p>' + esc(data.prob) + '</p><div class="card-h" style="margin-top:18px"><h2>' + ico('check') + 'La solución</h2></div><p>' + esc(data.sol) + '</p></div>' +
     '<div class="card"><div class="card-h"><h2>' + ico('gift') + 'Qué incluye</h2></div><ul class="inc">' + data.inc.map((x) => '<li>' + ico('check') + '<span><b>' + esc(x[0]) + ':</b> ' + esc(x[1]) + '</span></li>').join('') + '</ul></div></div>';
   const cta = active
-    ? '<div class="card mt"><div class="card-h"><h2>' + ico('message') + 'Tu línea directa</h2></div><p class="card-sub" style="margin-bottom:14px">Coordina los siguientes pasos, pide tu informe o resuelve cualquier duda directamente con Sergio.</p><div class="row-actions"><a class="btn btn-wa" href="' + esc(waAudit(dom ? 'dominioActivo' : 'growthActivo')) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + 'Hablar con Sergio por WhatsApp</a><a class="btn btn-outline" href="mailto:activonorte.media@gmail.com">activonorte.media@gmail.com</a>' + (dom ? '<button class="btn btn-ghost" data-go="google">' + ico('pin') + 'Checklist de tu ficha</button>' : '') + '</div></div>'
+    ? '<div class="card mt"><div class="card-h"><h2>' + ico('message') + 'Tu línea directa</h2></div><p class="card-sub" style="margin-bottom:14px">Coordina los siguientes pasos, pide tu informe o resuelve cualquier duda directamente con Sergio.</p><div class="row-actions"><a class="btn btn-wa" href="' + esc(waAudit(dom ? 'dominioActivo' : 'growthActivo')) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + 'Hablar con Sergio por WhatsApp</a><a class="btn btn-outline" href="mailto:activonorte.media@gmail.com">activonorte.media@gmail.com</a>' + (dom ? '<button class="btn btn-ghost" data-go="google">' + ico('pin') + 'Checklist de tu ficha</button>' : '<button class="btn btn-ghost" data-go="duo">' + ico('heart') + 'Abrir Activo Dúo</button>') + '</div></div>'
     : '<div class="card accent mt"><div class="card-h"><h2>' + ico('target') + (dom ? 'Auditoría gratuita de activación · 15 min' : 'Consultoría gratuita') + '</h2></div><p class="card-sub" style="margin-bottom:14px">' + (dom ? 'Vemos en directo tu ficha de Google y tu zona, y te decimos los 3 puntos donde estás perdiendo clientes hoy. Cada centro tiene un volumen distinto: por eso el precio se calcula después, a tu medida.' : 'Analizamos tu volumen de socios, tus bajas y tu competencia para ver si encajamos. El precio se presupuesta a medida.') + '</p>' +
       '<a class="btn btn-primary btn-lg" href="' + esc(waAudit(dom ? 'dominio' : 'growth')) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + (dom ? 'Solicitar auditoría gratuita' : 'Agendar consultoría gratuita') + '</a></div>';
   return head + body + cta;
 }
 RENDER.dominio = () => nivelPage('dominio');
 RENDER.growth = () => nivelPage('growth');
+
+/* ══════════════════════════════════════════════════════════
+   ACTIVO DÚO · el sistema de compañeros de entreno (Growth Partner 360)
+══════════════════════════════════════════════════════════ */
+const DUO_URL = 'https://activonorte.com/duo.html';
+const DUO_OBJ = [
+  { k: 'fuerza', nombre: 'Fuerza y músculo', color: '#2563eb' },
+  { k: 'cardio', nombre: 'Cardio y resistencia', color: '#dc2626' },
+  { k: 'funcional', nombre: 'Funcional y clases', color: '#ea580c' },
+  { k: 'bienestar', nombre: 'Tonificar y bienestar', color: '#9333ea' },
+  { k: 'empezando', nombre: 'Estoy empezando', color: '#16a34a' }
+];
+const DUO_CHECKS = [
+  ['duo1', 'Pide las pulseras', 'De silicona, una por objetivo. Para empezar, unas 20 de cada color.'],
+  ['duo2', 'Imprime y coloca el cartel QR', 'En recepción, en la sala de pesas y en los vestuarios. Donde la gente espera.'],
+  ['duo3', 'Forma a recepción', 'Que ofrezcan la pulsera a cada socio: «¿Quieres encontrar compañero? Escanea esto».'],
+  ['duo4', 'Preséntaselo a cada socio nuevo', 'En su primera semana. Quien encuentra dúo el primer mes ya no se va.'],
+  ['duo5', 'Anúncialo en redes y en el grupo del centro', 'Una foto de dos socios con la misma pulsera vale más que cualquier texto.'],
+  ['duo6', 'Revisa esta página cada semana', 'Mira los reportes, quién tiene dúo y quién sigue entrenando solo.']
+];
+UI.duo = { gym: null, stats: null, cargado: false, cargando: false, error: '', sinNube: false, logo: undefined };
+const duoLink = (g) => DUO_URL + '?g=' + encodeURIComponent(g.slug) + '&c=' + encodeURIComponent(g.codigo);
+
+async function duoApi(accion, datos) {
+  const r = await fetch(API_BASE + '/duo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ accion, token: session.token }, datos || {})) }).catch(() => null);
+  if (!r) throw new Error('No hay conexión con el servidor. Revisa tu internet.');
+  let d = {}; try { d = await r.json(); } catch (e) {}
+  if (!r.ok || !d.ok) { const err = new Error(d.error || 'No hemos podido completar la acción. Inténtalo en unos minutos.'); err.sinNube = !!d.sinNube; throw err; }
+  return d;
+}
+async function duoCargar() {
+  const D = UI.duo;
+  if (D.cargando) return;
+  D.cargando = true;
+  try {
+    const g = await duoApi('admin.gym');
+    D.gym = g.gym || null;
+    D.stats = D.gym ? await duoApi('admin.stats') : null;
+    D.error = ''; D.sinNube = false;
+  } catch (e) { D.error = e.message; D.sinNube = !!e.sinNube; }
+  D.cargando = false; D.cargado = true;
+  if (session && currentRoute() === 'duo') render();
+}
+AFTER.duo = function () {
+  if (!hasGrowth()) return;
+  const D = UI.duo;
+  if (!D.cargado) { duoCargar(); return; }
+  const box = $('#duoQr');
+  if (!box || !D.gym) return;
+  loadScript(CDN_QR).then(() => {
+    const qr = window.qrcode(0, 'M'); qr.addData(duoLink(D.gym)); qr.make();
+    const b = $('#duoQr'); if (b) b.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true, alt: 'QR de Activo Dúo' });
+  }).catch(() => { const b = $('#duoQr'); if (b) b.textContent = 'No se ha podido generar el QR ahora. Revisa tu conexión.'; });
+};
+
+const duoObj = (g, k) => ((g && g.objetivos) || DUO_OBJ).find((o) => o.k === k) || { nombre: k, color: '#94a3b8' };
+const duoDot = (color) => '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + esc(color) + ';flex:none"></span>';
+function duoEstado(s) {
+  if (!s.activo) return '<span class="badge st-no">Desactivado</span>';
+  if (s.revision) return '<span class="badge st-cita">En revisión</span>';
+  if (s.pausado) return '<span class="badge st-pendiente">En pausa</span>';
+  return '<span class="badge st-matriculado">Buscando</span>';
+}
+
+function duoForm(g) {
+  const p = P(), x = g || { nombre: p.centro || '', ciudad: p.ciudad || '', contacto: p.contacto || '', primario: '#003b46', acento: '#e05e00', objetivos: DUO_OBJ, logo: '' };
+  const logo = UI.duo.logo !== undefined ? UI.duo.logo : x.logo;
+  return '<form data-form="duo" class="duo-form">' +
+    '<div class="form-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));align-items:start">' +
+    '<label class="field"><span>Nombre del gimnasio</span><input class="input" name="nombre" maxlength="50" required placeholder="FitBox Norte" value="' + esc(x.nombre) + '"><small>Es lo que verán tus socios: la app va con tu marca.</small></label>' +
+    '<label class="field"><span>Ciudad</span><input class="input" name="ciudad" maxlength="40" placeholder="Santander" value="' + esc(x.ciudad) + '"></label>' +
+    '<label class="field"><span>Contacto para privacidad</span><input class="input" name="contacto" maxlength="80" placeholder="hola@tugimnasio.es" value="' + esc(x.contacto) + '"><small>Sale en la política de privacidad de la app.</small></label></div>' +
+    '<div class="duo-brand">' +
+    '<div class="field"><span>Logo</span><div class="duo-logo-row"><div class="duo-logo" id="duoLogoPv">' + (logo ? '<img src="' + esc(logo) + '" alt="">' : ico('upload')) + '</div><div class="row-actions"><button class="btn btn-outline btn-sm" type="button" data-act="duo-logo">' + ico('upload') + (logo ? 'Cambiar' : 'Subir logo') + '</button>' + (logo ? '<button class="btn btn-ghost btn-sm" type="button" data-act="duo-logo-quitar">Quitar</button>' : '') + '</div></div><small>PNG con fondo transparente, mejor cuadrado.</small></div>' +
+    '<label class="field"><span>Color principal</span><input class="input duo-color" type="color" name="primario" value="' + esc(x.primario) + '"></label>' +
+    '<label class="field"><span>Color de los botones</span><input class="input duo-color" type="color" name="acento" value="' + esc(x.acento) + '"></label></div>' +
+    '<div class="field" style="margin-top:6px"><span>Objetivos y colores de las pulseras</span><small>Puedes cambiar el nombre y el color para que coincidan con las pulseras que compres.</small></div>' +
+    '<div class="duo-objs">' + DUO_OBJ.map((o) => { const y = (x.objetivos || []).find((z) => z.k === o.k) || o; return '<div class="duo-obj"><input type="color" name="oc_' + o.k + '" value="' + esc(y.color) + '" aria-label="Color de ' + esc(y.nombre) + '"><input class="input" name="on_' + o.k + '" maxlength="30" value="' + esc(y.nombre) + '" aria-label="Nombre del objetivo"></div>'; }).join('') + '</div>' +
+    '<div class="row-actions" style="margin-top:16px"><button class="btn btn-primary" type="submit">' + ico(g ? 'check' : 'rocket') + (g ? 'Guardar cambios' : 'Activar Activo Dúo en mi centro') + '</button>' + (g ? '' : '<a class="btn btn-ghost" href="' + DUO_URL + '?demo=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Ver antes la demo</a>') + '</div>' +
+    '<input type="file" id="duoLogo" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden></form>';
+}
+
+function duoVenta() {
+  return ph('users', 'Growth Partner 360 · Retención', 'Activo Dúo', 'Pulseras por objetivo y una app sin descargas para que tus socios encuentren compañero de entreno con su mismo objetivo y su mismo horario.', '<span class="badge f-sin">' + ico('lock', 'sm') + ' Incluido en Growth Partner 360</span>') +
+    '<div class="grid g-main"><div class="card"><div class="card-h"><h2>' + ico('route') + 'Cómo funciona</h2></div><div class="list">' +
+    [['qr', 'El socio escanea el QR del cartel', 'Crea su perfil en un minuto, sin descargar nada: objetivo, nivel y en qué franjas viene.'], ['users', 'Ve a socios compatibles', 'Ordenados por afinidad: mismo objetivo, mismo horario y nivel parecido. La pulsera de color le dice en la sala quién busca lo mismo.'], ['send', 'Propone un entreno', 'Si el otro acepta, son «dúo» y se abre su WhatsApp. Su móvil nunca se ve antes.'], ['trend', 'Tú ves los resultados', 'Cuántos socios tienen dúo, cuántos entrenos juntos y quién sigue entrenando solo.']].map((x) => '<div class="li"><div class="li-ico">' + ico(x[0]) + '</div><div class="li-body"><div class="li-t">' + esc(x[1]) + '</div><div class="li-d">' + esc(x[2]) + '</div></div></div>').join('') + '</div></div>' +
+    '<div class="card dark"><div class="card-h"><h2>' + ico('shield') + 'Por qué retiene</h2></div><p style="font-size:15px;line-height:1.6">El que entrena solo se borra en silencio. El que tiene compañero tiene una cita: faltar es dejar tirado a alguien.</p><p style="font-size:13.5px;color:rgba(255,255,255,.72);margin-top:12px">Es la parte de la Muralla de Retención que no se puede copiar: cuando un socio tiene amigos en tu centro, el gimnasio de al lado ya no compite en precio.</p></div></div>' +
+    '<div class="card accent mt"><div class="card-h"><h2>' + ico('target') + 'Pruébalo como lo verán tus socios</h2></div><p class="card-sub" style="margin-bottom:14px">La demostración es un gimnasio de ejemplo con socios ficticios: crea tu perfil, propón un entreno y mira cómo se forma un dúo.</p>' +
+    '<div class="row-actions"><a class="btn btn-dark" href="' + DUO_URL + '?demo=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Abrir la demo</a><a class="btn btn-primary" href="' + esc(waAudit('duo')) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + 'Quiero Activo Dúo en mi centro</a></div></div>';
+}
+
+RENDER.duo = function () {
+  if (!hasGrowth()) return duoVenta();
+  const D = UI.duo, g = D.gym;
+  const acciones = g ? '<a class="btn btn-outline btn-sm" href="' + esc(duoLink(g)) + '" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Abrir la app</a><button class="btn btn-ghost btn-sm" data-act="duo-refresh">' + ico('refresh') + 'Actualizar</button>' : '';
+  const head = ph('users', 'Growth Partner 360 · Retención', 'Activo Dúo', 'Tus socios encuentran compañero de entreno con su mismo objetivo y su mismo horario. Quien entrena acompañado no se borra: se lo debe a alguien.', acciones);
+  if (!D.cargado && !g) return head + '<div class="card"><div class="empty"><div class="empty-ico">' + ico('cloud') + '</div><h3>Cargando Activo Dúo…</h3></div></div>';
+  if (D.error && !g) return head + '<div class="callout' + (D.sinNube ? '' : ' info') + '">' + ico('alert') + '<div>' + (D.sinNube ? '<strong>Falta conectar la base de datos en la nube.</strong> Activo Dúo guarda los perfiles de tus socios en ella. Conéctala en Vercel (Storage → Upstash) y vuelve a entrar.' : esc(D.error)) + ' <button class="link" data-act="duo-refresh">Reintentar</button></div></div>';
+  if (!g) {
+    return head + '<div class="grid g-main"><div class="card"><div class="card-h"><h2>' + ico('rocket') + 'Ponlo en marcha en 2 minutos</h2><span class="card-sub">Después podrás cambiarlo todo</span></div>' + duoForm(null) + '</div>' +
+      '<div class="card dark"><div class="card-h"><h2>' + ico('route') + 'Lo que pasa después</h2></div><ol class="duo-steps"><li><span><b>Imprimes el cartel</b> con tu QR y lo pones en recepción.</span></li><li><span><b>Repartes las pulseras:</b> un color por objetivo.</span></li><li><span><b>Tus socios se apuntan</b> desde el móvil, sin descargar nada.</span></li><li><span><b>Se forman dúos</b> y aquí ves cuántos, y quién sigue solo.</span></li></ol></div></div>';
+  }
+  const s = D.stats || { totales: {}, porObjetivo: {}, socios: [], reportes: [] }, t = s.totales || {};
+  const pct = t.socios ? Math.round((t.conDuo || 0) / t.socios * 100) : 0;
+  const maxObj = Math.max(1, ...g.objetivos.map((o) => (s.porObjetivo || {})[o.k] || 0));
+  const kpis = '<div class="grid g-4">' +
+    '<div class="card kpi"><div class="kpi-l">' + ico('users') + 'Socios apuntados</div><div class="kpi-v">' + (t.socios || 0) + '</div><div class="kpi-s">' + (t.buscando || 0) + ' buscando compañero</div></div>' +
+    '<div class="card kpi"><div class="kpi-l">' + ico('heart') + 'Dúos activos</div><div class="kpi-v">' + (t.duos || 0) + '</div><div class="kpi-s">' + (t.duosHistoricos || 0) + ' formados en total</div></div>' +
+    '<div class="card kpi"><div class="kpi-l">' + ico('check') + 'Entrenos juntos</div><div class="kpi-v">' + (t.entrenos || 0) + '</div><div class="kpi-s">Apuntados por tus socios</div></div>' +
+    '<div class="card kpi"><div class="kpi-l">' + ico('shield') + 'Socios con dúo</div><div class="kpi-v">' + pct + '%</div><div class="kpi-s">' + (t.conDuo || 0) + ' de ' + (t.socios || 0) + (t.pendientes ? ' · ' + t.pendientes + ' propuestas en el aire' : '') + '</div></div></div>';
+  const qr = '<div class="card"><div class="card-h"><h2>' + ico('qr') + 'Tu código QR</h2><span class="card-sub">Para que tus socios se apunten</span></div>' +
+    '<div class="qr-wrap"><div class="qr-box" id="duoQr">Generando QR…</div><div style="display:grid;gap:12px">' +
+    '<label class="field"><span>Enlace de alta</span><input class="input mono" readonly value="' + esc(duoLink(g)) + '" onclick="this.select()"></label>' +
+    '<p class="hint">Código de tu centro: <b class="mono">' + esc(g.codigo) + '</b>. Sin él nadie puede apuntarse, así que solo entran quienes ven el cartel.</p>' +
+    '<div class="row-actions"><button class="btn btn-dark btn-sm" data-act="duo-poster">' + ico('print') + 'Imprimir cartel</button><button class="btn btn-outline btn-sm" data-act="copy-txt" data-t="' + esc(duoLink(g)) + '">' + ico('copy') + 'Copiar enlace</button><button class="btn btn-ghost btn-sm" data-act="duo-codigo">' + ico('refresh') + 'Cambiar código</button></div></div></div></div>';
+  const objs = '<div class="card"><div class="card-h"><h2>' + ico('target') + 'Socios por objetivo</h2><span class="card-sub">Pide pulseras en esta proporción</span></div><div class="funnel duo-fn">' +
+    g.objetivos.map((o) => { const n = (s.porObjetivo || {})[o.k] || 0; return '<div class="fn-row"><span class="fn-l" style="display:flex;gap:7px;align-items:center">' + duoDot(o.color) + esc(o.nombre) + '</span><div class="fn-bar"><i style="width:' + (n / maxObj * 100) + '%;background:' + esc(o.color) + '"></i></div><span class="fn-v">' + n + '</span></div>'; }).join('') + '</div>' +
+    (t.socios ? '' : '<p class="hint" style="margin-top:12px">Aún no hay socios. Imprime el cartel y que recepción ofrezca la pulsera a todo el que entre.</p>') + '</div>';
+  const socios = s.socios || [];
+  const tabla = '<div class="card mt"><div class="card-h"><h2>' + ico('users') + 'Tus socios en Activo Dúo</h2><span class="card-sub">' + socios.length + ' en total · por privacidad, aquí no ves su móvil</span></div>' +
+    (socios.length ? '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Socio</th><th>Objetivo</th><th>Alta</th><th class="num">Dúos</th><th class="num">Entrenos</th><th>Estado</th><th></th></tr></thead><tbody>' +
+      socios.map((m) => { const o = duoObj(g, m.objetivo); return '<tr><td><b>' + esc(m.nombre) + '</b></td><td><span style="display:inline-flex;gap:7px;align-items:center">' + duoDot(o.color) + esc(o.nombre) + '</span></td><td>' + esc(fmtDate(m.creado)) + '</td><td class="num">' + (m.duos || 0) + '</td><td class="num">' + (m.entrenos || 0) + '</td><td>' + duoEstado(m) + '</td><td class="num"><button class="btn btn-ghost btn-sm' + (m.activo ? ' danger' : '') + '" data-act="duo-socio" data-id="' + esc(m.id) + '" data-v="' + (m.activo ? '0' : '1') + '" data-n="' + esc(m.nombre) + '">' + (m.activo ? 'Desactivar' : 'Reactivar') + '</button></td></tr>'; }).join('') + '</tbody></table></div>'
+      : '<div class="empty"><div class="empty-ico">' + ico('users') + '</div><h3>Todavía no se ha apuntado nadie</h3><p>Cuando tus socios escaneen el QR, aparecerán aquí. Pruébalo tú primero: abre la app con tu móvil y crea un perfil de prueba.</p></div>') + '</div>';
+  const reps = s.reportes || [];
+  const reportes = reps.length ? '<div class="card mt"><div class="card-h"><h2>' + ico('alert') + 'Reportes de seguridad</h2><span class="card-sub">Con 3 reportes, un perfil se oculta solo hasta que lo revises</span></div><div class="list">' +
+    reps.map((r) => '<div class="li"><div class="li-ico o">' + ico('alert') + '</div><div class="li-body"><div class="li-t">' + esc(r.de) + ' ha reportado a ' + esc(r.aNombre) + '</div><div class="li-d">' + esc(fmtDate(r.creado)) + (r.motivo ? ' · «' + esc(r.motivo) + '»' : '') + '</div></div>' + (r.aActivo ? '<button class="btn btn-ghost btn-sm danger" data-act="duo-socio" data-id="' + esc(r.a) + '" data-v="0" data-n="' + esc(r.aNombre) + '">Desactivar</button>' : '<span class="badge st-no">Desactivado</span>') + '</div>').join('') + '</div></div>' : '';
+  const lanz = '<div class="grid g-2 mt"><div class="card"><div class="card-h"><h2>' + ico('rocket') + 'Lanzamiento</h2><span class="card-sub">' + DUO_CHECKS.filter((c) => Store.d.checks[c[0]]).length + ' de ' + DUO_CHECKS.length + ' hechos</span></div><div class="checks">' + DUO_CHECKS.map((c) => chk(c[0], c[1], c[2])).join('') + '</div></div>' +
+    '<div class="card"><div class="card-h"><h2>' + ico('message') + 'Mensaje para invitar</h2><span class="card-sub">A cada socio nuevo y a quien entrena siempre solo</span></div><div class="scripts" style="grid-template-columns:minmax(0,1fr)">' + scriptCard('ret-duo', varsFor({}), {}) + '</div></div></div>';
+  const ajustes = '<details class="card mt duo-det"><summary><span>' + ico('settings') + 'Personalizar la app</span><span class="card-sub">Nombre, logo, colores y objetivos</span></summary><div style="margin-top:16px">' + duoForm(g) + '</div></details>';
+  return head + (D.error ? '<div class="callout info" style="margin-bottom:14px">' + ico('alert') + '<div>' + esc(D.error) + ' <button class="link" data-act="duo-refresh">Reintentar</button></div></div>' : '') + kpis + '<div class="grid g-main mt">' + qr + objs + '</div>' + tabla + reportes + lanz + ajustes;
+};
+
+function duoLogoFile(f) {
+  if (!f) return;
+  const url = URL.createObjectURL(f), img = new Image();
+  img.onload = () => {
+    const k = Math.min(1, 320 / Math.max(img.width || 320, img.height || 320));
+    const c = document.createElement('canvas'); c.width = Math.max(1, Math.round((img.width || 320) * k)); c.height = Math.max(1, Math.round((img.height || 320) * k));
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    URL.revokeObjectURL(url);
+    let d = c.toDataURL('image/png');
+    if (d.length > 200000) d = c.toDataURL('image/webp', 0.9);
+    if (d.length > 200000 || !/^data:image\/(png|webp)/.test(d)) d = c.toDataURL('image/jpeg', 0.85);
+    if (d.length > 215000) { toast('Ese logo pesa demasiado. Prueba con una versión más sencilla.'); return; }
+    UI.duo.logo = d;
+    const pv = $('#duoLogoPv'); if (pv) pv.innerHTML = '<img src="' + d + '" alt="">';
+    toast('Logo listo. Guarda los cambios para aplicarlo.');
+  };
+  img.onerror = () => { URL.revokeObjectURL(url); toast('No hemos podido leer esa imagen.'); };
+  img.src = url;
+}
+
+function duoPoster() {
+  const g = UI.duo.gym; if (!g) return;
+  loadScript(CDN_QR).then(() => {
+    const qr = window.qrcode(0, 'M'); qr.addData(duoLink(g)); qr.make();
+    const w = window.open('', '_blank');
+    if (!w) { toast('Permite las ventanas emergentes para imprimir el cartel.'); return; }
+    const font = new URL('assets/fonts/inter-latin.woff2', location.href).href;
+    const p = g.primario || '#003b46', a = g.acento || '#e05e00';
+    w.document.write('<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Cartel Activo Dúo · ' + esc(g.nombre) + '</title><style>' +
+      '@font-face{font-family:Inter;font-weight:400 900;src:url(' + font + ') format("woff2")}@page{size:A4;margin:0}*{box-sizing:border-box;margin:0;padding:0}' +
+      'body{font-family:Inter,Arial,Helvetica,sans-serif;color:#0f1f24;-webkit-print-color-adjust:exact;print-color-adjust:exact}' +
+      '.pg{width:210mm;height:297mm;display:flex;flex-direction:column;overflow:hidden}' +
+      '.top{background:' + p + ';color:#fff;padding:14mm 16mm 22mm;position:relative}' +
+      '.top:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:14mm;background:#fff;border-radius:14mm 14mm 0 0}' +
+      '.brand{display:flex;align-items:center;gap:5mm;margin-bottom:9mm}.logo{width:15mm;height:15mm;border-radius:4mm;background:#fff;display:grid;place-items:center;overflow:hidden;color:' + p + ';font-weight:900;font-size:7mm}.logo img{width:100%;height:100%;object-fit:contain;padding:1.5mm}' +
+      '.brand b{font-size:6mm;font-weight:800}.brand span{display:block;font-size:3.2mm;letter-spacing:.14em;opacity:.75;font-weight:700}' +
+      'h1{font-size:14.5mm;line-height:1;letter-spacing:-.04em;font-weight:900}h1 em{font-style:normal;color:' + a + ';filter:brightness(1.25)}' +
+      '.sub{font-size:5.2mm;margin-top:5mm;opacity:.88;max-width:160mm;line-height:1.35}' +
+      '.mid{flex:1;display:grid;grid-template-columns:80mm 1fr;gap:12mm;padding:0 16mm;align-items:center}' +
+      '.qr{border:2.2mm solid ' + a + ';border-radius:8mm;padding:5mm;background:#fff}.qr svg{width:100%;height:auto;display:block}.scan{margin-top:4mm;text-align:center;font-weight:900;font-size:5mm;letter-spacing:.12em;color:' + p + '}' +
+      'ol{list-style:none;display:grid;gap:7mm;counter-reset:s}li{display:flex;gap:4mm;align-items:flex-start;font-size:5mm;line-height:1.3}li:before{counter-increment:s;content:counter(s);flex:none;width:10mm;height:10mm;border-radius:50%;background:' + p + ';color:#fff;display:grid;place-items:center;font-weight:900;font-size:5mm}li b{display:block;font-size:5.6mm}li span{color:#5b6b70;font-size:4.2mm}' +
+      '.bands{margin:4mm 16mm 0;padding:6mm 8mm;border-radius:7mm;background:#f3f6f7}.bands h2{font-size:4.6mm;letter-spacing:.1em;text-transform:uppercase;color:#5b6b70;margin-bottom:4.5mm}' +
+      '.bl{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm 8mm}.bd{display:flex;align-items:center;gap:3.5mm;font-size:4.5mm;font-weight:700}.bd i{width:15mm;height:5.5mm;border-radius:99px;box-shadow:inset 0 -1mm 0 rgba(0,0,0,.18)}' +
+      '.foot{display:flex;justify-content:space-between;align-items:center;padding:6mm 16mm 10mm;font-size:3.8mm;color:#5b6b70;font-weight:600}.foot b{color:' + p + '}' +
+      '</style></head><body><div class="pg"><div class="top"><div class="brand"><div class="logo">' + (g.logo ? '<img src="' + esc(g.logo) + '" alt="">' : esc(g.nombre.slice(0, 2).toUpperCase())) + '</div><div><b>' + esc(g.nombre) + '</b><span>ACTIVO DÚO</span></div></div>' +
+      '<h1>¿Entrenas solo?<br><em>Encuentra compañero.</em></h1><p class="sub">Gente de ' + esc(g.nombre) + ' con tu mismo objetivo y tu mismo horario. La app rompe el hielo por ti.</p></div>' +
+      '<div class="mid"><div><div class="qr">' + qr.createSvgTag({ cellSize: 8, margin: 0, scalable: true }) + '</div><div class="scan">ESCANÉAME</div></div>' +
+      '<ol><li><div><b>Escanea el código</b><span>Sin descargar nada. Un minuto.</span></div></li><li><div><b>Elige tu objetivo y tu horario</b><span>Y ponte la pulsera de tu color.</span></div></li><li><div><b>Propón un entreno</b><span>Si acepta, ya tenéis dúo.</span></div></li></ol></div>' +
+      '<div class="bands"><h2>Cada color, un objetivo · pide tu pulsera en recepción</h2><div class="bl">' + g.objetivos.map((o) => '<div class="bd"><i style="background:' + esc(o.color) + '"></i>' + esc(o.nombre) + '</div>').join('') + '</div></div>' +
+      '<div class="foot"><span>Gratis para socios · Solo mayores de 18 años</span><b>Activo Dúo</b></div></div>' +
+      '<script>var hecho=false;function imprimir(){if(hecho)return;hecho=true;window.print()}if(document.fonts)document.fonts.ready.then(function(){setTimeout(imprimir,250)});setTimeout(imprimir,2500)<\/script></body></html>');
+    w.document.close();
+  }).catch(() => toast('No se ha podido generar el QR ahora. Revisa tu conexión.'));
+}
 
 RENDER.ajustes = function () {
   const p = P(), n = Store.d.contactos.length;
@@ -2302,10 +2515,27 @@ const ACTIONS = {
   'cop-copy': (el) => { const m = copHist()[+el.dataset.i]; if (m && m.msg) copyText(m.msg); },
   'cop-adapt': (el) => copOpen(el.dataset.id || Cop.caseId, 'Adapta este mensaje a mi caso: «' + el.dataset.t + '»'),
   'more-open': () => {
-    const items = [['protocolo', 'route', 'Protocolo 48H'], ['antidoto', 'tag', 'Antídoto Low-Cost'], ['retencion', 'shield', 'Muralla de Retención'], ['google', 'pin', 'Dominio en Google'], ['descargas', 'download', 'Biblioteca'], ['dominio', hasDominio() ? 'trend' : 'lock', 'Pack Dominio Local'], ['growth', hasGrowth() ? 'rocket' : 'lock', 'Growth Partner 360'], ['ajustes', 'settings', 'Mi centro y datos']];
+    const items = [['protocolo', 'route', 'Protocolo 48H'], ['antidoto', 'tag', 'Antídoto Low-Cost'], ['retencion', 'shield', 'Muralla de Retención'], ['google', 'pin', 'Dominio en Google'], ['descargas', 'download', 'Biblioteca'], ['dominio', hasDominio() ? 'trend' : 'lock', 'Pack Dominio Local'], ['growth', hasGrowth() ? 'rocket' : 'lock', 'Growth Partner 360'], ['duo', hasGrowth() ? 'heart' : 'lock', 'Activo Dúo'], ['ajustes', 'settings', 'Mi centro y datos']];
     openModal(mHead('Activonorte OS', 'Todas las herramientas') + '<div class="modal-b"><span data-sync></span><div class="more-grid">' + items.map((x) => '<button class="more-item" data-go="' + x[0] + '">' + ico(x[1]) + esc(x[2]) + '</button>').join('') + '</div><button class="btn btn-outline btn-block" data-act="logout">' + ico('logout') + 'Cerrar sesión</button></div>');
   },
   'copy-txt': (el) => copyText(el.dataset.t),
+
+  /* Activo Dúo */
+  'duo-refresh': () => { UI.duo.cargado = false; UI.duo.error = ''; render(); },
+  'duo-poster': () => duoPoster(),
+  'duo-logo': () => { const f = $('#duoLogo'); if (f) { f.value = ''; f.click(); } },
+  'duo-logo-quitar': () => { UI.duo.logo = ''; const pv = $('#duoLogoPv'); if (pv) pv.innerHTML = ico('upload'); },
+  'duo-codigo': async () => {
+    if (!confirm('Se creará un código nuevo. Los carteles ya impresos dejarán de servir para nuevas altas (quien ya está dentro sigue dentro). ¿Continuar?')) return;
+    try { const d = await duoApi('admin.codigo'); UI.duo.gym = d.gym; render(); toast('Código cambiado. Imprime el cartel nuevo.'); } catch (e) { toast(e.message); }
+  },
+  'duo-socio': async (el) => {
+    const activo = el.dataset.v === '1';
+    if (!activo && !confirm('¿Desactivar a ' + el.dataset.n + '? Dejará de aparecer y no podrá usar Activo Dúo hasta que lo reactives.')) return;
+    el.disabled = true;
+    try { await duoApi('admin.socio', { id: el.dataset.id, activo }); toast(el.dataset.n + (activo ? ' vuelve a estar activo.' : ' desactivado.')); UI.duo.cargado = false; render(); }
+    catch (e) { el.disabled = false; toast(e.message); }
+  },
   'copy-code': (el) => copyText(el.dataset.code, 'Clave copiada. Guárdala en un lugar seguro.'),
 
   /* Tracker */
@@ -2480,6 +2710,7 @@ document.addEventListener('change', (e) => {
     P().resenas = v.slice(0, 300); save(); return;
   }
   if (t.id === 'fileImport') { importFile(t.files[0]); return; }
+  if (t.id === 'duoLogo') { duoLogoFile(t.files[0]); return; }
   if (t.id === 'fileRestore') {
     const f = t.files[0]; if (!f) return;
     f.text().then((txt) => {
@@ -2527,6 +2758,19 @@ document.addEventListener('submit', (e) => {
     $('#sideAvatar').textContent = (p.yo || session.user.email).charAt(0);
     save();
     toast('Guardado. Tus guiones ya van firmados.');
+    return;
+  }
+  if (kind === 'duo') {
+    const fd = new FormData(f), v = (k) => String(fd.get(k) || '').trim();
+    const gym = { nombre: v('nombre'), ciudad: v('ciudad'), contacto: v('contacto'), primario: v('primario'), acento: v('acento'), objetivos: DUO_OBJ.map((o) => ({ k: o.k, nombre: v('on_' + o.k), color: v('oc_' + o.k) })) };
+    if (UI.duo.logo !== undefined) gym.logo = UI.duo.logo;
+    const btn = f.querySelector('[type="submit"]'); btn.disabled = true;
+    const nuevo = !UI.duo.gym;
+    duoApi('admin.guardar', { gym }).then((d) => {
+      UI.duo.gym = d.gym; UI.duo.logo = undefined; UI.duo.cargado = false;
+      render(); window.scrollTo(0, 0);
+      toast(nuevo ? '¡Activo Dúo está en marcha! Imprime tu cartel QR.' : 'Cambios guardados. La app ya los muestra.');
+    }).catch((e) => { btn.disabled = false; toast(e.message); });
     return;
   }
   if (kind === 'contact') {

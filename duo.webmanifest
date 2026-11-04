@@ -1,0 +1,17 @@
+{
+  "name": "Activo Dúo",
+  "short_name": "Activo Dúo",
+  "description": "Encuentra en tu gimnasio a gente con tu mismo objetivo y tu mismo horario.",
+  "lang": "es",
+  "id": "duo.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#003b46",
+  "theme_color": "#003b46",
+  "icons": [
+    { "src": "assets/img/duo-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/duo-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/duo-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
