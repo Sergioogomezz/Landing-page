@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#00262e">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Activonorte OS">
 <link rel="manifest" href="sala.webmanifest">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -37,7 +37,7 @@
   --side-w: 264px; --top-h: 64px; --tab-h: 62px;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; background: var(--teal-900); }
 body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body.locked, body.noscroll { overflow: hidden; }
 img, svg { display: block; max-width: 100%; }
@@ -124,6 +124,7 @@ button { cursor: pointer; background: none; border: 0; }
 .side-brand small { display: block; font-size: 10px; letter-spacing: .12em; color: var(--orange-light); font-weight: 800; margin-top: 2px; }
 /* Logo arriba y perfil abajo quedan fijos: solo se desplaza el menú */
 .side-brand { flex: none; }
+.side { padding-top: calc(20px + env(safe-area-inset-top)); }
 .side > nav { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; margin: 0 -14px; padding: 0 14px 6px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.15) transparent; }
 .side > nav::-webkit-scrollbar { width: 6px; }
 .side > nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 6px; }
@@ -158,12 +159,12 @@ button { cursor: pointer; background: none; border: 0; }
 .side-out:hover { background: rgba(255,255,255,.08); }
 
 .main { min-width: 0; display: flex; flex-direction: column; }
-.topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 12px; height: var(--top-h); padding: 0 32px; background: rgba(243,246,247,.86); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+.topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 12px; height: calc(var(--top-h) + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 32px 0; background: #fff; border-bottom: 1px solid #dbe3e5; box-shadow: 0 1px 3px rgba(15,31,36,.05); }
 .top-title { font-size: 16px; font-weight: 800; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .top-brand { display: none; align-items: center; gap: 9px; color: #fff; font-weight: 900; letter-spacing: .13em; font-size: 13.5px; }
 .top-brand img { width: 26px; height: 26px; }
 .top-spacer { flex: 1; }
-.win-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 700; background: #fff; border: 1px solid var(--line); color: var(--text); white-space: nowrap; }
+.win-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 750; background: #eef3f4; border: 1px solid #cfdadc; color: var(--ink); white-space: nowrap; }
 .win-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #94a3b8; flex: none; }
 .win-pill.open { background: var(--green-50); border-color: #bfe3cd; color: var(--green); }
 .win-pill.open .dot { background: #16a34a; box-shadow: 0 0 0 4px rgba(22,163,74,.18); animation: pulse 1.8s ease-in-out infinite; }
@@ -2061,7 +2062,7 @@ RENDER.retencion = function () {
     '<div class="card mt"><div class="card-h"><h2>' + ico('shield') + 'Tu sistema de blindaje</h2><span class="card-sub">' + RET_CHECKS.filter((c) => Store.d.checks[c[0]]).length + ' de ' + RET_CHECKS.length + ' en marcha</span></div><div class="grid g-2" style="gap:8px">' + RET_CHECKS.map((c) => chk(c[0], c[1], c[2])).join('') + '</div></div>' +
     '<div class="card mt"><div class="card-h"><h2>' + ico('message') + 'Mensajes de retención</h2><button class="btn btn-ghost btn-sm" data-act="g-cat" data-c="retencion" data-goto="1">Ver todos' + ico('arrow') + '</button></div><div class="scripts">' + ['ret-ausencia', 'ret-queja'].map((id) => scriptCard(id, vals, {})).join('') + '</div></div>' +
     '<div class="card ' + (hasGrowth() ? '' : 'accent ') + 'mt"><div class="card-h"><h2>' + ico('heart') + 'Activo Dúo: que tus socios se conozcan</h2><span class="card-sub">El coste de cambio más alto que existe</span></div><p class="card-sub" style="margin-bottom:14px">Pulseras por objetivo y una app sin descargas para que cada socio encuentre compañero con su mismo objetivo y su mismo horario. Quien tiene amigos en tu centro no se va al de al lado por 20 € menos.</p>' +
-    '<div class="row-actions"><button class="btn ' + (hasGrowth() ? 'btn-dark' : 'btn-primary') + '" data-go="duo">' + ico('heart') + (hasGrowth() ? 'Abrir Activo Dúo' : 'Descubrir Activo Dúo') + '</button><a class="btn btn-ghost" href="' + DUO_URL + '?demo=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Ver la demo</a></div></div>';
+    '<div class="row-actions"><button class="btn ' + (hasGrowth() ? 'btn-dark' : 'btn-primary') + '" data-go="duo">' + ico('heart') + (hasGrowth() ? 'Abrir Activo Dúo' : 'Descubrir Activo Dúo') + '</button><a class="btn btn-ghost" href="' + DUO_URL + '?demo=1&sala=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Ver la demo</a></div></div>';
 };
 
 /* ══════════════════════════════════════════════════════════
@@ -2246,7 +2247,7 @@ function duoForm(g) {
     '<label class="field"><span>Color de los botones</span><input class="input duo-color" type="color" name="acento" value="' + esc(x.acento) + '"></label></div>' +
     '<div class="field" style="margin-top:6px"><span>Objetivos y colores de las pulseras</span><small>Puedes cambiar el nombre y el color para que coincidan con las pulseras que compres.</small></div>' +
     '<div class="duo-objs">' + DUO_OBJ.map((o) => { const y = (x.objetivos || []).find((z) => z.k === o.k) || o; return '<div class="duo-obj"><input type="color" name="oc_' + o.k + '" value="' + esc(y.color) + '" aria-label="Color de ' + esc(y.nombre) + '"><input class="input" name="on_' + o.k + '" maxlength="30" value="' + esc(y.nombre) + '" aria-label="Nombre del objetivo"></div>'; }).join('') + '</div>' +
-    '<div class="row-actions" style="margin-top:16px"><button class="btn btn-primary" type="submit">' + ico(g ? 'check' : 'rocket') + (g ? 'Guardar cambios' : 'Activar Activo Dúo en mi centro') + '</button>' + (g ? '' : '<a class="btn btn-ghost" href="' + DUO_URL + '?demo=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Ver antes la demo</a>') + '</div>' +
+    '<div class="row-actions" style="margin-top:16px"><button class="btn btn-primary" type="submit">' + ico(g ? 'check' : 'rocket') + (g ? 'Guardar cambios' : 'Activar Activo Dúo en mi centro') + '</button>' + (g ? '' : '<a class="btn btn-ghost" href="' + DUO_URL + '?demo=1&sala=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Ver antes la demo</a>') + '</div>' +
     '<input type="file" id="duoLogo" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden></form>';
 }
 
@@ -2256,13 +2257,13 @@ function duoVenta() {
     [['qr', 'El socio escanea el QR del cartel', 'Crea su perfil en un minuto, sin descargar nada: objetivo, nivel y en qué franjas viene.'], ['users', 'Ve a socios compatibles', 'Ordenados por afinidad: mismo objetivo, mismo horario y nivel parecido. La pulsera de color le dice en la sala quién busca lo mismo.'], ['send', 'Propone un entreno', 'Si el otro acepta, son «dúo» y se abre su WhatsApp. Su móvil nunca se ve antes.'], ['trend', 'Tú ves los resultados', 'Cuántos socios tienen dúo, cuántos entrenos juntos y quién sigue entrenando solo.']].map((x) => '<div class="li"><div class="li-ico">' + ico(x[0]) + '</div><div class="li-body"><div class="li-t">' + esc(x[1]) + '</div><div class="li-d">' + esc(x[2]) + '</div></div></div>').join('') + '</div></div>' +
     '<div class="card dark"><div class="card-h"><h2>' + ico('shield') + 'Por qué retiene</h2></div><p style="font-size:15px;line-height:1.6">El que entrena solo se borra en silencio. El que tiene compañero tiene una cita: faltar es dejar tirado a alguien.</p><p style="font-size:13.5px;color:rgba(255,255,255,.72);margin-top:12px">Es la parte de la Muralla de Retención que no se puede copiar: cuando un socio tiene amigos en tu centro, el gimnasio de al lado ya no compite en precio.</p></div></div>' +
     '<div class="card accent mt"><div class="card-h"><h2>' + ico('target') + 'Pruébalo como lo verán tus socios</h2></div><p class="card-sub" style="margin-bottom:14px">La demostración es un gimnasio de ejemplo con socios ficticios: crea tu perfil, propón un entreno y mira cómo se forma un dúo.</p>' +
-    '<div class="row-actions"><a class="btn btn-dark" href="' + DUO_URL + '?demo=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Abrir la demo</a><a class="btn btn-primary" href="' + esc(waAudit('duo')) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + 'Quiero Activo Dúo en mi centro</a></div></div>';
+    '<div class="row-actions"><a class="btn btn-dark" href="' + DUO_URL + '?demo=1&sala=1" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Abrir la demo</a><a class="btn btn-primary" href="' + esc(waAudit('duo')) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + 'Quiero Activo Dúo en mi centro</a></div></div>';
 }
 
 RENDER.duo = function () {
   if (!hasGrowth()) return duoVenta();
   const D = UI.duo, g = D.gym;
-  const acciones = g ? '<a class="btn btn-outline btn-sm" href="' + esc(duoLink(g)) + '" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Abrir la app</a><button class="btn btn-ghost btn-sm" data-act="duo-refresh">' + ico('refresh') + 'Actualizar</button>' : '';
+  const acciones = g ? '<a class="btn btn-outline btn-sm" href="' + esc(duoLink(g) + '&sala=1') + '" target="_blank" rel="noopener noreferrer">' + ico('phone') + 'Abrir la app</a><button class="btn btn-ghost btn-sm" data-act="duo-refresh">' + ico('refresh') + 'Actualizar</button>' : '';
   const head = ph('users', 'Growth Partner 360 · Retención', 'Activo Dúo', 'Tus socios encuentran compañero de entreno con su mismo objetivo y su mismo horario. Quien entrena acompañado no se borra: se lo debe a alguien.', acciones);
   if (!D.cargado && !g) return head + '<div class="card"><div class="empty"><div class="empty-ico">' + ico('cloud') + '</div><h3>Cargando Activo Dúo…</h3></div></div>';
   if (D.error && !g) return head + '<div class="callout' + (D.sinNube ? '' : ' info') + '">' + ico('alert') + '<div>' + (D.sinNube ? '<strong>Falta conectar la base de datos en la nube.</strong> Activo Dúo guarda los perfiles de tus socios en ella. Conéctala en Vercel (Storage → Upstash) y vuelve a entrar.' : esc(D.error)) + ' <button class="link" data-act="duo-refresh">Reintentar</button></div></div>';
