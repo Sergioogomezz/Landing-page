@@ -37,7 +37,7 @@
   --side-w: 264px; --top-h: 64px; --tab-h: 62px;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; background: var(--teal-900); }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
 body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body.locked, body.noscroll { overflow: hidden; }
 img, svg { display: block; max-width: 100%; }
@@ -159,12 +159,12 @@ button { cursor: pointer; background: none; border: 0; }
 .side-out:hover { background: rgba(255,255,255,.08); }
 
 .main { min-width: 0; display: flex; flex-direction: column; }
-.topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 12px; height: calc(var(--top-h) + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 32px 0; background: #fff; border-bottom: 1px solid #dbe3e5; box-shadow: 0 1px 3px rgba(15,31,36,.05); }
+.topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 12px; height: calc(var(--top-h) + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 32px 0; background: rgba(243,246,247,.86); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
 .top-title { font-size: 16px; font-weight: 800; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .top-brand { display: none; align-items: center; gap: 9px; color: #fff; font-weight: 900; letter-spacing: .13em; font-size: 13.5px; }
 .top-brand img { width: 26px; height: 26px; }
 .top-spacer { flex: 1; }
-.win-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 750; background: #eef3f4; border: 1px solid #cfdadc; color: var(--ink); white-space: nowrap; }
+.win-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 700; background: #fff; border: 1px solid var(--line); color: var(--text); white-space: nowrap; }
 .win-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #94a3b8; flex: none; }
 .win-pill.open { background: var(--green-50); border-color: #bfe3cd; color: var(--green); }
 .win-pill.open .dot { background: #16a34a; box-shadow: 0 0 0 4px rgba(22,163,74,.18); animation: pulse 1.8s ease-in-out infinite; }
