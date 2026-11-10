@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#003b46">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Activo Dúo">
 <link rel="manifest" href="duo.webmanifest">
 <link rel="icon" href="assets/img/duo-192.png" type="image/png" sizes="192x192">
@@ -56,6 +56,11 @@ img { display: block; max-width: 100%; }
 .link { color: var(--p); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; font-size: 13.5px; }
 
 /* Demostración */
+.sala-bar { position: relative; z-index: 41; display: flex; align-items: center; padding: 8px 10px; padding-top: calc(8px + env(safe-area-inset-top)); background: #00262e; }
+.sala-bar button { display: inline-flex; align-items: center; gap: 6px; color: #fff; font-size: 13px; font-weight: 800; padding: 6px 8px; border-radius: 8px; }
+.sala-bar button:hover { background: rgba(255,255,255,.1); }
+.sala-bar .ico { width: 18px; height: 18px; }
+.sala-bar:not([hidden]) + .demo-bar { padding-top: 8px; }
 .demo-bar { position: relative; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px; padding-top: calc(8px + env(safe-area-inset-top)); background: #1f2937; color: #fde68a; font-size: 12px; font-weight: 700; }
 .demo-bar button { color: #fff; text-decoration: underline; font-size: 12px; font-weight: 700; }
 
@@ -272,6 +277,7 @@ img { display: block; max-width: 100%; }
 </svg>
 
 <div class="wrap" id="root">
+  <div class="sala-bar" id="salaBar" hidden><button data-act="volver-sala"><svg class="ico" aria-hidden="true"><use href="#i-back"/></svg>Volver a la Sala de Control</button></div>
   <div class="demo-bar" id="demoBar" hidden><span>Modo demostración · los perfiles son de ejemplo</span><button data-act="demo-reset">Reiniciar</button></div>
   <main id="screen"><div class="center"><div><div class="spin"></div><p class="note">Cargando…</p></div></div></main>
   <nav class="tabs" id="tabs" hidden>
@@ -290,6 +296,7 @@ img { display: block; max-width: 100%; }
 const API = 'https://landing-page-beta-ivory-99.vercel.app/api/duo';
 const qs = new URLSearchParams(location.search);
 const DEMO = qs.has('demo');
+const DESDE_SALA = qs.has('sala'); // abierto desde la Sala de Control: se enseña «Volver»
 const IOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const STANDALONE = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
 const $ = (s, r = document) => r.querySelector(s);
@@ -698,7 +705,9 @@ const ACC = {
   'salir': () => salir('Sesión cerrada en este móvil.'),
   'borrar': async () => { if (!confirm('¿Borrar tu perfil? Se eliminarán tus datos y tus dúos. No se puede deshacer.')) return; try { await api('borrar'); store.del('activo-duo:push:' + gym.slug); salir('Tu perfil se ha borrado.'); } catch (e) { toast(e.message); } },
   'wa': (el, e) => { if (DEMO) { e.preventDefault(); toast('En la demostración no se abre WhatsApp: con socios reales, sí.'); } },
-  'demo-reset': () => { Demo.reset(); location.reload(); }
+  'demo-reset': () => { Demo.reset(); location.reload(); },
+  // Si se abrió en otra pestaña, se cierra; si no (app instalada), vuelve a la Sala.
+  'volver-sala': () => { if (history.length > 1) { history.back(); return; } try { window.close(); } catch (e) {} setTimeout(() => { location.href = 'sala-de-control.html#/duo'; }, 250); }
 };
 document.addEventListener('click', (e) => {
   const t = e.target.closest('[data-tab]');
@@ -787,6 +796,7 @@ const Demo = (function () {
 /* ══ Arranque ══ */
 (async function init() {
   if (DEMO) $('#demoBar').hidden = false;
+  if (DESDE_SALA) $('#salaBar').hidden = false;
   const g = DEMO ? 'demo' : (qs.get('g') || store.get('activo-duo:last') || '');
   if (!g) { error('Escanea el código QR', 'Para entrar en Activo Dúo, escanea el código QR de los carteles de tu gimnasio.'); return; }
   if (!DEMO && qs.get('t')) { store.set('activo-duo:' + g, qs.get('t')); history.replaceState(null, '', location.pathname + '?g=' + encodeURIComponent(g)); }
