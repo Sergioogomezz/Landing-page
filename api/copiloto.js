@@ -1,4 +1,59 @@
-import { leerToken } from "./_acceso.js";
+import { leerToken, esAdmin } from "./_acceso.js";
+
+// Hasta 60 s: algunos modelos de Google tardan en responder.
+export const config = { maxDuration: 60 };
+
+// Modelos de Google Gemini, en orden de preferencia. Los «-latest» siguen siempre al modelo
+// vigente, así que no se rompen cuando Google retira uno. GEMINI_MODEL (en Vercel) va primero si existe.
+const MODELOS = [
+  "gemini-flash-latest",
+  "gemini-3.8-flash",
+  "gemini-3.6-flash",
+  "gemini-flash-lite-latest",
+  "gemini-3.5-flash-lite",
+  "gemini-3-flash-preview",
+  "gemini-2.5-flash"
+];
+const modelos = () => [...new Set([process.env.GEMINI_MODEL, ...MODELOS].map((m) => String(m || "").trim()).filter(Boolean))];
+
+// Traduce el error de Google a un motivo que el gerente entienda.
+function motivoDe(status, error) {
+  const t = JSON.stringify(error || "").toLowerCase();
+  if (/api[_ ]key|api key not valid|permission_denied|unauthenticated/.test(t) || status === 401 || status === 403) return "clave";
+  if (status === 429 || /resource_exhausted|quota/.test(t)) return "cuota";
+  if (status === 404 || /not_found|not found|is not supported|deprecated|retired/.test(t)) return "modelo";
+  if (/abort|timeout/.test(t)) return "tiempo";
+  return "google";
+}
+const MOTIVOS = {
+  clave: "La clave de Google AI (GEMINI_API_KEY) no es válida o está desactivada.",
+  cuota: "Se ha agotado el límite gratuito de Google AI por ahora.",
+  modelo: "Google ha retirado los modelos de IA configurados.",
+  tiempo: "Google AI ha tardado demasiado en responder.",
+  google: "Google AI ha rechazado la petición."
+};
+
+async function llamarGemini(model, apiKey, prompt, ms) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  try {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.6 } }),
+      signal: ctrl.signal
+    });
+    const data = await r.json().catch(() => ({}));
+    const partes = (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) || [];
+    const texto = partes.filter((x) => x && typeof x.text === "string" && !x.thought).map((x) => x.text).join("").trim();
+    if (r.ok && texto) return { ok: true, texto };
+    return { ok: false, motivo: motivoDe(r.status, data && data.error), detalle: { status: r.status, mensaje: data && data.error && data.error.message } };
+  } catch (e) {
+    return { ok: false, motivo: motivoDe(0, e.name === "AbortError" ? "timeout" : e.message), detalle: { mensaje: e.name === "AbortError" ? "timeout" : String(e.message) } };
+  } finally {
+    clearTimeout(t);
+  }
+}
 
 // Copiloto Táctico 48H: redacta la respuesta de WhatsApp para un ex-socio.
 // POST { token, message, history?, contexto? }
@@ -38,7 +93,21 @@ export default async function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
   // Solo estado: el copiloto no responde a peticiones anónimas (gasta créditos de IA).
-  if (req.method === "GET") return res.status(200).json({ estado: "Copiloto Táctico 48H operativo" });
+  // Con ?admin=CLAVE_ADMIN prueba cada modelo y dice cuáles funcionan (sin mostrar ninguna clave).
+  if (req.method === "GET") {
+    const admin = String((req.query && req.query.admin) || "");
+    if (!admin) return res.status(200).json({ estado: "Copiloto Táctico 48H operativo" });
+    if (!esAdmin(admin)) return res.status(403).json({ ok: false, error: "Clave de administrador incorrecta." });
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) return res.status(200).json({ claveGemini: "falta", motivo: "Falta GEMINI_API_KEY en Vercel." });
+    const pruebas = {};
+    for (const m of modelos()) {
+      const r = await llamarGemini(m, key, "Responde solo: OK", 15000);
+      pruebas[m] = r.ok ? "funciona" : MOTIVOS[r.motivo] + (r.detalle && r.detalle.mensaje ? " (" + String(r.detalle.mensaje).slice(0, 160) + ")" : "");
+      if (r.ok) break;
+    }
+    return res.status(200).json({ claveGemini: "configurada", modelos: pruebas });
+  }
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   let body = req.body;
@@ -89,47 +158,28 @@ ${conversationContext}
 NUEVO MENSAJE O INSTRUCCIÓN DEL GERENTE:
 "${message}"`;
 
-  const models = [
-    "gemini-2.5-pro",
-    "gemini-3-flash-preview",
-    "gemini-2.5-flash"
-  ];
-
   let rawText = "";
   let modelUsed = "";
-  let lastError = null;
+  let fallo = null;
+  const inicio = Date.now();
 
-  for (const model of models) {
-    try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: fullPrompt }] }],
-            generationConfig: { temperature: 0.6 }
-          }),
-        }
-      );
-      const data = await response.json();
-      if (response.ok && data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-        rawText = data.candidates[0].content.parts[0].text;
-        modelUsed = model;
-        break;
-      } else {
-        lastError = data?.error || data;
-      }
-    } catch (e) {
-      lastError = e.message;
-    }
+  for (const model of modelos()) {
+    const quedan = 50000 - (Date.now() - inicio);
+    if (quedan < 4000) { fallo = fallo || { motivo: "tiempo" }; break; }
+    const r = await llamarGemini(model, apiKey, fullPrompt, Math.min(25000, quedan));
+    if (r.ok) { rawText = r.texto; modelUsed = model; break; }
+    // La clave mala o el límite agotado fallan igual con todos los modelos: no seguimos probando.
+    if (!fallo || fallo.motivo === "modelo") fallo = r;
+    if (r.motivo === "clave" || r.motivo === "cuota") break;
   }
 
   if (!rawText) {
-    return res.status(500).json({
+    const motivo = (fallo && fallo.motivo) || "google";
+    console.error("Copiloto: Google Gemini falló", motivo, JSON.stringify(fallo && fallo.detalle));
+    return res.status(502).json({
       iaFuncionando: false,
-      error: "Google Gemini rechazó la petición",
-      detalleError: lastError
+      motivo,
+      error: MOTIVOS[motivo]
     });
   }
 
