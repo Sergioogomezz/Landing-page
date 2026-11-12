@@ -3,18 +3,20 @@ import { leerToken, esAdmin } from "./_acceso.js";
 // Hasta 60 s: algunos modelos de Google tardan en responder.
 export const config = { maxDuration: 60 };
 
-// Modelos de Google Gemini, en orden de preferencia. Los «-latest» siguen siempre al modelo
-// vigente, así que no se rompen cuando Google retira uno. GEMINI_MODEL (en Vercel) va primero si existe.
-const MODELOS = [
-  "gemini-flash-latest",
-  "gemini-3.8-flash",
-  "gemini-3.6-flash",
-  "gemini-flash-lite-latest",
-  "gemini-3.5-flash-lite",
-  "gemini-3-flash-preview",
-  "gemini-2.5-flash"
+// Cascada de modelos de Google Gemini:
+//   1) Pro: el de más razonamiento (tarda algo más). GEMINI_MODEL_PRO en Vercel va primero si existe.
+//   2) Rápido (Flash): si el Pro falla, tarda demasiado o se le acaban los usos. GEMINI_MODEL va primero.
+//   3) Si fallan todos, la Sala muestra su mensaje predeterminado.
+// Los «-latest» siguen siempre al modelo vigente, así que no se rompen cuando Google retira uno.
+const PRO = ["gemini-pro-latest", "gemini-3.1-pro-preview"];
+const RAPIDO = ["gemini-flash-latest", "gemini-3.8-flash", "gemini-3.6-flash", "gemini-flash-lite-latest", "gemini-3.5-flash-lite", "gemini-3-flash-preview", "gemini-2.5-flash"];
+const lista = (extra, base) => [...new Set([extra, ...base].map((m) => String(m || "").trim()).filter(Boolean))];
+const cascada = () => [
+  { nivel: "pro", modelos: lista(process.env.GEMINI_MODEL_PRO, PRO) },
+  { nivel: "rapido", modelos: lista(process.env.GEMINI_MODEL, RAPIDO).filter((m) => !lista(process.env.GEMINI_MODEL_PRO, PRO).includes(m)) }
 ];
-const modelos = () => [...new Set([process.env.GEMINI_MODEL, ...MODELOS].map((m) => String(m || "").trim()).filter(Boolean))];
+const TIEMPO_TOTAL = 55000;      // la función puede durar 60 s
+const RESERVA_RAPIDO = 18000;    // tiempo que siempre se guarda para el modelo rápido
 
 // Traduce el error de Google a un motivo que el gerente entienda.
 function motivoDe(status, error) {
@@ -100,13 +102,17 @@ export default async function handler(req, res) {
     if (!esAdmin(admin)) return res.status(403).json({ ok: false, error: "Clave de administrador incorrecta." });
     const key = process.env.GEMINI_API_KEY;
     if (!key) return res.status(200).json({ claveGemini: "falta", motivo: "Falta GEMINI_API_KEY en Vercel." });
-    const pruebas = {};
-    for (const m of modelos()) {
-      const r = await llamarGemini(m, key, "Responde solo: OK", 15000);
-      pruebas[m] = r.ok ? "funciona" : MOTIVOS[r.motivo] + (r.detalle && r.detalle.mensaje ? " (" + String(r.detalle.mensaje).slice(0, 160) + ")" : "");
-      if (r.ok) break;
+    const resultado = { claveGemini: "configurada" };
+    for (const { nivel, modelos } of cascada()) {
+      const pruebas = {};
+      for (const m of modelos) {
+        const r = await llamarGemini(m, key, "Responde solo: OK", 20000);
+        pruebas[m] = r.ok ? "funciona" : MOTIVOS[r.motivo] + (r.detalle && r.detalle.mensaje ? " (" + String(r.detalle.mensaje).slice(0, 160) + ")" : "");
+        if (r.ok || r.motivo === "clave") break;
+      }
+      resultado[nivel === "pro" ? "modelosPro" : "modelosRapidos"] = pruebas;
     }
-    return res.status(200).json({ claveGemini: "configurada", modelos: pruebas });
+    return res.status(200).json(resultado);
   }
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
@@ -160,17 +166,24 @@ NUEVO MENSAJE O INSTRUCCIÓN DEL GERENTE:
 
   let rawText = "";
   let modelUsed = "";
+  let nivelUsado = "";
   let fallo = null;
   const inicio = Date.now();
+  const quedan = () => TIEMPO_TOTAL - (Date.now() - inicio);
 
-  for (const model of modelos()) {
-    const quedan = 50000 - (Date.now() - inicio);
-    if (quedan < 4000) { fallo = fallo || { motivo: "tiempo" }; break; }
-    const r = await llamarGemini(model, apiKey, fullPrompt, Math.min(25000, quedan));
-    if (r.ok) { rawText = r.texto; modelUsed = model; break; }
-    // La clave mala o el límite agotado fallan igual con todos los modelos: no seguimos probando.
-    if (!fallo || fallo.motivo === "modelo") fallo = r;
-    if (r.motivo === "clave" || r.motivo === "cuota") break;
+  cascadaLoop:
+  for (const { nivel, modelos } of cascada()) {
+    for (const model of modelos) {
+      // El Pro nunca se come el tiempo que necesita el rápido.
+      const limite = nivel === "pro" ? Math.min(35000, quedan() - RESERVA_RAPIDO) : Math.min(25000, quedan());
+      if (limite < 4000) { if (nivel !== "pro") fallo = fallo || { motivo: "tiempo" }; break; }
+      const r = await llamarGemini(model, apiKey, fullPrompt, limite);
+      if (r.ok) { rawText = r.texto; modelUsed = model; nivelUsado = nivel; break cascadaLoop; }
+      // Una clave mala falla igual con todos los modelos: no seguimos probando.
+      if (r.motivo === "clave") { fallo = r; break cascadaLoop; }
+      // Se informa del fallo del nivel rápido (el Pro puede fallar sin más si la cuenta no lo incluye).
+      if (!fallo || fallo.nivel === "pro" || fallo.motivo === "modelo") fallo = Object.assign({ nivel }, r);
+    }
   }
 
   if (!rawText) {
@@ -195,6 +208,7 @@ NUEVO MENSAJE O INSTRUCCIÓN DEL GERENTE:
     mensaje,
     reply: htmlReply,
     plainReply: `${estrategia} | Mensaje WhatsApp propuesto: ${mensaje}`,
-    model: modelUsed
+    model: modelUsed,
+    nivel: nivelUsado
   });
 }
