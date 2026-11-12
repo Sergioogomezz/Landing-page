@@ -198,6 +198,18 @@ button { cursor: pointer; background: none; border: 0; }
   .foot-note { padding-bottom: calc(var(--tab-h) + 24px + env(safe-area-inset-bottom)); }
 }
 
+/* Frase del día del Panel */
+.frase { display: flex; align-items: center; gap: 14px; padding: 14px 12px 14px 16px; margin-bottom: 18px; border-radius: 16px; border: 1px solid #f3d3bb; background: linear-gradient(135deg, #fff 0%, #fff6ef 100%); box-shadow: var(--shadow-sm); }
+.frase.entra { animation: fraseIn .45s ease both; }
+.frase .fe { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; font-size: 22px; background: var(--orange-50); flex: none; }
+.frase p { flex: 1 1 220px; min-width: 0; font-size: 15px; font-weight: 650; color: var(--ink); line-height: 1.45; }
+.frase .fx { color: var(--muted); flex: none; }
+.frase.logro { border-color: #cde9d8; background: linear-gradient(135deg, #fff 0%, #effaf3 100%); }
+.frase.logro .fe { background: var(--green-50); }
+.frase.animo { border-color: #d4e5e8; background: linear-gradient(135deg, #fff 0%, #eef5f6 100%); }
+.frase.animo .fe { background: var(--teal-50); }
+@keyframes fraseIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 600px) { .frase { flex-wrap: wrap; align-items: flex-start; position: relative; padding-right: 46px; } .frase p { font-size: 14.5px; flex-basis: calc(100% - 60px); } .frase .fx { position: absolute; top: 8px; right: 6px; } .frase .btn-sm:not(.fx) { margin-left: 58px; } }
 /* ════════ COMPONENTES ════════ */
 .ph { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
 .ph h1 { font-size: clamp(24px, 3vw, 30px); line-height: 1.15; letter-spacing: -.025em; color: var(--ink); font-weight: 850; }
@@ -1305,6 +1317,7 @@ function onAccess(data) {
   $('#sidePlan').textContent = PLAN[role()] || '';
   $('#sideAvatar').textContent = (P().yo || data.user.email).trim().charAt(0) || 'A';
   $('#ganchos').innerHTML = GANCHOS.map((g) => '<option value="' + esc(g) + '">').join('');
+  fraseEntrada();
   $$('[data-lock]').forEach((el) => {
     const owned = el.dataset.lock === 'dominio' ? hasDominio() : hasGrowth();
     el.outerHTML = owned ? '<span class="nav-badge ok" data-lock="' + el.dataset.lock + '">Activo</span>' : '<svg class="ico nav-lock" data-lock="' + el.dataset.lock + '" aria-label="Bloqueado"><use href="#i-lock"/></svg>';
@@ -1521,6 +1534,225 @@ function bubbleOnly(id, vals) { return '<div class="bubble">' + fillHTML(G[id].t
 function emptyState(i, t, d, actions) { return '<div class="empty"><div class="empty-ico">' + ico(i) + '</div><h3>' + esc(t) + '</h3><p>' + d + '</p>' + (actions ? '<div class="row-actions center">' + actions + '</div>' : '') + '</div>'; }
 
 /* ══════════════════════════════════════════════════════════
+   FRASE DEL DÍA · sin IA: frases escritas a mano que usan tus datos reales.
+   Sale 1 de cada 2 veces que abres la Sala, no repite las últimas 10
+   y da prioridad a lo que tengas a medias en el Protocolo 48H.
+══════════════════════════════════════════════════════════ */
+const Frase = { mostrar: false, oculta: false, id: null, vista: false };
+const fraseClave = () => 'activonorte_frase_v1:' + (session ? session.user.email : '');
+function fraseEstado() { try { return JSON.parse(localStorage.getItem(fraseClave()) || '{}') || {}; } catch (e) { return {}; } }
+function fraseGuardar(st) { try { localStorage.setItem(fraseClave(), JSON.stringify(st)); } catch (e) {} }
+// Se llama una vez cada vez que se abre la Sala: alterna «sale / no sale».
+function fraseEntrada() {
+  const st = fraseEstado();
+  st.n = (Number(st.n) || 0) + 1;
+  fraseGuardar(st);
+  Frase.mostrar = st.n % 2 === 1;
+  Frase.oculta = false;
+  Frase.id = null;
+  Frase.vista = false;
+}
+
+const euros = (n) => fmtEUR(Math.round(Number(n) || 0));
+const irPaso = (n) => ({ act: 'frase-paso', n });
+const irA = (go, filtroT) => ({ go, filtro: filtroT });
+
+// Cada candidata: { id, cat, e (emoji), t (texto), ir? (adónde lleva «Ir ahora →») }
+function frasesCandidatas() {
+  const p = P(), k = kpis(), v = ventana(), now = new Date(), h = now.getHours(), dow = now.getDay();
+  const yo = nombrePila(p.yo), centro = p.centro || 'tu centro';
+  const conNombre = (txt) => (yo ? yo + ', ' + txt.charAt(0).toLowerCase() + txt.slice(1) : txt);
+  const out = [];
+  const add = (id, cat, e, t, ir) => out.push({ id, cat, e, t, ir });
+
+  /* 1 · Protocolo 48H: lo que tengas a medias, primero */
+  const pc = protoCount(), pct = Math.round(pc.done / pc.total * 100);
+  const sig = PASOS.find((s) => stepDone(s) < s.checks.length);
+  if (pc.done === 0) {
+    add('p0a', 'proto', '🎯', 'El Protocolo 48H está esperando su primer check. El Paso 1, El Radar, se hace en una mañana con un café.', irPaso(1));
+    add('p0b', 'proto', '🧭', 'Nadie corre una maratón el primer día, pero todos empiezan por el primer paso. El tuyo se llama El Radar.', irPaso(1));
+    add('p0c', 'proto', '🎯', conNombre('Tus ex-socios no van a volver solos. Empieza por El Radar: 4 checks y tienes tu lista lista.'), irPaso(1));
+    add('p0d', 'proto', '⏱️', 'Dos días. Eso dura el Protocolo 48H. El reloj empieza cuando marcas el primer punto.', irPaso(1));
+  } else if (sig) {
+    const d = stepDone(sig), t = sig.checks.length, quedan = t - d;
+    const prev = PASOS.find((s) => s.n === sig.n - 1);
+    const faltan = quedan === 1 ? 'te queda 1 punto' : 'te quedan ' + quedan + ' puntos';
+    if (d > 0) {
+      add('pm-a', 'proto', '🧗', 'Para cerrar el Paso ' + sig.n + ', ' + sig.t + ', ' + faltan + '. Estás a un empujón.', irPaso(sig.n));
+      add('pm-b', 'proto', '🔥', sig.t + ' está a medias. Lo difícil ya lo has hecho: terminarlo es cuestión de minutos.', irPaso(sig.n));
+      add('pm-c', 'proto', '🏋️', 'Dejar ' + sig.t + ' a medias es como hacer media sentadilla: cuenta, pero no tanto. ' + faltan.charAt(0).toUpperCase() + faltan.slice(1) + '.', irPaso(sig.n));
+      add('pm-d', 'proto', '💪', conNombre(sig.t + ' va por ' + d + ' de ' + t + '. Remátalo hoy y mañana empiezas el siguiente paso con ventaja.'), irPaso(sig.n));
+    } else if (prev) {
+      add('pn-a', 'proto', '✅', 'Paso ' + prev.n + ' completado. Ahora toca ' + sig.t + ': ' + sig.s.charAt(0).toLowerCase() + sig.s.slice(1), irPaso(sig.n));
+      add('pn-b', 'proto', '🚀', 'Ya tienes ' + prev.t + ' en el bolsillo. El siguiente movimiento es ' + sig.t + '.', irPaso(sig.n));
+      add('pn-c', 'proto', '📈', 'Vas por buen camino: ' + pct + ' % del Protocolo hecho. Siguiente parada: ' + sig.t + '.', irPaso(sig.n));
+    }
+    add('pg-a', 'proto', '📊', 'Llevas el ' + pct + ' % del Protocolo 48H. Un paso más hoy y lo tienes encarrilado.', irPaso(sig.n));
+    add('pg-b', 'proto', '🎯', pct + ' % hecho. La diferencia entre el gimnasio que recupera socios y el que no está en el porcentaje que falta.', irPaso(sig.n));
+    if (pct >= 70) add('pg-c', 'proto', '🏁', 'Recta final del Protocolo: ' + pct + ' %. Nadie se rinde en el último kilómetro.', irPaso(sig.n));
+    if (sig.n === 2) add('px-2', 'proto', '💬', v.abierta ? 'Ventana abierta y Rompehielos pendiente: la combinación perfecta. ¿Mandamos el primero?' : 'El Rompehielos no vende nada: solo busca una respuesta. Uno a uno, con su nombre y sin enlaces.', irPaso(2));
+    if (sig.n === 3) add('px-3', 'proto', '👂', 'En El Diagnóstico gana quien escucha. Tempomat de 5–15 minutos y una pregunta sincera.', irPaso(3));
+    if (sig.n === 4) add('px-4', 'proto', '🤝', 'El Cierre es vender un café de 5 minutos, no una cuota. Te queda muy poco para dominarlo.', irPaso(4));
+  } else {
+    add('p100-a', 'logro', '🏆', 'Protocolo 48H completado al 100 %. Eso no lo hace casi nadie. Ahora, a blindar a los que vuelven.', irA('retencion'));
+    add('p100-b', 'logro', '🥇', 'Has hecho los ' + pc.total + ' puntos del Protocolo. Si fuera un entreno, hoy tocaría batido y estiramientos.');
+  }
+
+  /* 2 · Bonus a medias: Muralla, Antídoto, Google y Activo Dúo */
+  const hechos = (lista) => lista.filter((c) => Store.d.checks[c[0]]).length;
+  const ret = hechos(RET_CHECKS), ant = hechos(ANT_CHECKS), gbp = hechos(GBP);
+  if (ret > 0 && ret < RET_CHECKS.length) {
+    add('b-ret-a', 'bonus', '🧱', 'Tu Muralla de Retención va por ' + ret + ' de ' + RET_CHECKS.length + '. Cada ladrillo que pones es un socio que no se va.', irA('retencion'));
+    add('b-ret-b', 'bonus', '🛡️', 'La Muralla está a medio levantar (' + ret + '/' + RET_CHECKS.length + '). Recuperar socios mola; que no se vayan, todavía más.', irA('retencion'));
+  }
+  if (gbp > 0 && gbp < GBP.length) {
+    add('b-gbp-a', 'bonus', '📍', 'Tu ficha de Google va ' + gbp + '/10. Los 3 primeros del mapa se llevan casi todos los clics. ¿Subimos un puesto?', irA('google'));
+    add('b-gbp-b', 'bonus', '⭐', 'Te faltan ' + (GBP.length - gbp) + ' puntos para tener la ficha de Google al milímetro. Quien busca «gimnasio cerca de mí» ya quiere apuntarse.', irA('google'));
+  }
+  if (ant > 0 && ant < ANT_CHECKS.length) {
+    add('b-ant-a', 'bonus', '🏷️', 'Antídoto Low-Cost: ' + ant + ' de 3 claves aplicadas. La que falta es la que hace que tu cuota parezca un regalo.', irA('antidoto'));
+  }
+  if (hasGrowth() && typeof DUO_CHECKS !== 'undefined') {
+    const duo = hechos(DUO_CHECKS);
+    if (duo > 0 && duo < DUO_CHECKS.length) {
+      add('b-duo-a', 'bonus', '💞', 'Activo Dúo: ' + duo + ' de ' + DUO_CHECKS.length + ' pasos del lanzamiento. Las pulseras no se reparten solas 😉', irA('duo'));
+      add('b-duo-b', 'bonus', '🤝', 'Quien tiene compañero de entreno no se da de baja. Termina de lanzar Activo Dúo (' + duo + '/' + DUO_CHECKS.length + ').', irA('duo'));
+    }
+  }
+  if (!sig && ret === 0) add('b-ret-0', 'bonus', '🧱', 'Ya dominas la reactivación. El siguiente nivel es que no se vayan: la Muralla de Retención te espera.', irA('retencion'));
+  const post = Store.d.gbpPost, dPost = post ? daysBetween(parseISO(post), now) : null;
+  if (gbp > 0 && dPost != null && dPost > 7) add('b-post', 'bonus', '📸', 'Hace ' + dPost + ' días que no publicas en tu ficha de Google. Una foto de hoy en la sala y listo.', irA('google'));
+
+  /* 3 · Tareas con tus ex-socios y socios */
+  if (!k.n) add('t-vacia', 'tarea', '📥', 'Tu lista de ex-socios está vacía. Importarla lleva 2 minutos y el Filtro Oro la ordena sola.', { act: 'imp-open' });
+  if (k.listos && v.abierta) {
+    add('t-ven-a', 'tarea', '⏰', 'La ventana de «' + v.abierta.n + '» está abierta y tienes ' + k.listos + ' ' + plural(k.listos, 'ex-socio listo', 'ex-socios listos') + '. Es ahora o en la próxima.', irA('tracker', 'pendiente'));
+    add('t-ven-b', 'tarea', '📲', 'Quedan ' + v.quedan + ' minutos de «' + v.abierta.n + '». Un Rompehielos ahora vale por tres a otra hora.', irA('tracker', 'pendiente'));
+  } else if (k.listos) {
+    add('t-lis-a', 'tarea', '📨', 'Tienes ' + k.listos + ' ' + plural(k.listos, 'ex-socio listo', 'ex-socios listos') + ' para el Rompehielos. Uno de ellos puede volver esta misma semana.', irA('tracker', 'pendiente'));
+    if (v.prox) add('t-lis-b', 'tarea', '🗓️', k.listos + ' ' + plural(k.listos, 'mensaje', 'mensajes') + ' por enviar. Déjalos preparados para la próxima ventana: el ' + proxLabel(v.prox) + '.', irA('tracker', 'pendiente'));
+  }
+  if (k.oroPend) add('t-oro', 'tarea', '⭐', k.oroPend + ' de tus ex-socios ' + plural(k.oroPend, 'tiene', 'tienen') + ' perfil Oro. Son los que más probabilidad tienen de volver: empieza por ' + plural(k.oroPend, 'él', 'ellos') + '.', irA('tracker', 'pendiente'));
+  const conv = Store.d.contactos.find((c) => c.estado === 'conversacion');
+  if (conv) {
+    const nc = nombrePila(conv.nombre);
+    add('t-conv-a', 'tarea', '💬', 'Tienes una conversación abierta con ' + nc + '. Responde con Aikido y cierra esa cita de 5 minutos.', { act: 'cop-open', id: conv.id });
+    add('t-conv-b', 'tarea', '🥋', nc + ' te ha contestado: ya has hecho lo más difícil. Ahora, cierre de baja fricción.', { act: 'cop-open', id: conv.id });
+    add('t-conv-c', 'tarea', '⏱️', 'Con ' + nc + ', recuerda el Tempomat: 5–15 minutos antes de contestar. Paciencia de campeón.', { act: 'cop-open', id: conv.id });
+  }
+  tareas().forEach((tk) => {
+    if (tk.act === 'c-accion' && tk.i === 'mic') add('t-mudo-' + tk.id, 'tarea', '🎙️', tk.t + '. Un audio de 20 segundos en la franja del Sofá suele desbloquearlo.', { act: 'c-accion', id: tk.id });
+    if (tk.act === 'c-accion' && tk.i === 'target') add('t-cita-' + tk.id, 'tarea', '🎯', tk.t + ' Apúntalo y mira cuánto llevas recuperado.', { act: 'c-accion', id: tk.id });
+    if (tk.act === 'c-accion' && tk.i === 'refresh') add('t-rec-' + tk.id, 'tarea', '🔄', tk.t.replace('Recontactar a ', 'Hace 3 meses ') + ' te dijo que no. Los «no» caducan: hoy puede ser un sí.', { act: 'c-accion', id: tk.id });
+    if (tk.act === 's-hito') {
+      const s = socioById(tk.id), ns = s ? nombrePila(s.nombre) : 'un socio';
+      add('t-hito-a-' + tk.id, 'tarea', '🛡️', 'A ' + ns + ' le toca su mensaje de la Muralla (' + tk.t.split(':')[0].toLowerCase() + '). Dos minutos que valen una cuota.', { act: 's-hito', id: tk.id, hk: tk.hk });
+      add('t-hito-b-' + tk.id, 'tarea', '🤗', ns + ' está en un momento clave (' + tk.t.split(':')[0].toLowerCase() + '). Ese mensaje es lo que hace que no se vaya.', { act: 's-hito', id: tk.id, hk: tk.hk });
+    }
+  });
+
+  /* 4 · Logros */
+  if (k.recuperado > 0) {
+    add('l-rec-a', 'logro', '💶', 'Ya has recuperado ' + euros(k.recuperado) + ' al mes. Son ' + euros(k.recuperado * 12) + ' al año que antes se iban por la puerta.');
+    add('l-rec-b', 'logro', '📈', euros(k.recuperado) + ' al mes recuperados. Eso no es marketing: es caja.');
+    add('l-rec-c', 'logro', '🙌', 'Cada socio que vuelve paga el esfuerzo de hoy. Llevas ' + euros(k.recuperado) + ' al mes.');
+  }
+  if (k.by.matriculado) add('l-vuelta', 'logro', '🎉', k.by.matriculado + ' ' + plural(k.by.matriculado, 'ex-socio ha', 'ex-socios han') + ' vuelto gracias a ti. Ellos entrenan; tú les has abierto la puerta.');
+  if (k.citas) add('l-citas', 'logro', '🤝', k.citas + ' ' + plural(k.citas, 'cita cerrada', 'citas cerradas') + '. La gente vuelve cuando alguien se acuerda de ella, y ese alguien eres tú.');
+  if (k.tasa != null && k.tasa >= 30 && k.contactados >= 3) add('l-tasa', 'logro', '📬', 'El ' + k.tasa + ' % de tus ex-socios te ha contestado. Muy buena señal: tu mensaje funciona.');
+  if (k.respondieron && !k.citas) add('l-hielo', 'logro', '🧊', 'Ya te ' + plural(k.respondieron, 'ha respondido 1 persona', 'han respondido ' + k.respondieron + ' personas') + '. El hielo está roto.');
+  if (k.contactados >= 10) add('l-diez', 'logro', '🔟', 'Ya has escrito a ' + k.contactados + ' ex-socios. La mayoría de gimnasios no llega ni a 3.');
+
+  /* 5 · Para alegrarte el día (según el día y la hora) */
+  if (dow === 1) { add('a-lun-a', 'animo', '☕', 'Los lunes los gimnasios se llenan de propósitos. Tú llénalo de socios que vuelven.'); add('a-lun-b', 'animo', '🗓️', 'Lunes: mal día para escribir a ex-socios, buen día para preparar la semana.'); }
+  if (GOLD.includes(dow)) { add('a-oro-a', 'animo', '🌟', 'De martes a jueves son tus días dorados. Si hay que escribir, que sea hoy.'); add('a-oro-b', 'animo', '⚡', 'Hoy es día dorado: la gente lee el WhatsApp con calma. Aprovéchalo.'); }
+  if (dow === 5) { add('a-vie-a', 'animo', '🍻', 'Viernes: hoy no se escribe a ex-socios, se revisa lo conseguido. Y lo conseguido mola.'); add('a-vie-b', 'animo', '🎶', 'Viernes. Cierra la semana con un check del Protocolo y el finde sabe mejor.'); }
+  if (dow === 0 || dow === 6) { add('a-fin-a', 'animo', '🌿', 'Fin de semana. Si estás aquí es que te importa ' + centro + '. Pero descansar también es entrenar.'); add('a-fin-b', 'animo', '🛋️', 'Sábado o domingo: perfecto para repasar la lista con calma y dejar la semana preparada.'); }
+  if (h >= 6 && h < 12) { add('a-man-a', 'animo', '☀️', 'Buenos días. Un café, un check del Protocolo y el día ya empieza ganando.'); add('a-man-b', 'animo', '🌅', conNombre('Las mañanas son para lo importante. Hoy lo importante cabe en 10 minutos.')); }
+  if (h >= 15 && h < 20) add('a-tar', 'animo', '🏃', 'La tarde es para las series largas. Aguanta, que lo de hoy cuenta.');
+  if (h >= 22 || h < 5) { add('a-noc-a', 'animo', '🌙', 'Son más de las 22:00: lo de hoy ya está hecho. Descansa, mañana seguimos.'); add('a-noc-b', 'animo', '😴', 'A estas horas solo entrenan los búhos. Mañana, con energía, lo rematas.'); }
+  [
+    ['g01', '💪', 'Nadie se apunta a un gimnasio. Se apuntan a sentirse mejor. Tú vendes eso.'],
+    ['g02', '🧮', 'Recuperar a un socio cuesta un mensaje. Captar uno nuevo, un anuncio. Haz cuentas.'],
+    ['g03', '🔁', 'La constancia gana a la motivación. Por eso estás aquí otra vez.'],
+    ['g04', '👯', 'Un socio que vuelve suele traer a otro. Nadie entrena solo mucho tiempo.'],
+    ['g05', '📣', 'Tu mejor publicidad no está en Instagram: está entrenando en tu sala ahora mismo.'],
+    ['g06', '🤫', 'Los gimnasios no pierden socios por el precio. Los pierden por el silencio. Tú no te callas.'],
+    ['g07', '✔️', 'Hoy no hace falta hacerlo perfecto. Hace falta hacerlo.'],
+    ['g08', '🚪', 'Cada «te echamos de menos» que envías es una puerta que dejas abierta.'],
+    ['g09', '👏', 'Si tus socios supieran todo lo que haces por ellos, te aplaudirían en recepción.'],
+    ['g10', '⌛', 'El mejor momento para escribir a un ex-socio fue hace un mes. El segundo mejor, la próxima ventana.'],
+    ['g11', '⚙️', 'Un gimnasio lleno no es suerte: es un sistema. Y el tuyo ya está en marcha.'],
+    ['g12', '🙋', 'Hoy alguien ha decidido volver a entrenar. Que lo haga en ' + centro + '.'],
+    ['g13', '🦵', 'Las agujetas de hoy son los resultados de mañana. Con los socios pasa igual.'],
+    ['g14', '🧠', 'Tu competencia tiene máquinas. Tú tienes a alguien que se acuerda del nombre de cada socio.'],
+    ['g15', '😅', 'Escribir a un ex-socio da un poco de vergüenza los primeros dos minutos. Luego da cuotas.'],
+    ['g16', '🪜', 'Pequeños pasos todos los días: así se pone en forma un cuerpo y así se llena un gimnasio.'],
+    ['g17', '🎲', 'No hay rutina mágica ni mensaje mágico. Hay constancia. Y de eso vas sobrado.'],
+    ['g18', '📅', 'Hoy toca pierna. Mañana, ex-socios. Pasado, celebrar.'],
+    ['g19', '🕊️', 'Un «no» hoy es un «quizá» dentro de 3 meses. Nunca cierres puertas de golpe.'],
+    ['g20', '🏅', 'Si has llegado hasta aquí, ya estás haciendo más que la mayoría de gimnasios.'],
+    ['g21', '🧲', 'Los socios no se quedan por las máquinas. Se quedan por cómo les haces sentir.'],
+    ['g22', '🌱', 'Cada socio recuperado es una historia que vuelve a empezar. Y empieza en ' + centro + '.'],
+    ['g23', '🎧', 'Pon tu canción de entrenar y dale 10 minutos a la Sala. Verás qué bien sienta.'],
+    ['g24', '🦸', 'Gerente de día, entrenador de vocación y ahora, experto en reactivación. Menudo currículum.'],
+    ['g25', '🥤', 'Hidratación, descanso y un mensaje a un ex-socio. La rutina perfecta.']
+  ].forEach((g) => add(g[0], 'animo', g[1], g[2]));
+
+  return out;
+}
+
+// Elige primero el tipo (con prioridad al Protocolo) y luego una frase que no hayas visto hace poco.
+function fraseElegir(cands, ultimas) {
+  const PESO = { proto: 5, tarea: 3, bonus: 2, logro: 2, animo: 2 };
+  const nuevas = (cat) => cands.filter((c) => c.cat === cat && !ultimas.includes(c.id));
+  let cats = Object.keys(PESO).filter((cat) => nuevas(cat).length);
+  if (!cats.length) { ultimas = []; cats = Object.keys(PESO).filter((cat) => cands.some((c) => c.cat === cat)); }
+  let r = Math.random() * cats.reduce((s, c) => s + PESO[c], 0), cat = cats[0];
+  for (const c of cats) { r -= PESO[c]; if (r <= 0) { cat = c; break; } }
+  const lista = cands.filter((c) => c.cat === cat && !ultimas.includes(c.id));
+  return lista[Math.floor(Math.random() * lista.length)];
+}
+function fraseActual() {
+  if (!Frase.mostrar || Frase.oculta || !session) return null;
+  const cands = frasesCandidatas();
+  if (!cands.length) return null;
+  // Si cambian tus datos mientras navegas, el texto se actualiza; si la frase deja de tener sentido, se cambia por otra.
+  let f = Frase.id && cands.find((c) => c.id === Frase.id);
+  if (!f) {
+    const st = fraseEstado(), ultimas = Array.isArray(st.ult) ? st.ult : [];
+    f = fraseElegir(cands, ultimas);
+    if (!f) return null;
+    Frase.id = f.id;
+    st.ult = ultimas.filter((x) => x !== f.id).concat(f.id).slice(-10);
+    fraseGuardar(st);
+  }
+  return f;
+}
+function fraseHTML() {
+  const f = fraseActual();
+  if (!f) return '';
+  const ir = f.ir;
+  let btn = '';
+  if (ir) {
+    const at = ir.go ? 'data-go="' + esc(ir.go) + '"' + (ir.filtro ? ' data-filtro="' + esc(ir.filtro) + '"' : '')
+      : 'data-act="' + esc(ir.act) + '"' + (ir.id ? ' data-id="' + esc(ir.id) + '"' : '') + (ir.hk ? ' data-hk="' + esc(ir.hk) + '"' : '') + (ir.n ? ' data-n="' + esc(ir.n) + '"' : '');
+    btn = '<button class="btn btn-sm ' + (f.cat === 'proto' ? 'btn-primary' : 'btn-dark') + '" ' + at + '>Ir ahora →</button>';
+  }
+  const tipo = f.cat === 'logro' ? 'logro' : f.cat === 'animo' ? 'animo' : 'empuje';
+  const entra = Frase.vista ? '' : ' entra'; // la animación solo la primera vez, no en cada actualización
+  Frase.vista = true;
+  return '<div class="frase ' + tipo + entra + '" id="frase"><span class="fe" aria-hidden="true">' + f.e + '</span><p>' + esc(f.t) + '</p>' + btn +
+    '<button class="btn btn-icon btn-ghost fx" data-act="frase-x" aria-label="Ocultar la frase" title="Ocultar">' + ico('x') + '</button></div>';
+}
+// Al ir a un paso del Protocolo, se baja directamente hasta él.
+AFTER.protocolo = function () {
+  if (!UI.irPaso) return;
+  const n = UI.irPaso; UI.irPaso = 0;
+  setTimeout(() => { const el = $('#paso-' + n); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+};
+
+/* ══════════════════════════════════════════════════════════
    PANEL DE CONTROL
 ══════════════════════════════════════════════════════════ */
 function clockHTML() {
@@ -1544,6 +1776,7 @@ RENDER.inicio = function () {
   const backupOld = Sync.off && k.n >= 5 && (!Store.d.lastBackup || daysBetween(new Date(Store.d.lastBackup), new Date()) >= 14);
   let html = ph('home', 'Panel de control', esc(saludo) + ', ' + esc(nombre), (p.centro ? esc(p.centro) + ' · ' : '') + esc(PLAN[role()] || ''),
     '<button class="btn btn-outline" data-act="c-new">' + ico('plus') + 'Añadir ex-socio</button><button class="btn btn-primary" data-act="cop-open">' + ico('spark') + 'Copiloto IA</button>');
+  html += fraseHTML();
   if (setup) {
     html += '<div class="card accent" style="margin-bottom:18px"><div class="card-h"><h2>' + ico('settings') + 'Personaliza tu sala de control</h2><span class="card-sub">30 segundos</span></div>' +
       '<p class="card-sub" style="margin:-6px 0 14px">Lo usamos para firmar tus guiones («soy Laura de FitBox Norte») y calcular lo que recuperas.</p>' +
@@ -2527,6 +2760,8 @@ const ACTIONS = {
     openModal(mHead('Activonorte OS', 'Todas las herramientas') + '<div class="modal-b"><span data-sync></span><div class="more-grid">' + items.map((x) => '<button class="more-item" data-go="' + x[0] + '">' + ico(x[1]) + esc(x[2]) + '</button>').join('') + '</div><button class="btn btn-outline btn-block" data-act="logout">' + ico('logout') + 'Cerrar sesión</button></div>');
   },
   'copy-txt': (el) => copyText(el.dataset.t),
+  'frase-x': () => { Frase.oculta = true; const f = $('#frase'); if (f) f.outerHTML = ''; },
+  'frase-paso': (el) => { UI.irPaso = Number(el.dataset.n) || 0; navigate('protocolo'); },
 
   /* Activo Dúo */
   'duo-refresh': () => { UI.duo.cargado = false; UI.duo.error = ''; render(); },
