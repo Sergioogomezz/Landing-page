@@ -2417,9 +2417,9 @@ function copRender(typing) {
       (c ? 'Conozco su ficha: ' + esc([EST[c.estado], c.motivo ? 'se fue por ' + MOT[c.motivo].toLowerCase() : '', mesesFuera(c) != null ? mesesFuera(c) + ' meses fuera' : ''].filter(Boolean).join(', ')) + '. Guardaré la conversación para la próxima vez.' : 'Consejo: elige su ficha arriba y recordaré todo el caso cuando vuelvas.') + '</div></div>';
   }
   html += h.map((m, i) => (m.role === 'user' ? '<div class="msg u">' + esc(m.text) + '</div>'
-    : '<div class="msg b"><div class="est"><strong>⏱️ Tempomat:</strong> espera 5–15 min antes de enviarlo.<br><strong>🥋 Aikido:</strong> ' + esc(m.est || '') + (m.local ? ' <em class="muted">(respuesta de respaldo: ' + esc(m.motivo || 'el Copiloto IA no está disponible ahora mismo') + ')</em>' : '') + '</div>' +
+    : '<div class="msg b"><div class="est"><strong>⏱️ Tempomat:</strong> espera 5–15 min antes de enviarlo.<br><strong>🥋 Aikido:</strong> ' + esc(m.est || '') + (m.local ? ' <em class="muted">(respuesta de respaldo: ' + esc(m.motivo || 'el Copiloto IA no está disponible ahora mismo') + ')</em>' : m.nivel ? ' <em class="muted">· ' + (m.nivel === 'pro' ? 'IA avanzada' : 'IA rápida') + '</em>' : '') + '</div>' +
       (m.msg ? '<div class="bubble">' + esc(m.msg) + '</div><div class="msg-actions"><button class="btn btn-sm btn-primary" data-act="cop-copy" data-i="' + i + '">' + ico('copy') + 'Copiar</button><a class="btn btn-sm btn-wa" href="' + esc(waLink(c ? c.telefono : '', m.msg)) + '" target="_blank" rel="noopener noreferrer">' + ico('send') + 'WhatsApp</a></div>' : '') + '</div>')).join('');
-  if (typing) html += '<div class="msg b" aria-label="El Copiloto está escribiendo"><span class="typing"><i></i><i></i><i></i></span></div>';
+  if (typing) html += '<div class="msg b" aria-label="El Copiloto está escribiendo"><span class="typing"><i></i><i></i><i></i></span><span class="muted" style="margin-left:10px;font-size:12.5px">Analizando con IA avanzada… puede tardar unos segundos</span></div>';
   box.innerHTML = html;
   box.scrollTop = box.scrollHeight;
 }
@@ -2455,7 +2455,7 @@ async function copSend(text) {
     let est = data.estrategia, msg = data.mensaje;
     if (!msg && data.plainReply) { const parts = String(data.plainReply).split(' | Mensaje WhatsApp propuesto: '); est = parts[0]; msg = parts[1] || ''; }
     if (!msg) throw new Error('vacía');
-    rep = { role: 'assistant', est: String(est || ''), msg: String(msg) };
+    rep = { role: 'assistant', est: String(est || ''), msg: String(msg), nivel: data.nivel === 'pro' || data.nivel === 'rapido' ? data.nivel : '' };
   } catch (e) {
     const f = localAikido(text);
     rep = { role: 'assistant', est: f.est, msg: f.msg, local: true, motivo: motivo || 'la IA no ha devuelto respuesta' };
