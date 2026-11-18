@@ -84,7 +84,14 @@
     '.anck-cat small{display:block;color:#5b6b70;font-size:13px;margin-top:4px;line-height:1.45}' +
     '.anck-cat input{width:20px;height:20px;accent-color:#c75300;flex:none}' +
     '.anck-fijo{font-size:12px;font-weight:700;color:#127a3f;background:#dcfce7;border-radius:999px;padding:3px 9px;flex:none}' +
-    '@media (max-width:600px){.anck{left:8px;bottom:8px;width:calc(100% - 16px);padding:16px}.anck-btns{grid-template-columns:1fr 1fr}}';
+    '@media (max-width:600px){.anck{left:8px;bottom:8px;width:calc(100% - 16px);padding:16px}.anck-btns{grid-template-columns:1fr 1fr}}' +
+    /* Ordenador: barra horizontal fina abajo, texto a la izquierda y botones en fila */
+    '@keyframes anckBar{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}' +
+    '@media (min-width:900px){.anck-bar{left:50%;bottom:18px;transform:translateX(-50%);max-width:1180px;width:calc(100% - 48px);display:flex;align-items:center;gap:28px;padding:16px 18px 16px 24px;animation:anckBar .3s ease}' +
+    '.anck-bar .anck-txt{flex:1;min-width:0}.anck-bar h2{font-size:15px;margin-bottom:2px}.anck-bar p{margin:0;font-size:13.5px}' +
+    '.anck-bar .anck-btns{display:flex;gap:8px;flex:none}.anck-bar .anck-cfg{grid-column:auto;order:-1}.anck-bar button{white-space:nowrap;padding:11px 20px}}' +
+    /* Mientras el aviso está abierto, el botón del asistente sube por encima para no quedar tapado */
+    'html.anck-abierto .chat-trigger{bottom:calc(var(--anck-h,0px) + 28px)!important;transition:bottom .3s ease}html.anck-abierto .chat-teaser{display:none!important}';
 
   function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstChild; }
   function estilos() {
@@ -93,20 +100,28 @@
   }
 
   var banner = null;
-  function cerrarBanner() { if (banner) { banner.remove(); banner = null; } }
+  function medir() { if (banner) document.documentElement.style.setProperty('--anck-h', banner.offsetHeight + 'px'); }
+  function cerrarBanner() {
+    if (banner) { banner.remove(); banner = null; }
+    document.documentElement.classList.remove('anck-abierto');
+    window.removeEventListener('resize', medir);
+  }
 
   function mostrarBanner() {
     if (banner) return;
     estilos();
-    banner = el('<section class="anck" role="dialog" aria-live="polite" aria-labelledby="anck-t">' +
-      '<h2 id="anck-t">Tu privacidad, tus reglas 🍪</h2>' +
-      '<p>Usamos cookies propias técnicas, necesarias para que la web funcione. Solo si nos das permiso usaremos además cookies de análisis y de publicidad para medir las visitas y mejorar nuestros anuncios. Puedes aceptarlas, rechazarlas o elegir. <a href="' + POLITICA + '">Política de cookies</a>.</p>' +
+    banner = el('<section class="anck anck-bar" role="dialog" aria-live="polite" aria-labelledby="anck-t">' +
+      '<div class="anck-txt"><h2 id="anck-t">Tu privacidad, tus reglas 🍪</h2>' +
+      '<p>Usamos cookies propias técnicas, necesarias para que la web funcione. Solo si nos das permiso usaremos además cookies de análisis y de publicidad para medir las visitas y mejorar nuestros anuncios. Puedes aceptarlas, rechazarlas o elegir. <a href="' + POLITICA + '">Política de cookies</a>.</p></div>' +
       '<div class="anck-btns">' +
       '<button type="button" class="anck-no" data-anck="no">Rechazar</button>' +
       '<button type="button" class="anck-si" data-anck="si">Aceptar todas</button>' +
       '<button type="button" class="anck-cfg" data-anck="cfg">Configurar</button>' +
       '</div></section>');
     document.body.appendChild(banner);
+    medir();
+    document.documentElement.classList.add('anck-abierto');
+    window.addEventListener('resize', medir);
     banner.addEventListener('click', function (e) {
       var b = e.target.closest('[data-anck]'); if (!b) return;
       var a = b.getAttribute('data-anck');
